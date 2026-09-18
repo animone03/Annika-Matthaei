@@ -1,0 +1,28 @@
+# dependencies
+/node_modules
+/.pnpm-store
+/.pnp
+.pnp.*
+
+# Next.js
+/.next
+/out
+
+# Sanity
+/dist
+/.sanity
+
+# tests
+/playwright-report
+/test-results
+/coverage
+
+# local environment files
+.env*
+!.env.example
+
+# tooling
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+*.log
