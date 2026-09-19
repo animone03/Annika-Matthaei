@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
+
+import portrait from '../../../../public/images/annika-unternehmen.jpg'
 
 import { Container } from '@/components/ui/container'
 import { buildMetadata } from '@/lib/metadata'
@@ -22,6 +25,13 @@ export default function ForCompaniesPage() {
           Kreativbranche – mit Workshops und Trainings zu Kommunikation,
           Ownership und Resilienz.
         </p>
+        <Image
+          src={portrait}
+          alt="Porträt von Annika Matthaei"
+          placeholder="blur"
+          sizes="(max-width: 424px) calc(100vw - 40px), 384px"
+          className="mt-10 h-auto w-full max-w-sm"
+        />
       </Container>
     </>
   )
