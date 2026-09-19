@@ -12,8 +12,8 @@ type HomeHeroProps = {
 
 const defaults = {
   eyebrow: '',
-  heading: 'coaching & training for mental fitness',
-  lead: 'Als zertifizierte systemische & psychologische Business Coach arbeite ich mit Privatpersonen, Teams und Führungskräften. Meine Fokusthemen sind Kommunikation, Ownership und Resilienz; denn nur wer wirksam kommuniziert, Verantwortung übernimmt und Widerstandsfähigkeit entwickelt, kann Ideen und Visionen wirklich in die Welt bringen. Mit einem wertschätzenden, ressourcenorientierten und praxisnahen Ansatz unterstütze ich dabei, Herausforderung als Chance zu begreifen und von der Wahrnehmung über die Erkenntnis ins Doing zu kommen. Bei Bedarf sind auch achtsamkeitsbasierte Methoden, Körperwahrnehmungen und Atemübungen zum Beispiel, Teil meines Coaching- und Trainings-Angebots.',
+  heading: 'Coaching & Training für mentale Fitness',
+  lead: 'Als zertifizierte systemische & psychologische Business Coach arbeite ich mit Privatpersonen, Teams und Führungskräften. Meine Fokusthemen sind Kommunikation, Ownership und Resilienz; denn nur wer wirksam kommuniziert, Verantwortung übernimmt und Widerstandsfähigkeit entwickelt, kann Projekte wirkungsvoll umsetzen und Ideen und Visionen wirklich in die Welt bringen. Mit einem wertschätzenden, ressourcenorientierten und praxisnahen Ansatz unterstütze ich dabei, Herausforderung und Veränderung als Chance zu sehen und von der Wahrnehmung über die Erkenntnis ins Doing zu kommen – so, dass sich im täglichen Arbeiten wirklich etwas verändert.\nIch freue mich auf eine wirkungsvolle Zusammenarbeit!',
 }
 
 export function HomeHero({ eyebrow, heading, lead, portrait }: HomeHeroProps) {
@@ -29,7 +29,7 @@ export function HomeHero({ eyebrow, heading, lead, portrait }: HomeHeroProps) {
           <h1 className="text-5xl leading-[1.15] font-normal tracking-[-0.015em] text-balance sm:text-6xl">
             {heading || defaults.heading}
           </h1>
-          <p className="text-muted-foreground mt-7 max-w-2xl text-xl leading-9 text-pretty">
+          <p className="text-muted-foreground mt-7 max-w-2xl text-xl leading-9 text-pretty whitespace-pre-line">
             {lead || defaults.lead}
           </p>
         </div>
