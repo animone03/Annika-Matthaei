@@ -21,7 +21,7 @@ async function CopyrightYear() {
 
 export function SiteFooter({ ownerName, socialLinks }: SiteFooterProps) {
   return (
-    <footer className="bg-top-surface py-10">
+    <footer className="py-10">
       <Container className="text-muted-foreground grid gap-6 text-sm sm:grid-cols-[1fr_auto] sm:items-center">
         <p>
           © <CopyrightYear /> {ownerName || 'Annika Matthaei'}

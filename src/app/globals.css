@@ -48,6 +48,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body:has([data-home-hero]) .site-header {
+  position: absolute;
+  inset-inline: 0;
+  background: transparent;
+}
+
+body:has([data-home-hero]) .site-header-subtitle {
+  display: none;
+}
+
 h1,
 h2,
 h3,

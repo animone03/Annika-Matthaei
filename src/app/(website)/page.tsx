@@ -62,7 +62,6 @@ export default async function HomePage() {
         eyebrow={page?.hero?.eyebrow}
         heading={page?.hero?.heading}
         lead={page?.hero?.lead}
-        portrait={page?.portrait}
       />
 
       <ReferencesSection />
