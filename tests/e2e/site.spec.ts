@@ -28,7 +28,9 @@ test('desktop navigation exposes the fixed routes', async ({
   const navigation = page.getByRole('navigation', {
     name: 'Hauptnavigation',
   })
-  await expect(navigation.getByRole('link', { name: 'Projekte' })).toBeVisible()
+  await expect(
+    navigation.getByRole('link', { name: 'Für Unternehmen' }),
+  ).toBeVisible()
   await expect(navigation.getByRole('link', { name: 'Kontakt' })).toBeVisible()
 })
 
@@ -39,7 +41,9 @@ test('mobile navigation exposes every fixed route', async ({
   await page.goto('/')
   await page.getByText('Menü', { exact: true }).click()
   const navigation = page.getByRole('navigation', { name: 'Mobile Navigation' })
-  await expect(navigation.getByRole('link', { name: 'Projekte' })).toBeVisible()
+  await expect(
+    navigation.getByRole('link', { name: 'Für Unternehmen' }),
+  ).toBeVisible()
   await expect(navigation.getByRole('link', { name: 'Kontakt' })).toBeVisible()
 })
 
