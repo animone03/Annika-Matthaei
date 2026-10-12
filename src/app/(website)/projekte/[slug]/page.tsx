@@ -62,11 +62,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.disciplines.join(' · ')}
             </p>
           ) : null}
-          <h1 className="mt-5 text-5xl font-semibold tracking-[-0.04em] sm:text-7xl">
+          <h1 className="mt-5 text-3xl font-normal tracking-[-0.035em] uppercase sm:text-5xl">
             {project.title}
           </h1>
           {project.summary ? (
-            <p className="text-muted-foreground mt-7 text-xl leading-9">
+            <p className="text-muted-foreground mt-7 text-base leading-8">
               {project.summary}
             </p>
           ) : null}

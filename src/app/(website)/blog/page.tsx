@@ -21,7 +21,7 @@ export default async function BlogPage() {
 
   return (
     <Container className="py-20 sm:py-28">
-      <h1 className="text-5xl font-semibold tracking-[-0.04em] sm:text-7xl">
+      <h1 className="text-3xl font-normal tracking-[-0.035em] uppercase sm:text-5xl">
         Blog
       </h1>
       {posts.length ? (

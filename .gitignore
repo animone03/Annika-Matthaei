@@ -26,3 +26,11 @@
 next-env.d.ts
 .DS_Store
 *.log
+
+# lokale Arbeitsdateien
+/output
+/tmp
+/.claude
+
+# ungenutzte Demo-Schrift (Personal Use Only)
+/src/app/fonts/helvetica-now

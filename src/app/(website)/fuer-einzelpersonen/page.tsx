@@ -13,10 +13,10 @@ export const metadata: Metadata = buildMetadata({
 export default function ForIndividualsPage() {
   return (
     <Container className="py-20 sm:py-28">
-      <h1 className="text-5xl font-semibold tracking-[-0.04em] sm:text-7xl">
+      <h1 className="text-3xl font-normal tracking-[-0.035em] uppercase sm:text-5xl">
         Für Einzelpersonen
       </h1>
-      <p className="text-muted-foreground mt-7 max-w-2xl text-xl leading-9">
+      <p className="text-muted-foreground mt-7 max-w-2xl text-base leading-8">
         Als zertifizierte Mindful Business und Life Coach begleite ich
         Privatpersonen – einzeln und auf Augenhöhe, mit Fokus auf Kommunikation,
         Ownership und Resilienz.

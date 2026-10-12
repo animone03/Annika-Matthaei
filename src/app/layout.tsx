@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Quicksand } from 'next/font/google'
 import localFont from 'next/font/local'
 import { draftMode } from 'next/headers'
 import { Suspense, type ReactNode } from 'react'
@@ -11,19 +10,27 @@ import { getSiteSettings } from '@/sanity/lib/repository'
 
 import './globals.css'
 
-const brockmann = localFont({
-  src: './brockmann-medium.woff',
-  weight: '500',
-  style: 'normal',
+const helvetica = localFont({
+  src: [
+    { path: './fonts/helvetica/Helvetica.ttf', weight: '400', style: 'normal' },
+    {
+      path: './fonts/helvetica/Helvetica-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: './fonts/helvetica/Helvetica-Oblique.ttf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: './fonts/helvetica/Helvetica-BoldOblique.ttf',
+      weight: '700',
+      style: 'italic',
+    },
+  ],
   display: 'swap',
-  variable: '--font-brockmann',
-})
-
-const quicksand = Quicksand({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  display: 'swap',
-  variable: '--font-quicksand',
+  variable: '--font-helvetica',
 })
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -60,7 +67,8 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${brockmann.variable} ${quicksand.variable} bg-background`}
+      data-scroll-behavior="smooth"
+      className={`${helvetica.variable} bg-background`}
     >
       <body>
         <a

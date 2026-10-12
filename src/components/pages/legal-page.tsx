@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 
 import { PortableText } from '@/components/portable-text/portable-text'
 import { Container } from '@/components/ui/container'
@@ -30,12 +31,14 @@ export async function generateLegalMetadata(
 export async function LegalPageView({
   id,
   fallbackTitle,
+  fallback,
 }: {
   id: LegalPageId
   fallbackTitle: string
+  fallback?: ReactNode
 }) {
   const page = await getLegalPage(id)
-  if (!page) return <EmptyState title={fallbackTitle} />
+  if (!page) return fallback ?? <EmptyState title={fallbackTitle} />
 
   return (
     <Container className="py-20 sm:py-28">

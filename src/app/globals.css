@@ -1,28 +1,26 @@
 @import 'tailwindcss';
 
 :root {
-  --background: oklch(98.5% 0.006 85);
-  --foreground: oklch(22% 0.02 70);
-  --surface: oklch(95.5% 0.012 85);
-  --top-surface: oklch(88.5% 0 0);
-  --muted-foreground: oklch(48% 0.025 70);
-  --border: oklch(86% 0.018 80);
-  --accent: oklch(49% 0.13 38);
-  --accent-foreground: oklch(99% 0.005 80);
+  --background: #f5f5ef;
+  --foreground: #22231f;
+  --surface: #ebebe2;
+  --olive: #afad97;
+  --top-surface: #d5d3c7;
+  --muted-foreground: #53554c;
+  --border: #d5d5ca;
+  --accent: #353c2c;
+  --accent-foreground: #f5f5ef;
   --focus-ring: oklch(55% 0.17 250);
-  --radius: 1rem;
-  --font-sans:
-    var(--font-quicksand), ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading:
-    var(--font-quicksand), ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --radius: 0;
+  --font-sans: var(--font-helvetica), Helvetica, Arial, sans-serif;
+  --font-heading: var(--font-helvetica), Helvetica, Arial, sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
+  --color-olive: var(--olive);
   --color-top-surface: var(--top-surface);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
@@ -42,20 +40,94 @@ html {
 
 body {
   min-height: 100vh;
-  background: var(--background);
+  background: var(--top-surface);
   color: var(--foreground);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
 }
 
-body:has([data-home-hero]) .site-header {
-  position: absolute;
-  inset-inline: 0;
-  background: transparent;
+.site-shell {
+  max-width: 1800px;
+  margin: 20px auto;
+  padding-inline: 20px;
 }
 
-body:has([data-home-hero]) .site-header-subtitle {
-  display: none;
+.site-shell main {
+  background: var(--background);
+}
+
+.site-shell main > section + section {
+  border-top: 16px solid var(--top-surface);
+}
+
+.site-shell footer {
+  margin-top: 16px;
+  background: var(--background);
+}
+
+.site-shell:has([data-company-page], [data-about-page]) footer {
+  margin-top: 0;
+}
+
+body:has([data-home-hero]) {
+  display: flow-root;
+}
+
+.site-shell:has([data-home-hero]) {
+  min-height: calc(100svh - 40px);
+}
+
+.site-shell:has([data-home-hero]) main {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-shell:has([data-home-hero]) footer {
+  margin-top: 0;
+  padding-block: 16px;
+}
+
+.editorial-label {
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+
+.editorial-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-bottom: 1px solid currentColor;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  transition: color 180ms ease;
+}
+
+.editorial-link:hover {
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 639px) {
+  .site-shell {
+    margin-block: 8px;
+    padding-inline: 8px;
+  }
+
+  .site-shell main > section + section {
+    border-top-width: 8px;
+  }
+
+  .site-shell footer {
+    margin-top: 8px;
+  }
+
+  .site-shell:has([data-home-hero]) {
+    min-height: calc(100svh - 16px);
+  }
 }
 
 h1,
@@ -65,6 +137,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
+  font-weight: 400;
 }
 
 a,
@@ -76,6 +149,10 @@ summary {
 :focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
+}
+
+#hauptinhalt:focus {
+  outline: none;
 }
 
 ::selection {
@@ -94,5 +171,57 @@ summary {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Downward scrolling turns pages horizontally, like moving through a book. */
+html[data-scroll-direction] {
+  overflow-x: clip;
+}
+html[data-scroll-direction]::view-transition-group(root) {
+  animation-duration: 560ms;
+}
+
+html[data-scroll-direction]::view-transition-old(root),
+html[data-scroll-direction]::view-transition-new(root) {
+  animation-duration: 560ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  mix-blend-mode: normal;
+}
+
+html[data-scroll-direction='next']::view-transition-old(root) {
+  animation-name: page-slide-out-left;
+}
+
+html[data-scroll-direction='next']::view-transition-new(root) {
+  animation-name: page-slide-in-right;
+}
+
+html[data-scroll-direction='previous']::view-transition-old(root) {
+  animation-name: page-slide-out-right;
+}
+
+html[data-scroll-direction='previous']::view-transition-new(root) {
+  animation-name: page-slide-in-left;
+}
+
+@keyframes page-slide-out-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes page-slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+@keyframes page-slide-out-right {
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes page-slide-in-left {
+  from {
+    transform: translateX(-100%);
   }
 }

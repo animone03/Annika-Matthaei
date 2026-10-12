@@ -31,10 +31,10 @@ export default async function ContactPage() {
     <Container className="py-20 sm:py-28">
       <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
-          <h1 className="text-5xl font-semibold tracking-[-0.04em] sm:text-7xl">
+          <h1 className="text-3xl font-normal tracking-[-0.035em] uppercase sm:text-5xl">
             {page.title}
           </h1>
-          <p className="text-muted-foreground mt-7 max-w-2xl text-xl leading-9">
+          <p className="text-muted-foreground mt-7 max-w-2xl text-base leading-8">
             {page.introduction}
           </p>
           <PortableText value={page.body} className="mt-10" />

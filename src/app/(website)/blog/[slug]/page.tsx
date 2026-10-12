@@ -76,11 +76,11 @@ export default async function PostPage({ params }: PostPageProps) {
                 {formatDate(post.publishedAt)}
               </time>
             ) : null}
-            <h1 className="mt-5 text-5xl font-semibold tracking-[-0.04em] sm:text-7xl">
+            <h1 className="mt-5 text-3xl font-normal tracking-[-0.035em] uppercase sm:text-5xl">
               {post.title}
             </h1>
             {post.description ? (
-              <p className="text-muted-foreground mt-7 text-xl leading-9">
+              <p className="text-muted-foreground mt-7 text-base leading-8">
                 {post.description}
               </p>
             ) : null}

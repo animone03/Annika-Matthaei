@@ -1,63 +1,56 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
-import heroImage from '../../../public/images/annika-home-hero.png'
+import portrait from '../../../public/images/annika-portrait.jpg'
 
-import { Container } from '@/components/ui/container'
+import styles from './home-hero.module.css'
 
 type HomeHeroProps = {
   eyebrow?: string | null
   heading?: string | null
-  lead?: string | null
 }
 
 const defaults = {
   eyebrow: '',
-  heading: 'Coaching & Training für mentale Fitness',
-  lead: 'Als zertifizierte systemische & psychologische Business Coach arbeite ich mit Privatpersonen, Teams und Führungskräften. Meine Fokusthemen sind Kommunikation, Ownership und Resilienz; denn nur wer wirksam kommuniziert, Verantwortung übernimmt und Widerstandsfähigkeit entwickelt, kann Projekte wirkungsvoll umsetzen und Ideen und Visionen wirklich in die Welt bringen. Mit einem wertschätzenden, ressourcenorientierten und praxisnahen Ansatz unterstütze ich dabei, Herausforderung und Veränderung als Chance zu sehen und von der Wahrnehmung über die Erkenntnis ins Doing zu kommen – so, dass sich im täglichen Arbeiten wirklich etwas verändert.\nIch freue mich auf eine wirkungsvolle Zusammenarbeit!',
+  heading: 'Coaching & Training für Gründer und Startups',
 }
 
-export function HomeHero({ eyebrow, heading, lead }: HomeHeroProps) {
+export function HomeHero({ eyebrow, heading }: HomeHeroProps) {
   return (
-    <section data-home-hero>
-      <div className="relative">
-        <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[3/2]">
+    <section data-home-hero className={styles.cover}>
+      <div className={styles.identity}>
+        <span className={styles.firstName}>Annika</span>
+        <div className={styles.portraitFrame}>
           <Image
-            src={heroImage}
-            alt="Annika Matthaei vor einem hellen Hintergrund"
+            src={portrait}
+            alt="Annika Matthaei, sitzend in einem hellen Sessel"
             preload
             placeholder="blur"
-            sizes="(min-width: 640px) 140vw, 100vw"
-            className="h-full w-full object-cover object-center sm:absolute sm:top-0 sm:right-0 sm:h-auto sm:w-[140%] sm:max-w-none"
+            sizes="(min-width: 1024px) 290px, (min-width: 640px) 250px, 210px"
+            className={styles.portrait}
           />
         </div>
-        <div className="px-5 pt-10 sm:absolute sm:top-1/2 sm:left-[55%] sm:w-[40%] sm:-translate-y-1/2 sm:p-0">
-          {eyebrow || defaults.eyebrow ? (
-            <p className="text-accent text-sm font-semibold tracking-[0.18em] uppercase">
-              {eyebrow || defaults.eyebrow}
-            </p>
-          ) : null}
-          <h1 className="text-4xl leading-[1.2] font-semibold tracking-[-0.015em] text-balance sm:text-[clamp(1.5rem,2.8vw,3rem)]">
-            {heading || defaults.heading}
-          </h1>
-          <a
-            href="#coaching-training"
-            className="border-foreground hover:bg-foreground hover:text-background mt-6 inline-flex items-center justify-center rounded-full border px-6 py-2.5 text-base font-medium transition-colors"
-          >
-            Mehr erfahren
-          </a>
-        </div>
+        <span className={styles.lastName}>Matthaei</span>
       </div>
-      <Container id="coaching-training" className="scroll-mt-8 py-12 sm:py-28">
-        <h2
-          lang="en"
-          className="max-w-3xl text-3xl leading-tight font-medium text-balance sm:text-4xl"
-        >
-          train your brain like you train your body!
-        </h2>
-        <p className="text-muted-foreground mt-7 max-w-2xl text-xl leading-9 text-pretty whitespace-pre-line">
-          {lead || defaults.lead}
-        </p>
-      </Container>
+      <div className={styles.coverCaption}>
+        {eyebrow || defaults.eyebrow ? (
+          <p className="editorial-label mb-4">{eyebrow || defaults.eyebrow}</p>
+        ) : null}
+        <h1 className={styles.heading}>{heading || defaults.heading}</h1>
+        <p className="mt-3 text-sm">in München und online</p>
+      </div>
+      <div className={styles.coverFooter}>
+        <span className="editorial-label">
+          Progress over Perfection.
+          <br />
+          Play.
+          <br />
+          Learn. Unlearn.
+        </span>
+        <Link href="/ueber-mich" className="editorial-link">
+          Mehr erfahren <span aria-hidden="true">↗</span>
+        </Link>
+      </div>
     </section>
   )
 }

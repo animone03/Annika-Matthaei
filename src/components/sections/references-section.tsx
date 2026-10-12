@@ -35,12 +35,10 @@ const references = [
 
 export function ReferencesSection() {
   return (
-    <section aria-label="Referenzen" className="pb-20 sm:pb-28">
+    <section aria-label="Referenzen" className="py-12 sm:py-20">
       <Container>
-        <p className="text-muted-foreground text-sm font-semibold tracking-[0.18em] uppercase">
-          Referenzen:
-        </p>
-        <ul className="mt-10 grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-14 sm:grid-cols-3 sm:gap-y-20">
+        <h2 className="editorial-label">03 / Referenzen</h2>
+        <ul className="mt-12 grid grid-cols-2 items-center justify-items-center gap-x-10 gap-y-12 lg:grid-cols-4">
           {references.map((reference) => (
             <li
               key={reference.name}
@@ -52,7 +50,7 @@ export function ReferencesSection() {
                 width={reference.width}
                 height={reference.height}
                 unoptimized
-                className={`h-auto max-w-full object-contain ${reference.className}`}
+                className={`h-auto max-h-12 max-w-full object-contain ${reference.className}`}
               />
             </li>
           ))}
