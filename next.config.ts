@@ -11,6 +11,15 @@ const nextConfig: NextConfig = {
     ],
   },
   typedRoutes: true,
+  async redirects() {
+    return [
+      {
+        source: '/fuer-unternehmen/schwerpunkte',
+        destination: '/fuer-unternehmen',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig
