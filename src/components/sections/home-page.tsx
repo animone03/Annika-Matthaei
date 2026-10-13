@@ -111,7 +111,9 @@ export function HomePageContent({ email }: HomePageContentProps) {
         </div>
         <div className={styles.positioning}>
           <h1 id="home-title" className={styles.claim}>
-            Coaching &amp; Marketing für Menschen, die gestalten.
+            Coaching &amp; Marketing
+            <br />
+            für Menschen, die gestalten.
           </h1>
           <p className={`${styles.intro} ${styles.desktopOnly}`}>
             Ich begleite Gründer:innen, Startups und Führungskräfte – damit
