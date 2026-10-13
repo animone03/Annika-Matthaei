@@ -224,12 +224,11 @@ export function HomePageContent({ email }: HomePageContentProps) {
 
       <section
         id="marketing"
-        aria-labelledby="home-additional"
+        aria-label="Ergänzende Angebote"
         className={`${styles.offerGrid} ${styles.offerAdditional}`}
       >
-        <h2 id="home-additional" className={styles.label}>
-          Ergänzend
-        </h2>
+        {/* Leere linke Spalte, damit die Zeile im Raster bleibt. */}
+        <div aria-hidden="true" />
         <div className={styles.offerList}>
           {/* TODO: Ziel auf die Marketing-Seite ändern, sobald sie existiert. */}
           <Link
