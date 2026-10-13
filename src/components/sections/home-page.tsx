@@ -127,7 +127,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
           <p className={styles.manifest}>
             Progress over Perfection.
             <br />
-            Play.
+            Play. Laugh.
             <br />
             Learn. Unlearn.
           </p>
@@ -347,7 +347,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
       </section>
 
       <p className={`${styles.mobileManifest} ${styles.mobileOnly}`}>
-        Progress over Perfection. Play. Learn. Unlearn.
+        Progress over Perfection. Play. Laugh. Learn. Unlearn.
       </p>
 
       <HomeStickyCta email={email} />
