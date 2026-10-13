@@ -115,8 +115,9 @@ export function HomePageContent({ email }: HomePageContentProps) {
           </h1>
           <p className={`${styles.intro} ${styles.desktopOnly}`}>
             Ich begleite Gründer:innen, Startups und Führungskräfte – damit
-            Teams gut zusammenarbeiten und Marken verstanden werden. In München
-            und online.
+            Teams gut zusammenarbeiten und Marken verstanden werden.
+            <br />
+            In München &amp; online.
           </p>
           <p className={`${styles.intro} ${styles.mobileOnly}`}>
             Für Gründer:innen, Startups und Führungskräfte – in München und
