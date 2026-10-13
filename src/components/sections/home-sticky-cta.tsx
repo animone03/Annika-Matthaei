@@ -48,7 +48,7 @@ export function HomeStickyCta({ email }: HomeStickyCtaProps) {
         <a
           href={`mailto:${email}`}
           className={styles.stickyCtaMail}
-          aria-label="E-Mail schreiben"
+          aria-label="E-Mail an Annika"
         >
           @
         </a>

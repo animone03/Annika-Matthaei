@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const content = await getSitemapContent()
   const fixed = [
     '/',
-    '/fuer-unternehmen',
+    '/coaching/startups',
     '/ueber-mich',
     '/projekte',
     '/blog',

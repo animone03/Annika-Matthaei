@@ -1,29 +1,189 @@
 'use client'
 
+import type { Route } from 'next'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import {
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent as ReactKeyboardEvent,
+} from 'react'
 
-const navigation = [
-  // TODO: Coaching und Marketing auf eigene Seiten umstellen, sobald sie existieren.
+import styles from './site-header.module.css'
+
+type NavItem = { label: string; href: Route }
+
+type CoachingGroup = {
+  label: string
+  mobileLabel: string
+  href: Route
+  items: NavItem[]
+  tone: 'dark' | 'taupe'
+}
+
+// TODO: „Für Unternehmen“ auf /coaching/unternehmen umstellen, sobald die
+// Seite gestaltet ist.
+const coaching: CoachingGroup[] = [
   {
-    label: 'Coaching',
-    href: '/fuer-unternehmen',
-    detail: 'Startups · Unternehmen',
+    label: 'Für Startups & Founder',
+    mobileLabel: 'Für Startups',
+    href: '/coaching/startups',
+    tone: 'dark',
+    items: [
+      { label: 'Co-Founder', href: '/coaching/startups#co-founder' },
+      { label: 'Teams', href: '/coaching/startups#teams' },
+      { label: 'EXIST', href: '/coaching/startups#exist' },
+    ],
   },
   {
-    label: 'Marketing',
-    href: '/#marketing',
-    detail: 'Strategie · Web · Brand',
+    label: 'Für Unternehmen',
+    mobileLabel: 'Für Unternehmen',
+    href: '/kontakt',
+    tone: 'taupe',
+    items: [
+      { label: 'Leadership', href: '/kontakt' },
+      { label: 'Teams', href: '/kontakt' },
+    ],
   },
+]
+
+// TODO: Marketing auf eine eigene Seite umstellen, sobald sie existiert.
+const navigation: NavItem[] = [
+  { label: 'Marketing', href: '/#marketing' },
   { label: 'Über mich', href: '/ueber-mich' },
   { label: 'Blog', href: '/blog' },
   { label: 'Kontakt', href: '/kontakt' },
-] as const
+]
+
+const arrow = '↗︎'
+
+function CoachingDropdown({ active }: { active: boolean }) {
+  const [open, setOpen] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const closeTimer = useRef<number | undefined>(undefined)
+  // Solange die Maus über dem Menü ist, schließt ein Klick es nicht wieder.
+  const hovering = useRef(false)
+
+  function show() {
+    window.clearTimeout(closeTimer.current)
+    setOpen(true)
+  }
+
+  function hideSoon() {
+    window.clearTimeout(closeTimer.current)
+    closeTimer.current = window.setTimeout(() => setOpen(false), 150)
+  }
+
+  useEffect(() => () => window.clearTimeout(closeTimer.current), [])
+
+  // ESC und Klick außerhalb schließen das Panel.
+  useEffect(() => {
+    if (!open) return
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setOpen(false)
+        buttonRef.current?.focus()
+      }
+    }
+    function onPointerDown(event: PointerEvent) {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [open])
+
+  // Pfeiltasten öffnen das Panel und bewegen den Fokus durch die Einträge.
+  function onKeyDown(event: ReactKeyboardEvent<HTMLDivElement>) {
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
+    event.preventDefault()
+    if (!open) {
+      show()
+      return
+    }
+    const links = Array.from(
+      rootRef.current?.querySelectorAll<HTMLAnchorElement>('a') ?? [],
+    )
+    const index = links.indexOf(document.activeElement as HTMLAnchorElement)
+    const next =
+      event.key === 'ArrowDown'
+        ? links[(index + 1) % links.length]
+        : links[(index - 1 + links.length) % links.length]
+    next?.focus()
+  }
+
+  return (
+    <div
+      ref={rootRef}
+      className={styles.dropdown}
+      onPointerEnter={(event) => {
+        if (event.pointerType !== 'mouse') return
+        hovering.current = true
+        show()
+      }}
+      onPointerLeave={(event) => {
+        if (event.pointerType !== 'mouse') return
+        hovering.current = false
+        hideSoon()
+      }}
+      onFocus={show}
+      onBlur={(event) => {
+        if (!rootRef.current?.contains(event.relatedTarget as Node)) hideSoon()
+      }}
+      onKeyDown={onKeyDown}
+    >
+      <button
+        ref={buttonRef}
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="true"
+        aria-controls="coaching-menu"
+        onClick={() => setOpen((value) => hovering.current || !value)}
+        className={`${styles.trigger} ${active ? styles.triggerActive : ''}`}
+      >
+        Coaching <span aria-hidden="true">{open ? '↑' : '↓'}</span>
+      </button>
+      <div id="coaching-menu" hidden={!open} className={styles.panel}>
+        {coaching.map((group) => (
+          <div key={group.label} className={styles.group}>
+            <Link
+              href={group.href}
+              className={styles.groupLink}
+              onClick={() => setOpen(false)}
+            >
+              {group.label}
+            </Link>
+            <ul>
+              {group.items.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className={styles.item}
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label} <span aria-hidden="true">{arrow}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export function SiteHeader() {
+  const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
+  const coachingActive = pathname.startsWith('/coaching')
 
   function closeMenu() {
     setMenuOpen(false)
@@ -71,27 +231,57 @@ export function SiteHeader() {
     <header
       ref={headerRef}
       className={`site-header sticky top-0 z-40 lg:relative ${
-        menuOpen ? 'text-background bg-transparent' : 'bg-background'
+        menuOpen ? 'bg-transparent' : 'bg-background'
       }`}
     >
       {menuOpen ? (
-        <div className="bg-foreground text-background fixed inset-0 overflow-y-auto px-5 pt-24 pb-7 lg:hidden">
-          <nav aria-label="Mobile Navigation">
-            <ul>
+        <div className={styles.overlay}>
+          <nav aria-label="Mobile Navigation" className={styles.overlayNav}>
+            <p className={styles.overlayLabel}>Coaching</p>
+            {coaching.map((group) => (
+              <div
+                key={group.label}
+                className={`${styles.card} ${
+                  group.tone === 'dark' ? styles.cardDark : styles.cardTaupe
+                }`}
+              >
+                <Link
+                  data-menu-focus
+                  href={group.href}
+                  onClick={closeMenu}
+                  className={styles.cardHead}
+                >
+                  {group.mobileLabel}
+                  <span aria-hidden="true" className={styles.cardArrow}>
+                    {arrow}
+                  </span>
+                </Link>
+                <ul>
+                  {group.items.map((item) => (
+                    <li key={item.label}>
+                      <Link
+                        data-menu-focus
+                        href={item.href}
+                        onClick={closeMenu}
+                        className={styles.cardItem}
+                      >
+                        {item.label} <span aria-hidden="true">→</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <ul className={styles.overlayList}>
               {navigation.map((item) => (
                 <li key={item.href}>
                   <Link
                     data-menu-focus
                     href={item.href}
                     onClick={closeMenu}
-                    className="hover:text-background flex items-baseline justify-between gap-4 border-t border-[rgb(244_244_238/0.2)] py-[18px] text-[34px] leading-none tracking-[-0.025em] uppercase"
+                    className={styles.overlayLink}
                   >
                     {item.label}
-                    {'detail' in item ? (
-                      <span className="text-xs tracking-[0.06em] whitespace-nowrap text-[#b9b7ad]">
-                        {item.detail}
-                      </span>
-                    ) : null}
                   </Link>
                 </li>
               ))}
@@ -101,9 +291,9 @@ export function SiteHeader() {
             data-menu-focus
             href="/kontakt"
             onClick={closeMenu}
-            className="bg-background text-foreground hover:text-foreground mt-7 block p-4 text-center text-sm tracking-[0.06em] uppercase"
+            className={styles.overlayCta}
           >
-            Kennenlernen <span aria-hidden="true">↗︎</span>
+            Kennenlernen <span aria-hidden="true">{arrow}</span>
           </Link>
         </div>
       ) : null}
@@ -129,11 +319,14 @@ export function SiteHeader() {
           aria-label="Hauptnavigation"
           className="ml-auto hidden text-right lg:block"
         >
-          <ul className="flex items-center justify-end gap-8 pt-1">
+          <ul className="flex items-center justify-end gap-8 pt-1 text-[13px] tracking-[0.06em] uppercase">
+            <li>
+              <CoachingDropdown active={coachingActive} />
+            </li>
             {navigation.map((item) => (
               <li key={item.href}>
                 <Link
-                  className="hover:text-muted-foreground inline-flex items-center text-[13px] tracking-[0.06em] uppercase"
+                  className="hover:text-muted-foreground inline-flex items-center"
                   href={item.href}
                 >
                   {item.label}

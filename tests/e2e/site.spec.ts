@@ -20,6 +20,22 @@ test('homepage exposes its landmarks and no serious accessibility violations', a
   expect(serious).toEqual([])
 })
 
+test('startup coaching page has no serious accessibility violations', async ({
+  page,
+}) => {
+  await page.goto('/fuer-unternehmen')
+  await expect(page).toHaveURL(/\/coaching\/startups$/)
+  await expect(
+    page.getByRole('heading', { level: 1, name: /Euer Startup/ }),
+  ).toBeVisible()
+
+  const results = await new AxeBuilder({ page }).analyze()
+  const serious = results.violations.filter((violation) =>
+    ['serious', 'critical'].includes(violation.impact || ''),
+  )
+  expect(serious).toEqual([])
+})
+
 test('desktop navigation exposes the fixed routes', async ({
   page,
 }, testInfo) => {
@@ -28,7 +44,13 @@ test('desktop navigation exposes the fixed routes', async ({
   const navigation = page.getByRole('navigation', {
     name: 'Hauptnavigation',
   })
-  await expect(navigation.getByRole('link', { name: 'Coaching' })).toBeVisible()
+  const coaching = navigation.getByRole('button', { name: /Coaching/ })
+  await expect(coaching).toHaveAttribute('aria-expanded', 'false')
+  await coaching.click()
+  await expect(coaching).toHaveAttribute('aria-expanded', 'true')
+  await expect(
+    navigation.getByRole('link', { name: 'Für Startups & Founder' }),
+  ).toBeVisible()
   await expect(navigation.getByRole('link', { name: 'Kontakt' })).toBeVisible()
 })
 
@@ -39,7 +61,9 @@ test('mobile navigation exposes every fixed route', async ({
   await page.goto('/')
   await page.getByText('Menü', { exact: true }).click()
   const navigation = page.getByRole('navigation', { name: 'Mobile Navigation' })
-  await expect(navigation.getByRole('link', { name: 'Coaching' })).toBeVisible()
+  await expect(
+    navigation.getByRole('link', { name: /Für Startups/ }),
+  ).toBeVisible()
   await expect(navigation.getByRole('link', { name: 'Kontakt' })).toBeVisible()
 })
 

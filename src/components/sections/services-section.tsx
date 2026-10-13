@@ -40,7 +40,7 @@ export function ServicesSection() {
               arbeite mit Führungskräften und Teams, die merken, dass da noch
               Luft nach oben ist.
             </p>
-            <Link href="/fuer-unternehmen" className="editorial-link mt-5">
+            <Link href="/coaching/startups" className="editorial-link mt-5">
               Für Unternehmen <span aria-hidden="true">↗︎</span>
             </Link>
           </div>

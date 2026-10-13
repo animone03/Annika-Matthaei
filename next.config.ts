@@ -15,7 +15,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/fuer-unternehmen/schwerpunkte',
-        destination: '/fuer-unternehmen',
+        destination: '/coaching/startups',
+        permanent: true,
+      },
+      {
+        source: '/fuer-unternehmen',
+        destination: '/coaching/startups',
         permanent: true,
       },
     ]

@@ -41,7 +41,9 @@ export default async function HomePage() {
           ),
         }}
       />
-      <HomePageContent email={settings?.email} />
+      <HomePageContent
+        email={settings?.email || 'annika.matthaei@googlemail.com'}
+      />
     </>
   )
 }

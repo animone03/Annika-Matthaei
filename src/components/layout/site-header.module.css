@@ -1,0 +1,185 @@
+/* Desktop: Dropdown unter „Coaching“ */
+
+.dropdown {
+  position: relative;
+}
+
+.trigger {
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 3px;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+.trigger:hover {
+  color: var(--muted-foreground);
+}
+
+.triggerActive {
+  border-bottom-color: var(--foreground);
+}
+
+.panel {
+  position: absolute;
+  top: 34px;
+  left: -20px;
+  z-index: 50;
+  display: flex;
+  width: 280px;
+  flex-direction: column;
+  border: 1px solid #1f1f1b;
+  background: #fff;
+  padding: 8px 20px 12px;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0 4px;
+}
+
+.groupLink {
+  padding-bottom: 6px;
+  color: #5c5b54;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.groupLink:hover {
+  color: var(--foreground);
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgb(31 31 27 / 0.12);
+  padding: 9px 0;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.item:hover {
+  color: #5c5b54;
+}
+
+/* Mobil: helles Menü mit Karten */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: #f4f4ee;
+  padding: 84px 20px 28px;
+  color: #1f1f1b;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1024px) {
+  .overlay {
+    display: none;
+  }
+}
+
+.overlayNav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.overlayLabel {
+  color: #5c5b54;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 8px;
+}
+
+.cardDark {
+  --card-line: rgb(244 244 238 / 0.2);
+
+  background: #1f1f1b;
+  color: #f4f4ee;
+}
+
+.cardTaupe {
+  --card-line: rgb(31 31 27 / 0.2);
+
+  background: #d7d5c9;
+  color: #1f1f1b;
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.cardArrow {
+  font-size: 16px;
+}
+
+.cardItem {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--card-line);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.cardHead:hover,
+.cardItem:hover {
+  color: inherit;
+}
+
+.card:active,
+.cardItem:active {
+  opacity: 0.85;
+}
+
+.overlayList {
+  margin-top: 12px;
+}
+
+.overlayLink {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  border-top: 1px solid #1f1f1b;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.overlayList li:last-child .overlayLink {
+  border-bottom: 1px solid #1f1f1b;
+}
+
+.overlayCta {
+  margin-top: 20px;
+  background: #1f1f1b;
+  padding: 16px;
+  color: #f4f4ee;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.overlayCta:hover {
+  color: #f4f4ee;
+}

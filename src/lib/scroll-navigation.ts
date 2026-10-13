@@ -1,6 +1,6 @@
 export const scrollPages = [
   '/',
-  '/fuer-unternehmen',
+  '/coaching/startups',
   '/fuer-einzelpersonen',
   '/ueber-mich',
   '/blog',

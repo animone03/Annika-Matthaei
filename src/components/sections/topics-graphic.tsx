@@ -421,7 +421,7 @@ const mobile: Variant = {
       background: ink,
       color: paper,
       labelStyle: centeredLabel(62, 12, 1.6),
-      href: '/fuer-unternehmen',
+      href: '/coaching/startups',
     },
     {
       id: 'leadership',

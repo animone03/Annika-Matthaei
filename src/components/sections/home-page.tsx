@@ -23,7 +23,7 @@ const coreOffers = [
       'EXIST & Early Stage · Co-Founder Coaching · Leadership & Teams',
     mobileDescription:
       'EXIST & Early Stage · Co-Founder Coaching · Leadership & Teams',
-    href: '/fuer-unternehmen',
+    href: '/coaching/startups',
   },
   {
     number: '02',
@@ -93,7 +93,7 @@ type HomePageContentProps = {
 
 export function HomePageContent({ email }: HomePageContentProps) {
   return (
-    <div data-home className={styles.page}>
+    <div data-home data-frame-page className={styles.page}>
       <section aria-labelledby="home-title" className={styles.hero}>
         <div className={styles.identity}>
           <span className={styles.firstName}>Annika</span>
@@ -177,7 +177,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
         </p>
         <TopicsGraphic variant="mobile" />
         {/* TODO: Ziel festlegen, sobald es eine Übersicht aller Angebote gibt. */}
-        <Link href="/fuer-unternehmen" className={styles.underlineLink}>
+        <Link href="/coaching/startups" className={styles.underlineLink}>
           Alle Angebote als Liste <span aria-hidden="true">↗︎</span>
         </Link>
       </section>
