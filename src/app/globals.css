@@ -80,6 +80,33 @@ body {
   padding-block: 0 32px;
 }
 
+/* Startseite mobil: randlos, Footer schmal und mit Platz für die Kontaktleiste. */
+@media (max-width: 767px) {
+  .site-shell:has([data-home]) {
+    --frame: 0px;
+    margin-block: 0;
+    padding-inline: 0;
+  }
+
+  .site-shell:has([data-home]) footer {
+    padding: 0 20px 100px;
+  }
+
+  .site-shell:has([data-home]) footer > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid rgb(31 31 27 / 0.15);
+    padding: 14px 0 0;
+    font-size: 10px;
+  }
+
+  .site-shell:has([data-home]) footer ul {
+    flex-wrap: nowrap;
+    column-gap: 16px;
+  }
+}
+
 .editorial-label {
   font-size: 0.6875rem;
   line-height: 1.5;
@@ -116,11 +143,6 @@ body {
 
   .site-shell footer {
     margin-top: 8px;
-  }
-
-  .site-shell:has([data-home]) {
-    --frame: 8px;
-    margin-block: 8px;
   }
 }
 

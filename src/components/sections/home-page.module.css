@@ -5,6 +5,7 @@
   --sand: #e9e7df;
   --line: rgb(31 31 27 / 0.15);
   --line-strong: rgb(31 31 27 / 0.3);
+  --paper: #f4f4ee;
   --gutter: 48px;
 
   color: var(--ink);
@@ -12,6 +13,15 @@
 
 .page a:hover {
   color: var(--muted);
+}
+
+/* Desktop- und Mobil-Varianten desselben Inhalts */
+
+.mobileOnly,
+.mobileFacts,
+.mobileManifest,
+.stickyCta {
+  display: none;
 }
 
 /* Hero */
@@ -421,27 +431,71 @@
   }
 }
 
-/* Mobil: unter 768 px (finale Variante steht noch aus) */
+/* Mobil: unter 768 px (Variante 2c) */
 
 @media (max-width: 767px) {
   .page {
-    --gutter: 24px;
+    --gutter: 20px;
   }
 
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: revert;
+  }
+
+  /* Hero: Foto randlos oben, Name zweizeilig darunter */
+
   .identity {
-    padding-top: 40px;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    gap: 0;
+    padding: 0;
+  }
+
+  .passepartout {
+    order: -1;
+    width: auto;
+    margin: 0 var(--gutter);
+    background: none;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .portrait {
+    height: 380px;
+    aspect-ratio: auto;
+    object-position: center 30%;
   }
 
   .firstName,
   .lastName {
-    font-size: clamp(44px, 13vw, 56px);
+    padding-inline: var(--gutter);
+    font-size: clamp(56px, 18.5vw, 72px);
+    line-height: 0.82;
+    letter-spacing: -0.05em;
   }
 
-  .passepartout {
-    width: 200px;
+  .firstName {
+    padding-top: 22px;
+    text-align: left;
+  }
+
+  .lastName {
+    text-align: right;
+  }
+
+  .positioning {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 28px var(--gutter) 0;
+    text-align: left;
   }
 
   .claim {
+    max-width: none;
     font-size: 22px;
   }
 
@@ -450,65 +504,268 @@
   }
 
   .manifestRow {
+    display: none;
+  }
+
+  .marquee {
+    margin: 32px 0 0;
+    padding: 12px 0;
+  }
+
+  .marqueeTrack {
+    font-size: 17px;
+    animation-duration: 30s;
+  }
+
+  /* Angebote als Karten */
+
+  .offerGrid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .offerGrid > .label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .offerCore {
+    padding: 36px var(--gutter) 12px;
+  }
+
+  .offerAdditional {
+    padding: 0 var(--gutter);
+  }
+
+  .offerList {
+    gap: 12px;
+  }
+
+  .offerRow,
+  .offerRowSecondary {
+    position: relative;
+    display: flex;
     flex-direction: column;
+    gap: 10px;
+    border-top: 0;
+    padding: 22px 20px;
+    transition: opacity 150ms ease-out;
+  }
+
+  .offerRow:active {
+    opacity: 0.85;
+  }
+
+  .offerList li:first-child .offerRow,
+  .offerList li:first-child .offerRow:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .offerList li:nth-child(2) .offerRow,
+  .offerList li:nth-child(2) .offerRow:hover {
+    background: var(--top-surface);
+    color: var(--ink);
+  }
+
+  .offerRowSecondary,
+  .offerRowSecondary:hover {
+    background: var(--sand);
+    color: var(--ink);
+  }
+
+  .offerNumber {
+    padding-right: 24px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .offerText,
+  .offerRowSecondary .offerText {
+    gap: 10px;
+  }
+
+  .offerTitle,
+  .offerRowSecondary .offerTitle {
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .offerDescription,
+  .offerRowSecondary .offerDescription,
+  .offerRow:hover .offerDescription {
+    font-size: 13px;
+    line-height: 1.45;
+    color: inherit;
+    opacity: 0.75;
+  }
+
+  .offerArrow,
+  .offerRowSecondary .offerArrow {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    font-size: 11px;
+  }
+
+  .offerRow:hover .offerArrow {
+    transform: none;
+  }
+
+  /* Kennzahlen und Logos */
+
+  .trust {
+    border-top: 0;
+    padding: 36px var(--gutter) 0;
+  }
+
+  .mobileFacts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .mobileFact {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-top: 1px solid var(--ink);
+    padding-top: 12px;
+  }
+
+  .mobileFactValue {
+    font-size: 34px;
+    letter-spacing: -0.04em;
+  }
+
+  .mobileFact .factText {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .logos {
+    display: block;
+    padding-top: 28px;
+  }
+
+  .logos .label {
+    display: none;
+  }
+
+  .logoGrid {
+    display: flex;
+    gap: 10px;
+    margin-right: calc(-1 * var(--gutter));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .logoGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .logoGrid li {
+    flex: none;
+    width: 96px;
+    height: 40px;
+    scroll-snap-align: start;
+  }
+
+  .logo {
+    height: auto !important;
+    max-height: 22px;
+    opacity: 1;
+  }
+
+  /* Kontakt */
+
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    border-top: 0;
+    padding: 48px var(--gutter) 0;
+  }
+
+  .contactPortrait,
+  .contactBody p {
+    display: none;
+  }
+
+  .contactHeading {
+    font-size: 30px;
+  }
+
+  .contactBody {
+    grid-column: auto;
     align-items: stretch;
-    gap: 32px;
-    padding-block: 40px;
   }
 
   .underlineLink,
   .underlineLinkWide {
     width: 100%;
+    padding: 14px 0 12px;
+    font-size: 14px;
   }
 
-  .marqueeTrack {
-    font-size: 18px;
+  .mobileManifest {
+    display: block;
+    padding: 40px var(--gutter) 10px;
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
-  .offerCore {
-    padding-top: 48px;
+  /* Fixe Kontaktleiste */
+
+  .stickyCta {
+    position: fixed;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    left: 12px;
+    z-index: 30;
+    display: flex;
+    gap: 8px;
+    border: 1px solid rgb(31 31 27 / 0.12);
+    background: rgb(244 244 238 / 0.94);
+    padding: 8px;
+    backdrop-filter: blur(8px);
+    transition:
+      opacity 200ms ease-out,
+      transform 200ms ease-out;
   }
 
-  .offerAdditional {
-    padding-bottom: 48px;
+  .stickyCta[data-visible='false'] {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px);
   }
 
-  .offerRow {
-    grid-template-columns: 32px 1fr 24px;
-    gap: 12px;
-    padding: 22px 0;
-  }
-
-  .offerTitle {
-    font-size: 24px;
-  }
-
-  .offerRowSecondary .offerTitle {
-    font-size: 22px;
-  }
-
-  .coachHint {
+  .stickyCtaPrimary,
+  .page .stickyCtaPrimary:hover {
+    flex: 1;
+    background: var(--ink);
+    padding: 14px;
+    color: var(--paper);
     font-size: 13px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-transform: uppercase;
   }
 
-  .trust {
-    padding-block: 40px;
-  }
-
-  .logoGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .contact {
-    grid-template-columns: 1fr;
-    padding-block: 48px;
-  }
-
-  .contactPortrait {
-    width: 180px;
-  }
-
-  .contactHeading {
-    font-size: 28px;
+  .stickyCtaMail {
+    display: flex;
+    width: 52px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ink);
+    font-size: 12px;
   }
 }

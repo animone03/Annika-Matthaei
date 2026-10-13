@@ -41,7 +41,7 @@ export default async function HomePage() {
           ),
         }}
       />
-      <HomePageContent />
+      <HomePageContent email={settings?.email} />
     </>
   )
 }
