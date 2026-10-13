@@ -5,6 +5,7 @@ import heroPortrait from '../../../public/images/annika-sessel.jpeg'
 import ctaPortrait from '../../../public/images/annika-unternehmen.jpg'
 
 import { HomeStickyCta } from './home-sticky-cta'
+import { TopicsGraphic } from './topics-graphic'
 import styles from './home-page.module.css'
 
 const marqueeText =
@@ -142,6 +143,21 @@ export function HomePageContent({ email }: HomePageContentProps) {
           <span>{marqueeText}</span>
         </div>
       </div>
+
+      <section aria-labelledby="home-topics" className={styles.topics}>
+        <div className={styles.topicsIntro}>
+          <p className={styles.label}>Wie ich arbeite</p>
+          <h2 id="home-topics" className={styles.topicsHeading}>
+            Alles hängt zusammen.
+          </h2>
+          <p className={styles.topicsText}>
+            Menschen, Marke und Prozesse beeinflussen sich gegenseitig. Darum
+            schaue ich aufs Ganze – und setze dort an, wo es bei dir gerade
+            zählt.
+          </p>
+        </div>
+        <TopicsGraphic />
+      </section>
 
       <section
         aria-labelledby="home-offers"

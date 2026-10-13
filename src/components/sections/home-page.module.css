@@ -150,6 +150,43 @@
   }
 }
 
+/* Themen-Grafik */
+
+.topics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 88px var(--gutter) 0;
+}
+
+.topicsIntro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.topicsIntro .label {
+  padding-top: 0;
+}
+
+.topicsHeading {
+  font-size: 40px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.topicsText {
+  max-width: 520px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
 /* Angebot */
 
 .offerGrid {
@@ -503,7 +540,8 @@
     font-size: 15px;
   }
 
-  .manifestRow {
+  .manifestRow,
+  .topics {
     display: none;
   }
 

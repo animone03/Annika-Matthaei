@@ -1,0 +1,97 @@
+.frame {
+  --topics-scale: 1;
+
+  width: 100%;
+  max-width: 880px;
+  height: calc(770px * var(--topics-scale));
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  width: 880px;
+  height: 770px;
+  overflow: hidden;
+  background: #f4f4ee;
+  color: #1f1f1b;
+  transform: scale(var(--topics-scale));
+  transform-origin: top left;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+}
+
+.heading {
+  position: absolute;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.headingCoaching {
+  top: 22px;
+  left: 24px;
+}
+
+.headingMarketing {
+  top: 22px;
+  right: 24px;
+}
+
+.headingProcesses {
+  right: 0;
+  bottom: 20px;
+  left: 0;
+  text-align: center;
+}
+
+.attitude {
+  position: absolute;
+  top: 56px;
+  left: 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.attitudeLabel {
+  color: #5c5b54;
+}
+
+.bubble {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-right: 4px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+  hyphens: manual;
+  will-change: transform;
+}
+
+.bubbleLabel {
+  position: relative;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
