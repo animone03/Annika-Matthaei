@@ -532,9 +532,14 @@
     text-align: left;
   }
 
+  /* Zwei Zeilen, auch auf schmalen Handys: Schrift schrumpft bei Bedarf. */
   .claim {
     max-width: none;
-    font-size: 22px;
+    font-size: min(22px, calc((100vw - 40px) / 17));
+  }
+
+  .claimLine {
+    white-space: nowrap;
   }
 
   .intro {
