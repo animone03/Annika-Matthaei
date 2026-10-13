@@ -1,8 +1,6 @@
 import { cacheLife } from 'next/cache'
 import Link from 'next/link'
 
-import { Container } from '@/components/ui/container'
-
 type SiteFooterProps = {
   ownerName?: string | null
   socialLinks?: Array<{
@@ -22,34 +20,34 @@ async function CopyrightYear() {
 export function SiteFooter({ ownerName, socialLinks }: SiteFooterProps) {
   return (
     <footer className="py-10">
-      <Container className="text-muted-foreground grid gap-6 text-[11px] tracking-wide uppercase sm:grid-cols-[1fr_auto] sm:items-center">
+      <div className="text-muted-foreground grid gap-6 px-6 text-xs tracking-[0.06em] uppercase sm:grid-cols-[1fr_auto] sm:items-center sm:px-12">
         <p>
           © <CopyrightYear /> {ownerName || 'Annika Matthaei'}
         </p>
         <nav aria-label="Fußnavigation">
-          <ul className="flex flex-wrap gap-x-5 gap-y-3">
+          <ul className="flex flex-wrap gap-x-6 gap-y-3">
             {socialLinks?.map((link) =>
               link.label && link.url ? (
                 <li key={link._key}>
-                  <a href={link.url} rel="me" className="hover:text-accent">
+                  <a href={link.url} rel="me" className="hover:text-foreground">
                     {link.label}
                   </a>
                 </li>
               ) : null,
             )}
             <li>
-              <Link href="/impressum" className="hover:text-accent">
+              <Link href="/impressum" className="hover:text-foreground">
                 Impressum
               </Link>
             </li>
             <li>
-              <Link href="/datenschutz" className="hover:text-accent">
+              <Link href="/datenschutz" className="hover:text-foreground">
                 Datenschutz
               </Link>
             </li>
           </ul>
         </nav>
-      </Container>
+      </div>
     </footer>
   )
 }

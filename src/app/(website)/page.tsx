@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { HomeHero } from '@/components/sections/home-hero'
+import { HomePageContent } from '@/components/sections/home-page'
 import { JsonLd } from '@/lib/json-ld'
 import { buildMetadata } from '@/lib/metadata'
 import { absoluteUrl } from '@/lib/site-url'
@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [page, settings] = await Promise.all([getHomePage(), getSiteSettings()])
+  const settings = await getSiteSettings()
 
   return (
     <>
@@ -41,7 +41,7 @@ export default async function HomePage() {
           ),
         }}
       />
-      <HomeHero eyebrow={page?.hero?.eyebrow} heading={page?.hero?.heading} />
+      <HomePageContent />
     </>
   )
 }

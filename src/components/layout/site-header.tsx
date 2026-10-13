@@ -4,7 +4,9 @@ import Link from 'next/link'
 import { useRef } from 'react'
 
 const navigation = [
-  { label: 'Für Unternehmen', href: '/fuer-unternehmen' },
+  // TODO: Coaching und Marketing auf eigene Seiten umstellen, sobald sie existieren.
+  { label: 'Coaching', href: '/fuer-unternehmen' },
+  { label: 'Marketing', href: '/#marketing' },
   { label: 'Über mich', href: '/ueber-mich' },
   { label: 'Blog', href: '/blog' },
   { label: 'Kontakt', href: '/kontakt' },
@@ -19,24 +21,28 @@ export function SiteHeader() {
 
   return (
     <header className="site-header bg-background relative z-40">
-      <div className="flex min-h-20 w-full items-center justify-between gap-6 px-6 sm:px-10">
-        <Link href="/" className="leading-tight" onClick={closeMenu}>
-          <span className="block text-sm font-normal tracking-[-0.02em] uppercase">
+      <div className="flex w-full items-center justify-between gap-6 px-6 pt-6 sm:px-12 lg:items-start lg:pt-9">
+        <Link
+          href="/"
+          className="flex flex-col gap-1.5 leading-tight"
+          onClick={closeMenu}
+        >
+          <span className="block text-[17px] font-normal tracking-[-0.01em] uppercase">
             Annika Matthaei
           </span>
-          <span className="site-header-subtitle text-muted-foreground mt-1 block text-[10px] tracking-[0.04em] uppercase">
-            Coaching &amp; Training
+          <span className="site-header-subtitle text-muted-foreground block text-xs tracking-[0.08em] uppercase">
+            Coaching &amp; Marketing
           </span>
         </Link>
         <nav
           aria-label="Hauptnavigation"
           className="ml-auto hidden text-right lg:block"
         >
-          <ul className="flex items-center justify-end gap-4 lg:gap-7">
+          <ul className="flex items-center justify-end gap-8 pt-1">
             {navigation.map((item) => (
               <li key={item.href}>
                 <Link
-                  className="hover:text-muted-foreground inline-flex min-h-11 items-center text-[11px] tracking-[0.035em] uppercase"
+                  className="hover:text-muted-foreground inline-flex items-center text-[13px] tracking-[0.06em] uppercase"
                   href={item.href}
                 >
                   {item.label}

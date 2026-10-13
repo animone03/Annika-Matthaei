@@ -1,0 +1,514 @@
+.page {
+  --ink: #1f1f1b;
+  --ink-soft: #3e3d38;
+  --muted: #5c5b54;
+  --sand: #e9e7df;
+  --line: rgb(31 31 27 / 0.15);
+  --line-strong: rgb(31 31 27 / 0.3);
+  --gutter: 48px;
+
+  color: var(--ink);
+}
+
+.page a:hover {
+  color: var(--muted);
+}
+
+/* Hero */
+
+.identity {
+  display: grid;
+  grid-template-columns: 1fr 260px 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 72px var(--gutter) 0;
+}
+
+.firstName,
+.lastName {
+  font-size: clamp(56px, 6.9vw, 88px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.lastName {
+  text-align: right;
+}
+
+.passepartout {
+  background: #fff;
+  padding: 7px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.08);
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.positioning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 44px var(--gutter) 0;
+  text-align: center;
+}
+
+.claim {
+  max-width: 640px;
+  font-size: 30px;
+  line-height: 1.15;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.intro {
+  max-width: 520px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.manifestRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 48px var(--gutter) 56px;
+}
+
+.manifest {
+  font-size: 13px;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.underlineLink {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  width: 240px;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 12px;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.underlineLinkWide {
+  width: 300px;
+}
+
+/* Laufband */
+
+.marquee {
+  margin-inline: calc(-1 * var(--frame, 14px));
+  overflow: hidden;
+  background: var(--top-surface);
+  padding: 16px 0;
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  font-size: 24px;
+  letter-spacing: -0.005em;
+  white-space: pre;
+  animation: marquee 45s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+  }
+}
+
+/* Angebot */
+
+.offerGrid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+}
+
+.offerCore {
+  padding: 72px var(--gutter) 24px;
+}
+
+.offerAdditional {
+  padding: 8px var(--gutter) 72px;
+  scroll-margin-top: 24px;
+}
+
+.label {
+  padding-top: 10px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.offerList {
+  display: flex;
+  flex-direction: column;
+}
+
+.offerRow {
+  display: grid;
+  grid-template-columns: 56px 1fr 40px;
+  align-items: baseline;
+  gap: 16px;
+  border-top: 1px solid var(--ink);
+  padding: 28px 0;
+  transition: color 200ms ease-out;
+}
+
+.offerNumber {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.offerText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offerTitle {
+  font-size: clamp(30px, 3.2vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.offerDescription {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+  transition: color 200ms ease-out;
+}
+
+.offerRow:hover .offerDescription {
+  color: inherit;
+}
+
+.offerArrow {
+  font-size: 22px;
+  text-align: right;
+  transition: transform 200ms ease-out;
+}
+
+.offerRow:hover .offerArrow {
+  transform: translate(4px, -4px);
+}
+
+.offerRowSecondary {
+  border-top-color: var(--line-strong);
+  padding: 24px 0;
+}
+
+.offerRowSecondary .offerText {
+  gap: 8px;
+}
+
+.offerRowSecondary .offerTitle {
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.offerRowSecondary .offerDescription {
+  font-size: 14px;
+}
+
+.offerRowSecondary .offerArrow {
+  font-size: 20px;
+}
+
+.coachHint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--sand);
+  padding: 18px 22px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.aiNote {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.inlineLink {
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+/* Vertrauen */
+
+.trust {
+  border-top: 1px solid var(--line);
+  padding: 56px var(--gutter);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-left: 1px solid var(--ink);
+  padding-left: 18px;
+}
+
+.factTitle {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.factText {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logos .label {
+  flex: none;
+  padding-top: 0;
+}
+
+.logoGrid {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.logoGrid li {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.7;
+}
+
+/* Kontakt */
+
+.contact {
+  display: grid;
+  grid-template-columns: 220px 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  border-top: 1px solid var(--line);
+  padding: 80px var(--gutter);
+}
+
+.contactPortrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.contactHeading {
+  font-size: clamp(30px, 3.2vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.contactBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.contactBody .underlineLink {
+  line-height: normal;
+  color: var(--ink);
+}
+
+/* Tablet: 768–1023 px */
+
+@media (max-width: 1023px) {
+  .identity {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 20px;
+  }
+
+  .lastName {
+    text-align: center;
+  }
+
+  .passepartout {
+    width: 240px;
+  }
+
+  .offerGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .facts {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .logos {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logoGrid {
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .contact {
+    grid-template-columns: 180px 1fr;
+    gap: 32px 40px;
+  }
+
+  .contactBody {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Mobil: unter 768 px (finale Variante steht noch aus) */
+
+@media (max-width: 767px) {
+  .page {
+    --gutter: 24px;
+  }
+
+  .identity {
+    padding-top: 40px;
+  }
+
+  .firstName,
+  .lastName {
+    font-size: clamp(44px, 13vw, 56px);
+  }
+
+  .passepartout {
+    width: 200px;
+  }
+
+  .claim {
+    font-size: 22px;
+  }
+
+  .intro {
+    font-size: 15px;
+  }
+
+  .manifestRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+    padding-block: 40px;
+  }
+
+  .underlineLink,
+  .underlineLinkWide {
+    width: 100%;
+  }
+
+  .marqueeTrack {
+    font-size: 18px;
+  }
+
+  .offerCore {
+    padding-top: 48px;
+  }
+
+  .offerAdditional {
+    padding-bottom: 48px;
+  }
+
+  .offerRow {
+    grid-template-columns: 32px 1fr 24px;
+    gap: 12px;
+    padding: 22px 0;
+  }
+
+  .offerTitle {
+    font-size: 24px;
+  }
+
+  .offerRowSecondary .offerTitle {
+    font-size: 22px;
+  }
+
+  .coachHint {
+    font-size: 13px;
+  }
+
+  .trust {
+    padding-block: 40px;
+  }
+
+  .logoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact {
+    grid-template-columns: 1fr;
+    padding-block: 48px;
+  }
+
+  .contactPortrait {
+    width: 180px;
+  }
+
+  .contactHeading {
+    font-size: 28px;
+  }
+}
