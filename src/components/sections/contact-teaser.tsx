@@ -24,7 +24,7 @@ export function ContactTeaser({ value }: ContactTeaserProps) {
         </div>
         <Link href="/kontakt" className="editorial-link">
           {value.linkLabel}
-          <span aria-hidden="true">↗</span>
+          <span aria-hidden="true">↗︎</span>
         </Link>
       </Container>
     </section>

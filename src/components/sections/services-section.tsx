@@ -41,7 +41,7 @@ export function ServicesSection() {
               Luft nach oben ist.
             </p>
             <Link href="/fuer-unternehmen" className="editorial-link mt-5">
-              Für Unternehmen <span aria-hidden="true">↗</span>
+              Für Unternehmen <span aria-hidden="true">↗︎</span>
             </Link>
           </div>
           <div className="border-foreground/30 border-t pt-10">
@@ -57,7 +57,7 @@ export function ServicesSection() {
               Kommunikation, Ownership und Resilienz.
             </p>
             <Link href="/fuer-einzelpersonen" className="editorial-link mt-5">
-              Für Einzelpersonen <span aria-hidden="true">↗</span>
+              Für Einzelpersonen <span aria-hidden="true">↗︎</span>
             </Link>
           </div>
         </div>

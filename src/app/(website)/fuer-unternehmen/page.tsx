@@ -98,7 +98,7 @@ export default function ForCompaniesPage() {
               Herausforderungen zwischen erster Idee und wachsendem Unternehmen.
             </p>
             <Link href="/kontakt" className="editorial-link mt-8">
-              Lasst uns kennenlernen <span aria-hidden="true">↗</span>
+              Lasst uns kennenlernen <span aria-hidden="true">↗︎</span>
             </Link>
           </div>
         </div>
@@ -224,7 +224,7 @@ export default function ForCompaniesPage() {
               euch weiterbringt.
             </p>
             <Link href="/kontakt" className="editorial-link mt-8">
-              Kennenlerngespräch vereinbaren <span aria-hidden="true">↗</span>
+              Kennenlerngespräch vereinbaren <span aria-hidden="true">↗︎</span>
             </Link>
           </div>
         </div>

@@ -103,7 +103,7 @@ export function SiteHeader() {
             onClick={closeMenu}
             className="bg-background text-foreground hover:text-foreground mt-7 block p-4 text-center text-sm tracking-[0.06em] uppercase"
           >
-            Kennenlernen <span aria-hidden="true">↗</span>
+            Kennenlernen <span aria-hidden="true">↗︎</span>
           </Link>
         </div>
       ) : null}

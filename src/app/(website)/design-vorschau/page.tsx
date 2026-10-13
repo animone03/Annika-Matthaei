@@ -70,7 +70,7 @@ export default function DesignPreviewPage() {
               Ich freue mich auf eine wirkungsvolle Zusammenarbeit!
             </p>
             <Link href="/ueber-mich" className="editorial-link mt-8">
-              Über mich <span aria-hidden="true">↗</span>
+              Über mich <span aria-hidden="true">↗︎</span>
             </Link>
           </div>
         </div>

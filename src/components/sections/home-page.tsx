@@ -131,7 +131,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
             Learn. Unlearn.
           </p>
           <Link href="/kontakt" className={styles.underlineLink}>
-            Kennenlernen <span aria-hidden="true">↗</span>
+            Kennenlernen <span aria-hidden="true">↗︎</span>
           </Link>
         </div>
       </section>
@@ -179,7 +179,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
                   </span>
                 </span>
                 <span aria-hidden="true" className={styles.offerArrow}>
-                  ↗
+                  ↗︎
                 </span>
               </Link>
             </li>
@@ -225,7 +225,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
               </span>
             </span>
             <span aria-hidden="true" className={styles.offerArrow}>
-              ↗
+              ↗︎
             </span>
           </Link>
           {/* TODO: Link zu ijustwannacoach ergänzen, sobald die URL feststeht. */}
@@ -233,7 +233,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
             <span>
               Du bist Coach? Marketing speziell für Coaches bei ijustwannacoach
             </span>
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">↗︎</span>
           </p>
           <p className={`${styles.aiNote} ${styles.desktopOnly}`}>
             Außerdem unterstütze ich dabei, Abläufe zu vereinfachen – auch mit
@@ -307,7 +307,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
             href="/kontakt"
             className={`${styles.underlineLink} ${styles.underlineLinkWide}`}
           >
-            Gespräch vereinbaren <span aria-hidden="true">↗</span>
+            Gespräch vereinbaren <span aria-hidden="true">↗︎</span>
           </Link>
         </div>
       </section>

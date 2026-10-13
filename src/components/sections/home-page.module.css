@@ -609,9 +609,10 @@
   .offerArrow,
   .offerRowSecondary .offerArrow {
     position: absolute;
-    top: 22px;
+    top: 16px;
     right: 20px;
-    font-size: 11px;
+    font-size: 22px;
+    line-height: 1;
   }
 
   .offerRow:hover .offerArrow {
