@@ -2,16 +2,16 @@
   --topics-scale: 1;
 
   width: 100%;
-  max-width: 880px;
-  height: calc(770px * var(--topics-scale));
+  max-width: var(--topics-width);
+  height: calc(var(--topics-height) * var(--topics-scale));
   margin-inline: auto;
   overflow: hidden;
 }
 
 .stage {
   position: relative;
-  width: 880px;
-  height: 770px;
+  width: var(--topics-width);
+  height: var(--topics-height);
   overflow: hidden;
   background: #f4f4ee;
   color: #1f1f1b;
@@ -71,7 +71,10 @@
   top: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  padding-top: 4px;
   box-sizing: border-box;
   padding-right: 4px;
   padding-bottom: 4px;
@@ -94,4 +97,52 @@
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+.bubbleArrow {
+  position: relative;
+  margin-top: 4px;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.bubbleLink {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bubbleLink:hover {
+  color: inherit;
+}
+
+.bubbleLink:active {
+  opacity: 0.8;
+}
+
+/* Mobile Variante: hochkant, feste Texte an anderen Positionen */
+
+.mobile .heading {
+  font-size: 22px;
+}
+
+.mobile .headingCoaching {
+  top: 4px;
+  left: 12px;
+}
+
+.mobile .attitude {
+  top: 34px;
+  left: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+.mobile .headingMarketing {
+  top: 600px;
+  right: 12px;
+}
+
+.mobile .headingProcesses {
+  bottom: 12px;
+  font-size: 20px;
 }

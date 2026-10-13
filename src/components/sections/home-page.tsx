@@ -156,7 +156,25 @@ export function HomePageContent({ email }: HomePageContentProps) {
             zählt.
           </p>
         </div>
-        <TopicsGraphic />
+        <TopicsGraphic variant="desktop" />
+      </section>
+
+      <section
+        aria-labelledby="home-topics-mobile"
+        className={styles.topicsMobile}
+      >
+        <p className={styles.label}>Wobei ich dich begleite</p>
+        <h2 id="home-topics-mobile" className={styles.topicsHeading}>
+          Alles hängt zusammen.
+        </h2>
+        <p className={styles.topicsText}>
+          Tippe auf ein Thema – es führt dich direkt zur passenden Seite.
+        </p>
+        <TopicsGraphic variant="mobile" />
+        {/* TODO: Ziel festlegen, sobald es eine Übersicht aller Angebote gibt. */}
+        <Link href="/fuer-unternehmen" className={styles.underlineLink}>
+          Alle Angebote als Liste <span aria-hidden="true">↗︎</span>
+        </Link>
       </section>
 
       <section

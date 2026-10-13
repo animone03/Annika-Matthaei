@@ -18,6 +18,7 @@
 /* Desktop- und Mobil-Varianten desselben Inhalts */
 
 .mobileOnly,
+.topicsMobile,
 .mobileFacts,
 .mobileManifest,
 .stickyCta {
@@ -543,6 +544,43 @@
   .manifestRow,
   .topics {
     display: none;
+  }
+
+  /* Themen-Grafik ersetzt mobil die Angebotskarten */
+
+  .offerCore,
+  .offerAdditional {
+    display: none;
+  }
+
+  .topicsMobile {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 40px 12px 0;
+  }
+
+  .topicsMobile > :not(div) {
+    padding-inline: 8px;
+  }
+
+  .topicsMobile .label {
+    padding-top: 0;
+    font-size: 11px;
+  }
+
+  .topicsMobile .topicsHeading {
+    font-size: 30px;
+  }
+
+  .topicsMobile .topicsText {
+    font-size: 15px;
+  }
+
+  .topicsMobile .underlineLink {
+    width: auto;
+    margin: 8px 8px 0;
+    padding-inline: 0;
   }
 
   .marquee {
