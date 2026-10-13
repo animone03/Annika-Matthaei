@@ -13,6 +13,7 @@ import styles from './topics-graphic.module.css'
 // ohne React-Re-Render.
 
 const TAU = Math.PI * 2
+const coachingEdgeId = 'topics-coaching-edge'
 const SPEED = 0.3
 
 const ink = '#1f1f1b'
@@ -685,6 +686,7 @@ export function TopicsGraphic({ variant }: TopicsGraphicProps) {
           {config.areas.map((area, index) => (
             <path
               key={area.label}
+              id={!isMobile && index === 0 ? coachingEdgeId : undefined}
               ref={(element) => {
                 areaRefs.current[index] = element
               }}
@@ -700,10 +702,11 @@ export function TopicsGraphic({ variant }: TopicsGraphicProps) {
           <span className={`${styles.heading} ${styles.headingCoaching}`}>
             Coaching
           </span>
-          <span className={styles.attitude}>
-            <span className={styles.attitudeLabel}>Haltung</span>
-            <span>Systemisch · Agil · Positive Psychologie</span>
-          </span>
+          {isMobile ? (
+            <span className={styles.attitude}>
+              <span>Systemisch · Agil · Positive Psychologie</span>
+            </span>
+          ) : null}
           <span className={`${styles.heading} ${styles.headingMarketing}`}>
             Marketing
           </span>
@@ -777,6 +780,30 @@ export function TopicsGraphic({ variant }: TopicsGraphicProps) {
             </div>
           )
         })}
+
+        {/* Desktop: Haltung als Schriftzug am Rand der Coaching-Fläche. Der
+            Pfad beginnt rechts und läuft im Uhrzeigersinn, damit der Text
+            oben auf dem Bogen aufrecht steht. */}
+        {isMobile ? null : (
+          <svg
+            aria-hidden="true"
+            width={config.width}
+            height={config.height}
+            className={`${styles.layer} ${styles.edgeText}`}
+          >
+            <text
+              fontSize={11}
+              letterSpacing={1.4}
+              fill={ink}
+              dy={-7}
+              textAnchor="middle"
+            >
+              <textPath href={`#${coachingEdgeId}`} startOffset="76%">
+                SYSTEMISCH · AGIL · POSITIVE PSYCHOLOGIE
+              </textPath>
+            </text>
+          </svg>
+        )}
       </div>
     </div>
   )

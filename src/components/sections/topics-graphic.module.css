@@ -62,10 +62,6 @@
   text-transform: uppercase;
 }
 
-.attitudeLabel {
-  color: #5c5b54;
-}
-
 .bubble {
   position: absolute;
   top: 0;
@@ -145,4 +141,8 @@
 .mobile .headingProcesses {
   bottom: 12px;
   font-size: 20px;
+}
+
+.edgeText {
+  pointer-events: none;
 }
