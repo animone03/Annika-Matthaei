@@ -109,13 +109,12 @@ const stance = [
 export default function AboutPage() {
   return (
     <div data-frame-page data-about-page className={styles.page}>
-      {/* Desktop: Schriftzug liegt über dem Foto. Mobil: Foto, Schriftzug, Intro. */}
+      {/* Der Schriftzug liegt über dem Foto: Desktop oben, mobil an der Unterkante. */}
       <section aria-labelledby="about-title" className={styles.hero}>
         <h1 id="about-title" className={styles.srOnly}>
           I wanna see you grow – Über Annika Matthaei
         </h1>
         <div className={styles.claimLayer}>
-          <p className={styles.heroLabel}>Über mich</p>
           <IWannaSeeYouGrow className={styles.claim} />
         </div>
         <div className={styles.introLayer}>
@@ -128,14 +127,16 @@ export default function AboutPage() {
               <span className={styles.signatureNote}>München, 2026</span>
             </div>
           </div>
-          <Image
-            src={portrait}
-            alt="Annika Matthaei, lachend"
-            preload
-            placeholder="blur"
-            sizes="(min-width: 768px) 440px, 100vw"
-            className={styles.portrait}
-          />
+          <div className={styles.photo}>
+            <Image
+              src={portrait}
+              alt="Annika Matthaei, lachend"
+              preload
+              placeholder="blur"
+              sizes="(min-width: 768px) 440px, 100vw"
+              className={styles.portrait}
+            />
+          </div>
         </div>
       </section>
 
