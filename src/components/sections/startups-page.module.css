@@ -1,12 +1,12 @@
 .page {
-  --ink: #1f1f1b;
-  --ink-soft: #3e3d38;
-  --muted: #5c5b54;
-  --muted-on-dark: #b9b7ad;
-  --paper: #f4f4ee;
-  --sand: #e9e7df;
-  --taupe: #d7d5c9;
-  --line: rgb(31 31 27 / 0.15);
+  --ink: #1e2329;
+  --ink-soft: #3a4049;
+  --muted: #566270;
+  --muted-on-dark: #aeb8c2;
+  --paper: #f4f5f3;
+  --sand: #e2e8ec;
+  --taupe: #b4c2cd;
+  --line: rgb(30 35 41 / 0.15);
   --gutter: 48px;
 
   color: var(--ink);
@@ -173,7 +173,7 @@
   display: flex;
   align-items: baseline;
   gap: 16px;
-  border-top: 1px solid rgb(244 244 238 / 0.25);
+  border-top: 1px solid rgb(244 245 243 / 0.25);
   padding: 22px 0;
   font-size: 24px;
   line-height: 1.2;

@@ -1,15 +1,15 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #f5f5ef;
-  --foreground: #22231f;
-  --surface: #ebebe2;
-  --olive: #afad97;
-  --top-surface: #d5d3c7;
-  --muted-foreground: #53554c;
-  --border: #d5d5ca;
-  --accent: #353c2c;
-  --accent-foreground: #f5f5ef;
+  --background: #f4f5f3;
+  --foreground: #1e2329;
+  --surface: #e2e8ec;
+  --olive: #8597a6;
+  --top-surface: #b4c2cd;
+  --muted-foreground: #566270;
+  --border: #d3dbe1;
+  --accent: #587284;
+  --accent-foreground: #f4f5f3;
   --focus-ring: oklch(55% 0.17 250);
   --radius: 0;
   --font-sans: var(--font-helvetica), Helvetica, Arial, sans-serif;
@@ -86,7 +86,7 @@ body {
 
 /* Kontaktseite: Footer mit Motto links, Trennlinie oben. */
 .site-shell:has([data-contact-page]) footer {
-  border-top: 1px solid rgb(31 31 27 / 0.15);
+  border-top: 1px solid rgb(30 35 41 / 0.15);
   padding-top: 32px;
 }
 
@@ -127,7 +127,7 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 12px;
-    border-top: 1px solid rgb(31 31 27 / 0.15);
+    border-top: 1px solid rgb(30 35 41 / 0.15);
     padding: 14px 0 0;
     font-size: 10px;
   }
@@ -146,7 +146,7 @@ body {
   .site-shell:has([data-contact-page]) .footer-motto {
     flex-basis: 100%;
     margin: 0 0 2px;
-    border-bottom: 1px solid rgb(31 31 27 / 0.15);
+    border-bottom: 1px solid rgb(30 35 41 / 0.15);
     padding-bottom: 24px;
     font-size: 11px;
   }

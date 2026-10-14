@@ -13,8 +13,8 @@
   width: var(--topics-width);
   height: var(--topics-height);
   overflow: hidden;
-  background: #f4f4ee;
-  color: #1f1f1b;
+  background: #f4f5f3;
+  color: #1e2329;
   transform: scale(var(--topics-scale));
   transform-origin: top left;
 }

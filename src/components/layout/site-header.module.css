@@ -28,7 +28,7 @@
   display: flex;
   width: 280px;
   flex-direction: column;
-  border: 1px solid #1f1f1b;
+  border: 1px solid #1e2329;
   background: #fff;
   padding: 8px 20px 12px;
   letter-spacing: 0;
@@ -47,7 +47,7 @@
 
 .groupLink {
   padding-bottom: 6px;
-  color: #5c5b54;
+  color: #566270;
   font-size: 11px;
   letter-spacing: 0.1em;
 }
@@ -59,14 +59,14 @@
 .item {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid rgb(31 31 27 / 0.12);
+  border-top: 1px solid rgb(30 35 41 / 0.12);
   padding: 9px 0;
   font-size: 14px;
   letter-spacing: 0.04em;
 }
 
 .item:hover {
-  color: #5c5b54;
+  color: #566270;
 }
 
 /* Mobil: helles Menü mit Karten */
@@ -77,9 +77,9 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  background: #f4f4ee;
+  background: #f4f5f3;
   padding: 84px 20px 28px;
-  color: #1f1f1b;
+  color: #1e2329;
   text-transform: uppercase;
 }
 
@@ -96,7 +96,7 @@
 }
 
 .overlayLabel {
-  color: #5c5b54;
+  color: #566270;
   font-size: 11px;
   letter-spacing: 0.1em;
 }
@@ -108,17 +108,17 @@
 }
 
 .cardDark {
-  --card-line: rgb(244 244 238 / 0.2);
+  --card-line: rgb(244 245 243 / 0.2);
 
-  background: #1f1f1b;
-  color: #f4f4ee;
+  background: #1e2329;
+  color: #f4f5f3;
 }
 
 .cardTaupe {
-  --card-line: rgb(31 31 27 / 0.2);
+  --card-line: rgb(30 35 41 / 0.2);
 
-  background: #d7d5c9;
-  color: #1f1f1b;
+  background: #b4c2cd;
+  color: #1e2329;
 }
 
 .cardHead {
@@ -161,25 +161,25 @@
   display: flex;
   min-height: 48px;
   align-items: center;
-  border-top: 1px solid #1f1f1b;
+  border-top: 1px solid #1e2329;
   font-size: 22px;
   letter-spacing: -0.02em;
 }
 
 .overlayList li:last-child .overlayLink {
-  border-bottom: 1px solid #1f1f1b;
+  border-bottom: 1px solid #1e2329;
 }
 
 .overlayCta {
   margin-top: 20px;
-  background: #1f1f1b;
+  background: #1e2329;
   padding: 16px;
-  color: #f4f4ee;
+  color: #f4f5f3;
   font-size: 14px;
   letter-spacing: 0.06em;
   text-align: center;
 }
 
 .overlayCta:hover {
-  color: #f4f4ee;
+  color: #f4f5f3;
 }

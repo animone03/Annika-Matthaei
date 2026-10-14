@@ -16,10 +16,12 @@ const TAU = Math.PI * 2
 const coachingEdgeId = 'topics-coaching-edge'
 const SPEED = 0.3
 
-const ink = '#1f1f1b'
-const paper = '#f4f4ee'
-const taupe = '#d7d5c9'
+const ink = '#1e2329'
+const paper = '#f4f5f3'
+const taupe = '#b4c2cd'
 const white = '#ffffff'
+const bluestone = '#587284'
+const mist = '#e2e8ec'
 
 type Bubble = {
   id: string
@@ -168,7 +170,7 @@ const desktop: Variant = {
       cy: 310,
       rx: 250,
       ry: 250,
-      fill: 'rgba(31,31,27,.03)',
+      fill: 'rgba(88,114,132,.07)',
     },
     {
       label: 'Marketing',
@@ -176,7 +178,7 @@ const desktop: Variant = {
       cy: 310,
       rx: 250,
       ry: 250,
-      fill: 'rgba(215,213,201,.45)',
+      fill: 'rgba(180,194,205,.45)',
     },
     {
       label: 'Prozesse & Organisation',
@@ -195,7 +197,7 @@ const desktop: Variant = {
       y: 215,
       r: 104,
       amp: 7,
-      background: ink,
+      background: bluestone,
       color: paper,
       labelStyle: parentLabel(104),
     },
@@ -207,7 +209,7 @@ const desktop: Variant = {
       y: 28,
       r: 24,
       amp: 5,
-      background: paper,
+      background: mist,
       color: ink,
       labelStyle: childLabel(24),
     },
@@ -219,7 +221,7 @@ const desktop: Variant = {
       y: 26,
       r: 40,
       amp: 5,
-      background: paper,
+      background: mist,
       color: ink,
       labelStyle: childLabel(40),
     },
@@ -230,7 +232,7 @@ const desktop: Variant = {
       y: 450,
       r: 104,
       amp: 7,
-      background: ink,
+      background: bluestone,
       color: paper,
       labelStyle: parentLabel(104),
     },
@@ -242,7 +244,7 @@ const desktop: Variant = {
       y: 20,
       r: 44,
       amp: 5,
-      background: paper,
+      background: mist,
       color: ink,
       labelStyle: childLabel(44),
     },
@@ -254,7 +256,7 @@ const desktop: Variant = {
       y: 26,
       r: 38,
       amp: 5,
-      background: paper,
+      background: mist,
       color: ink,
       labelStyle: childLabel(38),
     },
@@ -391,7 +393,7 @@ const mobile: Variant = {
       cy: 230,
       rx: 158,
       ry: 160,
-      fill: 'rgba(31,31,27,.03)',
+      fill: 'rgba(88,114,132,.07)',
     },
     {
       label: 'Marketing',
@@ -399,7 +401,7 @@ const mobile: Variant = {
       cy: 490,
       rx: 158,
       ry: 160,
-      fill: 'rgba(215,213,201,.45)',
+      fill: 'rgba(180,194,205,.45)',
     },
     {
       label: 'Prozesse & Organisation',
@@ -418,7 +420,7 @@ const mobile: Variant = {
       y: 200,
       r: 62,
       amp: 5,
-      background: ink,
+      background: bluestone,
       color: paper,
       labelStyle: centeredLabel(62, 12, 1.6),
       href: '/coaching/startups',
@@ -430,7 +432,7 @@ const mobile: Variant = {
       y: 265,
       r: 62,
       amp: 5,
-      background: ink,
+      background: bluestone,
       color: paper,
       labelStyle: centeredLabel(62, 12, 1.6),
       href: '/kontakt',
