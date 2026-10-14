@@ -35,16 +35,25 @@
   padding: 72px var(--gutter) 0;
 }
 
+/* Pinsel-Signatur: „Annika“ sitzt höher, „Matthaei“ tiefer. */
 .firstName,
 .lastName {
-  font-size: clamp(56px, 6.9vw, 88px);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.firstName {
+  max-width: 330px;
+  align-self: start;
+  margin-top: 36px;
 }
 
 .lastName {
-  text-align: right;
+  max-width: 345px;
+  justify-self: end;
+  align-self: end;
+  margin-bottom: 56px;
 }
 
 .passepartout {
@@ -425,18 +434,31 @@
 /* Tablet: 768–1023 px */
 
 @media (max-width: 1023px) {
+  /* Hero stapelt wie mobil: Foto, darunter die Signatur */
   .identity {
     grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 20px;
-  }
-
-  .lastName {
-    text-align: center;
+    gap: 4px;
   }
 
   .passepartout {
+    order: -1;
     width: 240px;
+    justify-self: center;
+    margin-bottom: 18px;
+  }
+
+  .firstName,
+  .lastName {
+    margin: 0;
+  }
+
+  .firstName {
+    width: 54%;
+    justify-self: start;
+  }
+
+  .lastName {
+    width: 66%;
   }
 
   .offerGrid {
@@ -496,6 +518,7 @@
   .passepartout {
     order: -1;
     width: auto;
+    justify-self: stretch;
     margin: 0 var(--gutter);
     background: none;
     padding: 0;
@@ -508,21 +531,14 @@
     object-position: center 30%;
   }
 
-  .firstName,
-  .lastName {
-    padding-inline: var(--gutter);
-    font-size: clamp(56px, 18.5vw, 72px);
-    line-height: 0.82;
-    letter-spacing: -0.05em;
-  }
-
   .firstName {
-    padding-top: 22px;
-    text-align: left;
+    width: calc(54% - var(--gutter));
+    margin: 22px 0 0 var(--gutter);
   }
 
   .lastName {
-    text-align: right;
+    width: calc(66% - var(--gutter));
+    margin: 0 var(--gutter) 0 0;
   }
 
   .positioning {

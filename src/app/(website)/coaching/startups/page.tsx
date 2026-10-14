@@ -12,7 +12,7 @@ import { buildMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildMetadata({
   title: 'Coaching für Startups & Founder',
   description:
-    'Coaching für Gründer:innen und Gründungsteams – von der ersten Idee bis zum wachsenden Team. Co-Founder Coaching, Leadership & High Performance Teams, EXIST.',
+    'Coaching für Founder und Gründungsteams – von der ersten Idee bis zum wachsenden Team. Co-Founder Coaching, Leadership & High Performance Teams, EXIST.',
   path: '/coaching/startups',
 })
 
@@ -37,7 +37,7 @@ const topics = [
   {
     id: 'co-founder',
     title: 'Co-Founder Beziehung',
-    text: 'Die Beziehung zwischen Gründer:innen ist das Fundament des Startups. Wir machen Erwartungen sichtbar und klären Spannungen, bevor sie euch ausbremsen.',
+    text: 'Die Beziehung zwischen Foundern ist das Fundament des Startups. Wir machen Erwartungen sichtbar und klären Spannungen, bevor sie euch ausbremsen.',
     items: [
       'Erwartungen & Werte',
       'Konflikte klären',
@@ -47,7 +47,7 @@ const topics = [
   {
     id: 'teams',
     title: 'Leadership & High Performance Teams',
-    text: 'Wenn das Team wächst, werden Gründer:innen zu Führungskräften. Ich begleite euch dabei, in diese Rolle hineinzuwachsen und ein Team aufzubauen, das Verantwortung übernimmt.',
+    text: 'Wenn das Team wächst, werden Founder zu Führungskräften. Ich begleite euch dabei, in diese Rolle hineinzuwachsen und ein Team aufzubauen, das Verantwortung übernimmt.',
     items: [
       'In die Führungsrolle wachsen',
       'Teamkultur & Ownership',
@@ -129,12 +129,12 @@ export default function StartupCoachingPage() {
             Euer Startup wächst mit euch.
           </h1>
           <p className={`${styles.heroIntro} ${styles.desktopOnly}`}>
-            Coaching für Gründer:innen und Gründungsteams – von der ersten Idee
-            bis zum wachsenden Team. Damit ihr gut zusammenarbeitet, klar
+            Coaching für Founder und Gründungsteams – von der ersten Idee bis
+            zum wachsenden Team. Damit ihr gut zusammenarbeitet, klar
             entscheidet und als Führung mitwachst.
           </p>
           <p className={`${styles.heroIntro} ${styles.mobileOnly}`}>
-            Coaching für Gründer:innen und Gründungsteams – damit ihr gut
+            Coaching für Founder und Gründungsteams – damit ihr gut
             zusammenarbeitet, klar entscheidet und als Führung mitwachst.
           </p>
           <div className={styles.heroActions}>

@@ -314,6 +314,11 @@
   line-height: 1.55;
 }
 
+.resultSignature {
+  width: 180px;
+  height: auto;
+}
+
 .resultLink {
   align-self: flex-start;
   cursor: pointer;

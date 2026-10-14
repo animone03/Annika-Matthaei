@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import {
@@ -18,6 +19,8 @@ import {
   type InquiryState,
 } from '@/lib/inquiry'
 import { sendInquiry } from '@/lib/inquiry-action'
+
+import signature from '../../../public/images/signatur/logo-annika-matthaei.png'
 
 import styles from './contact-page.module.css'
 
@@ -102,6 +105,12 @@ function ContactFormBody({
         <p className={styles.resultText}>
           Innerhalb von zwei Werktagen – meist schneller.
         </p>
+        <Image
+          src={signature}
+          alt="Annika Matthaei"
+          sizes="180px"
+          className={styles.resultSignature}
+        />
         <button type="button" className={styles.resultLink} onClick={onReset}>
           Neue Anfrage
         </button>

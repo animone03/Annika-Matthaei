@@ -3,6 +3,8 @@ import Link from 'next/link'
 
 import heroPortrait from '../../../public/images/annika-sessel.jpeg'
 import ctaPortrait from '../../../public/images/annika-unternehmen.jpg'
+import signatureFirst from '../../../public/images/signatur/logo-annika.png'
+import signatureLast from '../../../public/images/signatur/logo-matthaei.png'
 
 import { HomeStickyCta } from './home-sticky-cta'
 import { TopicsGraphic } from './topics-graphic'
@@ -96,7 +98,13 @@ export function HomePageContent({ email }: HomePageContentProps) {
     <div data-home data-frame-page className={styles.page}>
       <section aria-labelledby="home-title" className={styles.hero}>
         <div className={styles.identity}>
-          <span className={styles.firstName}>Annika</span>
+          <Image
+            src={signatureFirst}
+            alt="Annika"
+            preload
+            sizes="(min-width: 1024px) 330px, 54vw"
+            className={styles.firstName}
+          />
           <div className={styles.passepartout}>
             <Image
               src={heroPortrait}
@@ -107,7 +115,13 @@ export function HomePageContent({ email }: HomePageContentProps) {
               className={styles.portrait}
             />
           </div>
-          <span className={styles.lastName}>Matthaei</span>
+          <Image
+            src={signatureLast}
+            alt="Matthaei"
+            preload
+            sizes="(min-width: 1024px) 345px, 66vw"
+            className={styles.lastName}
+          />
         </div>
         <div className={styles.positioning}>
           <h1 id="home-title" className={styles.claim}>
@@ -118,14 +132,15 @@ export function HomePageContent({ email }: HomePageContentProps) {
             </span>
           </h1>
           <p className={`${styles.intro} ${styles.desktopOnly}`}>
-            Ich begleite Gründer:innen, Startups und Führungskräfte – damit
-            Teams gut zusammenarbeiten und Marken verstanden werden.
+            Ich begleite Founder, Startups und Führungskräfte – damit Teams gut
+            zusammenarbeiten und Marken verstanden werden.
             <br />
-            In München &amp; online.
+            In München und online.
           </p>
           <p className={`${styles.intro} ${styles.mobileOnly}`}>
-            Für Gründer:innen, Startups und Führungskräfte – in München und
-            online.
+            Für Founder, Startups und Führungskräfte.
+            <br />
+            In München und online.
           </p>
         </div>
         <div className={styles.manifestRow}>

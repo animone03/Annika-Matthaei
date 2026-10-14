@@ -39,6 +39,9 @@ html {
 }
 
 body {
+  /* Verhindert, dass der Außenabstand der Seite aus dem body herausfällt –
+     sonst fehlt oben und unten der farbige Rahmen. */
+  display: flow-root;
   min-height: 100vh;
   background: var(--top-surface);
   color: var(--foreground);
@@ -71,6 +74,7 @@ body {
 
 .site-shell:has([data-frame-page]) {
   --frame: 14px;
+  max-width: none;
   margin-block: 14px;
   padding-inline: var(--frame);
 }
