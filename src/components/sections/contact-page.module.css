@@ -315,8 +315,11 @@
 }
 
 .resultSignature {
-  width: 180px;
-  height: auto;
+  align-self: flex-start;
+  width: auto;
+  height: 70px;
+  margin-top: 6px;
+  aspect-ratio: 1262 / 468;
 }
 
 .resultLink {

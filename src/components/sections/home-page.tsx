@@ -48,45 +48,14 @@ const facts = [
     text: 'Systemische & psychologische Business Coach',
   },
   {
-    title: '14 Jahre Praxis',
-    text: 'Konzern, Mittelstand & Startup – 10 davon mit Führung',
+    title: '13 Jahre Praxis',
+    text: 'Konzern, Mittelstand & Startup – 9 davon mit Führung',
   },
 ]
 
 const mobileFacts = [
-  { value: '14+', text: 'Jahre Konzern, Mittelstand & Startup' },
+  { value: '13', text: 'Jahre Konzern, Mittelstand & Startup' },
   { value: 'EXIST', text: 'Coach via Hochschulkooperation' },
-]
-
-const logos = [
-  {
-    name: 'Möbel Ehrmann',
-    src: '/images/logos/ehrmann-black.svg',
-    displayHeight: 36,
-    width: 738,
-    height: 246,
-  },
-  {
-    name: 'Peek & Cloppenburg',
-    src: '/images/logos/peek-cloppenburg-black.svg',
-    displayHeight: 22,
-    width: 751,
-    height: 105,
-  },
-  {
-    name: 'Performance One',
-    src: '/images/logos/performance-one-black.svg',
-    displayHeight: 40,
-    width: 738,
-    height: 261,
-  },
-  {
-    name: 'claida ai',
-    src: '/images/logos/claida-black.svg',
-    displayHeight: 26,
-    width: 164,
-    height: 40,
-  },
 ]
 
 type HomePageContentProps = {
@@ -120,8 +89,9 @@ export function HomePageContent({ email }: HomePageContentProps) {
             </span>
           </h1>
           <p className={`${styles.intro} ${styles.desktopOnly}`}>
-            Ich begleite Founder, Startups und Führungskräfte – damit Teams gut
-            zusammenarbeiten und Marken verstanden werden.
+            Ich begleite Founder, Startups und Führungskräfte –
+            <br />
+            damit Teams gut zusammenarbeiten und Marken verstanden werden.
             <br />
             In München und online.
           </p>
@@ -304,24 +274,6 @@ export function HomePageContent({ email }: HomePageContentProps) {
             </li>
           ))}
         </ul>
-        <div className={styles.logos}>
-          <h2 className={styles.label}>Vertrauen von</h2>
-          <ul className={styles.logoGrid} tabIndex={0} aria-label="Kundenlogos">
-            {logos.map((logo) => (
-              <li key={logo.name}>
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  width={logo.width}
-                  height={logo.height}
-                  unoptimized
-                  className={styles.logo}
-                  style={{ height: logo.displayHeight }}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
       </section>
 
       <section

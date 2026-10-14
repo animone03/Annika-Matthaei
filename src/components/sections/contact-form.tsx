@@ -103,7 +103,7 @@ function ContactFormBody({
         <p className={styles.resultText}>
           Innerhalb von zwei Werktagen – meist schneller.
         </p>
-        <Signature className={styles.resultSignature} />
+        <Signature part="first" className={styles.resultSignature} />
         <button type="button" className={styles.resultLink} onClick={onReset}>
           Neue Anfrage
         </button>

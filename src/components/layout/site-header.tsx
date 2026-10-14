@@ -10,6 +10,8 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
 } from 'react'
 
+import { BurgerIcon } from '@/components/ui/handwriting'
+
 import styles from './site-header.module.css'
 
 type NavItem = { label: string; href: Route }
@@ -345,10 +347,11 @@ export function SiteHeader() {
           data-menu-focus
           type="button"
           aria-expanded={menuOpen}
+          aria-label={menuOpen ? undefined : 'Menü'}
           onClick={() => setMenuOpen((open) => !open)}
           className="-my-2.5 ml-auto flex h-11 min-w-11 cursor-pointer items-center justify-end text-[13px] tracking-[0.08em] uppercase lg:hidden"
         >
-          {menuOpen ? 'Schließen' : 'Menü'}
+          {menuOpen ? 'Schließen' : <BurgerIcon className="h-auto w-[34px]" />}
         </button>
       </div>
     </header>

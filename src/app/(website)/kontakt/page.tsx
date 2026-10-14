@@ -89,6 +89,15 @@ export default async function ContactPage() {
             )}
           </li>
           <li>
+            <a href="tel:+491727732006" className={styles.directRow}>
+              <span className={styles.directValue}>
+                <span className={styles.directLabel}>Telefon</span>
+                0172 773 2006
+              </span>
+              <span aria-hidden="true">{arrow}</span>
+            </a>
+          </li>
+          <li>
             <div className={styles.directRow}>
               <span className={styles.directValue}>
                 <span className={styles.directLabel}>Ort</span>

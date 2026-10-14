@@ -36,6 +36,20 @@ test('startup coaching page has no serious accessibility violations', async ({
   expect(serious).toEqual([])
 })
 
+test('about page has no serious accessibility violations', async ({ page }) => {
+  await page.goto('/ueber-mich')
+  await expect(
+    page.getByRole('heading', { level: 1, name: /I wanna see you grow/ }),
+  ).toBeAttached()
+  await expect(page.getByRole('img', { name: 'see you grow' })).toBeVisible()
+
+  const results = await new AxeBuilder({ page }).analyze()
+  const serious = results.violations.filter((violation) =>
+    ['serious', 'critical'].includes(violation.impact || ''),
+  )
+  expect(serious).toEqual([])
+})
+
 test('contact page preselects topics and has no serious accessibility violations', async ({
   page,
 }) => {
@@ -80,7 +94,7 @@ test('mobile navigation exposes every fixed route', async ({
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'Mobile-only behavior')
   await page.goto('/')
-  await page.getByText('Menü', { exact: true }).click()
+  await page.getByRole('button', { name: 'Menü' }).click()
   const navigation = page.getByRole('navigation', { name: 'Mobile Navigation' })
   await expect(
     navigation.getByRole('link', { name: /Für Startups/ }),

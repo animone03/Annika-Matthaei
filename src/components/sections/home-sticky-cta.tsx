@@ -7,16 +7,22 @@ import styles from './home-page.module.css'
 
 type HomeStickyCtaProps = {
   email?: string | null
+  startId?: string
+  endSelector?: string
 }
 
-// Mobile Kontaktleiste: erscheint, sobald der Claim aus dem Bild ist,
-// und verschwindet wieder, wenn der Kontakt-Link sichtbar wird.
-export function HomeStickyCta({ email }: HomeStickyCtaProps) {
+// Mobile Kontaktleiste: erscheint, sobald der Claim (startId) aus dem Bild ist,
+// und verschwindet wieder, wenn der Kontakt-Link (endSelector) sichtbar wird.
+export function HomeStickyCta({
+  email,
+  startId = 'home-title',
+  endSelector = '#home-contact a',
+}: HomeStickyCtaProps) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const claim = document.getElementById('home-title')
-    const contact = document.querySelector('#home-contact a')
+    const claim = document.getElementById(startId)
+    const contact = document.querySelector(endSelector)
     if (!claim || !contact) return
 
     let claimPassed = false
@@ -37,7 +43,7 @@ export function HomeStickyCta({ email }: HomeStickyCtaProps) {
     observer.observe(claim)
     observer.observe(contact)
     return () => observer.disconnect()
-  }, [])
+  }, [startId, endSelector])
 
   return (
     <div className={styles.stickyCta} data-visible={visible} inert={!visible}>

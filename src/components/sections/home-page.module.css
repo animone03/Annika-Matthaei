@@ -334,7 +334,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
-  margin-bottom: 48px;
 }
 
 .fact {
@@ -355,38 +354,6 @@
   font-size: 14px;
   line-height: 1.5;
   color: var(--muted);
-}
-
-.logos {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.logos .label {
-  flex: none;
-  padding-top: 0;
-}
-
-.logoGrid {
-  display: grid;
-  flex: 1;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.logoGrid li {
-  display: flex;
-  height: 48px;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  opacity: 0.7;
 }
 
 /* Kontakt */
@@ -471,16 +438,6 @@
     gap: 24px;
   }
 
-  .logos {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .logoGrid {
-    width: 100%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   .contact {
     grid-template-columns: 180px 1fr;
     gap: 32px 40px;
@@ -551,7 +508,7 @@
   /* Zwei Zeilen, auch auf schmalen Handys: Schrift schrumpft bei Bedarf. */
   .claim {
     max-width: none;
-    font-size: min(22px, calc((100vw - 40px) / 17));
+    font-size: min(19px, calc((100vw - 40px) / 17));
   }
 
   .claimLine {
@@ -716,7 +673,7 @@
     transform: none;
   }
 
-  /* Kennzahlen und Logos */
+  /* Kennzahlen */
 
   .trust {
     border-top: 0;
@@ -745,41 +702,6 @@
   .mobileFact .factText {
     font-size: 12px;
     line-height: 1.4;
-  }
-
-  .logos {
-    display: block;
-    padding-top: 28px;
-  }
-
-  .logos .label {
-    display: none;
-  }
-
-  .logoGrid {
-    display: flex;
-    gap: 10px;
-    margin-right: calc(-1 * var(--gutter));
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-
-  .logoGrid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .logoGrid li {
-    flex: none;
-    width: 96px;
-    height: 40px;
-    scroll-snap-align: start;
-  }
-
-  .logo {
-    height: auto !important;
-    max-height: 22px;
-    opacity: 1;
   }
 
   /* Kontakt */

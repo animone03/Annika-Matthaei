@@ -280,7 +280,7 @@ export default function StartupCoachingPage() {
             <span className={styles.mobileOnly}>Ich bin Annika.</span>
           </h2>
           <p className={`${styles.coachText} ${styles.desktopOnly}`}>
-            14 Jahre in Konzern, Mittelstand und Startup, davon zehn mit
+            13 Jahre in Konzern, Mittelstand und Startup, davon neun mit
             Führungsverantwortung. Zertifizierte systemische &amp;
             psychologische Business Coach und Coach für EXIST-Gründungsteams
             über eine Hochschulkooperation.
