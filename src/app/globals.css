@@ -80,6 +80,32 @@ body {
   padding-block: 0 32px;
 }
 
+.footer-motto {
+  display: none;
+}
+
+/* Kontaktseite: Footer mit Motto links, Trennlinie oben. */
+.site-shell:has([data-contact-page]) footer {
+  border-top: 1px solid rgb(31 31 27 / 0.15);
+  padding-top: 32px;
+}
+
+.site-shell:has([data-contact-page]) footer > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.site-shell:has([data-contact-page]) .footer-motto {
+  display: block;
+  margin-right: auto;
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+}
+
 /* Gerahmte Seiten mobil: randlos, Footer schmal. Die Startseite braucht unten
    zusätzlich Platz für die fixe Kontaktleiste. */
 @media (max-width: 767px) {
@@ -104,6 +130,25 @@ body {
     border-top: 1px solid rgb(31 31 27 / 0.15);
     padding: 14px 0 0;
     font-size: 10px;
+  }
+
+  .site-shell:has([data-contact-page]) footer {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .site-shell:has([data-contact-page]) footer > div {
+    flex-wrap: wrap;
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .site-shell:has([data-contact-page]) .footer-motto {
+    flex-basis: 100%;
+    margin: 0 0 2px;
+    border-bottom: 1px solid rgb(31 31 27 / 0.15);
+    padding-bottom: 24px;
+    font-size: 11px;
   }
 
   .site-shell:has([data-frame-page]) footer ul {

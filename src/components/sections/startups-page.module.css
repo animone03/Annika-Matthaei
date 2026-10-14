@@ -950,3 +950,26 @@
     line-height: 1.1;
   }
 }
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.formAlert {
+  color: #9b2c2c;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.formNotice:focus {
+  outline: none;
+}
+
+.submit:disabled {
+  cursor: progress;
+  background: var(--ink-soft);
+}

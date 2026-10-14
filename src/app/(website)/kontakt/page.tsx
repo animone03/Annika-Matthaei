@@ -1,76 +1,109 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
+import { Suspense } from 'react'
 
-import { PortableText } from '@/components/portable-text/portable-text'
-import { Container } from '@/components/ui/container'
-import { EmptyState } from '@/components/ui/empty-state'
+import portrait from '../../../../public/images/annika-sessel.jpeg'
+
+import {
+  ContactForm,
+  ContactFormWithTopics,
+} from '@/components/sections/contact-form'
+import styles from '@/components/sections/contact-page.module.css'
+import { inquiryRecipient } from '@/lib/inquiry'
 import { buildMetadata } from '@/lib/metadata'
-import { getContactPage, getSiteSettings } from '@/sanity/lib/repository'
+import { getSiteSettings } from '@/sanity/lib/repository'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const [page, settings] = await Promise.all([
-    getContactPage({ stega: false }),
-    getSiteSettings({ stega: false }),
-  ])
-  return buildMetadata({
-    title: page?.title || 'Kontakt',
-    description: page?.introduction,
-    path: '/kontakt',
-    seo: page?.seo,
-    fallbackImage: settings?.defaultSocialImage,
-  })
-}
+export const metadata: Metadata = buildMetadata({
+  title: 'Kontakt – Annika Matthaei | Coaching & Marketing in München',
+  description:
+    'Erstgespräch zu Startup-Coaching, Leadership oder Marketing anfragen.',
+  path: '/kontakt',
+  absoluteTitle: true,
+})
+
+const arrow = '↗︎'
 
 export default async function ContactPage() {
-  const [page, settings] = await Promise.all([
-    getContactPage(),
-    getSiteSettings(),
-  ])
-  if (!page) return <EmptyState title="Kontakt" />
+  const settings = await getSiteSettings()
+  // TODO: LinkedIn-URL in den Website-Einstellungen in Sanity hinterlegen.
+  const linkedIn = settings?.socialLinks?.find((link) =>
+    /linkedin/i.test(`${link.label} ${link.url}`),
+  )?.url
 
   return (
-    <Container className="py-20 sm:py-28">
-      <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-        <div>
-          <h1 className="text-3xl font-normal tracking-[-0.035em] uppercase sm:text-5xl">
-            {page.title}
-          </h1>
-          <p className="text-muted-foreground mt-7 max-w-2xl text-base leading-8">
-            {page.introduction}
-          </p>
-          <PortableText value={page.body} className="mt-10" />
+    <div data-frame-page data-contact-page className={styles.page}>
+      <header className={styles.intro}>
+        <p className={styles.label}>Kontakt</p>
+        <h1 className={styles.title}>Lass uns sprechen.</h1>
+      </header>
+
+      <div className={styles.content}>
+        <div className={styles.photo}>
+          <Image
+            src={portrait}
+            alt="Annika Matthaei, sitzend in einem Sessel"
+            preload
+            placeholder="blur"
+            sizes="(min-width: 768px) 360px, 140px"
+            className={styles.photoImage}
+          />
         </div>
-        <aside className="border-border bg-surface rounded-[var(--radius)] border p-8">
-          {settings?.email ? (
-            <a
-              className="text-accent text-xl font-semibold underline underline-offset-4"
-              href={`mailto:${settings.email}`}
-            >
-              {settings.email}
+
+        <p className={styles.text}>
+          Ob Gründungsteam, Führungsrolle oder Marke – erzähl mir kurz, worum es
+          geht. Ich melde mich innerhalb von zwei Werktagen für ein
+          unverbindliches Kennenlernen.
+        </p>
+
+        <ul className={styles.direct} aria-label="Direktkontakt">
+          <li>
+            <a href={`mailto:${inquiryRecipient}`} className={styles.directRow}>
+              <span className={styles.directValue}>
+                <span className={styles.directLabel}>E-Mail</span>
+                {inquiryRecipient}
+              </span>
+              <span aria-hidden="true">{arrow}</span>
             </a>
-          ) : (
-            <p className="text-muted-foreground">
-              Noch keine Kontaktadresse veröffentlicht.
-            </p>
-          )}
-          {settings?.socialLinks?.length ? (
-            <ul className="mt-8 space-y-3">
-              {settings.socialLinks.map((link) =>
-                link.label && link.url ? (
-                  <li key={link._key}>
-                    <a
-                      className="hover:text-accent font-medium"
-                      href={link.url}
-                      rel="me"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ) : null,
-              )}
-            </ul>
-          ) : null}
-        </aside>
+          </li>
+          <li>
+            {linkedIn ? (
+              <a
+                href={linkedIn}
+                target="_blank"
+                rel="noopener"
+                className={styles.directRow}
+              >
+                <span className={styles.directValue}>
+                  <span className={styles.directLabel}>LinkedIn</span>
+                  Annika Matthaei
+                </span>
+                <span aria-hidden="true">{arrow}</span>
+              </a>
+            ) : (
+              <div className={styles.directRow}>
+                <span className={styles.directValue}>
+                  <span className={styles.directLabel}>LinkedIn</span>
+                  Annika Matthaei
+                </span>
+              </div>
+            )}
+          </li>
+          <li>
+            <div className={styles.directRow}>
+              <span className={styles.directValue}>
+                <span className={styles.directLabel}>Ort</span>
+                München &amp; online
+              </span>
+            </div>
+          </li>
+        </ul>
+
+        <section aria-label="Kontaktformular" className={styles.formColumn}>
+          <Suspense fallback={<ContactForm />}>
+            <ContactFormWithTopics />
+          </Suspense>
+        </section>
       </div>
-    </Container>
+    </div>
   )
 }

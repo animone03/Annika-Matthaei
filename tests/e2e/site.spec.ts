@@ -36,6 +36,27 @@ test('startup coaching page has no serious accessibility violations', async ({
   expect(serious).toEqual([])
 })
 
+test('contact page preselects topics and has no serious accessibility violations', async ({
+  page,
+}) => {
+  await page.goto('/kontakt?thema=exist')
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'Lass uns sprechen.' }),
+  ).toBeVisible()
+  await expect(page.getByRole('checkbox', { name: 'EXIST' })).toBeChecked()
+
+  await page.getByRole('button', { name: /Anfrage senden/ }).click()
+  await expect(
+    page.getByText('Bitte gib eine gültige E-Mail-Adresse ein.'),
+  ).toBeVisible()
+
+  const results = await new AxeBuilder({ page }).analyze()
+  const serious = results.violations.filter((violation) =>
+    ['serious', 'critical'].includes(violation.impact || ''),
+  )
+  expect(serious).toEqual([])
+})
+
 test('desktop navigation exposes the fixed routes', async ({
   page,
 }, testInfo) => {

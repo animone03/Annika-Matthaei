@@ -326,8 +326,13 @@ export function SiteHeader() {
             {navigation.map((item) => (
               <li key={item.href}>
                 <Link
-                  className="hover:text-muted-foreground inline-flex items-center"
+                  className={`hover:text-muted-foreground inline-flex items-center ${
+                    pathname === item.href
+                      ? 'border-foreground border-b pb-[3px]'
+                      : ''
+                  }`}
                   href={item.href}
+                  aria-current={pathname === item.href ? 'page' : undefined}
                 >
                   {item.label}
                 </Link>

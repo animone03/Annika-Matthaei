@@ -1,7 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, type FormEvent } from 'react'
+import { useActionState, useEffect, useRef, useState } from 'react'
+
+import { inquiryRecipient, type InquiryState } from '@/lib/inquiry'
+import { sendInquiry } from '@/lib/inquiry-action'
 
 import styles from './startups-page.module.css'
 
@@ -13,45 +16,87 @@ const topics = [
   'Noch unklar',
 ]
 
-const email = 'annika.matthaei@googlemail.com'
+const initialState: InquiryState = { status: 'idle' }
+const sendStartupInquiry = sendInquiry.bind(null, 'coaching-startups')
 
-// TODO: Versand per Server Action anbinden (inkl. Honeypot gegen Spam).
-// Bis dahin verschickt das Formular nichts und verweist nach dem Prüfen der
-// Eingaben auf die E-Mail-Adresse.
-export function StartupContactForm() {
-  const [submitted, setSubmitted] = useState(false)
+function StartupContactFormBody({ onReset }: { onReset: () => void }) {
+  const [state, formAction, pending] = useActionState(
+    sendStartupInquiry,
+    initialState,
+  )
+  const startedRef = useRef<HTMLInputElement>(null)
+  const resultRef = useRef<HTMLDivElement>(null)
+  const errors = state.status === 'invalid' ? (state.errors ?? {}) : {}
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    setSubmitted(true)
+  useEffect(() => {
+    if (state.status === 'sent' || state.status === 'unavailable') {
+      resultRef.current?.focus()
+    }
+  }, [state.status])
+
+  if (state.status === 'sent') {
+    return (
+      <div
+        ref={resultRef}
+        tabIndex={-1}
+        aria-live="polite"
+        className={styles.formNotice}
+      >
+        <p className={styles.formNoticeTitle}>
+          Danke – ich melde mich bei euch.
+        </p>
+        <button type="button" className={styles.resetButton} onClick={onReset}>
+          Neue Anfrage
+        </button>
+      </div>
+    )
   }
 
-  if (submitted) {
+  if (state.status === 'unavailable') {
     return (
-      <div className={styles.formNotice} role="status">
+      <div
+        ref={resultRef}
+        tabIndex={-1}
+        aria-live="polite"
+        className={styles.formNotice}
+      >
         <p className={styles.formNoticeTitle}>
           Das Formular ist noch nicht freigeschaltet.
         </p>
         <p>
           Schreib mir bitte direkt eine E-Mail an{' '}
-          <a href={`mailto:${email}`} className={styles.inlineLink}>
-            {email}
+          <a href={`mailto:${inquiryRecipient}`} className={styles.inlineLink}>
+            {inquiryRecipient}
           </a>
           . Ich melde mich bei euch.
         </p>
-        <button
-          type="button"
-          className={styles.resetButton}
-          onClick={() => setSubmitted(false)}
-        >
+        <button type="button" className={styles.resetButton} onClick={onReset}>
           Zurück zum Formular
         </button>
       </div>
     )
   }
 
+  const errorList = Object.values(errors)
+
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
+    <form
+      onFocusCapture={() => {
+        // Startzeit für die Mindest-Ausfüllzeit (Spam-Schutz)
+        if (startedRef.current && !startedRef.current.value) {
+          startedRef.current.value = String(Date.now())
+        }
+      }}
+      className={styles.form}
+      action={formAction}
+    >
+      {state.status === 'error' || errorList.length ? (
+        <p role="alert" className={styles.formAlert}>
+          {errorList.length
+            ? errorList.join(' ')
+            : 'Das hat leider nicht geklappt. Versucht es bitte noch einmal.'}
+        </p>
+      ) : null}
       <fieldset className={styles.chips}>
         <legend className={styles.formLabel}>
           Worum geht es? (Mehrfach möglich)
@@ -107,9 +152,33 @@ export function StartupContactForm() {
           </Link>
         </span>
       </label>
-      <button type="submit" className={styles.submit}>
-        Anfrage senden <span aria-hidden="true">↗︎</span>
+      {/* Spam-Schutz: für Menschen unsichtbar */}
+      <div className={styles.honeypot} aria-hidden="true">
+        <label>
+          Website
+          <input name="website" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+      <input ref={startedRef} type="hidden" name="gestartet" defaultValue="" />
+      <button type="submit" className={styles.submit} disabled={pending}>
+        {pending ? (
+          'Wird gesendet …'
+        ) : (
+          <>
+            Anfrage senden <span aria-hidden="true">↗︎</span>
+          </>
+        )}
       </button>
     </form>
+  )
+}
+
+export function StartupContactForm() {
+  const [round, setRound] = useState(0)
+  return (
+    <StartupContactFormBody
+      key={round}
+      onReset={() => setRound((value) => value + 1)}
+    />
   )
 }
