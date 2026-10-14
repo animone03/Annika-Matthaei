@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 import heroPortrait from '../../../public/images/annika-sessel.jpeg'
 import ctaPortrait from '../../../public/images/annika-unternehmen.jpg'
-import signatureFirst from '../../../public/images/signatur/logo-annika.png'
-import signatureLast from '../../../public/images/signatur/logo-matthaei.png'
+
+import { Signature } from '@/components/ui/signature'
 
 import { HomeStickyCta } from './home-sticky-cta'
 import { TopicsGraphic } from './topics-graphic'
@@ -98,13 +98,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
     <div data-home data-frame-page className={styles.page}>
       <section aria-labelledby="home-title" className={styles.hero}>
         <div className={styles.identity}>
-          <Image
-            src={signatureFirst}
-            alt="Annika"
-            preload
-            sizes="(min-width: 1024px) 330px, 54vw"
-            className={styles.firstName}
-          />
+          <Signature part="first" className={styles.firstName} />
           <div className={styles.passepartout}>
             <Image
               src={heroPortrait}
@@ -115,13 +109,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
               className={styles.portrait}
             />
           </div>
-          <Image
-            src={signatureLast}
-            alt="Matthaei"
-            preload
-            sizes="(min-width: 1024px) 345px, 66vw"
-            className={styles.lastName}
-          />
+          <Signature part="last" className={styles.lastName} />
         </div>
         <div className={styles.positioning}>
           <h1 id="home-title" className={styles.claim}>
