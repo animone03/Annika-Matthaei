@@ -54,7 +54,6 @@ const coaching: CoachingGroup[] = [
 const navigation: NavItem[] = [
   { label: 'Marketing', href: '/#marketing' },
   { label: 'Über mich', href: '/ueber-mich' },
-  { label: 'Blog', href: '/blog' },
   { label: 'Kontakt', href: '/kontakt' },
 ]
 

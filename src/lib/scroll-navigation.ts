@@ -3,7 +3,6 @@ export const scrollPages = [
   '/coaching/startups',
   '/fuer-einzelpersonen',
   '/ueber-mich',
-  '/blog',
   '/kontakt',
 ] as const
 

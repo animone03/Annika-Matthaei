@@ -7,11 +7,7 @@ import portrait from '../../../../public/images/annika-lachend.webp'
 import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
 import styles from '@/components/sections/about-page.module.css'
 import { SkillsMarquee } from '@/components/sections/skills-marquee'
-import {
-  IWanna,
-  IWannaSeeYouGrow,
-  SeeYouGrow,
-} from '@/components/ui/handwriting'
+import { IWannaSeeYouGrow } from '@/components/ui/handwriting'
 import { Signature } from '@/components/ui/signature'
 import { inquiryRecipient } from '@/lib/inquiry'
 import { buildMetadata } from '@/lib/metadata'
@@ -113,39 +109,33 @@ const stance = [
 export default function AboutPage() {
   return (
     <div data-frame-page data-about-page className={styles.page}>
+      {/* Desktop: Schriftzug liegt über dem Foto. Mobil: Foto, Schriftzug, Intro. */}
       <section aria-labelledby="about-title" className={styles.hero}>
         <h1 id="about-title" className={styles.srOnly}>
           I wanna see you grow – Über Annika Matthaei
         </h1>
-        <p className={styles.heroLabel}>Über mich</p>
-        <div className={styles.heroGrid}>
-          <IWanna className={styles.iWanna} />
-          <div className={styles.passepartout}>
-            <Image
-              src={portrait}
-              alt="Annika Matthaei, lachend"
-              preload
-              placeholder="blur"
-              sizes="(min-width: 768px) 280px, 100vw"
-              className={styles.portrait}
-            />
-          </div>
-          <SeeYouGrow className={styles.seeYouGrow} />
+        <div className={styles.claimLayer}>
+          <p className={styles.heroLabel}>Über mich</p>
+          <IWannaSeeYouGrow className={styles.claim} />
         </div>
-        <IWannaSeeYouGrow className={styles.heroMobileClaim} />
-      </section>
-
-      <section aria-labelledby="about-intro" className={styles.intro}>
-        <h2 id="about-intro" className={styles.label}>
-          Ich bin Annika.
-        </h2>
-        <div className={styles.introBody}>
-          <p className={styles.lead}>{lead}</p>
-          <p className={styles.introText}>{introText}</p>
-          <div className={styles.signatureRow}>
-            <Signature part="first" className={styles.signature} />
-            <span className={styles.signatureNote}>— München, 2026</span>
+        <div className={styles.introLayer}>
+          <div className={styles.introBody}>
+            <h2 className={styles.introLabel}>Ich bin Annika.</h2>
+            <p className={styles.lead}>{lead}</p>
+            <p className={styles.introText}>{introText}</p>
+            <div className={styles.signatureRow}>
+              <Signature part="first" className={styles.signature} />
+              <span className={styles.signatureNote}>München, 2026</span>
+            </div>
           </div>
+          <Image
+            src={portrait}
+            alt="Annika Matthaei, lachend"
+            preload
+            placeholder="blur"
+            sizes="(min-width: 768px) 440px, 100vw"
+            className={styles.portrait}
+          />
         </div>
       </section>
 
