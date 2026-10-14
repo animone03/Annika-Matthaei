@@ -68,18 +68,24 @@ body {
   background: var(--background);
 }
 
-.site-shell:has([data-company-page], [data-about-page]) footer {
+/* Next behält besuchte Seiten versteckt (display: none) im DOM. Darum zählen
+   in den :has()-Regeln nur sichtbare Seiten. */
+.site-shell:has(
+    [data-company-page]:not([style*='display: none']),
+    [data-about-page]:not([style*='display: none'])
+  )
+  footer {
   margin-top: 0;
 }
 
-.site-shell:has([data-frame-page]) {
+.site-shell:has([data-frame-page]:not([style*='display: none'])) {
   --frame: 14px;
   max-width: none;
   margin-block: 14px;
   padding-inline: var(--frame);
 }
 
-.site-shell:has([data-frame-page]) footer {
+.site-shell:has([data-frame-page]:not([style*='display: none'])) footer {
   margin-top: 0;
   padding-block: 0 32px;
 }
@@ -89,19 +95,32 @@ body {
 }
 
 /* Kontakt und Über mich: Footer mit Motto links, Trennlinie oben. */
-.site-shell:has([data-contact-page], [data-about-page]) footer {
+.site-shell:has(
+    [data-contact-page]:not([style*='display: none']),
+    [data-about-page]:not([style*='display: none'])
+  )
+  footer {
   border-top: 1px solid rgb(30 35 41 / 0.15);
   padding-top: 32px;
 }
 
-.site-shell:has([data-contact-page], [data-about-page]) footer > div {
+.site-shell:has(
+    [data-contact-page]:not([style*='display: none']),
+    [data-about-page]:not([style*='display: none'])
+  )
+  footer
+  > div {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   gap: 24px;
 }
 
-.site-shell:has([data-contact-page], [data-about-page]) .footer-motto {
+.site-shell:has(
+    [data-contact-page]:not([style*='display: none']),
+    [data-about-page]:not([style*='display: none'])
+  )
+  .footer-motto {
   display: block;
   margin-right: auto;
   color: var(--foreground);
@@ -113,21 +132,23 @@ body {
 /* Gerahmte Seiten mobil: randlos, Footer schmal. Die Startseite braucht unten
    zusätzlich Platz für die fixe Kontaktleiste. */
 @media (max-width: 767px) {
-  .site-shell:has([data-frame-page]) {
+  .site-shell:has([data-frame-page]:not([style*='display: none'])) {
     --frame: 0px;
     margin-block: 0;
     padding-inline: 0;
   }
 
-  .site-shell:has([data-frame-page]) footer {
+  .site-shell:has([data-frame-page]:not([style*='display: none'])) footer {
     padding: 48px 20px 28px;
   }
 
-  .site-shell:has([data-home]) footer {
+  .site-shell:has([data-home]:not([style*='display: none'])) footer {
     padding: 0 20px 100px;
   }
 
-  .site-shell:has([data-frame-page]) footer > div {
+  .site-shell:has([data-frame-page]:not([style*='display: none']))
+    footer
+    > div {
     display: flex;
     justify-content: space-between;
     gap: 12px;
@@ -136,18 +157,31 @@ body {
     font-size: 10px;
   }
 
-  .site-shell:has([data-contact-page], [data-about-page]) footer {
+  .site-shell:has(
+      [data-contact-page]:not([style*='display: none']),
+      [data-about-page]:not([style*='display: none'])
+    )
+    footer {
     border-top: 0;
     padding-top: 0;
   }
 
-  .site-shell:has([data-contact-page], [data-about-page]) footer > div {
+  .site-shell:has(
+      [data-contact-page]:not([style*='display: none']),
+      [data-about-page]:not([style*='display: none'])
+    )
+    footer
+    > div {
     flex-wrap: wrap;
     border-top: 0;
     padding-top: 0;
   }
 
-  .site-shell:has([data-contact-page], [data-about-page]) .footer-motto {
+  .site-shell:has(
+      [data-contact-page]:not([style*='display: none']),
+      [data-about-page]:not([style*='display: none'])
+    )
+    .footer-motto {
     flex-basis: 100%;
     margin: 0 0 2px;
     border-bottom: 1px solid rgb(30 35 41 / 0.15);
@@ -155,12 +189,18 @@ body {
     font-size: 11px;
   }
 
-  /* Platz für die fixe Kontaktleiste. */
-  .site-shell:has([data-about-page]) footer {
+  /* Platz für die fixe Kontaktleiste, Motto einzeilig. */
+  .site-shell:has([data-about-page]:not([style*='display: none'])) footer {
     padding-bottom: 100px;
   }
 
-  .site-shell:has([data-frame-page]) footer ul {
+  .site-shell:has([data-about-page]:not([style*='display: none']))
+    .footer-motto
+    br {
+    display: none;
+  }
+
+  .site-shell:has([data-frame-page]:not([style*='display: none'])) footer ul {
     flex-wrap: nowrap;
     column-gap: 16px;
   }

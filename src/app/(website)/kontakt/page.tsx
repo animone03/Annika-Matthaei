@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Suspense } from 'react'
 
-import portrait from '../../../../public/images/annika-sessel.jpeg'
+import portrait from '../../../../public/images/annika-profil.webp'
 
 import {
   ContactForm,
@@ -41,7 +41,7 @@ export default async function ContactPage() {
         <div className={styles.photo}>
           <Image
             src={portrait}
-            alt="Annika Matthaei, sitzend in einem Sessel"
+            alt="Annika Matthaei im Profil"
             preload
             placeholder="blur"
             sizes="(min-width: 768px) 360px, 140px"

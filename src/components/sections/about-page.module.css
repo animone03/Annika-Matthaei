@@ -113,7 +113,7 @@
   height: auto;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 22%;
   filter: grayscale(1);
 }
 
@@ -253,11 +253,16 @@
 /* Kompetenzen */
 
 .skills {
-  padding-bottom: 80px;
+  padding-top: 80px;
 }
 
 .skills .label {
   padding-top: 12px;
+}
+
+.heroMobileClaim,
+.marquee {
+  display: none;
 }
 
 .skillList {
@@ -386,17 +391,11 @@
     font-size: 11px;
   }
 
-  .intro,
-  .education,
-  .skills,
-  .stations,
-  .stance {
-    gap: 12px;
-  }
+  /* Hero: Foto randlos, darunter der Schriftzug am Stück */
 
   .hero {
-    gap: 20px;
-    padding-top: 28px;
+    gap: 14px;
+    padding-top: 20px;
   }
 
   .heroLabel {
@@ -404,50 +403,171 @@
   }
 
   .heroGrid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: block;
   }
 
-  .iWanna {
-    width: 70%;
-    max-width: none;
-    align-self: flex-start;
-    margin-top: 0;
+  .iWanna,
+  .seeYouGrow {
+    display: none;
   }
 
   .passepartout {
-    width: 100%;
     padding: 0;
     box-shadow: none;
   }
 
-  .seeYouGrow {
-    width: 80%;
-    max-width: none;
-    align-self: flex-end;
-    margin-bottom: 0;
+  .heroMobileClaim {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 8px;
   }
 
+  /* Intro */
+
   .intro {
-    padding-block: 48px;
+    gap: 16px;
+    padding: 44px var(--gutter) 0;
+  }
+
+  .introBody {
+    gap: 16px;
   }
 
   .lead {
-    font-size: 22px;
+    font-size: 21px;
+    letter-spacing: -0.01em;
   }
 
   .introText {
     font-size: 15px;
   }
 
-  .signature {
-    height: 64px;
+  .signatureRow {
+    gap: 12px;
+    margin-top: 4px;
   }
 
-  .stations,
+  .signature {
+    height: 60px;
+  }
+
+  .signatureNote {
+    padding-bottom: 4px;
+    font-size: 11px;
+  }
+
+  /* Wie ich arbeite */
+
   .stance {
-    padding-block: 40px;
+    gap: 20px;
+    margin-top: 44px;
+    padding-block: 32px;
+  }
+
+  .stanceList {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .stanceItem {
+    gap: 6px;
+  }
+
+  .stanceTitle {
+    font-size: 22px;
+    line-height: 1.1;
+  }
+
+  .stanceText {
+    font-size: 13px;
+  }
+
+  /* Kompetenzen: zwei laufende, wischbare Reihen */
+
+  .skills {
+    gap: 12px;
+    padding-top: 40px;
+  }
+
+  .skillList {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .marquee {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-inline: calc(-1 * var(--gutter));
+  }
+
+  .marqueeRow {
+    overflow: hidden;
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
+  }
+
+  .marqueeRow[data-dragging] {
+    cursor: grabbing;
+  }
+
+  .marqueeTrack {
+    display: flex;
+    width: max-content;
+    gap: 6px;
+    padding-inline: var(--gutter);
+    will-change: transform;
+  }
+
+  .marqueeChip {
+    flex: none;
+    border: 1px solid var(--ink);
+    padding: 10px 12px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Ausbildung */
+
+  .education {
+    gap: 12px;
+    padding: 36px var(--gutter) 0;
+  }
+
+  .educationList {
+    grid-template-columns: 1fr;
+  }
+
+  .educationItem {
+    gap: 4px;
+    padding: 14px 0;
+  }
+
+  .educationTitle {
+    font-size: 17px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .educationDetail {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  /* Stationen */
+
+  .stations {
+    gap: 12px;
+    margin-top: 40px;
+    padding-block: 36px;
   }
 
   .station {
@@ -458,74 +578,36 @@
   }
 
   .stationPeriod {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .stationTitle {
-    font-size: 20px;
-    line-height: 1.1;
+    font-size: 19px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
   }
 
   .stationDetail {
     font-size: 13px;
+    line-height: 1.45;
   }
 
-  .education {
-    padding-block: 48px;
-  }
-
-  .educationList {
-    grid-template-columns: 1fr;
-  }
-
-  .educationItem {
-    padding: 16px 0;
-  }
-
-  .educationTitle {
-    font-size: 18px;
-  }
-
-  .skills {
-    padding-bottom: 48px;
-  }
-
-  .skills .label {
-    padding-top: 0;
-  }
-
-  .skill {
-    padding: 10px 12px;
-    font-size: 12px;
-  }
-
-  .stanceList {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .stanceTitle {
-    font-size: 22px;
-  }
-
-  .stanceText {
-    font-size: 13px;
-  }
+  /* CTA */
 
   .cta {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 16px;
     padding: 48px var(--gutter);
   }
 
   .ctaTitle {
     font-size: 30px;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
   }
 
   .ctaBody {
+    gap: 16px;
     font-size: 15px;
+    line-height: 1.55;
   }
 
   .underlineLink {

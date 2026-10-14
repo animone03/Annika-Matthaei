@@ -41,7 +41,7 @@ test('about page has no serious accessibility violations', async ({ page }) => {
   await expect(
     page.getByRole('heading', { level: 1, name: /I wanna see you grow/ }),
   ).toBeAttached()
-  await expect(page.getByRole('img', { name: 'see you grow' })).toBeVisible()
+  await expect(page.getByRole('img', { name: /see you grow/ })).toBeVisible()
 
   const results = await new AxeBuilder({ page }).analyze()
   const serious = results.violations.filter((violation) =>

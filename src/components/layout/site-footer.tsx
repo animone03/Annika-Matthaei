@@ -23,10 +23,8 @@ export function SiteFooter({ ownerName, socialLinks }: SiteFooterProps) {
       <div className="text-muted-foreground grid gap-6 px-6 text-xs tracking-[0.06em] uppercase sm:grid-cols-[1fr_auto] sm:items-center sm:px-12">
         {/* Nur auf Kontakt und Über mich sichtbar (siehe globals.css). */}
         <p className="footer-motto">
-          Progress over Perfection.
-          <br />
-          Play. Laugh.
-          <br />
+          Progress over Perfection. <br />
+          Play. Laugh. <br />
           Learn. Unlearn.
         </p>
         <p>

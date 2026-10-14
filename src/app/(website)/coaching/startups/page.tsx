@@ -281,8 +281,8 @@ export default function StartupCoachingPage() {
           </h2>
           <p className={`${styles.coachText} ${styles.desktopOnly}`}>
             13 Jahre in Konzern, Mittelstand und Startup, davon neun mit
-            Führungsverantwortung. Zertifizierte systemische &amp;
-            psychologische Business Coach und Coach für EXIST-Gründungsteams
+            Führungsverantwortung. Zertifizierter systemischer &amp;
+            psychologischer Business Coach und Coach für EXIST-Gründungsteams
             über eine Hochschulkooperation.
           </p>
           <Link href="/ueber-mich" className={styles.underlineLink}>

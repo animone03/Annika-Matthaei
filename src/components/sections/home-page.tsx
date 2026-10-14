@@ -45,7 +45,7 @@ const facts = [
   },
   {
     title: 'Zertifiziert',
-    text: 'Systemische & psychologische Business Coach',
+    text: 'Systemischer & psychologischer Business Coach',
   },
   {
     title: '13 Jahre Praxis',
