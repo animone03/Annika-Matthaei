@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useEffect, useRef, type CSSProperties } from 'react'
 
 import styles from './topics-graphic.module.css'
+import { Arrow } from '@/components/ui/arrow'
 
 // Themen-Grafik „Alles hängt zusammen“. Desktop und Mobil nutzen dieselbe
 // Engine mit unterschiedlichen Daten. Alle Maße beziehen sich auf die feste
@@ -748,11 +749,7 @@ export function TopicsGraphic({ variant }: TopicsGraphicProps) {
               <span className={styles.bubbleLabel} style={{ maxWidth }}>
                 {bubble.label}
               </span>
-              {bubble.href ? (
-                <span aria-hidden="true" className={styles.bubbleArrow}>
-                  ↗︎
-                </span>
-              ) : null}
+              {bubble.href ? <Arrow className={styles.bubbleArrow} /> : null}
             </>
           )
           const setRef = (element: HTMLElement | null) => {

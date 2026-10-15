@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { Container } from '@/components/ui/container'
+import { Arrow } from '@/components/ui/arrow'
 
 type ContactTeaserProps = {
   value?: {
@@ -24,7 +25,7 @@ export function ContactTeaser({ value }: ContactTeaserProps) {
         </div>
         <Link href="/kontakt" className="editorial-link">
           {value.linkLabel}
-          <span aria-hidden="true">↗︎</span>
+          <Arrow />
         </Link>
       </Container>
     </section>

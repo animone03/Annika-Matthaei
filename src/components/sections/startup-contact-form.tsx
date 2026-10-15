@@ -7,6 +7,7 @@ import { inquiryRecipient, type InquiryState } from '@/lib/inquiry'
 import { sendInquiry } from '@/lib/inquiry-action'
 
 import styles from './startups-page.module.css'
+import { Arrow } from '@/components/ui/arrow'
 
 const topics = [
   'Gründungscoaching',
@@ -165,7 +166,7 @@ function StartupContactFormBody({ onReset }: { onReset: () => void }) {
           'Wird gesendet …'
         ) : (
           <>
-            Anfrage senden <span aria-hidden="true">↗︎</span>
+            Anfrage senden <Arrow />
           </>
         )}
       </button>

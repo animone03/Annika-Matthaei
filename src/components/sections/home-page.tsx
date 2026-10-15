@@ -9,6 +9,7 @@ import { Signature } from '@/components/ui/signature'
 import { HomeStickyCta } from './home-sticky-cta'
 import { TopicsGraphic } from './topics-graphic'
 import styles from './home-page.module.css'
+import { Arrow } from '@/components/ui/arrow'
 
 const marqueeText =
   'COACHING  ·  EXIST  ·  CO-FOUNDER  ·  LEADERSHIP  ·  TEAMS  ·  MARKETING-STRATEGIE  ·  WEBDESIGN  ·  SEO  ·  BRANDING  ·  '
@@ -110,7 +111,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
             Learn. Unlearn.
           </p>
           <Link href="/kontakt" className={styles.underlineLink}>
-            Kennenlernen <span aria-hidden="true">↗︎</span>
+            Kennenlernen <Arrow />
           </Link>
         </div>
       </section>
@@ -150,7 +151,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
         <TopicsGraphic variant="mobile" />
         {/* TODO: Ziel festlegen, sobald es eine Übersicht aller Angebote gibt. */}
         <Link href="/coaching/startups" className={styles.underlineLink}>
-          Alle Angebote als Liste <span aria-hidden="true">↗︎</span>
+          Alle Angebote als Liste <Arrow />
         </Link>
       </section>
 
@@ -189,9 +190,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
                     {offer.mobileDescription}
                   </span>
                 </span>
-                <span aria-hidden="true" className={styles.offerArrow}>
-                  ↗︎
-                </span>
+                <Arrow className={styles.offerArrow} />
               </Link>
             </li>
           ))}
@@ -233,16 +232,14 @@ export function HomePageContent({ email }: HomePageContentProps) {
                 Auch speziell für Coaches, bei ijustwannacoach
               </span>
             </span>
-            <span aria-hidden="true" className={styles.offerArrow}>
-              ↗︎
-            </span>
+            <Arrow className={styles.offerArrow} />
           </Link>
           {/* TODO: Link zu ijustwannacoach ergänzen, sobald die URL feststeht. */}
           <p className={`${styles.coachHint} ${styles.desktopOnly}`}>
             <span>
               Du bist Coach? Marketing speziell für Coaches bei ijustwannacoach
             </span>
-            <span aria-hidden="true">↗︎</span>
+            <Arrow />
           </p>
           <p className={`${styles.aiNote} ${styles.desktopOnly}`}>
             Außerdem unterstütze ich dabei, Abläufe zu vereinfachen, auch mit
@@ -298,7 +295,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
             href="/kontakt"
             className={`${styles.underlineLink} ${styles.underlineLinkWide}`}
           >
-            Gespräch vereinbaren <span aria-hidden="true">↗︎</span>
+            Gespräch vereinbaren <Arrow />
           </Link>
         </div>
       </section>

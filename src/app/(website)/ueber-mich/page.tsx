@@ -11,6 +11,7 @@ import { IWannaSeeYouGrow } from '@/components/ui/handwriting'
 import { Signature } from '@/components/ui/signature'
 import { inquiryRecipient } from '@/lib/inquiry'
 import { buildMetadata } from '@/lib/metadata'
+import { Arrow } from '@/components/ui/arrow'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Über mich – Annika Matthaei | Systemischer Coach & Marketing',
@@ -212,7 +213,7 @@ export default function AboutPage() {
             zusammenpassen.
           </p>
           <Link href="/kontakt" className={styles.underlineLink}>
-            Kennenlernen <span aria-hidden="true">↗︎</span>
+            Kennenlernen <Arrow />
           </Link>
         </div>
       </section>

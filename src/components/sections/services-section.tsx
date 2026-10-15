@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import portrait from '../../../public/images/annika-unternehmen-sessel.jpg'
+import { Arrow } from '@/components/ui/arrow'
 
 export function ServicesSection() {
   return (
@@ -41,7 +42,7 @@ export function ServicesSection() {
               Luft nach oben ist.
             </p>
             <Link href="/coaching/startups" className="editorial-link mt-5">
-              Für Unternehmen <span aria-hidden="true">↗︎</span>
+              Für Unternehmen <Arrow />
             </Link>
           </div>
           <div className="border-foreground/30 border-t pt-10">
@@ -57,7 +58,7 @@ export function ServicesSection() {
               Kommunikation, Ownership und Resilienz.
             </p>
             <Link href="/fuer-einzelpersonen" className="editorial-link mt-5">
-              Für Einzelpersonen <span aria-hidden="true">↗︎</span>
+              Für Einzelpersonen <Arrow />
             </Link>
           </div>
         </div>

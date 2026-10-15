@@ -8,6 +8,7 @@ import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
 import styles from '@/components/sections/marketing-page.module.css'
 import { inquiryRecipient } from '@/lib/inquiry'
 import { buildMetadata } from '@/lib/metadata'
+import { Arrow } from '@/components/ui/arrow'
 
 export const metadata: Metadata = buildMetadata({
   title:
@@ -62,8 +63,6 @@ const services = [
   },
 ]
 
-const arrow = '↗︎'
-
 export default function MarketingPage() {
   return (
     <div data-frame-page data-marketing-page className={styles.page}>
@@ -84,7 +83,7 @@ export default function MarketingPage() {
             Marketingstrategie zu entwickeln.
           </p>
           <Link href="/kontakt" className={styles.heroLink}>
-            Projekt besprechen <span aria-hidden="true">{arrow}</span>
+            Projekt besprechen <Arrow />
           </Link>
         </div>
       </section>
@@ -130,7 +129,7 @@ export default function MarketingPage() {
         </p>
         {/* TODO: Ziel für „Mehr dazu“ festlegen (AI-Seite oder Kontakt). */}
         <Link href="/kontakt" className={styles.aiLink}>
-          Mehr dazu <span aria-hidden="true">{arrow}</span>
+          Mehr dazu <Arrow />
         </Link>
       </div>
 
@@ -150,7 +149,7 @@ export default function MarketingPage() {
           </p>
         </div>
         <span className={styles.coachesLink}>
-          Eigene Seite <span aria-hidden="true">{arrow}</span>
+          Eigene Seite <Arrow />
         </span>
       </aside>
 
@@ -195,7 +194,7 @@ export default function MarketingPage() {
             Unterstützung zu eurem Projekt passt.
           </p>
           <Link href="/kontakt" className={styles.ctaButton}>
-            Projekt besprechen <span aria-hidden="true">{arrow}</span>
+            Projekt besprechen <Arrow />
           </Link>
         </div>
       </section>

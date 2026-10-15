@@ -8,6 +8,7 @@ import coachPortrait from '../../../../../public/images/annika-sessel.jpeg'
 import { StartupContactForm } from '@/components/sections/startup-contact-form'
 import styles from '@/components/sections/startups-page.module.css'
 import { buildMetadata } from '@/lib/metadata'
+import { Arrow } from '@/components/ui/arrow'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Coaching für Startups & Founder',
@@ -139,7 +140,7 @@ export default function StartupCoachingPage() {
           </p>
           <div className={styles.heroActions}>
             <a href="#kontakt" className={styles.underlineLink}>
-              Erstgespräch anfragen <span aria-hidden="true">↗︎</span>
+              Erstgespräch anfragen <Arrow />
             </a>
             <span className={styles.heroNote}>
               EXIST-erfahren · München &amp; online
@@ -286,7 +287,7 @@ export default function StartupCoachingPage() {
             über eine Hochschulkooperation.
           </p>
           <Link href="/ueber-mich" className={styles.underlineLink}>
-            Mehr über mich <span aria-hidden="true">↗︎</span>
+            Mehr über mich <Arrow />
           </Link>
         </div>
       </section>

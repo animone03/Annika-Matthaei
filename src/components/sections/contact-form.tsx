@@ -21,6 +21,7 @@ import { sendInquiry } from '@/lib/inquiry-action'
 import { Signature } from '@/components/ui/signature'
 
 import styles from './contact-page.module.css'
+import { Arrow } from '@/components/ui/arrow'
 
 // slug = Wert für die Vorauswahl per /kontakt?thema=…
 export const contactTopics = [
@@ -286,7 +287,7 @@ function ContactFormBody({
           'Wird gesendet …'
         ) : (
           <>
-            Anfrage senden <span aria-hidden="true">↗︎</span>
+            Anfrage senden <Arrow />
           </>
         )}
       </button>

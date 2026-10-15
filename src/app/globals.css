@@ -231,6 +231,17 @@ body {
   }
 }
 
+/* Handgemalter Pfeil (Komponente Arrow): Textfarbe und Schriftgröße folgen dem Link. */
+.arrow {
+  display: inline-block;
+  flex: none;
+  width: 0.82em;
+  height: 0.76em;
+  vertical-align: -0.06em;
+  background-color: currentColor;
+  mask: url('/images/pfeil.svg') center / contain no-repeat;
+}
+
 .editorial-label {
   font-size: 0.6875rem;
   line-height: 1.5;

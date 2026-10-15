@@ -12,6 +12,7 @@ import styles from '@/components/sections/contact-page.module.css'
 import { inquiryRecipient } from '@/lib/inquiry'
 import { buildMetadata } from '@/lib/metadata'
 import { getSiteSettings } from '@/sanity/lib/repository'
+import { Arrow } from '@/components/ui/arrow'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Kontakt – Annika Matthaei | Coaching & Marketing in München',
@@ -20,8 +21,6 @@ export const metadata: Metadata = buildMetadata({
   path: '/kontakt',
   absoluteTitle: true,
 })
-
-const arrow = '↗︎'
 
 export default async function ContactPage() {
   const settings = await getSiteSettings()
@@ -62,7 +61,7 @@ export default async function ContactPage() {
                 <span className={styles.directLabel}>E-Mail</span>
                 {inquiryRecipient}
               </span>
-              <span aria-hidden="true">{arrow}</span>
+              <Arrow />
             </a>
           </li>
           <li>
@@ -77,7 +76,7 @@ export default async function ContactPage() {
                   <span className={styles.directLabel}>LinkedIn</span>
                   Annika Matthaei
                 </span>
-                <span aria-hidden="true">{arrow}</span>
+                <Arrow />
               </a>
             ) : (
               <div className={styles.directRow}>
@@ -94,7 +93,7 @@ export default async function ContactPage() {
                 <span className={styles.directLabel}>Telefon</span>
                 0172 773 2006
               </span>
-              <span aria-hidden="true">{arrow}</span>
+              <Arrow />
             </a>
           </li>
           <li>

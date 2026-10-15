@@ -7,6 +7,7 @@ import detailImage from '../../../../public/images/annika-unternehmen.jpg'
 
 import { ReferencesSection } from '@/components/sections/references-section'
 import { ServicesSection } from '@/components/sections/services-section'
+import { Arrow } from '@/components/ui/arrow'
 
 export const metadata: Metadata = {
   title: 'Frühere Designvorschläge',
@@ -70,7 +71,7 @@ export default function DesignPreviewPage() {
               Ich freue mich auf eine wirkungsvolle Zusammenarbeit!
             </p>
             <Link href="/ueber-mich" className="editorial-link mt-8">
-              Über mich <span aria-hidden="true">↗︎</span>
+              Über mich <Arrow />
             </Link>
           </div>
         </div>

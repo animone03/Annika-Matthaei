@@ -13,6 +13,7 @@ import {
 import { BurgerIcon } from '@/components/ui/handwriting'
 
 import styles from './site-header.module.css'
+import { Arrow } from '@/components/ui/arrow'
 
 type NavItem = { label: string; href: Route }
 
@@ -56,8 +57,6 @@ const navigation: NavItem[] = [
   { label: 'Über mich', href: '/ueber-mich' },
   { label: 'Kontakt', href: '/kontakt' },
 ]
-
-const arrow = '↗︎'
 
 function CoachingDropdown({ active }: { active: boolean }) {
   const [open, setOpen] = useState(false)
@@ -167,7 +166,7 @@ function CoachingDropdown({ active }: { active: boolean }) {
                     className={styles.item}
                     onClick={() => setOpen(false)}
                   >
-                    {item.label} <span aria-hidden="true">{arrow}</span>
+                    {item.label} <Arrow />
                   </Link>
                 </li>
               ))}
@@ -253,9 +252,7 @@ export function SiteHeader() {
                   className={styles.cardHead}
                 >
                   {group.mobileLabel}
-                  <span aria-hidden="true" className={styles.cardArrow}>
-                    {arrow}
-                  </span>
+                  <Arrow className={styles.cardArrow} />
                 </Link>
                 <ul>
                   {group.items.map((item) => (
@@ -294,7 +291,7 @@ export function SiteHeader() {
             onClick={closeMenu}
             className={styles.overlayCta}
           >
-            Kennenlernen <span aria-hidden="true">{arrow}</span>
+            Kennenlernen <Arrow />
           </Link>
         </div>
       ) : null}

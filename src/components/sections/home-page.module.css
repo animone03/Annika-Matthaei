@@ -267,13 +267,8 @@
 }
 
 .offerArrow {
+  justify-self: end;
   font-size: 22px;
-  text-align: right;
-  transition: transform 200ms ease-out;
-}
-
-.offerRow:hover .offerArrow {
-  transform: translate(4px, -4px);
 }
 
 .offerRowSecondary {
@@ -667,10 +662,6 @@
     right: 20px;
     font-size: 22px;
     line-height: 1;
-  }
-
-  .offerRow:hover .offerArrow {
-    transform: none;
   }
 
   /* Kennzahlen */

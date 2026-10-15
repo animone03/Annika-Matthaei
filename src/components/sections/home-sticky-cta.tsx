@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import styles from './home-page.module.css'
+import { Arrow } from '@/components/ui/arrow'
 
 type HomeStickyCtaProps = {
   email?: string | null
@@ -48,7 +49,7 @@ export function HomeStickyCta({
   return (
     <div className={styles.stickyCta} data-visible={visible} inert={!visible}>
       <Link href="/kontakt" className={styles.stickyCtaPrimary}>
-        Kennenlernen <span aria-hidden="true">↗︎</span>
+        Kennenlernen <Arrow />
       </Link>
       {email ? (
         <a
