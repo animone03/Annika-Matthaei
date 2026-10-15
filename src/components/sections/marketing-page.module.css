@@ -1,0 +1,523 @@
+.page {
+  --ink: #1e2329;
+  --ink-soft: #3a4049;
+  --muted: #566270;
+  --muted-on-dark: #aeb8c2;
+  --paper: #f4f5f3;
+  --mist: #e2e8ec;
+  --taupe: #b4c2cd;
+  --line: rgb(30 35 41 / 0.15);
+  --gutter: 48px;
+
+  color: var(--ink);
+}
+
+/* Bänder reichen über den 14-px-Rahmen hinaus. */
+.hero,
+.service,
+.cta {
+  margin-inline: calc(-1 * var(--frame, 14px));
+  padding-inline: calc(var(--gutter) + var(--frame, 14px));
+}
+
+/* Hero: Taubenblau, schließt an den Header an */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  background: var(--taupe);
+  padding-top: 96px;
+  padding-bottom: 80px;
+}
+
+.heroLabel {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  font-size: clamp(64px, 10.3vw, 132px);
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.heroRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  padding-top: 12px;
+}
+
+.heroIntro {
+  max-width: 560px;
+  font-size: 18px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.heroLink {
+  display: flex;
+  width: 280px;
+  flex: none;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 12px;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.heroLink:hover {
+  color: var(--ink-soft);
+}
+
+/* Leistungen: drei randlose Bänder im Wechsel */
+
+.service {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 64px;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  padding-block: 72px;
+}
+
+.service:nth-of-type(2) {
+  border-top-color: var(--ink);
+}
+
+.service:nth-of-type(3) {
+  background: var(--mist);
+}
+
+.serviceHead {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.serviceNumber {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.serviceTitle {
+  font-size: 40px;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  hyphens: manual;
+}
+
+.serviceSubtitle {
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.serviceBody {
+  display: flex;
+  max-width: 620px;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.serviceQuestion {
+  font-size: 20px;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.serviceText {
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tag {
+  border: 1px solid var(--ink);
+  padding: 9px 12px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* AI-Hinweis */
+
+.aiNote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 56px var(--gutter) 0;
+  background: var(--mist);
+  padding: 24px 28px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.aiLink {
+  flex: none;
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.aiLink:hover {
+  color: var(--muted);
+}
+
+/* ijustwannacoach */
+
+.coaches {
+  display: grid;
+  grid-template-columns: 80px 1fr 200px;
+  align-items: center;
+  gap: 24px;
+  margin: 16px var(--gutter) 0;
+  background: var(--taupe);
+  padding: 30px 28px;
+}
+
+.coachesLabel {
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.coachesBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.coachesTitle {
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.coachesText {
+  max-width: 560px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.coachesLink {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+/* Sparringspartnerin */
+
+.sparring {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  align-items: center;
+  gap: 80px;
+  padding: 96px var(--gutter);
+}
+
+.sparringPhoto {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 25%;
+  filter: grayscale(1);
+}
+
+.sparringBody {
+  display: flex;
+  max-width: 620px;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.sparringTitle {
+  color: var(--ink);
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+/* CTA: dunkel, randlos */
+
+.cta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 64px;
+  background: var(--ink);
+  padding-block: 88px;
+  color: var(--paper);
+}
+
+.ctaTitle {
+  font-size: 56px;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.ctaBody {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--muted-on-dark);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ctaButton {
+  align-self: flex-start;
+  background: var(--paper);
+  padding: 24px 44px;
+  color: var(--ink);
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ctaButton:hover {
+  background: var(--mist);
+}
+
+/* Tablet */
+
+@media (max-width: 1023px) {
+  .service,
+  .sparring,
+  .cta {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .sparringPhoto {
+    max-width: 360px;
+  }
+
+  .coaches {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .coachesLink {
+    text-align: left;
+  }
+
+  .desktopBreak {
+    display: none;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 767px) {
+  .page {
+    --gutter: 20px;
+  }
+
+  .hero {
+    gap: 20px;
+    padding-top: 40px;
+    padding-bottom: 44px;
+  }
+
+  .heroLabel {
+    font-size: 11px;
+  }
+
+  .heroTitle {
+    font-size: 62px;
+    letter-spacing: -0.05em;
+  }
+
+  .heroRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding-top: 0;
+  }
+
+  .heroIntro {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .heroLink,
+  .page .heroLink:hover {
+    width: auto;
+    justify-content: center;
+    gap: 6px;
+    border-bottom: 0;
+    background: var(--ink);
+    padding: 16px;
+    color: var(--paper);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  .service {
+    gap: 14px;
+    padding-block: 40px;
+  }
+
+  .serviceHead {
+    gap: 14px;
+  }
+
+  .serviceNumber {
+    font-size: 11px;
+  }
+
+  .serviceTitle {
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+
+  .serviceSubtitle {
+    font-size: 17px;
+    letter-spacing: 0;
+  }
+
+  .serviceBody {
+    gap: 14px;
+  }
+
+  .serviceQuestion {
+    margin-top: 6px;
+    font-size: 16px;
+    letter-spacing: 0;
+  }
+
+  .serviceText {
+    font-size: 14px;
+  }
+
+  .tags {
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .tag {
+    padding: 8px 10px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+  }
+
+  .aiNote {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 32px;
+    padding: 18px 20px;
+    font-size: 13px;
+  }
+
+  .aiLink {
+    font-size: 12px;
+  }
+
+  /* ijustwannacoach mobil dunkel */
+  .coaches {
+    gap: 10px;
+    margin-top: 12px;
+    background: var(--ink);
+    padding: 26px 20px;
+    color: var(--paper);
+  }
+
+  .coachesLabel {
+    color: var(--muted-on-dark);
+    letter-spacing: 0.06em;
+  }
+
+  .coachesTitle {
+    font-size: 28px;
+  }
+
+  .coachesText {
+    color: var(--muted-on-dark);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .coachesLink {
+    margin-top: 4px;
+    font-size: 12px;
+  }
+
+  .sparring {
+    gap: 16px;
+    padding: 44px var(--gutter);
+  }
+
+  .sparringPhoto {
+    max-width: none;
+    aspect-ratio: 16 / 10;
+    object-position: center 18%;
+  }
+
+  .sparringBody {
+    gap: 16px;
+    font-size: 14px;
+  }
+
+  .sparringTitle {
+    margin-top: 8px;
+    font-size: 28px;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .cta {
+    gap: 18px;
+    padding-block: 44px;
+  }
+
+  .ctaTitle {
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+
+  .ctaBody {
+    gap: 18px;
+    font-size: 14px;
+  }
+
+  .ctaButton {
+    align-self: stretch;
+    padding: 20px;
+    font-size: 16px;
+    text-align: center;
+  }
+}

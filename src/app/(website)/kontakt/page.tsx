@@ -50,7 +50,7 @@ export default async function ContactPage() {
         </div>
 
         <p className={styles.text}>
-          Ob Gründungsteam, Führungsrolle oder Marke – erzähl mir kurz, worum es
+          Ob Gründungsteam, Führungsrolle oder Marke, erzähl mir kurz, worum es
           geht. Ich melde mich innerhalb von zwei Werktagen für ein
           unverbindliches Kennenlernen.
         </p>

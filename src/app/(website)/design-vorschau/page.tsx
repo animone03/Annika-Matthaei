@@ -64,8 +64,8 @@ export default function DesignPreviewPage() {
               einem wertschätzenden, ressourcenorientierten und praxisnahen
               Ansatz unterstütze ich dabei, Herausforderung und Veränderung als
               Chance zu sehen und von der Wahrnehmung über die Erkenntnis ins
-              Doing zu kommen – so, dass sich im täglichen Arbeiten wirklich
-              etwas verändert.
+              Doing zu kommen, sodass sich im täglichen Arbeiten wirklich etwas
+              verändert.
               <br />
               Ich freue mich auf eine wirkungsvolle Zusammenarbeit!
             </p>

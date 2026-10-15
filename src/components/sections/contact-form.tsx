@@ -101,7 +101,7 @@ function ContactFormBody({
       >
         <p className={styles.resultTitle}>Danke! Ich melde mich bei dir.</p>
         <p className={styles.resultText}>
-          Innerhalb von zwei Werktagen – meist schneller.
+          Innerhalb von zwei Werktagen, meist schneller.
         </p>
         <Signature part="first" className={styles.resultSignature} />
         <button type="button" className={styles.resultLink} onClick={onReset}>

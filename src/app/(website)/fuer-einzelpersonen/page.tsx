@@ -18,7 +18,7 @@ export default function ForIndividualsPage() {
       </h1>
       <p className="text-muted-foreground mt-7 max-w-2xl text-base leading-8">
         Als zertifizierte Mindful Business und Life Coach begleite ich
-        Privatpersonen – einzeln und auf Augenhöhe, mit Fokus auf Kommunikation,
+        Privatpersonen, einzeln und auf Augenhöhe, mit Fokus auf Kommunikation,
         Ownership und Resilienz.
       </p>
     </Container>

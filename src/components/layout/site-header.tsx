@@ -52,7 +52,7 @@ const coaching: CoachingGroup[] = [
 
 // TODO: Marketing auf eine eigene Seite umstellen, sobald sie existiert.
 const navigation: NavItem[] = [
-  { label: 'Marketing', href: '/#marketing' },
+  { label: 'Marketing', href: '/marketing' },
   { label: 'Über mich', href: '/ueber-mich' },
   { label: 'Kontakt', href: '/kontakt' },
 ]

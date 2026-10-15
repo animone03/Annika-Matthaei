@@ -43,7 +43,7 @@ function StartupContactFormBody({ onReset }: { onReset: () => void }) {
         className={styles.formNotice}
       >
         <p className={styles.formNoticeTitle}>
-          Danke – ich melde mich bei euch.
+          Danke, ich melde mich bei euch.
         </p>
         <button type="button" className={styles.resetButton} onClick={onReset}>
           Neue Anfrage

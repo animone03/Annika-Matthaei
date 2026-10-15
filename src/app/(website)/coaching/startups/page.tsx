@@ -12,14 +12,14 @@ import { buildMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildMetadata({
   title: 'Coaching für Startups & Founder',
   description:
-    'Coaching für Founder und Gründungsteams – von der ersten Idee bis zum wachsenden Team. Co-Founder Coaching, Leadership & High Performance Teams, EXIST.',
+    'Coaching für Founder und Gründungsteams, von der ersten Idee bis zum wachsenden Team. Co-Founder Coaching, Leadership & High Performance Teams, EXIST.',
   path: '/coaching/startups',
 })
 
 const situations = [
   'Bei wichtigen Entscheidungen seid ihr euch nicht einig.',
   'Rollen und Verantwortung wurden nie wirklich geklärt.',
-  'Das Team wächst – aber Führung hat niemand gelernt.',
+  'Das Team wächst, aber Führung hat niemand gelernt.',
   'Der Druck steigt und die Zusammenarbeit leidet.',
 ]
 
@@ -27,7 +27,7 @@ const topics = [
   {
     id: 'exist',
     title: 'Gründungscoaching & EXIST',
-    text: 'Von der Idee zum tragfähigen Team: Prioritäten setzen, Rollen klären, gemeinsam entscheiden – gerade in der frühen Phase, in der vieles gleichzeitig passiert.',
+    text: 'Von der Idee zum tragfähigen Team: Prioritäten setzen, Rollen klären, gemeinsam entscheiden, gerade in der frühen Phase, in der vieles gleichzeitig passiert.',
     items: [
       'Rollen & Verantwortlichkeiten',
       'Entscheidungen im Gründungsteam',
@@ -60,25 +60,25 @@ const formats = [
   {
     kicker: 'Format',
     title: 'Co-Founder-Sessions',
-    text: 'Gemeinsame Sessions für das Gründungsteam – mit Fokus auf eure Zusammenarbeit und anstehende Entscheidungen.',
+    text: 'Gemeinsame Sessions für das Gründungsteam, mit Fokus auf eure Zusammenarbeit und anstehende Entscheidungen.',
     tone: 'dark',
   },
   {
     kicker: 'Format',
     title: 'Laufende Begleitung',
-    text: 'Regelmäßige Termine, zum Beispiel monatlich – damit Themen nicht liegen bleiben.',
+    text: 'Regelmäßige Termine, zum Beispiel monatlich, damit Themen nicht liegen bleiben.',
     tone: 'taupe',
   },
   {
     kicker: 'Förderung',
     title: 'EXIST-gefördert',
-    text: 'Für Teams im EXIST-Programm – über meine Hochschulkooperation.',
+    text: 'Für Teams im EXIST-Programm, über meine Hochschulkooperation.',
     tone: 'sand',
   },
   {
     kicker: 'Ort',
     title: 'Online & vor Ort',
-    text: 'In München oder online – so, wie es in euren Alltag passt.',
+    text: 'In München oder online, so wie es in euren Alltag passt.',
     tone: 'white',
   },
 ] as const
@@ -94,7 +94,7 @@ const steps = [
   },
   {
     title: 'Coaching',
-    text: 'Sessions im Team oder einzeln – online oder vor Ort.',
+    text: 'Sessions im Team oder einzeln, online oder vor Ort.',
   },
   {
     title: 'Reflektieren',
@@ -109,7 +109,7 @@ const stance = [
   },
   {
     title: 'Agil',
-    text: 'In kleinen Schritten vorankommen – ausprobieren, lernen, anpassen.',
+    text: 'In kleinen Schritten vorankommen: ausprobieren, lernen, anpassen.',
   },
   {
     title: 'Positive Psychologie',
@@ -129,12 +129,12 @@ export default function StartupCoachingPage() {
             Euer Startup wächst mit euch.
           </h1>
           <p className={`${styles.heroIntro} ${styles.desktopOnly}`}>
-            Coaching für Founder und Gründungsteams – von der ersten Idee bis
-            zum wachsenden Team. Damit ihr gut zusammenarbeitet, klar
-            entscheidet und als Führung mitwachst.
+            Coaching für Founder und Gründungsteams, von der ersten Idee bis zum
+            wachsenden Team. Damit ihr gut zusammenarbeitet, klar entscheidet
+            und als Führung mitwachst.
           </p>
           <p className={`${styles.heroIntro} ${styles.mobileOnly}`}>
-            Coaching für Founder und Gründungsteams – damit ihr gut
+            Coaching für Founder und Gründungsteams, damit ihr gut
             zusammenarbeitet, klar entscheidet und als Führung mitwachst.
           </p>
           <div className={styles.heroActions}>
@@ -275,7 +275,7 @@ export default function StartupCoachingPage() {
           <p className={styles.label}>Eure Coach</p>
           <h2 id="coach-title" className={styles.coachTitle}>
             <span className={styles.desktopOnly}>
-              Ich bin Annika – und kenne das Startup-Leben von innen.
+              Ich bin Annika und kenne das Startup-Leben von innen.
             </span>
             <span className={styles.mobileOnly}>Ich bin Annika.</span>
           </h2>

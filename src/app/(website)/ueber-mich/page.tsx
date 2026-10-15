@@ -98,7 +98,7 @@ const stance = [
   },
   {
     title: 'Agil',
-    text: 'In kleinen Schritten vorankommen – ausprobieren, lernen, anpassen.',
+    text: 'In kleinen Schritten vorankommen: ausprobieren, lernen, anpassen.',
   },
   {
     title: 'Positive Psychologie',
@@ -112,7 +112,7 @@ export default function AboutPage() {
       {/* Der Schriftzug liegt über dem Foto: Desktop oben, mobil an der Unterkante. */}
       <section aria-labelledby="about-title" className={styles.hero}>
         <h1 id="about-title" className={styles.srOnly}>
-          I wanna see you grow – Über Annika Matthaei
+          I wanna see you grow: Über Annika Matthaei
         </h1>
         <div className={styles.claimLayer}>
           <IWannaSeeYouGrow className={styles.claim} />

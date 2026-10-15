@@ -11,7 +11,7 @@ import { TopicsGraphic } from './topics-graphic'
 import styles from './home-page.module.css'
 
 const marqueeText =
-  'COACHING  —  EXIST  —  CO-FOUNDER  —  LEADERSHIP  —  TEAMS  —  MARKETING-STRATEGIE  —  WEBDESIGN  —  SEO  —  BRANDING  —  '
+  'COACHING  ·  EXIST  ·  CO-FOUNDER  ·  LEADERSHIP  ·  TEAMS  ·  MARKETING-STRATEGIE  ·  WEBDESIGN  ·  SEO  ·  BRANDING  ·  '
 
 // Desktop zeigt Angebotszeilen, mobil Karten mit eigenen Texten (tag, mobileTitle, mobileDescription).
 // TODO: Ziele anpassen, sobald /coaching/startups und /coaching/leadership existieren.
@@ -49,7 +49,7 @@ const facts = [
   },
   {
     title: '13 Jahre Praxis',
-    text: 'Konzern, Mittelstand & Startup – 9 davon mit Führung',
+    text: 'Konzern, Mittelstand & Startup, 9 davon mit Führung',
   },
 ]
 
@@ -89,7 +89,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
             </span>
           </h1>
           <p className={`${styles.intro} ${styles.desktopOnly}`}>
-            Ich begleite Founder, Startups und Führungskräfte –
+            Ich begleite Founder, Startups und Führungskräfte,
             <br />
             damit Teams gut zusammenarbeiten und Marken verstanden werden.
             <br />
@@ -130,8 +130,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
           </h2>
           <p className={styles.topicsText}>
             Menschen, Marke und Prozesse beeinflussen sich gegenseitig. Darum
-            schaue ich aufs Ganze – und setze dort an, wo es bei dir gerade
-            zählt.
+            schaue ich aufs Ganze und setze dort an, wo es bei dir gerade zählt.
           </p>
         </div>
         <TopicsGraphic variant="desktop" />
@@ -146,7 +145,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
           Alles hängt zusammen.
         </h2>
         <p className={styles.topicsText}>
-          Tippe auf ein Thema – es führt dich direkt zur passenden Seite.
+          Tippe auf ein Thema: Es führt dich direkt zur passenden Seite.
         </p>
         <TopicsGraphic variant="mobile" />
         {/* TODO: Ziel festlegen, sobald es eine Übersicht aller Angebote gibt. */}
@@ -168,7 +167,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
               <Link href={offer.href} className={styles.offerRow}>
                 <span className={styles.offerNumber}>
                   {offer.number}
-                  <span className={styles.mobileOnly}> — {offer.tag}</span>
+                  <span className={styles.mobileOnly}> · {offer.tag}</span>
                 </span>
                 <span className={styles.offerText}>
                   <span
@@ -207,13 +206,12 @@ export function HomePageContent({ email }: HomePageContentProps) {
         {/* Leere linke Spalte, damit die Zeile im Raster bleibt. */}
         <div aria-hidden="true" />
         <div className={styles.offerList}>
-          {/* TODO: Ziel auf die Marketing-Seite ändern, sobald sie existiert. */}
           <Link
-            href="/kontakt"
+            href="/marketing"
             className={`${styles.offerRow} ${styles.offerRowSecondary}`}
           >
             <span className={styles.offerNumber}>
-              03<span className={styles.mobileOnly}> — Marketing</span>
+              03<span className={styles.mobileOnly}> · Marketing</span>
             </span>
             <span className={styles.offerText}>
               <span className={`${styles.offerTitle} ${styles.desktopOnly}`}>
@@ -226,13 +224,13 @@ export function HomePageContent({ email }: HomePageContentProps) {
                 className={`${styles.offerDescription} ${styles.desktopOnly}`}
               >
                 Strategie · Webdesign (Frontend &amp; Backend) &amp; SEO ·
-                Branding – Logo, Typo, Visual Identity
+                Branding: Logo, Typo, Visual Identity
               </span>
               {/* TODO: „ijustwannacoach“ als eigenen externen Link umsetzen, sobald die URL feststeht. */}
               <span
                 className={`${styles.offerDescription} ${styles.mobileOnly}`}
               >
-                Auch speziell für Coaches – bei ijustwannacoach
+                Auch speziell für Coaches, bei ijustwannacoach
               </span>
             </span>
             <span aria-hidden="true" className={styles.offerArrow}>
@@ -247,7 +245,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
             <span aria-hidden="true">↗︎</span>
           </p>
           <p className={`${styles.aiNote} ${styles.desktopOnly}`}>
-            Außerdem unterstütze ich dabei, Abläufe zu vereinfachen – auch mit
+            Außerdem unterstütze ich dabei, Abläufe zu vereinfachen, auch mit
             AI, wo sie wirklich entlastet.{' '}
             {/* TODO: Ziel für „Mehr dazu“ festlegen. */}
             <Link href="/kontakt" className={styles.inlineLink}>

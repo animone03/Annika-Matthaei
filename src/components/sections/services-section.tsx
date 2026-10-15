@@ -53,7 +53,7 @@ export function ServicesSection() {
             </h3>
             <p className="mt-5 max-w-md text-base leading-7">
               Als zertifizierte Mindful Business und Life Coach begleite ich
-              Privatpersonen – einzeln und auf Augenhöhe, mit Fokus auf
+              Privatpersonen, einzeln und auf Augenhöhe, mit Fokus auf
               Kommunikation, Ownership und Resilienz.
             </p>
             <Link href="/fuer-einzelpersonen" className="editorial-link mt-5">

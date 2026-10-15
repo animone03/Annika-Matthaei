@@ -50,6 +50,21 @@ test('about page has no serious accessibility violations', async ({ page }) => {
   expect(serious).toEqual([])
 })
 
+test('marketing page has no serious accessibility violations', async ({
+  page,
+}) => {
+  await page.goto('/marketing')
+  await expect(
+    page.getByRole('heading', { level: 1, name: /Strategie/ }),
+  ).toBeVisible()
+
+  const results = await new AxeBuilder({ page }).analyze()
+  const serious = results.violations.filter((violation) =>
+    ['serious', 'critical'].includes(violation.impact || ''),
+  )
+  expect(serious).toEqual([])
+})
+
 test('contact page preselects topics and has no serious accessibility violations', async ({
   page,
 }) => {

@@ -459,7 +459,7 @@ const mobile: Variant = {
       background: white,
       color: ink,
       labelStyle: centeredLabel(41, 11, 1.6),
-      href: '/kontakt',
+      href: '/marketing',
     },
     {
       id: 'webdesign',
@@ -471,7 +471,7 @@ const mobile: Variant = {
       background: white,
       color: ink,
       labelStyle: centeredLabel(58, 12, 1.6),
-      href: '/kontakt',
+      href: '/marketing',
     },
     {
       id: 'branding',
@@ -483,7 +483,7 @@ const mobile: Variant = {
       background: white,
       color: ink,
       labelStyle: centeredLabel(58, 12, 1.6),
-      href: '/kontakt',
+      href: '/marketing',
     },
     {
       id: 'ai',
