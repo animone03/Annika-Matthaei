@@ -33,10 +33,18 @@ const coaching: CoachingGroup[] = [
     mobileLabel: 'Für Startups',
     href: '/coaching/startups',
     tone: 'dark',
+    // TODO: Auf die Unterseiten umstellen, sobald es sie gibt.
     items: [
-      { label: 'Co-Founder', href: '/coaching/startups#co-founder' },
-      { label: 'Teams', href: '/coaching/startups#teams' },
-      { label: 'EXIST', href: '/coaching/startups#exist' },
+      { label: 'EXIST', href: '/coaching/startups/exist' },
+      {
+        label: 'Lead with Clarity',
+        href: '/coaching/startups#lead-with-clarity',
+      },
+      {
+        label: 'Founders in Sync',
+        href: '/coaching/startups#founders-in-sync',
+      },
+      { label: 'Founder 1:1', href: '/coaching/startups#founder-1-1' },
     ],
   },
   {

@@ -1,314 +1,276 @@
-import type { Metadata } from 'next'
+import type { Metadata, Route } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import heroPortrait from '../../../../../public/images/annika-unternehmen.jpg'
-import coachPortrait from '../../../../../public/images/annika-sessel.jpeg'
+import portrait from '../../../../../public/images/annika-lachend.webp'
 
-import { StartupContactForm } from '@/components/sections/startup-contact-form'
+import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
 import styles from '@/components/sections/startups-page.module.css'
+import { inquiryRecipient } from '@/lib/inquiry'
 import { buildMetadata } from '@/lib/metadata'
 import { Arrow } from '@/components/ui/arrow'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Coaching für Startups & Founder',
+  title: 'Coaching für Startups & Founder – Annika Matthaei',
   description:
-    'Coaching für Founder und Gründungsteams, von der ersten Idee bis zum wachsenden Team. Co-Founder Coaching, Leadership & High Performance Teams, EXIST.',
+    'Coaching für Founder, Co-Founder und Leadership-Teams in der Wachstumsphase. EXIST-Coaching. München und online.',
   path: '/coaching/startups',
+  absoluteTitle: true,
 })
 
-const situations = [
-  'Bei wichtigen Entscheidungen seid ihr euch nicht einig.',
-  'Rollen und Verantwortung wurden nie wirklich geklärt.',
-  'Das Team wächst, aber Führung hat niemand gelernt.',
-  'Der Druck steigt und die Zusammenarbeit leidet.',
-]
+// Die Zeile verlinkt auf die Unterseite, sobald es sie gibt. Bis dahin bleibt
+// sie ein Anker auf dieser Seite.
+// TODO: Unterseiten Lead with Clarity, Founders in Sync und Founder 1:1 anlegen.
+type Offer = {
+  id: string
+  label: string
+  name: string
+  promise: string
+  format: string
+  href?: Route
+}
 
-const topics = [
+const offers: Offer[] = [
   {
     id: 'exist',
-    title: 'Gründungscoaching & EXIST',
-    text: 'Von der Idee zum tragfähigen Team: Prioritäten setzen, Rollen klären, gemeinsam entscheiden, gerade in der frühen Phase, in der vieles gleichzeitig passiert.',
-    items: [
-      'Rollen & Verantwortlichkeiten',
-      'Entscheidungen im Gründungsteam',
-      'Prioritäten & Fokus',
-    ],
+    label: 'Für EXIST-Teams',
+    name: 'EXIST-Coaching',
+    promise: 'Startup und Founder-Team von Anfang an richtig aufsetzen.',
+    format: '6 Sessions · Über EXIST finanzierbar',
+    href: '/coaching/startups/exist',
   },
   {
-    id: 'co-founder',
-    title: 'Co-Founder Beziehung',
-    text: 'Die Beziehung zwischen Foundern ist das Fundament des Startups. Wir machen Erwartungen sichtbar und klären Spannungen, bevor sie euch ausbremsen.',
-    items: [
-      'Erwartungen & Werte',
-      'Konflikte klären',
-      'Zusammenarbeit unter Druck',
-    ],
+    id: 'lead-with-clarity',
+    label: 'Für Leadership-Teams',
+    name: 'Lead with Clarity',
+    promise: 'Workshops, nach denen ihr klarer und gemeinsamer führt.',
+    format: 'Workshop · Auf euch zugeschnitten',
   },
   {
-    id: 'teams',
-    title: 'Leadership & High Performance Teams',
-    text: 'Wenn das Team wächst, werden Founder zu Führungskräften. Ich begleite euch dabei, in diese Rolle hineinzuwachsen und ein Team aufzubauen, das Verantwortung übernimmt.',
-    items: [
-      'In die Führungsrolle wachsen',
-      'Teamkultur & Ownership',
-      'Feedback & Kommunikation',
-    ],
+    id: 'founders-in-sync',
+    label: 'Für Co-Founder',
+    name: 'Founders in Sync',
+    promise: 'Zurück zu echter Partnerschaft. Wieder Seite an Seite führen.',
+    format: 'In wenigen Wochen · Als Founder-Team',
+  },
+  {
+    id: 'founder-1-1',
+    label: 'Für dich',
+    name: 'Founder 1:1',
+    promise: 'Deine Energie zurück. Und ein Leadership-Team, dem du vertraust.',
+    format: '3–4 Monate · 90 Min.',
   },
 ]
 
-const formats = [
+const problems = [
   {
-    kicker: 'Format',
-    title: 'Co-Founder-Sessions',
-    text: 'Gemeinsame Sessions für das Gründungsteam, mit Fokus auf eure Zusammenarbeit und anstehende Entscheidungen.',
-    tone: 'dark',
+    title: 'Vieles läuft nur über dich.',
+    text: 'Du bist fast nur noch in Meetings, die strategische Arbeit bleibt auf der Strecke.',
+    offer: 'founder-1-1',
   },
   {
-    kicker: 'Format',
-    title: 'Laufende Begleitung',
-    text: 'Regelmäßige Termine, zum Beispiel monatlich, damit Themen nicht liegen bleiben.',
-    tone: 'taupe',
+    title: 'Zwischen euch Foundern hakt es.',
+    text: 'Ihr diskutiert endlos, statt gemeinsam Tempo zu machen. Manche Themen meidet ihr ganz.',
+    offer: 'founders-in-sync',
   },
   {
-    kicker: 'Förderung',
-    title: 'EXIST-gefördert',
-    text: 'Für Teams im EXIST-Programm, über meine Hochschulkooperation.',
-    tone: 'sand',
-  },
-  {
-    kicker: 'Ort',
-    title: 'Online & vor Ort',
-    text: 'In München oder online, so wie es in euren Alltag passt.',
-    tone: 'white',
-  },
-] as const
-
-const steps = [
-  {
-    title: 'Kennenlernen',
-    text: 'Ein unverbindliches Gespräch: Wo steht ihr, was braucht ihr?',
-  },
-  {
-    title: 'Auftrag klären',
-    text: 'Wir legen Ziele, Format und Rahmen gemeinsam fest.',
-  },
-  {
-    title: 'Coaching',
-    text: 'Sessions im Team oder einzeln, online oder vor Ort.',
-  },
-  {
-    title: 'Reflektieren',
-    text: 'Regelmäßig schauen wir, was sich verändert hat und was als Nächstes dran ist.',
+    title: 'Im Team fehlt das Zusammenspiel.',
+    text: 'Starke Leute, aber zusammen könntet ihr so viel mehr erreichen. Es fühlt sich oft chaotisch an.',
+    offer: 'lead-with-clarity',
   },
 ]
 
-const stance = [
-  {
-    title: 'Systemisch',
-    text: 'Ich schaue auf das ganze System: Menschen, Beziehungen und Dynamiken im Team.',
-  },
-  {
-    title: 'Agil',
-    text: 'In kleinen Schritten vorankommen: ausprobieren, lernen, anpassen.',
-  },
-  {
-    title: 'Positive Psychologie',
-    text: 'An Stärken ansetzen, nicht nur an Problemen.',
-  },
+const outcomes = [
+  'Was ist jetzt wichtig?',
+  'Was tun wir als Nächstes?',
+  'Wie arbeiten wir ab morgen besser zusammen?',
+]
+
+const facts = [
+  { value: '13', text: 'Jahre Konzern, Mittelstand & Startup' },
+  { value: '9', text: 'Jahre selbst in Führung' },
+  { value: 'EXIST', text: 'Coach über Hochschulkooperation' },
 ]
 
 const number = (index: number) => String(index + 1).padStart(2, '0')
 
+function OfferRow({ offer, index }: { offer: Offer; index: number }) {
+  const content = (
+    <>
+      <span className={styles.offerHead}>
+        <span className={styles.offerLabel}>
+          {number(index)} · {offer.label}
+        </span>
+        <span className={styles.offerName}>{offer.name}</span>
+      </span>
+      <span className={styles.offerPromise}>{offer.promise}</span>
+      <span className={styles.offerFormat}>{offer.format}</span>
+      {offer.href ? (
+        <span className={styles.offerMore}>
+          Mehr erfahren <Arrow />
+        </span>
+      ) : null}
+    </>
+  )
+
+  return (
+    <li id={offer.id} className={styles.offer}>
+      {offer.href ? (
+        <Link href={offer.href} className={styles.offerRow}>
+          {content}
+        </Link>
+      ) : (
+        <div className={styles.offerRow}>{content}</div>
+      )}
+    </li>
+  )
+}
+
 export default function StartupCoachingPage() {
   return (
-    <div data-frame-page className={styles.page}>
-      <section className={styles.hero} aria-labelledby="startups-title">
-        <div className={styles.heroText}>
-          <p className={styles.label}>Coaching / Startups &amp; Founder</p>
-          <h1 id="startups-title" className={styles.heroTitle}>
-            Euer Startup wächst mit euch.
-          </h1>
-          <p className={`${styles.heroIntro} ${styles.desktopOnly}`}>
-            Coaching für Founder und Gründungsteams, von der ersten Idee bis zum
-            wachsenden Team. Damit ihr gut zusammenarbeitet, klar entscheidet
-            und als Führung mitwachst.
+    <div data-frame-page data-startups-page className={styles.page}>
+      <section aria-labelledby="startups-title" className={styles.hero}>
+        <p className={styles.heroLabel}>Coaching für Startups &amp; Founder</p>
+        <h1 id="startups-title" className={styles.heroTitle}>
+          Euer Startup wächst. Wächst euer Team mit?
+        </h1>
+        <div className={styles.heroRow}>
+          <p className={styles.heroIntro}>
+            Ich unterstütze Founder in der Wachstumsphase, ihren Führungsstil zu
+            entwickeln und produktive Teams aufzubauen. Für mehr Zeit innerhalb
+            und außerhalb der Arbeit.
           </p>
-          <p className={`${styles.heroIntro} ${styles.mobileOnly}`}>
-            Coaching für Founder und Gründungsteams, damit ihr gut
-            zusammenarbeitet, klar entscheidet und als Führung mitwachst.
-          </p>
-          <div className={styles.heroActions}>
-            <a href="#kontakt" className={styles.underlineLink}>
-              Erstgespräch anfragen <Arrow />
+          <Link href="/kontakt" className={styles.darkButton}>
+            Kennenlernen
+          </Link>
+        </div>
+        <nav aria-label="Angebote" className={styles.jumpBar}>
+          {offers.map((offer, index) => (
+            <a key={offer.id} href={`#${offer.id}`} className={styles.jump}>
+              <span className={styles.jumpNumber}>{number(index)}</span>
+              {offer.name.replace('-Coaching', '')}
             </a>
-            <span className={styles.heroNote}>
-              EXIST-erfahren · München &amp; online
-            </span>
-          </div>
-        </div>
-        {/* TODO: Foto mit Gründungsteam oder aus einem Workshop einsetzen. */}
-        <div className={styles.heroImage}>
-          <Image
-            src={heroPortrait}
-            alt="Annika Matthaei"
-            preload
-            placeholder="blur"
-            sizes="(min-width: 1024px) 400px, 100vw"
-            className={styles.photo}
-          />
-        </div>
+          ))}
+        </nav>
       </section>
 
-      <section className={styles.situations} aria-labelledby="situations-title">
-        <div className={styles.sideNote}>
-          <h2 id="situations-title" className={styles.labelOnDark}>
-            Kennt ihr das?
+      <section aria-labelledby="problems-title" className={styles.split}>
+        <h2 id="problems-title" className={styles.label}>
+          Kommt dir das bekannt vor?
+        </h2>
+        <ul className={styles.problems}>
+          {problems.map((problem) => (
+            <li key={problem.title}>
+              <a href={`#${problem.offer}`} className={styles.problem}>
+                <span className={styles.problemTitle}>{problem.title}</span>
+                <span className={styles.problemText}>{problem.text}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="stat-title" className={styles.stat}>
+        <p className={styles.statValue} aria-hidden="true">
+          65 %
+        </p>
+        <div className={styles.statBody}>
+          <h2 id="stat-title" className={styles.statText}>
+            <span className={styles.srOnly}>65 % </span>
+            aller Startups scheitern nicht am Markt, sondern an Konflikten im
+            Gründerteam.
           </h2>
-          <p className={`${styles.situationsIntro} ${styles.desktopOnly}`}>
-            Typische Momente, in denen Gründungsteams mich ansprechen.
+          <p className={styles.statSource}>
+            Noam Wasserman, The Founder’s Dilemmas
+          </p>
+          <p className={styles.statNote}>
+            Wie ihr zusammenarbeitet, entscheidet mit über euren Erfolg. Genau
+            da setze ich an.
           </p>
         </div>
-        <ol className={styles.situationList}>
-          {situations.map((situation, index) => (
-            <li key={situation} className={styles.situation}>
-              <span className={styles.situationNumber}>{number(index)}</span>
-              <span>{situation}</span>
-            </li>
+      </section>
+
+      <section aria-labelledby="offers-title" className={styles.offers}>
+        <div className={styles.split}>
+          <p className={styles.label}>So können wir arbeiten</p>
+          <h2 id="offers-title" className={styles.sectionTitle}>
+            Vier Wege. Ein Ziel: ein Team, das trägt.
+          </h2>
+        </div>
+        <ol className={styles.offerList}>
+          {offers.map((offer, index) => (
+            <OfferRow key={offer.id} offer={offer} index={index} />
           ))}
         </ol>
       </section>
 
-      <section
-        className={`${styles.grid} ${styles.topics}`}
-        aria-labelledby="topics-title"
-      >
-        <h2 id="topics-title" className={styles.label}>
-          Wobei ich euch begleite
+      <section aria-labelledby="outcomes-title" className={styles.split}>
+        <h2 id="outcomes-title" className={styles.label}>
+          Danach wisst ihr
         </h2>
-        <ol className={styles.topicList}>
-          {topics.map((topic, index) => (
-            <li key={topic.id} id={topic.id} className={styles.topic}>
-              <span className={styles.topicNumber}>{number(index)}</span>
-              <div className={styles.topicBody}>
-                <h3 className={styles.topicTitle}>{topic.title}</h3>
-                <p className={styles.topicText}>{topic.text}</p>
-              </div>
-              <ul className={styles.topicItems}>
-                {topic.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section
-        className={`${styles.grid} ${styles.formats}`}
-        aria-labelledby="formats-title"
-      >
-        <h2 id="formats-title" className={styles.label}>
-          So können wir zusammenarbeiten
-        </h2>
-        <ul className={styles.formatList}>
-          {formats.map((format) => (
-            <li
-              key={format.title}
-              className={`${styles.format} ${styles[format.tone]}`}
-            >
-              <span className={`${styles.formatKicker} ${styles.desktopOnly}`}>
-                {format.kicker}
-              </span>
-              <h3 className={styles.formatTitle}>{format.title}</h3>
-              <p className={styles.formatText}>{format.text}</p>
+        <ul className={styles.outcomes}>
+          {outcomes.map((outcome) => (
+            <li key={outcome} className={styles.outcome}>
+              {outcome}
             </li>
           ))}
         </ul>
       </section>
 
-      <section
-        className={`${styles.grid} ${styles.steps}`}
-        aria-labelledby="steps-title"
-      >
-        <h2 id="steps-title" className={styles.label}>
-          So läuft es ab
-        </h2>
-        <ol className={styles.stepList}>
-          {steps.map((step, index) => (
-            <li key={step.title} className={styles.step}>
-              <span className={styles.stepNumber}>{number(index)}</span>
-              <div className={styles.stepBody}>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepText}>{step.text}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className={styles.stance} aria-labelledby="stance-title">
-        <h2 id="stance-title" className={styles.labelPlain}>
-          Wie ich arbeite
-        </h2>
-        <ul className={styles.stanceList}>
-          {stance.map((item) => (
-            <li key={item.title} className={styles.stanceItem}>
-              <h3 className={styles.stanceTitle}>{item.title}</h3>
-              <p className={styles.stanceText}>{item.text}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section
-        className={`${styles.grid} ${styles.coach}`}
-        aria-labelledby="coach-title"
-      >
+      <section aria-labelledby="why-title" className={styles.why}>
         <Image
-          src={coachPortrait}
-          alt="Annika Matthaei, sitzend in einem Sessel"
+          src={portrait}
+          alt="Annika Matthaei, lachend"
           placeholder="blur"
-          sizes="(min-width: 768px) 300px, 110px"
-          className={`${styles.photo} ${styles.coachPhoto}`}
+          sizes="(min-width: 768px) 360px, 100vw"
+          className={styles.whyPhoto}
         />
-        <div className={styles.coachBody}>
-          <p className={styles.label}>Eure Coach</p>
-          <h2 id="coach-title" className={styles.coachTitle}>
-            <span className={styles.desktopOnly}>
-              Ich bin Annika und kenne das Startup-Leben von innen.
-            </span>
-            <span className={styles.mobileOnly}>Ich bin Annika.</span>
+        <div className={styles.whyBody}>
+          <p className={styles.label}>Warum ich</p>
+          <h2 id="why-title" className={styles.sectionTitle}>
+            Ich kenne die Wachstumsphase von innen.
           </h2>
-          <p className={`${styles.coachText} ${styles.desktopOnly}`}>
-            13 Jahre in Konzern, Mittelstand und Startup, davon neun mit
-            Führungsverantwortung. Zertifizierter systemischer &amp;
-            psychologischer Business Coach und Coach für EXIST-Gründungsteams
-            über eine Hochschulkooperation.
+          <ul className={styles.facts}>
+            {facts.map((fact) => (
+              <li key={fact.value} className={styles.fact}>
+                <span className={styles.factValue}>{fact.value}</span>
+                <span className={styles.factText}>{fact.text}</span>
+              </li>
+            ))}
+          </ul>
+          <p className={styles.whyText}>
+            Systemischer &amp; psychologischer Business Coach. Ich arbeite
+            praxisnah und ohne Theorie-Overload: mit klaren Strukturen und
+            Tools, die ihr am nächsten Tag nutzen könnt.
           </p>
-          <Link href="/ueber-mich" className={styles.underlineLink}>
-            Mehr über mich <Arrow />
+        </div>
+      </section>
+
+      <section
+        id="startups-contact"
+        aria-labelledby="startups-contact-title"
+        className={styles.cta}
+      >
+        <h2 id="startups-contact-title" className={styles.ctaTitle}>
+          Bereit für großartige Teams?
+        </h2>
+        <div className={styles.ctaBody}>
+          <p>
+            Im kostenlosen Kennenlern-Call schauen wir, wo ihr gerade steht und
+            was euch jetzt weiterbringt.
+          </p>
+          {/* TODO: Auf den Buchungslink umstellen, sobald es einen gibt. */}
+          <Link href="/kontakt" className={styles.ctaButton}>
+            Kennenlern-Call buchen
           </Link>
         </div>
       </section>
 
-      <section
-        id="kontakt"
-        className={styles.contact}
-        aria-labelledby="contact-title"
-      >
-        <div className={styles.contactIntro}>
-          <p className={styles.label}>Erstgespräch anfragen</p>
-          <h2 id="contact-title" className={styles.contactTitle}>
-            Was steht bei euch gerade an?
-          </h2>
-          <p className={`${styles.contactText} ${styles.desktopOnly}`}>
-            Erzählt mir kurz, wo ihr steht. Ich melde mich bei euch und wir
-            vereinbaren ein unverbindliches Kennenlernen.
-          </p>
-        </div>
-        <StartupContactForm />
-      </section>
+      <HomeStickyCta
+        email={inquiryRecipient}
+        startId="startups-title"
+        endSelector="#startups-contact a"
+      />
     </div>
   )
 }

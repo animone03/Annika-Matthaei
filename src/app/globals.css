@@ -73,7 +73,9 @@ body {
 .site-shell:has(
     [data-company-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-marketing-page]:not([style*='display: none'])
+    [data-marketing-page]:not([style*='display: none']),
+    [data-startups-page]:not([style*='display: none']),
+    [data-startup-offer-page]:not([style*='display: none'])
   )
   footer {
   margin-top: 0;
@@ -95,22 +97,30 @@ body {
   display: none;
 }
 
-/* Marketing: Header liegt im taubenblauen Hero. */
-.site-shell:has([data-marketing-page]:not([style*='display: none']))
+/* Marketing und Startups: Header liegt im taubenblauen Hero. */
+.site-shell:has(
+    [data-marketing-page]:not([style*='display: none']),
+    [data-startups-page]:not([style*='display: none'])
+  )
   .site-header.bg-background {
   background: var(--top-surface);
 }
 
-.site-shell:has([data-marketing-page]:not([style*='display: none']))
+.site-shell:has(
+    [data-marketing-page]:not([style*='display: none']),
+    [data-startups-page]:not([style*='display: none'])
+  )
   .site-header-subtitle {
   color: #3a4049;
 }
 
-/* Kontakt, Über mich und Marketing: Footer mit Motto links, Trennlinie oben. */
+/* Kontakt, Über mich, Marketing und Startups: Footer mit Motto links, Trennlinie oben. */
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-marketing-page]:not([style*='display: none'])
+    [data-marketing-page]:not([style*='display: none']),
+    [data-startups-page]:not([style*='display: none']),
+    [data-startup-offer-page]:not([style*='display: none'])
   )
   footer {
   border-top: 1px solid rgb(30 35 41 / 0.15);
@@ -120,7 +130,9 @@ body {
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-marketing-page]:not([style*='display: none'])
+    [data-marketing-page]:not([style*='display: none']),
+    [data-startups-page]:not([style*='display: none']),
+    [data-startup-offer-page]:not([style*='display: none'])
   )
   footer
   > div {
@@ -133,7 +145,9 @@ body {
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-marketing-page]:not([style*='display: none'])
+    [data-marketing-page]:not([style*='display: none']),
+    [data-startups-page]:not([style*='display: none']),
+    [data-startup-offer-page]:not([style*='display: none'])
   )
   .footer-motto {
   display: block;
@@ -175,7 +189,9 @@ body {
   .site-shell:has(
       [data-contact-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
-      [data-marketing-page]:not([style*='display: none'])
+      [data-marketing-page]:not([style*='display: none']),
+      [data-startups-page]:not([style*='display: none']),
+      [data-startup-offer-page]:not([style*='display: none'])
     )
     footer {
     border-top: 0;
@@ -185,7 +201,9 @@ body {
   .site-shell:has(
       [data-contact-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
-      [data-marketing-page]:not([style*='display: none'])
+      [data-marketing-page]:not([style*='display: none']),
+      [data-startups-page]:not([style*='display: none']),
+      [data-startup-offer-page]:not([style*='display: none'])
     )
     footer
     > div {
@@ -197,7 +215,9 @@ body {
   .site-shell:has(
       [data-contact-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
-      [data-marketing-page]:not([style*='display: none'])
+      [data-marketing-page]:not([style*='display: none']),
+      [data-startups-page]:not([style*='display: none']),
+      [data-startup-offer-page]:not([style*='display: none'])
     )
     .footer-motto {
     flex-basis: 100%;
@@ -210,7 +230,9 @@ body {
   /* Platz für die fixe Kontaktleiste, Motto einzeilig. */
   .site-shell:has(
       [data-about-page]:not([style*='display: none']),
-      [data-marketing-page]:not([style*='display: none'])
+      [data-marketing-page]:not([style*='display: none']),
+      [data-startups-page]:not([style*='display: none']),
+      [data-startup-offer-page]:not([style*='display: none'])
     )
     footer {
     padding-bottom: 100px;
@@ -218,7 +240,9 @@ body {
 
   .site-shell:has(
       [data-about-page]:not([style*='display: none']),
-      [data-marketing-page]:not([style*='display: none'])
+      [data-marketing-page]:not([style*='display: none']),
+      [data-startups-page]:not([style*='display: none']),
+      [data-startup-offer-page]:not([style*='display: none'])
     )
     .footer-motto
     br {
