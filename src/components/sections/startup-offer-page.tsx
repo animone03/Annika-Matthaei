@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
-import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
-import { inquiryRecipient } from '@/lib/inquiry'
+import { StartupStickyCta } from '@/components/sections/startup-sticky-cta'
 
 import styles from './startup-offer-page.module.css'
 
@@ -108,11 +107,17 @@ export function StartupOfferPage({
         </section>
       </div>
 
-      <HomeStickyCta
-        email={inquiryRecipient}
-        startId="offer-title"
-        endSelector="#offer-facts + dl + a"
-      />
+      {/* Nur mobil: Abschluss über der festen Leiste. */}
+      <section aria-labelledby="offer-cta" className={styles.cta}>
+        <h2 id="offer-cta" className={styles.ctaTitle}>
+          Lasst uns sprechen.
+        </h2>
+        <p className={styles.ctaText}>
+          Im kostenlosen Kennenlern-Call schauen wir, ob es passt.
+        </p>
+      </section>
+
+      <StartupStickyCta />
     </div>
   )
 }

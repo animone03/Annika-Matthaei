@@ -456,20 +456,19 @@ section.split:has(.outcomes) {
   }
 }
 
-/* Mobile */
+/* Mobile (Übergabe Startup-Seiten Mobile, 2a) */
+
+.mobileOnly {
+  display: none;
+}
+
+.offerName .offerArrow {
+  display: none;
+}
 
 @media (max-width: 767px) {
   .page {
     --gutter: 20px;
-  }
-
-  section.split,
-  section.split:has(.outcomes) {
-    padding-block: 48px;
-  }
-
-  .split {
-    gap: 20px;
   }
 
   .label {
@@ -477,14 +476,10 @@ section.split:has(.outcomes) {
     font-size: 11px;
   }
 
-  .sectionTitle,
-  .whyBody .sectionTitle {
-    font-size: 30px;
-  }
-
+  /* Hero ohne Button, dafür gibt es die feste Leiste. */
   .hero {
-    gap: 20px;
-    padding-top: 40px;
+    gap: 18px;
+    padding-top: 28px;
   }
 
   .heroLabel {
@@ -492,168 +487,245 @@ section.split:has(.outcomes) {
   }
 
   .heroTitle {
-    font-size: 40px;
+    font-size: 36px;
     line-height: 1.02;
   }
 
   .heroRow {
     flex-direction: column;
     align-items: stretch;
-    gap: 20px;
   }
 
   .heroIntro {
     font-size: 15px;
-    line-height: 1.6;
   }
 
-  .darkButton {
-    padding: 16px;
-    font-size: 14px;
-    text-align: center;
+  .heroRow .darkButton {
+    display: none;
   }
 
   /* Sprungleiste: horizontal scrollbar */
   .jumpBar {
-    margin-top: 24px;
+    gap: 20px;
+    margin-top: 18px;
     overflow-x: auto;
     scrollbar-width: none;
-    gap: 28px;
+  }
+
+  .jumpBar::-webkit-scrollbar {
+    display: none;
   }
 
   .jump {
     flex: none;
-    padding: 16px 0;
-    font-size: 12px;
+    gap: 6px;
+    padding: 14px 0;
+    font-size: 11px;
+  }
+
+  .jumpNumber {
+    color: inherit;
+  }
+
+  section.split {
+    gap: 22px;
+    padding-block: 44px;
   }
 
   .problems {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 22px;
+  }
+
+  .problem {
+    gap: 6px;
+    padding-top: 14px;
   }
 
   .problemTitle {
-    font-size: 19px;
+    font-size: 18px;
   }
 
   .problemText {
     font-size: 14px;
+    line-height: 1.55;
   }
 
   .stat {
-    gap: 20px;
-    padding-block: 48px;
+    gap: 12px;
+    padding-block: 40px;
   }
 
   .statValue {
-    font-size: 96px;
+    font-size: 80px;
+    line-height: 0.85;
+  }
+
+  .statBody {
+    gap: 12px;
   }
 
   .statText {
-    font-size: 22px;
+    font-size: 19px;
+    line-height: 1.35;
+  }
+
+  .statSource {
+    font-size: 10px;
   }
 
   .statNote {
-    margin-top: 4px;
-    font-size: 15px;
+    display: none;
   }
 
   .offers {
-    gap: 24px;
-    padding-top: 48px;
+    gap: 0;
+    padding: 44px var(--gutter);
   }
 
-  /* Angebote: jede Zeile wird ein Block */
+  .offers .split {
+    gap: 14px;
+    padding-bottom: 12px;
+  }
+
+  .sectionTitle {
+    font-size: 26px;
+    line-height: 1.08;
+  }
+
+  /* Angebote: jede Zeile ein Block, Pfeil neben dem Namen */
   .offerRow {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
-    padding: 24px 0;
+    gap: 8px;
+    padding: 20px 0;
+  }
+
+  .offerHead {
+    gap: 8px;
+  }
+
+  .offerLabel {
+    font-size: 10px;
   }
 
   .offerName {
-    font-size: 24px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 21px;
+    line-height: 1.1;
   }
 
-  .offerPromise {
+  .offerName .offerArrow {
+    display: inline-block;
     font-size: 16px;
   }
 
+  .offerPromise {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
   .offerFormat {
-    font-size: 12px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
   }
 
   .offerMore {
-    align-self: flex-start;
-    margin-top: 4px;
-    font-size: 12px;
+    display: none;
+  }
+
+  section.split:has(.outcomes) {
+    gap: 12px;
+    padding-top: 0;
+    padding-bottom: 44px;
   }
 
   .outcome {
     padding: 14px 0;
-    font-size: 24px;
+    font-size: 22px;
+    line-height: 1.15;
   }
 
   .why {
-    gap: 20px;
-    padding-bottom: 48px;
+    gap: 16px;
+    padding-bottom: 44px;
   }
 
   .whyPhoto {
     max-width: none;
-    aspect-ratio: 16 / 10;
-    object-position: center 18%;
+    height: 300px;
+    aspect-ratio: auto;
+    object-position: center 20%;
   }
 
   .whyBody {
-    gap: 18px;
+    gap: 16px;
+  }
+
+  .whyBody .label {
+    margin-top: 8px;
+  }
+
+  .whyBody .sectionTitle {
+    font-size: 24px;
+    line-height: 1.1;
   }
 
   .facts {
-    grid-template-columns: 1fr;
-    gap: 0;
+    gap: 12px;
   }
 
   .fact {
-    flex-direction: row;
-    align-items: baseline;
-    gap: 16px;
-    padding: 10px 0;
+    gap: 4px;
+    padding-top: 10px;
   }
 
   .factValue {
-    min-width: 72px;
     font-size: 24px;
   }
 
   .factText {
-    font-size: 12px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: inline;
   }
 
   .whyText {
     font-size: 14px;
+    line-height: 1.6;
   }
 
   .cta {
-    gap: 18px;
-    padding-block: 44px;
+    gap: 16px;
+    padding-block: 40px;
   }
 
   .ctaTitle {
-    font-size: 32px;
-    line-height: 1;
+    font-size: 28px;
+    line-height: 1.05;
   }
 
   .ctaBody {
-    gap: 18px;
+    gap: 16px;
     font-size: 14px;
+    line-height: 1.55;
   }
 
   .ctaButton {
     align-self: stretch;
-    padding: 20px;
-    font-size: 16px;
+    padding: 18px;
+    font-size: 14px;
     text-align: center;
   }
 }

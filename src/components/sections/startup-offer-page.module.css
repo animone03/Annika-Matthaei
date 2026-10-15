@@ -249,7 +249,12 @@
   }
 }
 
-/* Mobile: „Auf einen Blick“ unter dem Intro, nicht sticky */
+.cta {
+  display: none;
+}
+
+/* Mobile (Übergabe Startup-Seiten Mobile, 2b bis 2e): „Auf einen Blick“
+   hell unter dem Intro, ohne Button; die feste Leiste übernimmt. */
 
 @media (max-width: 767px) {
   .page {
@@ -257,11 +262,11 @@
 
     display: flex;
     flex-direction: column;
-    padding: 40px var(--gutter) 56px;
+    padding: 20px var(--gutter) 0;
   }
 
   .head {
-    gap: 18px;
+    gap: 16px;
   }
 
   .back {
@@ -269,21 +274,8 @@
   }
 
   .title {
-    font-size: 40px;
-  }
-
-  .stat {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 24px 20px;
-  }
-
-  .statValue {
-    font-size: 48px;
-  }
-
-  .statBody {
-    font-size: 16px;
+    font-size: 36px;
+    line-height: 1.02;
   }
 
   .question {
@@ -291,32 +283,133 @@
   }
 
   .intro {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 22px 20px;
+  }
+
+  .statValue {
+    font-size: 48px;
+  }
+
+  .statBody {
+    gap: 8px;
     font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .statSource {
+    font-size: 10px;
   }
 
   .facts {
     position: static;
-    margin-top: 32px;
-    padding: 24px 20px;
+    margin-top: 24px;
+    background: var(--mist);
+    padding: 20px;
+    color: var(--ink);
   }
 
-  .body {
-    margin-top: 40px;
-  }
-
-  .label {
+  .factsLabel {
+    padding-bottom: 10px;
+    color: var(--muted);
     font-size: 11px;
   }
 
+  .fact {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 12px;
+    border-top-color: rgb(30 35 41 / 0.2);
+    padding: 11px 0;
+  }
+
+  .fact:last-child {
+    border-bottom: 0;
+  }
+
+  .factLabel {
+    padding-top: 2px;
+    color: var(--muted);
+    font-size: 10px;
+  }
+
+  .factValue {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .factsButton {
+    display: none;
+  }
+
+  .body {
+    gap: 32px;
+    margin-top: 36px;
+  }
+
+  .label {
+    padding-bottom: 10px;
+    font-size: 11px;
+  }
+
+  .item {
+    padding: 16px 0;
+  }
+
   .summary {
-    font-size: 18px;
+    gap: 16px;
+    min-height: 28px;
+    font-size: 17px;
   }
 
   .itemText {
+    margin-top: 10px;
     font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .result {
+    gap: 10px;
+  }
+
+  .result .label {
+    padding-bottom: 0;
   }
 
   .resultText {
-    font-size: 22px;
+    font-size: 21px;
+    line-height: 1.22;
+  }
+
+  .cta {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 40px calc(-1 * var(--gutter)) 0;
+    background: var(--ink);
+    padding: 36px var(--gutter);
+    color: var(--paper);
+  }
+
+  .ctaTitle {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.08;
+    text-transform: uppercase;
+  }
+
+  .ctaText {
+    color: var(--muted-on-dark);
+    font-size: 14px;
+    line-height: 1.55;
   }
 }

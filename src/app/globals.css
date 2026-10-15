@@ -249,6 +249,14 @@ body {
     display: none;
   }
 
+  .site-shell:has(
+      [data-startups-page]:not([style*='display: none']),
+      [data-startup-offer-page]:not([style*='display: none'])
+    )
+    footer {
+    padding-bottom: 88px;
+  }
+
   .site-shell:has([data-frame-page]:not([style*='display: none'])) footer ul {
     flex-wrap: nowrap;
     column-gap: 16px;

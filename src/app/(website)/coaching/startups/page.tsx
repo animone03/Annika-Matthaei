@@ -4,9 +4,8 @@ import Link from 'next/link'
 
 import portrait from '../../../../../public/images/annika-lachend.webp'
 
-import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
 import styles from '@/components/sections/startups-page.module.css'
-import { inquiryRecipient } from '@/lib/inquiry'
+import { StartupStickyCta } from '@/components/sections/startup-sticky-cta'
 import { buildMetadata } from '@/lib/metadata'
 import { Arrow } from '@/components/ui/arrow'
 
@@ -86,10 +85,15 @@ const outcomes = [
   'Wie arbeiten wir ab morgen besser zusammen?',
 ]
 
-const facts = [
+const facts: { value: string; text: string; short?: string }[] = [
   { value: '13', text: 'Jahre Konzern, Mittelstand & Startup' },
   { value: '9', text: 'Jahre selbst in Führung' },
-  { value: 'EXIST', text: 'Coach über Hochschulkooperation' },
+  {
+    value: 'EXIST',
+    text: 'Coach über Hochschulkooperation',
+    // Mobil zu lang für die schmale Spalte.
+    short: 'Coach über Hochschule',
+  },
 ]
 
 const number = (index: number) => String(index + 1).padStart(2, '0')
@@ -102,7 +106,10 @@ function OfferRow({ offer, index }: { offer: Offer; index: number }) {
           <span className={styles.offerLabel}>
             {number(index)} · {offer.label}
           </span>
-          <span className={styles.offerName}>{offer.name}</span>
+          <span className={styles.offerName}>
+            {offer.name}
+            <Arrow className={styles.offerArrow} />
+          </span>
         </span>
         <span className={styles.offerPromise}>{offer.promise}</span>
         <span className={styles.offerFormat}>{offer.format}</span>
@@ -222,7 +229,20 @@ export default function StartupCoachingPage() {
             {facts.map((fact) => (
               <li key={fact.value} className={styles.fact}>
                 <span className={styles.factValue}>{fact.value}</span>
-                <span className={styles.factText}>{fact.text}</span>
+                {fact.short ? (
+                  <>
+                    <span
+                      className={`${styles.factText} ${styles.desktopOnly}`}
+                    >
+                      {fact.text}
+                    </span>
+                    <span className={`${styles.factText} ${styles.mobileOnly}`}>
+                      {fact.short}
+                    </span>
+                  </>
+                ) : (
+                  <span className={styles.factText}>{fact.text}</span>
+                )}
               </li>
             ))}
           </ul>
@@ -254,11 +274,7 @@ export default function StartupCoachingPage() {
         </div>
       </section>
 
-      <HomeStickyCta
-        email={inquiryRecipient}
-        startId="startups-title"
-        endSelector="#startups-contact a"
-      />
+      <StartupStickyCta />
     </div>
   )
 }
