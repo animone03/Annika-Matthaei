@@ -74,7 +74,7 @@ body {
     [data-company-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
     [data-marketing-page]:not([style*='display: none']),
-    [data-startups-page]:not([style*='display: none']),
+    [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   footer {
@@ -97,10 +97,10 @@ body {
   display: none;
 }
 
-/* Marketing und Startups: Header liegt im taubenblauen Hero. */
+/* Marketing und Coaching-Übersichten: Header liegt im taubenblauen Hero. */
 .site-shell:has(
     [data-marketing-page]:not([style*='display: none']),
-    [data-startups-page]:not([style*='display: none'])
+    [data-coaching-page]:not([style*='display: none'])
   )
   .site-header.bg-background {
   background: var(--top-surface);
@@ -108,7 +108,7 @@ body {
 
 .site-shell:has(
     [data-marketing-page]:not([style*='display: none']),
-    [data-startups-page]:not([style*='display: none'])
+    [data-coaching-page]:not([style*='display: none'])
   )
   .site-header-subtitle {
   color: #3a4049;
@@ -119,7 +119,7 @@ body {
     [data-contact-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
     [data-marketing-page]:not([style*='display: none']),
-    [data-startups-page]:not([style*='display: none']),
+    [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   footer {
@@ -131,7 +131,7 @@ body {
     [data-contact-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
     [data-marketing-page]:not([style*='display: none']),
-    [data-startups-page]:not([style*='display: none']),
+    [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   footer
@@ -146,7 +146,7 @@ body {
     [data-contact-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
     [data-marketing-page]:not([style*='display: none']),
-    [data-startups-page]:not([style*='display: none']),
+    [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   .footer-motto {
@@ -190,7 +190,7 @@ body {
       [data-contact-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
       [data-marketing-page]:not([style*='display: none']),
-      [data-startups-page]:not([style*='display: none']),
+      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     footer {
@@ -202,7 +202,7 @@ body {
       [data-contact-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
       [data-marketing-page]:not([style*='display: none']),
-      [data-startups-page]:not([style*='display: none']),
+      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     footer
@@ -216,7 +216,7 @@ body {
       [data-contact-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
       [data-marketing-page]:not([style*='display: none']),
-      [data-startups-page]:not([style*='display: none']),
+      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     .footer-motto {
@@ -231,7 +231,7 @@ body {
   .site-shell:has(
       [data-about-page]:not([style*='display: none']),
       [data-marketing-page]:not([style*='display: none']),
-      [data-startups-page]:not([style*='display: none']),
+      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     footer {
@@ -241,7 +241,7 @@ body {
   .site-shell:has(
       [data-about-page]:not([style*='display: none']),
       [data-marketing-page]:not([style*='display: none']),
-      [data-startups-page]:not([style*='display: none']),
+      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     .footer-motto
@@ -250,7 +250,7 @@ body {
   }
 
   .site-shell:has(
-      [data-startups-page]:not([style*='display: none']),
+      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     footer {

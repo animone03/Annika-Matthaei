@@ -15,7 +15,6 @@ const marqueeText =
   'COACHING  ·  EXIST  ·  CO-FOUNDER  ·  LEADERSHIP  ·  TEAMS  ·  MARKETING-STRATEGIE  ·  WEBDESIGN  ·  SEO  ·  BRANDING  ·  '
 
 // Desktop zeigt Angebotszeilen, mobil Karten mit eigenen Texten (tag, mobileTitle, mobileDescription).
-// TODO: Ziele anpassen, sobald /coaching/startups und /coaching/leadership existieren.
 const coreOffers = [
   {
     number: '01',
@@ -35,7 +34,7 @@ const coreOffers = [
     mobileTitle: 'Leadership Coaching',
     description: 'Für Führungskräfte und Teams in Mittelstand und Konzern',
     mobileDescription: 'Für Führungskräfte und Teams in Mittelstand & Konzern',
-    href: '/kontakt',
+    href: '/coaching/unternehmen',
   },
 ] as const
 

@@ -381,8 +381,8 @@ const desktop: Variant = {
   ],
 }
 
-// TODO: Ziele auf /coaching/startups, /coaching/leadership, /marketing#…
-// und die AI-Seite umstellen, sobald es sie gibt; Brücke auf ijustwannacoach.
+// TODO: Ziele auf /marketing#… und die AI-Seite umstellen, sobald es sie
+// gibt; Brücke auf ijustwannacoach.
 const mobile: Variant = {
   width: 350,
   height: 830,
@@ -436,7 +436,7 @@ const mobile: Variant = {
       background: bluestone,
       color: paper,
       labelStyle: centeredLabel(62, 12, 1.6),
-      href: '/kontakt',
+      href: '/coaching/unternehmen',
     },
     {
       id: 'bridge',

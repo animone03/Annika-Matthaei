@@ -123,7 +123,7 @@ function OfferRow({ offer, index }: { offer: Offer; index: number }) {
 
 export default function StartupCoachingPage() {
   return (
-    <div data-frame-page data-startups-page className={styles.page}>
+    <div data-frame-page data-coaching-page className={styles.page}>
       <section aria-labelledby="startups-title" className={styles.hero}>
         <p className={styles.heroLabel}>Coaching für Startups &amp; Founder</p>
         <h1 id="startups-title" className={styles.heroTitle}>

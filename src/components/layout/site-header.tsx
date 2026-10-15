@@ -25,8 +25,6 @@ type CoachingGroup = {
   tone: 'dark' | 'taupe'
 }
 
-// TODO: „Für Unternehmen“ auf /coaching/unternehmen umstellen, sobald die
-// Seite gestaltet ist.
 const coaching: CoachingGroup[] = [
   {
     label: 'Für Startups & Founder',
@@ -49,11 +47,12 @@ const coaching: CoachingGroup[] = [
   {
     label: 'Für Unternehmen',
     mobileLabel: 'Für Unternehmen',
-    href: '/kontakt',
+    href: '/coaching/unternehmen',
     tone: 'taupe',
+    // Keine Unterseiten: beide Punkte führen auf die Übersicht.
     items: [
-      { label: 'Leadership', href: '/kontakt' },
-      { label: 'Teams', href: '/kontakt' },
+      { label: 'Leadership', href: '/coaching/unternehmen' },
+      { label: 'Teams', href: '/coaching/unternehmen' },
     ],
   },
 ]

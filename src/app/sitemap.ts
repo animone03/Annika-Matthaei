@@ -12,6 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/coaching/startups/lead-with-clarity',
     '/coaching/startups/founders-in-sync',
     '/coaching/startups/founder-1-1',
+    '/coaching/unternehmen',
     '/marketing',
     '/ueber-mich',
     '/projekte',
