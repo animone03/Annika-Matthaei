@@ -2,7 +2,6 @@
   --ink: #1e2329;
   --ink-soft: #3a4049;
   --muted: #566270;
-  --muted-on-dark: #aeb8c2;
   --paper: #f4f5f3;
   --taupe: #b4c2cd;
   --line: rgb(30 35 41 / 0.15);
@@ -21,8 +20,7 @@
 }
 
 .label,
-.labelPlain,
-.labelOnDark {
+.labelPlain {
   padding-top: 8px;
   font-size: 12px;
   letter-spacing: 0.1em;
@@ -31,10 +29,6 @@
 
 .label {
   color: var(--muted);
-}
-
-.labelOnDark {
-  color: var(--muted-on-dark);
 }
 
 .labelPlain {
@@ -163,49 +157,12 @@
   padding-inline: var(--gutter);
 }
 
-/* Stationen: dunkles Band über die volle Breite */
-
-.stations,
 .stance {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 48px;
   margin-inline: calc(-1 * var(--frame, 14px));
   padding-inline: calc(var(--gutter) + var(--frame, 14px));
-}
-
-.stations {
-  background: var(--ink);
-  padding-block: 72px;
-  color: var(--paper);
-}
-
-.station {
-  display: grid;
-  grid-template-columns: 200px 1fr 1fr;
-  align-items: baseline;
-  gap: 24px;
-  border-top: 1px solid rgb(244 245 243 / 0.25);
-  padding: 22px 0;
-}
-
-.stationPeriod {
-  color: var(--muted-on-dark);
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.stationTitle {
-  font-size: 26px;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-
-.stationDetail {
-  color: var(--muted-on-dark);
-  font-size: 14px;
-  line-height: 1.5;
 }
 
 /* Ausbildung */
@@ -339,7 +296,6 @@
 @media (max-width: 1023px) {
   .education,
   .skills,
-  .stations,
   .stance {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -355,14 +311,6 @@
     height: 440px;
   }
 
-  .station {
-    grid-template-columns: 140px 1fr;
-  }
-
-  .stationDetail {
-    grid-column: 2;
-  }
-
   .stanceList {
     gap: 24px;
   }
@@ -376,8 +324,7 @@
   }
 
   .label,
-  .labelPlain,
-  .labelOnDark {
+  .labelPlain {
     padding-top: 0;
     font-size: 11px;
   }
@@ -559,36 +506,6 @@
 
   .educationDetail {
     font-size: 12px;
-    line-height: 1.45;
-  }
-
-  /* Stationen */
-
-  .stations {
-    gap: 12px;
-    margin-top: 40px;
-    padding-block: 36px;
-  }
-
-  .station {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 16px 0;
-  }
-
-  .stationPeriod {
-    font-size: 11px;
-  }
-
-  .stationTitle {
-    font-size: 19px;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-  }
-
-  .stationDetail {
-    font-size: 13px;
     line-height: 1.45;
   }
 

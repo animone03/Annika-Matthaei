@@ -27,36 +27,6 @@ const lead =
 const introText =
   'Wenn ihr gemeinsam etwas schafft, das vorher unmöglich schien. Genau dabei möchte ich euch begleiten. Ich bringe viel Energie, Kreativität und Empathie mit. Ich denke in Möglichkeiten, frage nach und freue mich, wenn eure Projekte erfolgreich umgesetzt werden.'
 
-// Aktuellste Station zuerst. Bei Selbstständigkeit steht die Tätigkeit in der Mitte, sonst die Firma.
-const stations = [
-  {
-    period: 'Seit 2026',
-    title: 'Systemisches Coaching',
-    detail: 'Selbstständig',
-  },
-  {
-    period: 'Seit 2025',
-    title: 'Marketing-Beratung & Markenentwicklung',
-    detail: 'Selbstständig',
-  },
-  {
-    period: '2022 – 2026',
-    title: 'Ehrmann Wohn- und Einrichtungs GmbH',
-    detail: 'Abteilungsleiterin · Aufbau der Abteilung Nachhaltigkeit',
-  },
-  {
-    period: '2019 – 2021',
-    title: 'Performance One AG',
-    detail: 'Beraterin Digitales Marketing',
-  },
-  {
-    period: '2013 – 2018',
-    title: 'Peek & Cloppenburg',
-    detail:
-      'Stellv. Abteilungsleiterin & Abteilungsleiterin · Wien / Düsseldorf',
-  },
-]
-
 const education = [
   {
     title: 'Systemischer & psychologischer Business Coach',
@@ -182,21 +152,6 @@ export default function AboutPage() {
             </li>
           ))}
         </ul>
-      </section>
-
-      <section aria-labelledby="about-stations" className={styles.stations}>
-        <h2 id="about-stations" className={styles.labelOnDark}>
-          Stationen
-        </h2>
-        <ol className={styles.stationList}>
-          {stations.map((station) => (
-            <li key={station.period + station.title} className={styles.station}>
-              <span className={styles.stationPeriod}>{station.period}</span>
-              <span className={styles.stationTitle}>{station.title}</span>
-              <span className={styles.stationDetail}>{station.detail}</span>
-            </li>
-          ))}
-        </ol>
       </section>
 
       <section
