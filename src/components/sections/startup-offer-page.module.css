@@ -74,6 +74,49 @@
   text-transform: uppercase;
 }
 
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Statistik (Founders in Sync) */
+
+.stat {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+  gap: 24px;
+  background: var(--ink);
+  padding: 28px 30px;
+  color: var(--paper);
+}
+
+.statValue {
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.statBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.statSource {
+  color: var(--muted-on-dark);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* Inhalte zum Aufklappen */
 
 .item {
@@ -226,7 +269,21 @@
   }
 
   .title {
-    font-size: 36px;
+    font-size: 40px;
+  }
+
+  .stat {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 24px 20px;
+  }
+
+  .statValue {
+    font-size: 48px;
+  }
+
+  .statBody {
+    font-size: 16px;
   }
 
   .question {

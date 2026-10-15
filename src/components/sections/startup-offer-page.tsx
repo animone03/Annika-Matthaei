@@ -9,8 +9,10 @@ type StartupOfferPageProps = {
   title: string
   question: string
   intro: string
+  showStat?: boolean
   sectionsLabel: string
   sections: { title: string; text: string }[]
+  resultLabel?: string
   result: string
   facts: { label: string; value: string }[]
 }
@@ -21,8 +23,10 @@ export function StartupOfferPage({
   title,
   question,
   intro,
+  showStat = false,
   sectionsLabel,
   sections,
+  resultLabel = 'Danach habt ihr',
   result,
   facts,
 }: StartupOfferPageProps) {
@@ -37,6 +41,23 @@ export function StartupOfferPage({
         </h1>
         <p className={styles.question}>{question}</p>
         <p className={styles.intro}>{intro}</p>
+        {showStat ? (
+          <div className={styles.stat}>
+            <span aria-hidden="true" className={styles.statValue}>
+              65 %
+            </span>
+            <p className={styles.statBody}>
+              <span className={styles.srOnly}>65 % </span>
+              <span>
+                aller Startups scheitern nicht am Markt, sondern an Konflikten
+                im Gründerteam.
+              </span>
+              <span className={styles.statSource}>
+                Noam Wasserman, The Founder’s Dilemmas
+              </span>
+            </p>
+          </div>
+        ) : null}
       </div>
 
       <aside aria-labelledby="offer-facts" className={styles.facts}>
@@ -81,7 +102,7 @@ export function StartupOfferPage({
 
         <section aria-labelledby="offer-result" className={styles.result}>
           <h2 id="offer-result" className={styles.label}>
-            Danach habt ihr
+            {resultLabel}
           </h2>
           <p className={styles.resultText}>{result}</p>
         </section>

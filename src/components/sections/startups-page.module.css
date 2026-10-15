@@ -246,7 +246,7 @@ section.split {
   padding: 30px 0;
 }
 
-a.offerRow:hover {
+.offerRow:hover {
   background: var(--mist);
 }
 

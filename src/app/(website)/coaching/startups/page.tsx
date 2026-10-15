@@ -18,16 +18,13 @@ export const metadata: Metadata = buildMetadata({
   absoluteTitle: true,
 })
 
-// Die Zeile verlinkt auf die Unterseite, sobald es sie gibt. Bis dahin bleibt
-// sie ein Anker auf dieser Seite.
-// TODO: Unterseiten Lead with Clarity, Founders in Sync und Founder 1:1 anlegen.
 type Offer = {
   id: string
   label: string
   name: string
   promise: string
   format: string
-  href?: Route
+  href: Route
 }
 
 const offers: Offer[] = [
@@ -45,6 +42,7 @@ const offers: Offer[] = [
     name: 'Lead with Clarity',
     promise: 'Workshops, nach denen ihr klarer und gemeinsamer führt.',
     format: 'Workshop · Auf euch zugeschnitten',
+    href: '/coaching/startups/lead-with-clarity',
   },
   {
     id: 'founders-in-sync',
@@ -52,6 +50,7 @@ const offers: Offer[] = [
     name: 'Founders in Sync',
     promise: 'Zurück zu echter Partnerschaft. Wieder Seite an Seite führen.',
     format: 'In wenigen Wochen · Als Founder-Team',
+    href: '/coaching/startups/founders-in-sync',
   },
   {
     id: 'founder-1-1',
@@ -59,24 +58,25 @@ const offers: Offer[] = [
     name: 'Founder 1:1',
     promise: 'Deine Energie zurück. Und ein Leadership-Team, dem du vertraust.',
     format: '3–4 Monate · 90 Min.',
+    href: '/coaching/startups/founder-1-1',
   },
 ]
 
-const problems = [
+const problems: { title: string; text: string; href: Route }[] = [
   {
     title: 'Vieles läuft nur über dich.',
     text: 'Du bist fast nur noch in Meetings, die strategische Arbeit bleibt auf der Strecke.',
-    offer: 'founder-1-1',
+    href: '/coaching/startups/founder-1-1',
   },
   {
     title: 'Zwischen euch Foundern hakt es.',
     text: 'Ihr diskutiert endlos, statt gemeinsam Tempo zu machen. Manche Themen meidet ihr ganz.',
-    offer: 'founders-in-sync',
+    href: '/coaching/startups/founders-in-sync',
   },
   {
     title: 'Im Team fehlt das Zusammenspiel.',
     text: 'Starke Leute, aber zusammen könntet ihr so viel mehr erreichen. Es fühlt sich oft chaotisch an.',
-    offer: 'lead-with-clarity',
+    href: '/coaching/startups/lead-with-clarity',
   },
 ]
 
@@ -95,33 +95,21 @@ const facts = [
 const number = (index: number) => String(index + 1).padStart(2, '0')
 
 function OfferRow({ offer, index }: { offer: Offer; index: number }) {
-  const content = (
-    <>
-      <span className={styles.offerHead}>
-        <span className={styles.offerLabel}>
-          {number(index)} · {offer.label}
+  return (
+    <li id={offer.id} className={styles.offer}>
+      <Link href={offer.href} className={styles.offerRow}>
+        <span className={styles.offerHead}>
+          <span className={styles.offerLabel}>
+            {number(index)} · {offer.label}
+          </span>
+          <span className={styles.offerName}>{offer.name}</span>
         </span>
-        <span className={styles.offerName}>{offer.name}</span>
-      </span>
-      <span className={styles.offerPromise}>{offer.promise}</span>
-      <span className={styles.offerFormat}>{offer.format}</span>
-      {offer.href ? (
+        <span className={styles.offerPromise}>{offer.promise}</span>
+        <span className={styles.offerFormat}>{offer.format}</span>
         <span className={styles.offerMore}>
           Mehr erfahren <Arrow />
         </span>
-      ) : null}
-    </>
-  )
-
-  return (
-    <li id={offer.id} className={styles.offer}>
-      {offer.href ? (
-        <Link href={offer.href} className={styles.offerRow}>
-          {content}
-        </Link>
-      ) : (
-        <div className={styles.offerRow}>{content}</div>
-      )}
+      </Link>
     </li>
   )
 }
@@ -161,10 +149,10 @@ export default function StartupCoachingPage() {
         <ul className={styles.problems}>
           {problems.map((problem) => (
             <li key={problem.title}>
-              <a href={`#${problem.offer}`} className={styles.problem}>
+              <Link href={problem.href} className={styles.problem}>
                 <span className={styles.problemTitle}>{problem.title}</span>
                 <span className={styles.problemText}>{problem.text}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
