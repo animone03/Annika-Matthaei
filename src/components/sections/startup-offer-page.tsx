@@ -43,16 +43,17 @@ export function StartupOfferPage({
         {showStat ? (
           <div className={styles.stat}>
             <span aria-hidden="true" className={styles.statValue}>
-              65 %
+              1 von 4
             </span>
             <p className={styles.statBody}>
-              <span className={styles.srOnly}>65 % </span>
+              <span className={styles.srOnly}>1 von 4 </span>
               <span>
-                aller Startups scheitern nicht am Markt, sondern an Konflikten
-                im Gründerteam.
+                Co-Foundern verlässt das eigene Startup in den ersten drei
+                Jahren.
               </span>
               <span className={styles.statSource}>
-                Noam Wasserman, The Founder’s Dilemmas
+                Carta (2025), Daten von 22.352 Foundern VC-finanzierter
+                US-Startups
               </span>
             </p>
           </div>

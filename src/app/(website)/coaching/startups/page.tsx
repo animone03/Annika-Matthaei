@@ -12,7 +12,7 @@ import { Arrow } from '@/components/ui/arrow'
 export const metadata: Metadata = buildMetadata({
   title: 'Coaching für Startups & Founder – Annika Matthaei',
   description:
-    'Coaching für Founder, Co-Founder und Leadership-Teams in der Wachstumsphase. EXIST-Coaching. München und online.',
+    'Mentale Fitness und strategische Klarheit für Founder-Teams: Coaching für Founder, Co-Founder und Leadership-Teams. EXIST-Coaching. München und online.',
   path: '/coaching/startups',
   absoluteTitle: true,
 })
@@ -39,7 +39,8 @@ const offers: Offer[] = [
     id: 'lead-with-clarity',
     label: 'Für Leadership-Teams',
     name: 'Lead with Clarity',
-    promise: 'Workshops, nach denen ihr klarer und gemeinsamer führt.',
+    promise:
+      'Workshops für klare Prioritäten, klare Rollen und ein Team, das auch unter Druck gut führt.',
     format: 'Workshop · Auf euch zugeschnitten',
     href: '/coaching/startups/lead-with-clarity',
   },
@@ -47,7 +48,7 @@ const offers: Offer[] = [
     id: 'founders-in-sync',
     label: 'Für Co-Founder',
     name: 'Founders in Sync',
-    promise: 'Zurück zu echter Partnerschaft. Wieder Seite an Seite führen.',
+    promise: 'Sache und Beziehung klären. Wieder gemeinsam Tempo machen.',
     format: 'In wenigen Wochen · Als Founder-Team',
     href: '/coaching/startups/founders-in-sync',
   },
@@ -55,16 +56,27 @@ const offers: Offer[] = [
     id: 'founder-1-1',
     label: 'Für dich',
     name: 'Founder 1:1',
-    promise: 'Deine Energie zurück. Und ein Leadership-Team, dem du vertraust.',
+    promise: 'Mentale Fitness und strategisches Sparring für dich als Founder.',
     format: '3–4 Monate · 90 Min.',
     href: '/coaching/startups/founder-1-1',
+  },
+]
+
+const levers = [
+  {
+    title: 'Mentale Fitness',
+    text: 'Wie ihr unter Druck klar denkt, gut entscheidet und eure Energie haltet. Stress ist dabei nicht das Problem. Dauerstress ohne Erholung ist es.',
+  },
+  {
+    title: 'Strategische Klarheit',
+    text: 'Klare Prioritäten, Rollen und Entscheidungen. Denn der Streit über die Strategie ist selten nur ein Streit über die Strategie.',
   },
 ]
 
 const problems: { title: string; text: string; href: Route }[] = [
   {
     title: 'Vieles läuft nur über dich.',
-    text: 'Du bist fast nur noch in Meetings, die strategische Arbeit bleibt auf der Strecke.',
+    text: 'Du bist im Dauer-Alarmmodus, und die strategische Arbeit bleibt auf der Strecke.',
     href: '/coaching/startups/founder-1-1',
   },
   {
@@ -127,13 +139,13 @@ export default function StartupCoachingPage() {
       <section aria-labelledby="startups-title" className={styles.hero}>
         <p className={styles.heroLabel}>Coaching für Startups &amp; Founder</p>
         <h1 id="startups-title" className={styles.heroTitle}>
-          Euer Startup wächst. Wächst euer Team mit?
+          Mentale Fitness und strategische Klarheit für Founder-Teams.
         </h1>
         <div className={styles.heroRow}>
           <p className={styles.heroIntro}>
-            Ich unterstütze Founder in der Wachstumsphase, ihren Führungsstil zu
-            entwickeln und produktive Teams aufzubauen. Für mehr Zeit innerhalb
-            und außerhalb der Arbeit.
+            Euer Startup wächst, der Druck auch. Ich arbeite mit Foundern,
+            Co-Foundern und Leadership-Teams an beidem: wie ihr unter Druck klar
+            und gemeinsam entscheidet. Und wohin es strategisch geht.
           </p>
           <Link href="/kontakt" className={styles.darkButton}>
             Kennenlernen
@@ -167,22 +179,36 @@ export default function StartupCoachingPage() {
 
       <section aria-labelledby="stat-title" className={styles.stat}>
         <p className={styles.statValue} aria-hidden="true">
-          65 %
+          92 %
         </p>
         <div className={styles.statBody}>
           <h2 id="stat-title" className={styles.statText}>
-            <span className={styles.srOnly}>65 % </span>
-            aller Startups scheitern nicht am Markt, sondern an Konflikten im
-            Gründerteam.
+            <span className={styles.srOnly}>92 % </span>
+            der befragten VCs nennen das Team als Grund für gescheiterte
+            Investments.
           </h2>
           <p className={styles.statSource}>
-            Noam Wasserman, The Founder’s Dilemmas
+            Gompers et al. (2020), Befragung von 885 Venture-Capital-Investoren
           </p>
           <p className={styles.statNote}>
-            Wie ihr zusammenarbeitet, entscheidet mit über euren Erfolg. Genau
-            da setze ich an.
+            Wie ihr oben zusammenarbeitet und mit Druck umgeht, entscheidet mit
+            über euren Erfolg. Genau da setze ich an.
           </p>
         </div>
+      </section>
+
+      <section aria-labelledby="levers-title" className={styles.split}>
+        <h2 id="levers-title" className={styles.label}>
+          Zwei Hebel, ein Team
+        </h2>
+        <ul className={`${styles.problems} ${styles.levers}`}>
+          {levers.map((lever) => (
+            <li key={lever.title} className={styles.problem}>
+              <span className={styles.problemTitle}>{lever.title}</span>
+              <span className={styles.problemText}>{lever.text}</span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section aria-labelledby="offers-title" className={styles.offers}>
@@ -223,7 +249,7 @@ export default function StartupCoachingPage() {
         <div className={styles.whyBody}>
           <p className={styles.label}>Warum ich</p>
           <h2 id="why-title" className={styles.sectionTitle}>
-            Ich kenne die Wachstumsphase von innen.
+            Coach und Strategin. Die Wachstumsphase kenne ich von innen.
           </h2>
           <ul className={styles.facts}>
             {facts.map((fact) => (
@@ -247,9 +273,10 @@ export default function StartupCoachingPage() {
             ))}
           </ul>
           <p className={styles.whyText}>
-            Systemischer &amp; psychologischer Business Coach. Ich arbeite
-            praxisnah und ohne Theorie-Overload: mit klaren Strukturen und
-            Tools, die ihr am nächsten Tag nutzen könnt.
+            Systemischer &amp; psychologischer Business Coach und
+            Marketing-Strategin. Ich arbeite an der menschlichen Seite und
+            behalte die strategische im Blick: praxisnah, ohne Theorie-Overload,
+            mit Tools, die ihr am nächsten Tag nutzen könnt.
           </p>
         </div>
       </section>

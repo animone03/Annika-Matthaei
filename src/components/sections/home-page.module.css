@@ -500,14 +500,10 @@
     text-align: left;
   }
 
-  /* Zwei Zeilen, auch auf schmalen Handys: Schrift schrumpft bei Bedarf. */
+  /* Der Claim ist länger als eine Handyzeile: umbrechen statt schrumpfen. */
   .claim {
     max-width: none;
-    font-size: min(19px, calc((100vw - 40px) / 17));
-  }
-
-  .claimLine {
-    white-space: nowrap;
+    font-size: 21px;
   }
 
   .intro {
@@ -519,9 +515,6 @@
     display: none;
   }
 
-  /* Themen-Grafik ersetzt mobil die Angebotskarten */
-
-  .offerCore,
   .offerAdditional {
     display: none;
   }

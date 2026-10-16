@@ -57,9 +57,8 @@ const coaching: CoachingGroup[] = [
   },
 ]
 
-// TODO: Marketing auf eine eigene Seite umstellen, sobald sie existiert.
+// Marketing ist bewusst nicht mehr in der Navigation (Fokus Coaching); /marketing bleibt erreichbar.
 const navigation: NavItem[] = [
-  { label: 'Marketing', href: '/marketing' },
   { label: 'Über mich', href: '/ueber-mich' },
   { label: 'Kontakt', href: '/kontakt' },
 ]
@@ -316,7 +315,7 @@ export function SiteHeader() {
               menuOpen ? 'invisible' : ''
             }`}
           >
-            Coaching &amp; Marketing
+            Coaching &amp; Strategie
           </span>
         </Link>
         <nav

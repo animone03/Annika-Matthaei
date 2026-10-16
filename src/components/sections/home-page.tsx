@@ -7,12 +7,11 @@ import ctaPortrait from '../../../public/images/annika-unternehmen.jpg'
 import { Signature } from '@/components/ui/signature'
 
 import { HomeStickyCta } from './home-sticky-cta'
-import { TopicsGraphic } from './topics-graphic'
 import styles from './home-page.module.css'
 import { Arrow } from '@/components/ui/arrow'
 
 const marqueeText =
-  'COACHING  ·  EXIST  ·  CO-FOUNDER  ·  LEADERSHIP  ·  TEAMS  ·  MARKETING-STRATEGIE  ·  WEBDESIGN  ·  SEO  ·  BRANDING  ·  '
+  'MENTALE FITNESS  ·  STRATEGISCHE KLARHEIT  ·  FOUNDER 1:1  ·  CO-FOUNDER  ·  LEADERSHIP  ·  TEAMS  ·  EXIST  ·  '
 
 // Desktop zeigt Angebotszeilen, mobil Karten mit eigenen Texten (tag, mobileTitle, mobileDescription).
 const coreOffers = [
@@ -20,18 +19,16 @@ const coreOffers = [
     number: '01',
     tag: 'Startups & Founder',
     title: 'Coaching für Startups & Founder',
-    mobileTitle: 'Euer Startup wächst mit euch.',
-    description:
-      'EXIST & Early Stage · Co-Founder Coaching · Leadership & Teams',
-    mobileDescription:
-      'EXIST & Early Stage · Co-Founder Coaching · Leadership & Teams',
+    mobileTitle: 'Für Founder-Teams, die wachsen.',
+    description: 'Founder 1:1 · Co-Founder · Leadership-Teams · EXIST',
+    mobileDescription: 'Founder 1:1 · Co-Founder · Leadership-Teams · EXIST',
     href: '/coaching/startups',
   },
   {
     number: '02',
     tag: 'Unternehmen',
-    title: 'Leadership Coaching für Unternehmen',
-    mobileTitle: 'Leadership Coaching',
+    title: 'Coaching für Teams & Führungskräfte',
+    mobileTitle: 'Teams & Führungskräfte',
     description: 'Für Führungskräfte und Teams in Mittelstand und Konzern',
     mobileDescription: 'Für Führungskräfte und Teams in Mittelstand & Konzern',
     href: '/coaching/unternehmen',
@@ -82,21 +79,24 @@ export function HomePageContent({ email }: HomePageContentProps) {
         </div>
         <div className={styles.positioning}>
           <h1 id="home-title" className={styles.claim}>
-            <span className={styles.claimLine}>Coaching &amp; Marketing</span>
+            <span className={styles.claimLine}>
+              Mentale Fitness &amp; strategische Klarheit
+            </span>
             <br />
             <span className={styles.claimLine}>
-              für Menschen, die gestalten.
+              für Startups &amp; Teams, die wachsen.
             </span>
           </h1>
           <p className={`${styles.intro} ${styles.desktopOnly}`}>
-            Ich begleite Founder, Startups und Führungskräfte,
+            Ich begleite Founder, Co-Founder und Führungsteams,
             <br />
-            damit Teams gut zusammenarbeiten und Marken verstanden werden.
+            damit ihr unter Druck klar bleibt, gut entscheidet und gemeinsam
+            wachst.
             <br />
             In München und online.
           </p>
           <p className={`${styles.intro} ${styles.mobileOnly}`}>
-            Für Founder, Startups und Führungskräfte.
+            Für Founder, Startups und Teams in Unternehmen.
             <br />
             In München und online.
           </p>
@@ -126,32 +126,29 @@ export function HomePageContent({ email }: HomePageContentProps) {
         <div className={styles.topicsIntro}>
           <p className={styles.label}>Wie ich arbeite</p>
           <h2 id="home-topics" className={styles.topicsHeading}>
-            Alles hängt zusammen.
+            Zwei Hebel. Ein Team.
           </h2>
           <p className={styles.topicsText}>
-            Menschen, Marke und Prozesse beeinflussen sich gegenseitig. Darum
-            schaue ich aufs Ganze und setze dort an, wo es bei dir gerade zählt.
+            Mentale Fitness: wie ihr unter Druck klar denkt, gut entscheidet
+            und eure Energie haltet. Strategische Klarheit: klare Prioritäten,
+            Rollen und Entscheidungen. Denn der Streit über die Strategie ist
+            selten nur ein Streit über die Strategie.
           </p>
         </div>
-        <TopicsGraphic variant="desktop" />
       </section>
 
       <section
         aria-labelledby="home-topics-mobile"
         className={styles.topicsMobile}
       >
-        <p className={styles.label}>Wobei ich dich begleite</p>
+        <p className={styles.label}>Wie ich arbeite</p>
         <h2 id="home-topics-mobile" className={styles.topicsHeading}>
-          Alles hängt zusammen.
+          Zwei Hebel. Ein Team.
         </h2>
         <p className={styles.topicsText}>
-          Tippe auf ein Thema: Es führt dich direkt zur passenden Seite.
+          Mentale Fitness, damit ihr unter Druck klar bleibt. Strategische
+          Klarheit, damit alle wissen, wohin es geht.
         </p>
-        <TopicsGraphic variant="mobile" />
-        {/* TODO: Ziel festlegen, sobald es eine Übersicht aller Angebote gibt. */}
-        <Link href="/coaching/startups" className={styles.underlineLink}>
-          Alle Angebote als Liste <Arrow />
-        </Link>
       </section>
 
       <section
@@ -196,61 +193,6 @@ export function HomePageContent({ email }: HomePageContentProps) {
         </ul>
       </section>
 
-      <section
-        id="marketing"
-        aria-label="Ergänzende Angebote"
-        className={`${styles.offerGrid} ${styles.offerAdditional}`}
-      >
-        {/* Leere linke Spalte, damit die Zeile im Raster bleibt. */}
-        <div aria-hidden="true" />
-        <div className={styles.offerList}>
-          <Link
-            href="/marketing"
-            className={`${styles.offerRow} ${styles.offerRowSecondary}`}
-          >
-            <span className={styles.offerNumber}>
-              03<span className={styles.mobileOnly}> · Marketing</span>
-            </span>
-            <span className={styles.offerText}>
-              <span className={`${styles.offerTitle} ${styles.desktopOnly}`}>
-                Marketing-Beratung
-              </span>
-              <span className={`${styles.offerTitle} ${styles.mobileOnly}`}>
-                Strategie, Web &amp; Branding
-              </span>
-              <span
-                className={`${styles.offerDescription} ${styles.desktopOnly}`}
-              >
-                Strategie · Webdesign (Frontend &amp; Backend) &amp; SEO ·
-                Branding: Logo, Typo, Visual Identity
-              </span>
-              {/* TODO: „ijustwannacoach“ als eigenen externen Link umsetzen, sobald die URL feststeht. */}
-              <span
-                className={`${styles.offerDescription} ${styles.mobileOnly}`}
-              >
-                Auch speziell für Coaches, bei ijustwannacoach
-              </span>
-            </span>
-            <Arrow className={styles.offerArrow} />
-          </Link>
-          {/* TODO: Link zu ijustwannacoach ergänzen, sobald die URL feststeht. */}
-          <p className={`${styles.coachHint} ${styles.desktopOnly}`}>
-            <span>
-              Du bist Coach? Marketing speziell für Coaches bei ijustwannacoach
-            </span>
-            <Arrow />
-          </p>
-          <p className={`${styles.aiNote} ${styles.desktopOnly}`}>
-            Außerdem unterstütze ich dabei, Abläufe zu vereinfachen, auch mit
-            AI, wo sie wirklich entlastet.{' '}
-            {/* TODO: Ziel für „Mehr dazu“ festlegen. */}
-            <Link href="/kontakt" className={styles.inlineLink}>
-              Mehr dazu
-            </Link>
-          </p>
-        </div>
-      </section>
-
       <section aria-label="Erfahrung und Referenzen" className={styles.trust}>
         <ul className={`${styles.facts} ${styles.desktopOnly}`}>
           {facts.map((fact) => (
@@ -287,8 +229,8 @@ export function HomePageContent({ email }: HomePageContentProps) {
         </h2>
         <div className={styles.contactBody}>
           <p>
-            Ob Gründungsteam, Führungsrolle oder Marke: Im kostenlosen
-            Kennenlerngespräch klären wir, was dich weiterbringt.
+            Ob Gründungsteam, Co-Founder oder Führungsrolle: Im kostenlosen
+            Kennenlerngespräch klären wir, was euch weiterbringt.
           </p>
           <Link
             href="/kontakt"

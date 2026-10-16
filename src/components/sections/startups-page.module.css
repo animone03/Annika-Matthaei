@@ -143,6 +143,11 @@ section.split {
   gap: 32px;
 }
 
+/* „Zwei Hebel“: gleiche Optik wie .problems, aber zwei Spalten. */
+.levers {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .problem {
   display: flex;
   height: 100%;
@@ -532,7 +537,8 @@ section.split:has(.outcomes) {
     padding-block: 44px;
   }
 
-  .problems {
+  .problems,
+  .levers {
     grid-template-columns: 1fr;
     gap: 22px;
   }

@@ -45,8 +45,8 @@ export default function LeadWithClarityPage() {
           text: 'Ein gemeinsames Führungsbild, auf das sich das ganze Team verlassen kann. Auch für Leads, die neu dazukommen.',
         },
         {
-          title: 'Mentale Stärke aufbauen',
-          text: 'Kluge Priorisierung, gute Grenzen und Energiemanagement, damit ihr auch stressige Phasen souverän führt.',
+          title: 'Mentale Fitness im Team',
+          text: 'Kluge Priorisierung, gute Grenzen und Energiemanagement, damit ihr auch stressige Phasen souverän führt. Denn euer Stress überträgt sich aufs Team, eure Klarheit auch.',
         },
         {
           title: 'Team-Stärken sichtbar machen',

@@ -6,7 +6,7 @@ import { buildMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildMetadata({
   title: 'Founders in Sync: Co-Founder Coaching – Annika Matthaei',
   description:
-    'Coaching für Co-Founder-Teams: Spannungen klären, wieder Seite an Seite führen. In München und online.',
+    'Coaching für Co-Founder-Teams: Sach- und Beziehungsfragen klären, wieder gemeinsam entscheiden und Tempo machen. In München und online.',
   path: '/coaching/startups/founders-in-sync',
   absoluteTitle: true,
 })
@@ -21,19 +21,19 @@ export default function FoundersInSyncPage() {
       sectionsLabel="Woran wir arbeiten"
       sections={[
         {
-          title: 'Spannungen ehrlich klären',
-          text: 'Wir bringen auf den Tisch, was zwischen euch steht. In einem geschützten Rahmen, in dem beide gehört werden.',
+          title: 'Sache und Beziehung auseinanderhalten',
+          text: 'Oft sieht es aus wie ein Streit über Produkt, Pricing oder Go-to-Market. Wir schauen, was davon Strategie ist und was zwischen euch steht. Und klären beides, in einem Rahmen, in dem beide gehört werden.',
         },
         {
-          title: 'Wieder Seite an Seite führen',
-          text: 'Rollen, Verantwortung und gemeinsame Prinzipien, damit ihr nach außen und im Team mit einer Stimme sprecht.',
+          title: 'Rollen und Entscheidungen klären',
+          text: 'Wer entscheidet was? Was macht ihr, wenn ihr euch nicht einig seid? Damit ihr nach außen und im Team mit einer Stimme sprecht.',
         },
         {
-          title: 'Gemeinsam Tempo machen',
-          text: 'Wie ihr Entscheidungen trefft und Konflikte löst, auch in stressigen Phasen, ohne euch dabei aufzureiben.',
+          title: 'Unter Druck zusammenhalten',
+          text: 'Wie ihr auch in stressigen Phasen fair streitet, schnell entscheidet und euch dabei nicht aufreibt.',
         },
       ]}
-      result="In wenigen Wochen zurück zu echter Partnerschaft. Stark im Zusammenspiel."
+      result="In wenigen Wochen wieder gemeinsam Tempo machen, mit klaren Rollen und einer Strategie, hinter der ihr beide steht."
       facts={[
         { label: 'Für', value: 'Co-Founder-Teams, bei denen es hakt' },
         {

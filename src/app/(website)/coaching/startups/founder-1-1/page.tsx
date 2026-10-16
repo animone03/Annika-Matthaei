@@ -6,7 +6,7 @@ import { buildMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildMetadata({
   title: 'Founder Coaching 1:1 – Annika Matthaei',
   description:
-    '1:1 Coaching für Founder in der Wachstumsphase: 3–4 Monate, alle 2–3 Wochen 90 Minuten. In München und online.',
+    'Founder Coaching 1:1: mentale Fitness und strategisches Sparring für Founder in der Wachstumsphase. 3–4 Monate, in München und online.',
   path: '/coaching/startups/founder-1-1',
   absoluteTitle: true,
 })
@@ -17,19 +17,19 @@ export default function FounderCoachingPage() {
       title="Founder Coaching 1:1"
       question="Was wäre, wenn du endlich wieder voller Energie Entrepreneur sein kannst?"
       intro="Vieles läuft nur über dich. Du bist fast nur noch in Meetings, und die strategische Arbeit bleibt auf der Strecke. Du wünschst dir ein Leadership-Team, dem du vertraust."
-      sectionsLabel="So arbeiten wir"
+      sectionsLabel="Woran wir arbeiten"
       sections={[
         {
-          title: 'Deine Themen im Mittelpunkt',
-          text: 'Wir arbeiten an allem, was dich gerade herausfordert. Kein festes Programm, sondern genau das, was du brauchst.',
+          title: 'Mentale Fitness',
+          text: 'Wie du unter Druck klar bleibst, deine Energie hältst und wieder Raum für das Wesentliche hast. Mit Werkzeugen, die im Founder-Alltag funktionieren, nicht nur im Seminarraum.',
         },
         {
-          title: 'Ein Rhythmus, der in deinen Kalender passt',
-          text: 'Alle 2–3 Wochen eine Session von 90 Minuten, über 3–4 Monate. So kommst du auf kürzestem Weg an dein Ziel.',
+          title: 'Strategisches Sparring',
+          text: 'Wohin soll es gehen, was ist jetzt wichtig, was lässt du los? Ich bringe meine Erfahrung als Strategin ein, wenn du sie brauchst. Und halte mich zurück, wenn du deine eigene Antwort findest.',
         },
         {
-          title: 'Was sich verändert',
-          text: 'Sehr wahrscheinlich erlebst du schnell einiges anders: Du hast deine Energie zurück. Flexible Strukturen und klare Rollen machen alles wieder überschaubar.',
+          title: 'Führen und abgeben',
+          text: 'Klare Rollen und ein Leadership-Team, an das du abgeben kannst. Damit nicht mehr alles über deinen Tisch läuft.',
         },
       ]}
       resultLabel="Danach hast du"
