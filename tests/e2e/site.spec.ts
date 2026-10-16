@@ -6,7 +6,12 @@ test('homepage exposes its landmarks and no serious accessibility violations', a
 }) => {
   await page.goto('/')
   await expect(page.locator('html')).toHaveAttribute('lang', 'de')
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+  await expect(
+    page.getByRole('heading', { level: 1, name: /Fit for\s*growth\./ }),
+  ).toBeVisible()
+  await expect(
+    page.getByRole('img', { name: 'Annika Matthaei im Sessel' }),
+  ).toBeVisible()
   const footer = page.getByRole('contentinfo')
   await expect(footer).toContainText(/© \d{4}/)
   await expect(
@@ -26,7 +31,7 @@ test('startup coaching page has no serious accessibility violations', async ({
   await page.goto('/fuer-unternehmen')
   await expect(page).toHaveURL(/\/coaching\/startups$/)
   await expect(
-    page.getByRole('heading', { level: 1, name: /Euer Startup/ }),
+    page.getByRole('heading', { level: 1, name: /Mentale Fitness/ }),
   ).toBeVisible()
 
   const results = await new AxeBuilder({ page }).analyze()
@@ -50,19 +55,11 @@ test('about page has no serious accessibility violations', async ({ page }) => {
   expect(serious).toEqual([])
 })
 
-test('marketing page has no serious accessibility violations', async ({
+test('the retired marketing page redirects to the homepage', async ({
   page,
 }) => {
   await page.goto('/marketing')
-  await expect(
-    page.getByRole('heading', { level: 1, name: /Strategie/ }),
-  ).toBeVisible()
-
-  const results = await new AxeBuilder({ page }).analyze()
-  const serious = results.violations.filter((violation) =>
-    ['serious', 'critical'].includes(violation.impact || ''),
-  )
-  expect(serious).toEqual([])
+  await expect(page).toHaveURL(/\/$/)
 })
 
 test('contact page preselects topics and has no serious accessibility violations', async ({
@@ -94,14 +91,17 @@ test('desktop navigation exposes the fixed routes', async ({
   const navigation = page.getByRole('navigation', {
     name: 'Hauptnavigation',
   })
-  const coaching = navigation.getByRole('button', { name: /Coaching/ })
-  await expect(coaching).toHaveAttribute('aria-expanded', 'false')
-  await coaching.click()
-  await expect(coaching).toHaveAttribute('aria-expanded', 'true')
+  for (const name of ['Startups', 'Unternehmen', 'Über mich', 'Kontakt']) {
+    await expect(navigation.getByRole('link', { name })).toBeVisible()
+  }
+  await expect(navigation.getByRole('link', { name: /Marketing/ })).toHaveCount(
+    0,
+  )
+
+  await page.goto('/coaching/startups/founder-1-1')
   await expect(
-    navigation.getByRole('link', { name: 'Für Startups & Founder' }),
-  ).toBeVisible()
-  await expect(navigation.getByRole('link', { name: 'Kontakt' })).toBeVisible()
+    navigation.getByRole('link', { name: 'Startups' }),
+  ).toHaveAttribute('aria-current', 'true')
 })
 
 test('mobile navigation exposes every fixed route', async ({
@@ -113,6 +113,9 @@ test('mobile navigation exposes every fixed route', async ({
   const navigation = page.getByRole('navigation', { name: 'Mobile Navigation' })
   await expect(
     navigation.getByRole('link', { name: /Für Startups/ }),
+  ).toBeVisible()
+  await expect(
+    navigation.getByRole('link', { name: /Für Unternehmen/ }),
   ).toBeVisible()
   await expect(navigation.getByRole('link', { name: 'Kontakt' })).toBeVisible()
 })

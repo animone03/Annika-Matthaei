@@ -2,7 +2,6 @@ export const scrollPages = [
   '/',
   '/coaching/startups',
   '/coaching/unternehmen',
-  '/marketing',
   '/fuer-einzelpersonen',
   '/ueber-mich',
   '/kontakt',

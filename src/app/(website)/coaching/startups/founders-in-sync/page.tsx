@@ -6,7 +6,7 @@ import { buildMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildMetadata({
   title: 'Founders in Sync: Co-Founder Coaching – Annika Matthaei',
   description:
-    'Coaching für Co-Founder-Teams: Sach- und Beziehungsfragen klären, wieder gemeinsam entscheiden und Tempo machen. In München und online.',
+    'Coaching für Co-Founder-Teams: Sach- und Beziehungsfragen klären, wieder gemeinsam entscheiden und Tempo machen.',
   path: '/coaching/startups/founders-in-sync',
   absoluteTitle: true,
 })
@@ -41,7 +41,7 @@ export default function FoundersInSyncPage() {
           value: 'Programm über wenige Wochen, gemeinsam als Founder-Team',
         },
         { label: 'Start', value: 'Kennenlern-Call, getrennt oder gemeinsam' },
-        { label: 'Ort', value: 'München und online' },
+        { label: 'Ort', value: 'Online & vor Ort' },
       ]}
     />
   )

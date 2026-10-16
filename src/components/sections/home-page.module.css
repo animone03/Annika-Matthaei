@@ -25,89 +25,108 @@
   display: none;
 }
 
-/* Hero */
+/* Hero (2a): Text links, Foto randlos rechts. Name und Navigation kommen aus
+   dem Seitenkopf, der ab 768 px über dem Hero liegt (site-header.tsx). */
 
-.identity {
+.hero {
   display: grid;
-  grid-template-columns: 1fr 260px 1fr;
-  align-items: center;
-  gap: 24px;
-  padding: 72px var(--gutter) 0;
+  grid-template-columns: minmax(0, 1fr) 500px;
+  min-height: 720px;
 }
 
-/* Pinsel-Signatur: „Annika“ sitzt höher, „Matthaei“ tiefer. */
+.heroText {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  /* 36 px Rand plus die Höhe des Namens aus dem Seitenkopf */
+  padding: 78px var(--gutter) 56px;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin: auto 0;
+  padding-top: 40px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* Höchstens so groß, dass „GROWTH.“ in die Spalte passt */
+.claim {
+  font-size: min(124px, 20cqi);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.intro {
+  max-width: 540px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.signOff {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px 40px;
+  margin-top: 8px;
+}
+
+.heroButton {
+  background: var(--ink);
+  padding: 20px 30px;
+  color: var(--paper);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background-color 180ms ease;
+}
+
+.page .heroButton:hover {
+  background: var(--ink-soft);
+  color: var(--paper);
+}
+
+.signature {
+  display: flex;
+  width: 250px;
+  flex-direction: column;
+}
+
 .firstName,
 .lastName {
   display: block;
-  width: 100%;
   height: auto;
 }
 
 .firstName {
-  max-width: 330px;
-  align-self: start;
-  margin-top: 36px;
+  width: 62%;
 }
 
 .lastName {
-  max-width: 345px;
-  justify-self: end;
-  align-self: end;
-  margin-bottom: 56px;
+  width: 68%;
+  align-self: flex-end;
+  margin-top: -10px;
 }
 
-.passepartout {
-  background: #fff;
-  padding: 7px;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 0.08);
+.heroPhoto {
+  position: relative;
 }
 
 .portrait {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 4;
   object-fit: cover;
+  object-position: center 35%;
   filter: grayscale(1);
-}
-
-.positioning {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  padding: 44px var(--gutter) 0;
-  text-align: center;
-}
-
-.claim {
-  max-width: 640px;
-  font-size: 30px;
-  line-height: 1.15;
-  text-transform: uppercase;
-  text-wrap: balance;
-}
-
-.intro {
-  max-width: 520px;
-  font-size: 16px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-}
-
-.manifestRow {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 48px var(--gutter) 56px;
-}
-
-.manifest {
-  font-size: 13px;
-  line-height: 1.7;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .underlineLink {
@@ -209,11 +228,6 @@
   padding: 72px var(--gutter) 24px;
 }
 
-.offerAdditional {
-  padding: 8px var(--gutter) 72px;
-  scroll-margin-top: 24px;
-}
-
 .label {
   padding-top: 10px;
   font-size: 12px;
@@ -269,53 +283,6 @@
 .offerArrow {
   justify-self: end;
   font-size: 22px;
-}
-
-.offerRowSecondary {
-  border-top-color: var(--line-strong);
-  padding: 24px 0;
-}
-
-.offerRowSecondary .offerText {
-  gap: 8px;
-}
-
-.offerRowSecondary .offerTitle {
-  font-size: 28px;
-  line-height: 1.1;
-  letter-spacing: -0.015em;
-}
-
-.offerRowSecondary .offerDescription {
-  font-size: 14px;
-}
-
-.offerRowSecondary .offerArrow {
-  font-size: 20px;
-}
-
-.coachHint {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  background: var(--sand);
-  padding: 18px 22px;
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.aiNote {
-  margin-top: 20px;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--muted);
-}
-
-.inlineLink {
-  border-bottom: 1px solid var(--ink);
-  color: var(--ink);
 }
 
 /* Vertrauen */
@@ -393,36 +360,21 @@
   color: var(--ink);
 }
 
+/* Unter 1100 px: Fotospalte 42 % */
+
+@media (max-width: 1099px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) 42%;
+  }
+
+  .claim {
+    font-size: min(clamp(72px, 9vw, 124px), 20cqi);
+  }
+}
+
 /* Tablet: 768–1023 px */
 
 @media (max-width: 1023px) {
-  /* Hero stapelt wie mobil: Foto, darunter die Signatur */
-  .identity {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-
-  .passepartout {
-    order: -1;
-    width: 240px;
-    justify-self: center;
-    margin-bottom: 18px;
-  }
-
-  .firstName,
-  .lastName {
-    margin: 0;
-  }
-
-  .firstName {
-    width: 54%;
-    justify-self: start;
-  }
-
-  .lastName {
-    width: 66%;
-  }
-
   .offerGrid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -443,7 +395,7 @@
   }
 }
 
-/* Mobil: unter 768 px (Variante 2c) */
+/* Mobil: unter 768 px */
 
 @media (max-width: 767px) {
   .page {
@@ -458,64 +410,63 @@
     display: revert;
   }
 
-  /* Hero: Foto randlos oben, Name zweizeilig darunter */
+  /* Hero einspaltig: Foto in voller Breite, Text darunter. Der Seitenkopf
+     steht hier normal über dem Foto. */
 
-  .identity {
-    grid-template-columns: 1fr;
-    justify-items: stretch;
-    gap: 0;
-    padding: 0;
+  .hero {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
   }
 
-  .passepartout {
+  .heroPhoto {
     order: -1;
-    width: auto;
-    justify-self: stretch;
-    margin: 0 var(--gutter);
-    background: none;
-    padding: 0;
-    box-shadow: none;
+    aspect-ratio: 4 / 5;
   }
 
   .portrait {
-    height: 380px;
-    aspect-ratio: auto;
     object-position: center 30%;
   }
 
-  .firstName {
-    width: calc(54% - var(--gutter));
-    margin: 22px 0 0 var(--gutter);
+  .heroText {
+    padding: 28px var(--gutter) 8px;
   }
 
-  .lastName {
-    width: calc(66% - var(--gutter));
-    margin: 0 var(--gutter) 0 0;
+  .heroContent {
+    gap: 20px;
+    margin: 0;
+    padding-top: 0;
   }
 
-  .positioning {
-    align-items: flex-start;
-    gap: 12px;
-    padding: 28px var(--gutter) 0;
-    text-align: left;
+  .eyebrow {
+    font-size: 11px;
   }
 
-  /* Der Claim ist länger als eine Handyzeile: umbrechen statt schrumpfen. */
   .claim {
-    max-width: none;
-    font-size: 21px;
+    font-size: min(56px, 20cqi);
   }
 
   .intro {
-    font-size: 15px;
+    font-size: 16px;
   }
 
-  .manifestRow,
+  .signOff {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+    margin-top: 4px;
+  }
+
+  .heroButton {
+    text-align: center;
+  }
+
+  .signature {
+    width: 220px;
+    align-self: center;
+  }
+
   .topics {
-    display: none;
-  }
-
-  .offerAdditional {
     display: none;
   }
 
@@ -579,16 +530,11 @@
     padding: 36px var(--gutter) 12px;
   }
 
-  .offerAdditional {
-    padding: 0 var(--gutter);
-  }
-
   .offerList {
     gap: 12px;
   }
 
-  .offerRow,
-  .offerRowSecondary {
+  .offerRow {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -614,12 +560,6 @@
     color: var(--ink);
   }
 
-  .offerRowSecondary,
-  .offerRowSecondary:hover {
-    background: var(--sand);
-    color: var(--ink);
-  }
-
   .offerNumber {
     padding-right: 24px;
     font-size: 11px;
@@ -627,20 +567,17 @@
     text-transform: uppercase;
   }
 
-  .offerText,
-  .offerRowSecondary .offerText {
+  .offerText {
     gap: 10px;
   }
 
-  .offerTitle,
-  .offerRowSecondary .offerTitle {
+  .offerTitle {
     font-size: 26px;
     line-height: 1;
     letter-spacing: -0.02em;
   }
 
   .offerDescription,
-  .offerRowSecondary .offerDescription,
   .offerRow:hover .offerDescription {
     font-size: 13px;
     line-height: 1.45;
@@ -648,8 +585,7 @@
     opacity: 0.75;
   }
 
-  .offerArrow,
-  .offerRowSecondary .offerArrow {
+  .offerArrow {
     position: absolute;
     top: 16px;
     right: 20px;

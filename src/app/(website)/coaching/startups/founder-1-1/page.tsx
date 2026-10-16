@@ -6,7 +6,7 @@ import { buildMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildMetadata({
   title: 'Founder Coaching 1:1 – Annika Matthaei',
   description:
-    'Founder Coaching 1:1: mentale Fitness und strategisches Sparring für Founder in der Wachstumsphase. 3–4 Monate, in München und online.',
+    'Founder Coaching 1:1: mentale Fitness und strategisches Sparring für Founder in der Wachstumsphase. 3–4 Monate, online und vor Ort.',
   path: '/coaching/startups/founder-1-1',
   absoluteTitle: true,
 })
@@ -38,7 +38,7 @@ export default function FounderCoachingPage() {
         { label: 'Für', value: 'Founder in der Wachstumsphase' },
         { label: 'Dauer', value: '3–4 Monate' },
         { label: 'Rhythmus', value: 'Alle 2–3 Wochen, 90 Minuten' },
-        { label: 'Ort', value: 'München und online' },
+        { label: 'Ort', value: 'Online & vor Ort' },
       ]}
     />
   )

@@ -23,6 +23,12 @@ const nextConfig: NextConfig = {
         destination: '/coaching/startups',
         permanent: true,
       },
+      // Marketing ist kein Angebot mehr.
+      {
+        source: '/marketing',
+        destination: '/',
+        permanent: true,
+      },
     ]
   },
 }

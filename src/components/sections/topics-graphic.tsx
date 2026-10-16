@@ -17,10 +17,11 @@ const TAU = Math.PI * 2
 const coachingEdgeId = 'topics-coaching-edge'
 const SPEED = 0.3
 
+const desktopSize = { width: 880, height: 640 }
+const mobileSize = { width: 350, height: 530 }
+
 const ink = '#1e2329'
 const paper = '#f4f5f3'
-const taupe = '#b4c2cd'
-const white = '#ffffff'
 const bluestone = '#587284'
 const mist = '#e2e8ec'
 
@@ -94,15 +95,17 @@ function harmonicOffset(waves: number[][], a: number, t: number) {
 function desktopAreaPath(area: Area, index: number, t: number) {
   const { cx, cy } = area
   const R0 = area.rx - 14
-  const waves = harmonics(index, index === 2 ? 0.55 : 1)
+  const waves = harmonics(index, 1)
   const points = Array.from({ length: 28 }, (_, i) => {
     const a = (i / 28) * TAU
     const ca = Math.cos(a)
     const sa = Math.sin(a)
+    const right = desktopSize.width - 12
+    const bottom = desktopSize.height - 12
     const tx =
-      Math.abs(ca) < 1e-6 ? 1e9 : ca > 0 ? (868 - cx) / ca : (12 - cx) / ca
+      Math.abs(ca) < 1e-6 ? 1e9 : ca > 0 ? (right - cx) / ca : (12 - cx) / ca
     const ty =
-      Math.abs(sa) < 1e-6 ? 1e9 : sa > 0 ? (758 - cy) / sa : (12 - cy) / sa
+      Math.abs(sa) < 1e-6 ? 1e9 : sa > 0 ? (bottom - cy) / sa : (12 - cy) / sa
     const limit = Math.min(tx, ty) - 36
     let radius = R0 + harmonicOffset(waves, a, t)
     if (radius > limit) radius = limit + 30 * Math.tanh((radius - limit) / 30)
@@ -120,15 +123,22 @@ function softClamp(v: number, lo: number, hi: number) {
 }
 
 function mobileAreaPath(area: Area, index: number, t: number) {
-  const scale =
-    (Math.min(area.rx, area.ry) / 250) * 0.85 * (index === 2 ? 0.6 : 1)
+  const scale = (Math.min(area.rx, area.ry) / 250) * 0.85
   const waves = harmonics(index, scale)
   const points = Array.from({ length: 28 }, (_, i) => {
     const a = (i / 28) * TAU
     const off = harmonicOffset(waves, a, t)
     return [
-      softClamp(area.cx + Math.cos(a) * (area.rx - 10 + off), 8, 350 - 8),
-      softClamp(area.cy + Math.sin(a) * (area.ry - 10 + off), 8, 830 - 8),
+      softClamp(
+        area.cx + Math.cos(a) * (area.rx - 10 + off),
+        8,
+        mobileSize.width - 8,
+      ),
+      softClamp(
+        area.cy + Math.sin(a) * (area.ry - 10 + off),
+        8,
+        mobileSize.height - 8,
+      ),
     ]
   })
   return closedPath(points)
@@ -161,41 +171,24 @@ function centeredLabel(r: number, fontSize: number, factor = 1.5) {
 }
 
 const desktop: Variant = {
-  width: 880,
-  height: 770,
+  ...desktopSize,
   areaPath: desktopAreaPath,
   areas: [
     {
       label: 'Coaching',
-      cx: 264,
-      cy: 310,
+      cx: 440,
+      cy: 320,
       rx: 250,
       ry: 250,
       fill: 'rgba(88,114,132,.07)',
-    },
-    {
-      label: 'Marketing',
-      cx: 616,
-      cy: 310,
-      rx: 250,
-      ry: 250,
-      fill: 'rgba(180,194,205,.45)',
-    },
-    {
-      label: 'Prozesse & Organisation',
-      cx: 440,
-      cy: 560,
-      rx: 140,
-      ry: 140,
-      fill: 'rgba(255,255,255,.55)',
     },
   ],
   bubbles: [
     {
       id: 'gruendung',
       label: 'Gründungs­coaching',
-      x: 175,
-      y: 215,
+      x: 335,
+      y: 235,
       r: 104,
       amp: 7,
       background: bluestone,
@@ -229,8 +222,8 @@ const desktop: Variant = {
     {
       id: 'leadership',
       label: 'Leadership',
-      x: 215,
-      y: 450,
+      x: 545,
+      y: 400,
       r: 104,
       amp: 7,
       background: bluestone,
@@ -261,156 +254,20 @@ const desktop: Variant = {
       color: ink,
       labelStyle: childLabel(38),
     },
-    {
-      id: 'bridge',
-      label: 'Marketing für Coaches',
-      x: 440,
-      y: 310,
-      r: 52,
-      amp: 9,
-      background: white,
-      color: ink,
-      stroke: ink,
-      labelStyle: centeredLabel(52, 11),
-    },
-    {
-      id: 'strategie',
-      label: 'Strategie',
-      x: 548,
-      y: 180,
-      r: 42,
-      amp: 12,
-      background: white,
-      color: ink,
-      labelStyle: centeredLabel(42, 11),
-    },
-    {
-      id: 'webdesign',
-      label: 'Webdesign',
-      x: 720,
-      y: 200,
-      r: 100,
-      amp: 7,
-      background: white,
-      color: ink,
-      labelStyle: parentLabel(100),
-    },
-    {
-      id: 'frontend',
-      label: 'Frontend & Backend Develop­ment',
-      parent: 'webdesign',
-      x: -26,
-      y: 22,
-      r: 48,
-      amp: 5,
-      background: taupe,
-      color: ink,
-      labelStyle: childLabel(48),
-    },
-    {
-      id: 'seo',
-      label: 'SEO',
-      parent: 'webdesign',
-      x: 52,
-      y: 26,
-      r: 24,
-      amp: 5,
-      background: taupe,
-      color: ink,
-      labelStyle: childLabel(24),
-    },
-    {
-      id: 'branding',
-      label: 'Branding',
-      x: 690,
-      y: 440,
-      r: 100,
-      amp: 7,
-      background: white,
-      color: ink,
-      labelStyle: parentLabel(100),
-    },
-    {
-      id: 'logo',
-      label: 'Logo',
-      parent: 'branding',
-      x: -40,
-      y: 18,
-      r: 24,
-      amp: 5,
-      background: taupe,
-      color: ink,
-      labelStyle: childLabel(24),
-    },
-    {
-      id: 'typo',
-      label: 'Typo',
-      parent: 'branding',
-      x: 10,
-      y: 48,
-      r: 24,
-      amp: 5,
-      background: taupe,
-      color: ink,
-      labelStyle: childLabel(24),
-    },
-    {
-      id: 'visual',
-      label: 'Visual Identity',
-      parent: 'branding',
-      x: 44,
-      y: -2,
-      r: 34,
-      amp: 5,
-      background: taupe,
-      color: ink,
-      labelStyle: childLabel(34),
-    },
-    {
-      id: 'ai',
-      label: 'AI',
-      x: 440,
-      y: 575,
-      r: 46,
-      amp: 12,
-      background: taupe,
-      color: ink,
-      stroke: ink,
-      labelStyle: centeredLabel(46, 20),
-    },
   ],
 }
 
-// TODO: Ziele auf /marketing#… und die AI-Seite umstellen, sobald es sie
-// gibt; Brücke auf ijustwannacoach.
 const mobile: Variant = {
-  width: 350,
-  height: 830,
+  ...mobileSize,
   areaPath: mobileAreaPath,
   areas: [
     {
       label: 'Coaching',
       cx: 175,
-      cy: 230,
+      cy: 290,
       rx: 158,
-      ry: 160,
+      ry: 175,
       fill: 'rgba(88,114,132,.07)',
-    },
-    {
-      label: 'Marketing',
-      cx: 175,
-      cy: 490,
-      rx: 158,
-      ry: 160,
-      fill: 'rgba(180,194,205,.45)',
-    },
-    {
-      label: 'Prozesse & Organisation',
-      cx: 175,
-      cy: 700,
-      rx: 110,
-      ry: 80,
-      fill: 'rgba(255,255,255,.55)',
     },
   ],
   bubbles: [
@@ -418,7 +275,7 @@ const mobile: Variant = {
       id: 'gruendung',
       label: 'Gründungs­coaching',
       x: 110,
-      y: 200,
+      y: 248,
       r: 62,
       amp: 5,
       background: bluestone,
@@ -430,74 +287,13 @@ const mobile: Variant = {
       id: 'leadership',
       label: 'Leadership',
       x: 235,
-      y: 265,
+      y: 335,
       r: 62,
       amp: 5,
       background: bluestone,
       color: paper,
       labelStyle: centeredLabel(62, 12, 1.6),
       href: '/coaching/unternehmen',
-    },
-    {
-      id: 'bridge',
-      label: 'Marketing für Coaches',
-      x: 175,
-      y: 362,
-      r: 42,
-      amp: 6,
-      background: white,
-      color: ink,
-      stroke: ink,
-      labelStyle: { ...centeredLabel(42, 10, 1.6), letterSpacing: '0.02em' },
-    },
-    {
-      id: 'strategie',
-      label: 'Strategie',
-      x: 95,
-      y: 472,
-      r: 41,
-      amp: 8,
-      background: white,
-      color: ink,
-      labelStyle: centeredLabel(41, 11, 1.6),
-      href: '/marketing',
-    },
-    {
-      id: 'webdesign',
-      label: 'Webdesign',
-      x: 240,
-      y: 467,
-      r: 58,
-      amp: 5,
-      background: white,
-      color: ink,
-      labelStyle: centeredLabel(58, 12, 1.6),
-      href: '/marketing',
-    },
-    {
-      id: 'branding',
-      label: 'Branding',
-      x: 150,
-      y: 577,
-      r: 58,
-      amp: 5,
-      background: white,
-      color: ink,
-      labelStyle: centeredLabel(58, 12, 1.6),
-      href: '/marketing',
-    },
-    {
-      id: 'ai',
-      label: 'AI',
-      x: 175,
-      y: 712,
-      r: 34,
-      amp: 8,
-      background: taupe,
-      color: ink,
-      stroke: ink,
-      labelStyle: centeredLabel(34, 18, 1.6),
-      href: '/kontakt',
     },
   ],
 }
@@ -666,13 +462,6 @@ export function TopicsGraphic({ variant }: TopicsGraphicProps) {
             Haltung: Gründungscoaching mit EXIST und Co-Founder-Beziehung,
             Leadership mit High Performance Teams und Führungskräften.
           </li>
-          <li>
-            Marketing: Strategie, Webdesign mit Frontend- und
-            Backend-Development und SEO, Branding mit Logo, Typo und Visual
-            Identity.
-          </li>
-          <li>Zwischen Coaching und Marketing: Marketing für Coaches.</li>
-          <li>Prozesse &amp; Organisation: AI.</li>
         </ul>
       )}
       <div
@@ -710,12 +499,6 @@ export function TopicsGraphic({ variant }: TopicsGraphicProps) {
               <span>Systemisch · Agil · Positive Psychologie</span>
             </span>
           ) : null}
-          <span className={`${styles.heading} ${styles.headingMarketing}`}>
-            Marketing
-          </span>
-          <span className={`${styles.heading} ${styles.headingProcesses}`}>
-            Prozesse &amp; Organisation
-          </span>
         </div>
 
         {config.bubbles.map((bubble, index) => {

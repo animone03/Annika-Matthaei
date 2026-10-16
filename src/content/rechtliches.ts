@@ -79,6 +79,7 @@ export const impressum: LegalDocument = {
 
 export const datenschutz: LegalDocument = {
   title: 'Datenschutz',
+  updated: 'Oktober 2026',
   blocks: [
     {
       title: '1. Verantwortliche',
@@ -87,24 +88,29 @@ export const datenschutz: LegalDocument = {
     {
       title: '2. Überblick',
       lines: [
-        '[Kurz: welche Daten beim Besuch der Website verarbeitet werden und warum]',
+        'Ich verarbeite personenbezogene Daten nur, soweit es für den Betrieb dieser Website und die Beantwortung Ihrer Anfragen nötig ist. Personenbezogene Daten fallen an, wenn Sie die Website aufrufen (technische Zugriffsdaten) und wenn Sie mir über das Kontaktformular oder per E-Mail schreiben.',
+        'Diese Website verwendet keine Analyse-Tools, kein Tracking und keine Werbe-Cookies.',
       ],
-      pending: true,
     },
     {
       title: '3. Hosting',
       lines: [
-        'Diese Website wird bei Vercel Inc. (USA) gehostet. Die Domain ist bei IONOS SE registriert.',
-        '[Text laut Generator: Server-Logfiles, Auftragsverarbeitung, Datenübermittlung in die USA / EU-US Data Privacy Framework]',
+        'Diese Website wird bei Vercel Inc. (USA) gehostet. Beim Aufruf verarbeitet Vercel automatisch technische Zugriffsdaten (Server-Logfiles): IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, zuvor besuchte Seite, Browser und Betriebssystem. Das ist nötig, um die Website auszuliefern und ihre Sicherheit zu gewährleisten.',
+        'Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse liegt in einer sicheren und zuverlässigen Bereitstellung der Website.',
+        'Mit Vercel besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO. Vercel ist unter dem EU-US Data Privacy Framework zertifiziert. Die Übermittlung in die USA stützt sich auf den Angemessenheitsbeschluss der EU-Kommission und ergänzend auf Standardvertragsklauseln.',
+        'Die Domain ist bei der IONOS SE (Deutschland) registriert.',
       ],
-      pending: true,
     },
     {
-      title: '4. Kontaktformular',
+      title: '4. Kontaktformular und E-Mail',
       lines: [
-        '[Welche Felder, Zweck, Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO, Speicherdauer, Formular-Dienst]',
+        'Wenn Sie mir über das Kontaktformular schreiben, verarbeite ich die Angaben, die Sie eintragen: Name, E-Mail-Adresse und Ihre Nachricht sowie, falls angegeben, Unternehmen, Telefonnummer und die ausgewählten Themen. Ich nutze diese Daten ausschließlich, um Ihre Anfrage zu beantworten.',
+        'Die Angaben werden über den E-Mail-Dienst Resend (USA) an mein E-Mail-Postfach weitergeleitet und auf der Website nicht gespeichert. Mit Resend besteht ein Vertrag zur Auftragsverarbeitung. Resend ist unter dem EU-US Data Privacy Framework zertifiziert, ergänzend gelten Standardvertragsklauseln.',
+        'E-Mails, auch solche, die Sie mir direkt schreiben, empfange ich über Google (Google Ireland Limited, Irland).',
+        'Zum Schutz vor Spam enthält das Formular ein unsichtbares Feld und prüft die Zeit, die zum Ausfüllen gebraucht wird. Dabei werden keine zusätzlichen Daten gespeichert.',
+        'Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, wenn Ihre Anfrage mit einem Vertrag oder dessen Anbahnung zusammenhängt, sonst Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Anfragen).',
+        'Ich lösche Ihre Anfrage, sobald sie erledigt ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.',
       ],
-      pending: true,
     },
     {
       title: '5. Terminbuchung',
@@ -114,30 +120,35 @@ export const datenschutz: LegalDocument = {
       pending: true,
     },
     {
-      title: '6. Schriften',
+      title: '5. Schriften',
       lines: [
-        '[Century Gothic: lokal eingebunden oder über Adobe Fonts / Monotype. Bei externem Dienst: Übertragung der IP-Adresse]',
+        'Die Schriften dieser Website sind lokal eingebunden. Beim Aufruf wird keine Verbindung zu Servern Dritter wie Google Fonts oder Adobe Fonts aufgebaut.',
       ],
-      pending: true,
     },
     {
-      title: '7. Analyse & Cookies',
+      title: '6. Cookies',
       lines: [
-        '[Nur falls genutzt, sonst: Diese Website verwendet keine Tracking-Cookies.]',
+        'Diese Website setzt keine Tracking- oder Marketing-Cookies. Ein technisch notwendiges Cookie entsteht nur, wenn ich als Betreiberin die Vorschau meines Redaktionssystems nutze. Für Besucherinnen und Besucher fällt es nicht an.',
       ],
-      pending: true,
+    },
+    {
+      title: '7. Redaktionssystem',
+      lines: [
+        'Die Inhalte dieser Website pflege ich mit dem Redaktionssystem Sanity (Sanity AS, Norwegen). Bilder werden über die Infrastruktur von Vercel ausgeliefert. Dabei werden keine Daten von Besucherinnen und Besuchern an Sanity übermittelt.',
+      ],
     },
     {
       title: '8. Externe Links',
-      lines: ['[Hinweis zu ijustwannacoach und weiteren verlinkten Seiten]'],
-      pending: true,
+      lines: [
+        'Diese Website enthält Links zu externen Seiten, zum Beispiel zu meinem LinkedIn-Profil. Daten werden erst an den jeweiligen Anbieter übertragen, wenn Sie einen Link anklicken. Für die Datenverarbeitung dort ist der jeweilige Anbieter verantwortlich.',
+      ],
     },
     {
       title: '9. Ihre Rechte',
       lines: [
-        '[Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch, Beschwerde bei der Aufsichtsbehörde (LfDI Baden-Württemberg)]',
+        'Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO) und Datenübertragbarkeit (Art. 20 DSGVO). Verarbeitungen auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO können Sie widersprechen (Art. 21 DSGVO). Schreiben Sie mir dafür einfach eine E-Mail.',
+        'Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel beim Landesbeauftragten für den Datenschutz und die Informationsfreiheit Baden-Württemberg.',
       ],
-      pending: true,
     },
   ],
 }

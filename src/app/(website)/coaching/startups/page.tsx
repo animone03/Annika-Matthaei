@@ -12,7 +12,7 @@ import { Arrow } from '@/components/ui/arrow'
 export const metadata: Metadata = buildMetadata({
   title: 'Coaching für Startups & Founder – Annika Matthaei',
   description:
-    'Mentale Fitness und strategische Klarheit für Founder-Teams: Coaching für Founder, Co-Founder und Leadership-Teams. EXIST-Coaching. München und online.',
+    'Mentale Fitness und strategische Klarheit für Founder-Teams: Coaching für Founder, Co-Founder und Leadership-Teams. EXIST-Coaching.',
   path: '/coaching/startups',
   absoluteTitle: true,
 })
@@ -100,12 +100,7 @@ const outcomes = [
 const facts: { value: string; text: string; short?: string }[] = [
   { value: '13', text: 'Jahre Konzern, Mittelstand & Startup' },
   { value: '9', text: 'Jahre selbst in Führung' },
-  {
-    value: 'EXIST',
-    text: 'Coach über Hochschulkooperation',
-    // Mobil zu lang für die schmale Spalte.
-    short: 'Coach über Hochschule',
-  },
+  { value: '2', text: 'Startups von innen erlebt' },
 ]
 
 const number = (index: number) => String(index + 1).padStart(2, '0')

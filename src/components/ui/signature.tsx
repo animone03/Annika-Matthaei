@@ -21,15 +21,20 @@ const parts = {
 type SignatureProps = {
   part?: keyof typeof parts
   className?: string
+  // Eigener Name für Screenreader; '' blendet die Grafik für sie aus.
+  label?: string
 }
 
-export function Signature({ part = 'full', className }: SignatureProps) {
-  const { label, viewBox, paths } = parts[part]
+export function Signature({ part = 'full', className, label }: SignatureProps) {
+  const { viewBox, paths } = parts[part]
+  const name = label ?? parts[part].label
   return (
     <svg
       viewBox={viewBox}
-      role="img"
-      aria-label={label}
+      role={name ? 'img' : undefined}
+      aria-label={name || undefined}
+      aria-hidden={name ? undefined : true}
+      focusable="false"
       className={className}
       fill="currentColor"
     >

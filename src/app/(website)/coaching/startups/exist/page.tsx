@@ -36,7 +36,7 @@ export default function ExistCoachingPage() {
       facts={[
         { label: 'Für', value: 'EXIST-geförderte Founder-Teams' },
         { label: 'Format', value: '6 Sessions, als Team, bei Bedarf 1:1' },
-        { label: 'Ort', value: 'München und online' },
+        { label: 'Ort', value: 'Online & vor Ort' },
         {
           label: 'Finanzierung',
           value:

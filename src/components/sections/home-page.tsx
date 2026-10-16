@@ -11,7 +11,7 @@ import styles from './home-page.module.css'
 import { Arrow } from '@/components/ui/arrow'
 
 const marqueeText =
-  'MENTALE FITNESS  ·  STRATEGISCHE KLARHEIT  ·  FOUNDER 1:1  ·  CO-FOUNDER  ·  LEADERSHIP  ·  TEAMS  ·  EXIST  ·  '
+  'KLARER KOPF  ·  VOLLE ENERGIE  ·  STARKES TEAM  ·  FOUNDER 1:1  ·  CO-FOUNDER  ·  LEADERSHIP-TEAMS  ·  '
 
 // Desktop zeigt Angebotszeilen, mobil Karten mit eigenen Texten (tag, mobileTitle, mobileDescription).
 const coreOffers = [
@@ -37,8 +37,8 @@ const coreOffers = [
 
 const facts = [
   {
-    title: 'EXIST-Coach',
-    text: 'Gründungsteams über eine Hochschulkooperation',
+    title: '2 Startups',
+    text: 'Von innen erlebt, mit Go-to-Market und Gründerteam',
   },
   {
     title: 'Zertifiziert',
@@ -52,7 +52,7 @@ const facts = [
 
 const mobileFacts = [
   { value: '13', text: 'Jahre Konzern, Mittelstand & Startup' },
-  { value: 'EXIST', text: 'Coach via Hochschulkooperation' },
+  { value: '2', text: 'Startups von innen erlebt' },
 ]
 
 type HomePageContentProps = {
@@ -63,55 +63,45 @@ export function HomePageContent({ email }: HomePageContentProps) {
   return (
     <div data-home data-frame-page className={styles.page}>
       <section aria-labelledby="home-title" className={styles.hero}>
-        <div className={styles.identity}>
-          <Signature part="first" className={styles.firstName} />
-          <div className={styles.passepartout}>
-            <Image
-              src={heroPortrait}
-              alt="Annika Matthaei, sitzend in einem Sessel"
-              preload
-              placeholder="blur"
-              sizes="(min-width: 1024px) 260px, (min-width: 768px) 240px, 100vw"
-              className={styles.portrait}
-            />
+        <div className={styles.heroText}>
+          <div className={styles.heroContent}>
+            <p className={styles.eyebrow}>Mentale Fitness für Founder-Teams</p>
+            <h1 id="home-title" className={styles.claim}>
+              Fit for
+              <br />
+              growth.
+            </h1>
+            <p className={styles.intro}>
+              Ich begleite Founder, Co-Founder und Leadership-Teams zu mehr
+              Energie, klaren Köpfen und Entscheidungen, die sitzen.
+            </p>
+            <div className={styles.signOff}>
+              <Link href="/kontakt" className={styles.heroButton}>
+                Kostenloses Kennenlernen
+              </Link>
+              {/* Pinsel-Signatur als Gruß: „Matthaei“ versetzt und leicht
+                  überlappend unter „Annika“. */}
+              <div className={styles.signature}>
+                <Signature
+                  part="first"
+                  label="Annika Matthaei"
+                  className={styles.firstName}
+                />
+                <Signature part="last" label="" className={styles.lastName} />
+              </div>
+            </div>
           </div>
-          <Signature part="last" className={styles.lastName} />
         </div>
-        <div className={styles.positioning}>
-          <h1 id="home-title" className={styles.claim}>
-            <span className={styles.claimLine}>
-              Mentale Fitness &amp; strategische Klarheit
-            </span>
-            <br />
-            <span className={styles.claimLine}>
-              für Startups &amp; Teams, die wachsen.
-            </span>
-          </h1>
-          <p className={`${styles.intro} ${styles.desktopOnly}`}>
-            Ich begleite Founder, Co-Founder und Führungsteams,
-            <br />
-            damit ihr unter Druck klar bleibt, gut entscheidet und gemeinsam
-            wachst.
-            <br />
-            In München und online.
-          </p>
-          <p className={`${styles.intro} ${styles.mobileOnly}`}>
-            Für Founder, Startups und Teams in Unternehmen.
-            <br />
-            In München und online.
-          </p>
-        </div>
-        <div className={styles.manifestRow}>
-          <p className={styles.manifest}>
-            Progress over Perfection.
-            <br />
-            Play. Laugh.
-            <br />
-            Learn. Unlearn.
-          </p>
-          <Link href="/kontakt" className={styles.underlineLink}>
-            Kennenlernen <Arrow />
-          </Link>
+        <div className={styles.heroPhoto}>
+          <Image
+            src={heroPortrait}
+            alt="Annika Matthaei im Sessel"
+            fill
+            preload
+            placeholder="blur"
+            sizes="(min-width: 1100px) 500px, (min-width: 768px) 42vw, 100vw"
+            className={styles.portrait}
+          />
         </div>
       </section>
 
@@ -129,8 +119,8 @@ export function HomePageContent({ email }: HomePageContentProps) {
             Zwei Hebel. Ein Team.
           </h2>
           <p className={styles.topicsText}>
-            Mentale Fitness: wie ihr unter Druck klar denkt, gut entscheidet
-            und eure Energie haltet. Strategische Klarheit: klare Prioritäten,
+            Mentale Fitness: wie ihr unter Druck klar denkt, gut entscheidet und
+            eure Energie haltet. Strategische Klarheit: klare Prioritäten,
             Rollen und Entscheidungen. Denn der Streit über die Strategie ist
             selten nur ein Streit über die Strategie.
           </p>

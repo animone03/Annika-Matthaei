@@ -29,7 +29,6 @@ export const contactTopics = [
   { slug: 'co-founder', label: 'Co-Founder' },
   { slug: 'exist', label: 'EXIST' },
   { slug: 'leadership', label: 'Leadership & Teams' },
-  { slug: 'marketing', label: 'Marketing' },
   { slug: 'unklar', label: 'Noch unklar' },
 ]
 

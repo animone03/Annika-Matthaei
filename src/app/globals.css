@@ -73,7 +73,6 @@ body {
 .site-shell:has(
     [data-company-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-marketing-page]:not([style*='display: none']),
     [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
@@ -93,33 +92,31 @@ body {
   padding-block: 0 32px;
 }
 
+/* Startseite: Der Seitenkopf liegt ab 768 px absolut über dem Hero. */
+.site-shell:has([data-home]:not([style*='display: none'])) {
+  position: relative;
+}
+
 .footer-motto {
   display: none;
 }
 
-/* Marketing und Coaching-Übersichten: Header liegt im taubenblauen Hero. */
-.site-shell:has(
-    [data-marketing-page]:not([style*='display: none']),
-    [data-coaching-page]:not([style*='display: none'])
-  )
+/* Coaching-Übersichten: Header liegt im taubenblauen Hero. */
+.site-shell:has([data-coaching-page]:not([style*='display: none']))
   .site-header.bg-background {
   background: var(--top-surface);
 }
 
-.site-shell:has(
-    [data-marketing-page]:not([style*='display: none']),
-    [data-coaching-page]:not([style*='display: none'])
-  )
+.site-shell:has([data-coaching-page]:not([style*='display: none']))
   .site-header-subtitle {
   color: #3a4049;
 }
 
-/* Kontakt, Über mich, Marketing, Coaching und Rechtliches: Footer mit Motto links, Trennlinie oben. */
+/* Kontakt, Über mich, Coaching und Rechtliches: Footer mit Motto links, Trennlinie oben. */
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-marketing-page]:not([style*='display: none']),
     [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
@@ -132,7 +129,6 @@ body {
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-marketing-page]:not([style*='display: none']),
     [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
@@ -148,7 +144,6 @@ body {
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-marketing-page]:not([style*='display: none']),
     [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
@@ -193,7 +188,6 @@ body {
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
-      [data-marketing-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
@@ -206,7 +200,6 @@ body {
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
-      [data-marketing-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
@@ -221,7 +214,6 @@ body {
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
-      [data-marketing-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
@@ -236,7 +228,6 @@ body {
   /* Platz für die fixe Kontaktleiste, Motto einzeilig. */
   .site-shell:has(
       [data-about-page]:not([style*='display: none']),
-      [data-marketing-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
@@ -246,7 +237,6 @@ body {
 
   .site-shell:has(
       [data-about-page]:not([style*='display: none']),
-      [data-marketing-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none'])

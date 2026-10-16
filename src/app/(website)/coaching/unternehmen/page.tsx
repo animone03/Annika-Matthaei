@@ -21,7 +21,7 @@ import { buildMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildMetadata({
   title: 'Leadership & Teamentwicklung für Unternehmen – Annika Matthaei',
   description:
-    'Coaching, Workshops und Teamentwicklung für Teams, Abteilungen und Führungskräfte. Systemisch, agil, stärkenorientiert. In München und online.',
+    'Coaching, Workshops und Teamentwicklung für Teams, Abteilungen und Führungskräfte. Systemisch, agil, stärkenorientiert.',
   path: '/coaching/unternehmen',
   absoluteTitle: true,
 })

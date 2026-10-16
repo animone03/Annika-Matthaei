@@ -7,7 +7,7 @@ export const metadata: Metadata = buildMetadata({
   title:
     'Lead with Clarity: Leadership-Workshops für Startups – Annika Matthaei',
   description:
-    'Workshops für Leadership-Teams in der Wachstumsphase: Prioritäten, Rollen, Entscheidungen. Praxisnah, in München und online.',
+    'Workshops für Leadership-Teams in der Wachstumsphase: Prioritäten, Rollen, Entscheidungen. Praxisnah, online und vor Ort.',
   path: '/coaching/startups/lead-with-clarity',
   absoluteTitle: true,
 })
@@ -72,7 +72,7 @@ export default function LeadWithClarityPage() {
           label: 'Start',
           value: 'Kickoff-Call, in dem wir klären, was ihr braucht',
         },
-        { label: 'Ort', value: 'München und online' },
+        { label: 'Ort', value: 'Online & vor Ort' },
       ]}
     />
   )

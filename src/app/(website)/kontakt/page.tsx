@@ -15,9 +15,9 @@ import { getSiteSettings } from '@/sanity/lib/repository'
 import { Arrow } from '@/components/ui/arrow'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Kontakt – Annika Matthaei | Coaching & Marketing in München',
+  title: 'Kontakt – Annika Matthaei | Coaching & Consulting',
   description:
-    'Erstgespräch zu Startup-Coaching, Leadership oder Marketing anfragen.',
+    'Erstgespräch zu Startup-Coaching, Co-Founder-Themen oder Leadership anfragen.',
   path: '/kontakt',
   absoluteTitle: true,
 })
@@ -49,8 +49,8 @@ export default async function ContactPage() {
         </div>
 
         <p className={styles.text}>
-          Ob Gründungsteam, Führungsrolle oder Marke, erzähl mir kurz, worum es
-          geht. Ich melde mich innerhalb von zwei Werktagen für ein
+          Ob Gründungsteam, Co-Founder oder Führungsrolle, erzähl mir kurz,
+          worum es geht. Ich melde mich innerhalb von zwei Werktagen für ein
           unverbindliches Kennenlernen.
         </p>
 
@@ -100,7 +100,7 @@ export default async function ContactPage() {
             <div className={styles.directRow}>
               <span className={styles.directValue}>
                 <span className={styles.directLabel}>Ort</span>
-                München &amp; online
+                Online &amp; vor Ort
               </span>
             </div>
           </li>

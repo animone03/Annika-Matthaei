@@ -5,7 +5,7 @@ export const hero = {
   label: 'Coaching für Unternehmen',
   title: 'Gute Teams entstehen nicht zufällig.',
   intro:
-    'Ich begleite Teams, Abteilungen und Führungskräfte dabei, besser zusammenzuarbeiten und auch unter Druck klar zu bleiben. Mit mentaler Fitness und strategischer Klarheit, systemisch und agil. In München und online.',
+    'Ich begleite Teams, Abteilungen und Führungskräfte dabei, besser zusammenzuarbeiten und auch unter Druck klar zu bleiben. Mit mentaler Fitness und strategischer Klarheit, systemisch und agil.',
   mobileIntro:
     'Ich begleite Teams und Führungskräfte dabei, besser zusammenzuarbeiten und auch unter Druck klar zu bleiben. Systemisch und agil.',
 }

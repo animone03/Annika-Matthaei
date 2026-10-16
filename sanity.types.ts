@@ -920,8 +920,7 @@ export type SITEMAP_QUERY_RESULT = {
 }
 
 // Query TypeMap
-import '@sanity/client'
-declare module '@sanity/client' {
+declare global {
   interface SanityQueries {
     '\n  *[_type == "siteSettings" && _id == "siteSettings"][0]{\n    _id,\n    siteTitle,\n    siteDescription,\n    ownerName,\n    ownerRole,\n    email,\n    socialLinks[]{_key, label, url},\n    defaultSocialImage{\n      ...,\n      asset->{_id, url, metadata{dimensions, lqip}}\n    },\n    projectsSeo{\n      ...,\n      socialImage{\n        ...,\n        asset->{_id, url, metadata{dimensions, lqip}}\n      }\n    },\n    blogSeo{\n      ...,\n      socialImage{\n        ...,\n        asset->{_id, url, metadata{dimensions, lqip}}\n      }\n    }\n  }\n': SITE_SETTINGS_QUERY_RESULT
     '\n  *[_type == "homePage" && _id == "homePage"][0]{\n    _id,\n    hero,\n    introduction,\n    portrait{\n      ...,\n      asset->{_id, url, metadata{dimensions, lqip}}\n    },\n    projectsHeading,\n    projectsOverviewLinkLabel,\n    featuredProjects[]->{\n      _id,\n      title,\n      "slug": slug.current,\n      summary,\n      publishedAt,\n      role,\n      disciplines,\n      coverImage{\n        ...,\n        asset->{_id, url, metadata{dimensions, lqip}}\n      }\n    },\n    postsHeading,\n    postsOverviewLinkLabel,\n    contactTeaser,\n    seo{\n      ...,\n      socialImage{\n        ...,\n        asset->{_id, url, metadata{dimensions, lqip}}\n      }\n    }\n  }\n': HOME_PAGE_QUERY_RESULT
@@ -935,4 +934,8 @@ declare module '@sanity/client' {
     '\n  *[_type == "legalPage" && _id == $id][0]{\n    _id,\n    title,\n    body,\n    updatedAt,\n    seo{\n      ...,\n      socialImage{\n        ...,\n        asset->{_id, url, metadata{dimensions, lqip}}\n      }\n    }\n  }\n': LEGAL_PAGE_QUERY_RESULT
     '{\n  "projects": *[_type == "project" && defined(slug.current)]{\n    "slug": slug.current,\n    _updatedAt\n  },\n  "posts": *[_type == "post" && defined(slug.current)]{\n    "slug": slug.current,\n    _updatedAt\n  }\n}': SITEMAP_QUERY_RESULT
   }
+}
+// Lets @sanity/client releases that predate the global registry read it too
+declare module '@sanity/client' {
+  interface SanityQueries extends globalThis.SanityQueries {}
 }
