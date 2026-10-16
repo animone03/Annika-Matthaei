@@ -8,6 +8,7 @@ import { Arrow } from '@/components/ui/arrow'
 
 type HomeStickyCtaProps = {
   email?: string | null
+  label?: string
   startId?: string
   endSelector?: string
 }
@@ -16,6 +17,7 @@ type HomeStickyCtaProps = {
 // und verschwindet wieder, wenn der Kontakt-Link (endSelector) sichtbar wird.
 export function HomeStickyCta({
   email,
+  label = 'Kennenlernen',
   startId = 'home-title',
   endSelector = '#home-contact a',
 }: HomeStickyCtaProps) {
@@ -49,7 +51,7 @@ export function HomeStickyCta({
   return (
     <div className={styles.stickyCta} data-visible={visible} inert={!visible}>
       <Link href="/kontakt" className={styles.stickyCtaPrimary}>
-        Kennenlernen <Arrow />
+        {label} <Arrow />
       </Link>
       {email ? (
         <a

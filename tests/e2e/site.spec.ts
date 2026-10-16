@@ -6,8 +6,12 @@ test('homepage exposes its landmarks and no serious accessibility violations', a
 }) => {
   await page.goto('/')
   await expect(page.locator('html')).toHaveAttribute('lang', 'de')
+  // Visuell versteckt: Die Wörter stehen sichtbar links und rechts vom Foto.
   await expect(
-    page.getByRole('heading', { level: 1, name: /Fit for\s*growth\./ }),
+    page.getByRole('heading', { level: 1, name: 'Fit for growth.' }),
+  ).toBeAttached()
+  await expect(
+    page.getByRole('heading', { level: 2, name: 'Wachstum beginnt bei dir.' }),
   ).toBeVisible()
   await expect(
     page.getByRole('img', { name: 'Annika Matthaei im Sessel' }),

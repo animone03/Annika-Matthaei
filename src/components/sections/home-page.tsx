@@ -2,58 +2,28 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import heroPortrait from '../../../public/images/annika-sessel.jpeg'
-import ctaPortrait from '../../../public/images/annika-unternehmen.jpg'
+import contactPortrait from '../../../public/images/annika-lachend.webp'
 
+import { Arrow } from '@/components/ui/arrow'
 import { Signature } from '@/components/ui/signature'
+import {
+  approaches,
+  audiences,
+  contact,
+  facts,
+  growth,
+  hero,
+  marquee,
+  method,
+  stats,
+} from '@/content/startseite'
 
 import { HomeStickyCta } from './home-sticky-cta'
 import styles from './home-page.module.css'
-import { Arrow } from '@/components/ui/arrow'
 
-const marqueeText =
-  'KLARER KOPF  ·  VOLLE ENERGIE  ·  STARKES TEAM  ·  FOUNDER 1:1  ·  CO-FOUNDER  ·  LEADERSHIP-TEAMS  ·  '
+const marqueeText = marquee.map((word) => `${word}  ·  `).join('')
 
-// Desktop zeigt Angebotszeilen, mobil Karten mit eigenen Texten (tag, mobileTitle, mobileDescription).
-const coreOffers = [
-  {
-    number: '01',
-    tag: 'Startups & Founder',
-    title: 'Coaching für Startups & Founder',
-    mobileTitle: 'Für Founder-Teams, die wachsen.',
-    description: 'Founder 1:1 · Co-Founder · Leadership-Teams · EXIST',
-    mobileDescription: 'Founder 1:1 · Co-Founder · Leadership-Teams · EXIST',
-    href: '/coaching/startups',
-  },
-  {
-    number: '02',
-    tag: 'Unternehmen',
-    title: 'Coaching für Teams & Führungskräfte',
-    mobileTitle: 'Teams & Führungskräfte',
-    description: 'Für Führungskräfte und Teams in Mittelstand und Konzern',
-    mobileDescription: 'Für Führungskräfte und Teams in Mittelstand & Konzern',
-    href: '/coaching/unternehmen',
-  },
-] as const
-
-const facts = [
-  {
-    title: '2 Startups',
-    text: 'Von innen erlebt, mit Go-to-Market und Gründerteam',
-  },
-  {
-    title: 'Zertifiziert',
-    text: 'Systemischer & psychologischer Business Coach',
-  },
-  {
-    title: '13 Jahre Praxis',
-    text: 'Konzern, Mittelstand & Startup, 9 davon mit Führung',
-  },
-]
-
-const mobileFacts = [
-  { value: '13', text: 'Jahre Konzern, Mittelstand & Startup' },
-  { value: '2', text: 'Startups von innen erlebt' },
-]
+const number = (index: number) => String(index + 1).padStart(2, '0')
 
 type HomePageContentProps = {
   email?: string | null
@@ -63,45 +33,43 @@ export function HomePageContent({ email }: HomePageContentProps) {
   return (
     <div data-home data-frame-page className={styles.page}>
       <section aria-labelledby="home-title" className={styles.hero}>
-        <div className={styles.heroText}>
-          <div className={styles.heroContent}>
-            <p className={styles.eyebrow}>Mentale Fitness für Founder-Teams</p>
-            <h1 id="home-title" className={styles.claim}>
+        {/* Die Headline steht als zwei Wörter links und rechts vom Foto. Für
+            Screenreader und Suchmaschinen gibt es sie einmal am Stück. */}
+        <h1 id="home-title" className={styles.srOnly}>
+          Fit for growth.
+        </h1>
+        <div className={styles.heroStage}>
+          <div className={`${styles.heroCell} ${styles.heroCellFirst}`}>
+            <span aria-hidden="true" className={styles.heroWord}>
               Fit for
-              <br />
-              growth.
-            </h1>
-            <p className={styles.intro}>
-              Ich begleite Founder, Co-Founder und Leadership-Teams zu mehr
-              Energie, klaren Köpfen und Entscheidungen, die sitzen.
-            </p>
-            <div className={styles.signOff}>
-              <Link href="/kontakt" className={styles.heroButton}>
-                Kostenloses Kennenlernen
-              </Link>
-              {/* Pinsel-Signatur als Gruß: „Matthaei“ versetzt und leicht
-                  überlappend unter „Annika“. */}
-              <div className={styles.signature}>
-                <Signature
-                  part="first"
-                  label="Annika Matthaei"
-                  className={styles.firstName}
-                />
-                <Signature part="last" label="" className={styles.lastName} />
-              </div>
+            </span>
+          </div>
+          <div className={styles.heroPhoto}>
+            <Image
+              src={heroPortrait}
+              alt="Annika Matthaei im Sessel"
+              preload
+              placeholder="blur"
+              sizes="(min-width: 1024px) 300px, 340px"
+              className={styles.portrait}
+            />
+            <div className={styles.signature}>
+              <Signature part="first" label="" className={styles.firstName} />
+              <Signature part="last" label="" className={styles.lastName} />
             </div>
           </div>
+          <div className={`${styles.heroCell} ${styles.heroCellLast}`}>
+            <span aria-hidden="true" className={styles.heroWord}>
+              Growth.
+            </span>
+          </div>
         </div>
-        <div className={styles.heroPhoto}>
-          <Image
-            src={heroPortrait}
-            alt="Annika Matthaei im Sessel"
-            fill
-            preload
-            placeholder="blur"
-            sizes="(min-width: 1100px) 500px, (min-width: 768px) 42vw, 100vw"
-            className={styles.portrait}
-          />
+        <div className={styles.heroBody}>
+          <p className={styles.eyebrow}>{hero.eyebrow}</p>
+          <p className={styles.intro}>{hero.intro}</p>
+          <Link id="home-hero-cta" href="/kontakt" className={styles.button}>
+            {hero.cta}
+          </Link>
         </div>
       </section>
 
@@ -112,91 +80,122 @@ export function HomePageContent({ email }: HomePageContentProps) {
         </div>
       </div>
 
-      <section aria-labelledby="home-topics" className={styles.topics}>
-        <div className={styles.topicsIntro}>
-          <p className={styles.label}>Wie ich arbeite</p>
-          <h2 id="home-topics" className={styles.topicsHeading}>
-            Zwei Hebel. Ein Team.
-          </h2>
-          <p className={styles.topicsText}>
-            Mentale Fitness: wie ihr unter Druck klar denkt, gut entscheidet und
-            eure Energie haltet. Strategische Klarheit: klare Prioritäten,
-            Rollen und Entscheidungen. Denn der Streit über die Strategie ist
-            selten nur ein Streit über die Strategie.
-          </p>
-        </div>
+      <section aria-label="Erfahrung" className={styles.facts}>
+        <ul className={styles.factList}>
+          {facts.map((fact) => (
+            <li key={fact.value} className={styles.fact}>
+              <span className={styles.factValue}>{fact.value}</span>
+              <span className={styles.factText}>{fact.text}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="home-growth" className={styles.growth}>
+        <h2 id="home-growth" className={styles.growthTitle}>
+          {growth.title}
+        </h2>
+        <ul className={styles.growthList}>
+          {growth.items.map((item) => (
+            <li key={item.question} className={styles.growthItem}>
+              <h3 className={styles.growthQuestion}>{item.question}</h3>
+              <ul className={styles.tags}>
+                {item.tags.map((tag) => (
+                  <li key={tag} className={styles.tag}>
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section
-        aria-labelledby="home-topics-mobile"
-        className={styles.topicsMobile}
+        aria-labelledby="home-audiences"
+        className={`${styles.split} ${styles.audiences}`}
       >
-        <p className={styles.label}>Wie ich arbeite</p>
-        <h2 id="home-topics-mobile" className={styles.topicsHeading}>
-          Zwei Hebel. Ein Team.
+        <h2 id="home-audiences" className={styles.label}>
+          {audiences.label}
         </h2>
-        <p className={styles.topicsText}>
-          Mentale Fitness, damit ihr unter Druck klar bleibt. Strategische
-          Klarheit, damit alle wissen, wohin es geht.
-        </p>
-      </section>
-
-      <section
-        aria-labelledby="home-offers"
-        className={`${styles.offerGrid} ${styles.offerCore}`}
-      >
-        <h2 id="home-offers" className={styles.label}>
-          Wobei ich dich begleite
-        </h2>
-        <ul className={styles.offerList}>
-          {coreOffers.map((offer) => (
-            <li key={offer.number}>
-              <Link href={offer.href} className={styles.offerRow}>
-                <span className={styles.offerNumber}>
-                  {offer.number}
-                  <span className={styles.mobileOnly}> · {offer.tag}</span>
+        <ul>
+          {audiences.items.map((item, index) => (
+            <li key={item.href}>
+              <Link href={item.href} className={styles.audienceRow}>
+                <span className={styles.audienceNumber}>{number(index)}</span>
+                <span className={styles.audienceText}>
+                  <span className={styles.audienceTitle}>{item.title}</span>
+                  <span className={styles.audienceSub}>{item.text}</span>
                 </span>
-                <span className={styles.offerText}>
-                  <span
-                    className={`${styles.offerTitle} ${styles.desktopOnly}`}
-                  >
-                    {offer.title}
-                  </span>
-                  <span className={`${styles.offerTitle} ${styles.mobileOnly}`}>
-                    {offer.mobileTitle}
-                  </span>
-                  <span
-                    className={`${styles.offerDescription} ${styles.desktopOnly}`}
-                  >
-                    {offer.description}
-                  </span>
-                  <span
-                    className={`${styles.offerDescription} ${styles.mobileOnly}`}
-                  >
-                    {offer.mobileDescription}
-                  </span>
-                </span>
-                <Arrow className={styles.offerArrow} />
+                <Arrow className={styles.audienceArrow} />
               </Link>
             </li>
           ))}
         </ul>
       </section>
 
-      <section aria-label="Erfahrung und Referenzen" className={styles.trust}>
-        <ul className={`${styles.facts} ${styles.desktopOnly}`}>
-          {facts.map((fact) => (
-            <li key={fact.title} className={styles.fact}>
-              <span className={styles.factTitle}>{fact.title}</span>
-              <span className={styles.factText}>{fact.text}</span>
+      <section aria-labelledby="home-method" className={styles.method}>
+        <div className={styles.split}>
+          <p className={styles.label}>{method.label}</p>
+          <div className={styles.sectionHead}>
+            <h2 id="home-method" className={styles.methodTitle}>
+              {method.title}
+            </h2>
+            <p className={styles.sectionText}>{method.text}</p>
+          </div>
+        </div>
+        <ol className={styles.steps}>
+          {method.steps.map((step) => (
+            <li key={step.letter} className={styles.step}>
+              <span aria-hidden="true" className={styles.stepLetter}>
+                {step.letter}
+              </span>
+              <h3 className={styles.stepTitle}>{step.title}</h3>
+              <p className={styles.stepText}>{step.text}</p>
             </li>
           ))}
-        </ul>
-        <ul className={`${styles.mobileFacts} ${styles.mobileOnly}`}>
-          {mobileFacts.map((fact) => (
-            <li key={fact.value} className={styles.mobileFact}>
-              <span className={styles.mobileFactValue}>{fact.value}</span>
-              <span className={styles.factText}>{fact.text}</span>
+        </ol>
+      </section>
+
+      <section
+        aria-labelledby="home-approaches"
+        className={`${styles.split} ${styles.approaches}`}
+      >
+        <p className={styles.label}>{approaches.label}</p>
+        <div className={styles.approachesBody}>
+          <div className={styles.sectionHead}>
+            <h2 id="home-approaches" className={styles.approachesTitle}>
+              {approaches.title}
+            </h2>
+            <p className={styles.sectionText}>{approaches.text}</p>
+          </div>
+          <ul className={styles.approachList}>
+            {approaches.items.map((item) => (
+              <li key={item} className={styles.approach}>
+                <Arrow className={styles.approachArrow} />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <Link href="/kontakt" className={styles.button}>
+            {approaches.cta}
+          </Link>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="home-stats"
+        className={`${styles.split} ${styles.stats}`}
+      >
+        <h2 id="home-stats" className={styles.label}>
+          {stats.label}
+        </h2>
+        <ul className={styles.statList}>
+          {stats.items.map((stat) => (
+            <li key={stat.value} className={styles.stat}>
+              <span className={styles.statValue}>{stat.value}</span>
+              <span className={styles.statText}>{stat.text}</span>
+              <span className={styles.statSource}>{stat.source}</span>
             </li>
           ))}
         </ul>
@@ -208,34 +207,24 @@ export function HomePageContent({ email }: HomePageContentProps) {
         className={styles.contact}
       >
         <Image
-          src={ctaPortrait}
-          alt="Annika Matthaei"
+          src={contactPortrait}
+          alt="Annika Matthaei lachend"
           placeholder="blur"
-          sizes="220px"
+          sizes="(min-width: 1024px) 320px, (min-width: 768px) 240px, 220px"
           className={styles.contactPortrait}
         />
-        <h2 id="home-contact-title" className={styles.contactHeading}>
-          Was steht bei dir gerade an?
-        </h2>
         <div className={styles.contactBody}>
-          <p>
-            Ob Gründungsteam, Co-Founder oder Führungsrolle: Im kostenlosen
-            Kennenlerngespräch klären wir, was euch weiterbringt.
-          </p>
-          <Link
-            href="/kontakt"
-            className={`${styles.underlineLink} ${styles.underlineLinkWide}`}
-          >
-            Gespräch vereinbaren <Arrow />
+          <h2 id="home-contact-title" className={styles.contactTitle}>
+            {contact.title}
+          </h2>
+          <p className={styles.contactText}>{contact.text}</p>
+          <Link href="/kontakt" className={styles.contactButton}>
+            {contact.cta} <Arrow />
           </Link>
         </div>
       </section>
 
-      <p className={`${styles.mobileManifest} ${styles.mobileOnly}`}>
-        Progress over Perfection. Play. Laugh. Learn. Unlearn.
-      </p>
-
-      <HomeStickyCta email={email} />
+      <HomeStickyCta email={email} label={hero.cta} startId="home-hero-cta" />
     </div>
   )
 }

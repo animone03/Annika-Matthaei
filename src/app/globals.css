@@ -85,16 +85,14 @@ body {
   max-width: none;
   margin-block: 14px;
   padding-inline: var(--frame);
+  /* Hell hinter Kopf und Inhalt, sonst scheint an Kanten mit
+     Pixel-Bruchteilen der Rahmen als feine Linie durch. */
+  background: var(--background) content-box;
 }
 
 .site-shell:has([data-frame-page]:not([style*='display: none'])) footer {
   margin-top: 0;
   padding-block: 0 32px;
-}
-
-/* Startseite: Der Seitenkopf liegt ab 768 px absolut über dem Hero. */
-.site-shell:has([data-home]:not([style*='display: none'])) {
-  position: relative;
 }
 
 .footer-motto {
@@ -112,7 +110,8 @@ body {
   color: #3a4049;
 }
 
-/* Kontakt, Über mich, Coaching und Rechtliches: Footer mit Motto links, Trennlinie oben. */
+/* Kontakt, Über mich, Coaching und Rechtliches: Footer mit Motto links, Trennlinie oben.
+   Die Startseite zeigt das Motto auch, ohne Trennlinie. */
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
@@ -126,6 +125,7 @@ body {
 }
 
 .site-shell:has(
+    [data-home]:not([style*='display: none']),
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
@@ -140,7 +140,13 @@ body {
   gap: 24px;
 }
 
+/* Startseite: Motto links wie oben, aber ohne Trennlinie unter dem dunklen Abschluss. */
+.site-shell:has([data-home]:not([style*='display: none'])) footer {
+  padding: 32px 0;
+}
+
 .site-shell:has(
+    [data-home]:not([style*='display: none']),
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
@@ -170,7 +176,7 @@ body {
   }
 
   .site-shell:has([data-home]:not([style*='display: none'])) footer {
-    padding: 0 20px 100px;
+    padding: 32px 20px 100px;
   }
 
   .site-shell:has([data-frame-page]:not([style*='display: none']))
@@ -197,6 +203,7 @@ body {
   }
 
   .site-shell:has(
+      [data-home]:not([style*='display: none']),
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
@@ -211,6 +218,7 @@ body {
   }
 
   .site-shell:has(
+      [data-home]:not([style*='display: none']),
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
@@ -236,6 +244,7 @@ body {
   }
 
   .site-shell:has(
+      [data-home]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none']),

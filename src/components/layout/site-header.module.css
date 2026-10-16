@@ -1,3 +1,15 @@
+/* Desktop: aktive Seite unterstrichen. Im Modul statt mit Tailwind, weil die
+   globale Rahmenfarbe (* { border-color } in globals.css) Utilities überschreibt. */
+
+.navLink {
+  border-bottom: 1px solid transparent;
+  padding-bottom: 3px;
+}
+
+.navLinkActive {
+  border-bottom-color: var(--foreground);
+}
+
 /* Mobil: helles Menü mit Karten */
 
 .overlay {
@@ -13,13 +25,7 @@
 }
 
 @media (min-width: 1024px) {
-  .overlay:not(.overlayHero) {
-    display: none;
-  }
-}
-
-@media (min-width: 1100px) {
-  .overlayHero {
+  .overlay {
     display: none;
   }
 }

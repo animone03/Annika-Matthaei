@@ -75,10 +75,6 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
-  // Startseite ab 768 px: Kopfzeile liegt über dem Hero, die Navigation auf
-  // dem Foto (siehe home-page.module.css). Unter 1100 px ist die Fotospalte
-  // schmaler als die Navigation, dort gibt es das Burger-Menü.
-  const onHero = pathname === '/'
 
   function closeMenu() {
     setMenuOpen(false)
@@ -125,16 +121,12 @@ export function SiteHeader() {
   return (
     <header
       ref={headerRef}
-      className={`site-header sticky top-0 z-40 ${
-        onHero
-          ? 'md:absolute md:inset-x-(--frame) md:bg-transparent'
-          : 'lg:relative'
-      } ${menuOpen ? 'bg-transparent' : 'bg-background'}`}
+      className={`site-header sticky top-0 z-40 lg:relative ${
+        menuOpen ? 'bg-transparent' : 'bg-background'
+      }`}
     >
       {menuOpen ? (
-        <div
-          className={`${styles.overlay} ${onHero ? styles.overlayHero : ''}`}
-        >
+        <div className={styles.overlay}>
           <nav aria-label="Mobile Navigation" className={styles.overlayNav}>
             <p className={styles.overlayLabel}>Coaching</p>
             {coaching.map((group) => (
@@ -194,11 +186,7 @@ export function SiteHeader() {
           </Link>
         </div>
       ) : null}
-      <div
-        className={`relative flex w-full items-center justify-between gap-6 p-5 sm:px-12 lg:items-start lg:pt-9 lg:pb-0 ${
-          onHero ? 'md:items-start md:pt-9' : ''
-        }`}
-      >
+      <div className="relative flex w-full items-center justify-between gap-6 p-5 sm:px-12 lg:items-start lg:pt-9 lg:pb-0">
         <Link
           data-menu-focus
           href="/"
@@ -218,23 +206,17 @@ export function SiteHeader() {
         </Link>
         <nav
           aria-label="Hauptnavigation"
-          className={`ml-auto hidden text-right ${
-            onHero ? 'min-[1100px]:block' : 'lg:block'
-          }`}
+          className="ml-auto hidden text-right lg:block"
         >
-          <ul
-            className={`flex items-center justify-end pt-1 text-[13px] tracking-[0.06em] uppercase ${
-              onHero ? 'gap-7' : 'gap-8'
-            }`}
-          >
+          <ul className="flex items-center justify-end gap-8 pt-1 text-[13px] tracking-[0.06em] uppercase">
             {mainNavigation.map((item) => {
               const active = isActive(pathname, item)
               return (
                 <li key={item.href}>
                   <Link
-                    className={`hover:text-muted-foreground inline-flex items-center border-b pb-[3px] ${
-                      active ? 'border-foreground' : 'border-transparent'
-                    }`}
+                    className={`hover:text-muted-foreground inline-flex items-center ${
+                      styles.navLink
+                    } ${active ? styles.navLinkActive : ''}`}
                     href={item.href}
                     aria-current={
                       pathname === item.href
@@ -258,9 +240,7 @@ export function SiteHeader() {
           aria-expanded={menuOpen}
           aria-label={menuOpen ? undefined : 'Menü'}
           onClick={() => setMenuOpen((open) => !open)}
-          className={`-my-2.5 ml-auto flex h-11 min-w-11 cursor-pointer items-center justify-end text-[13px] tracking-[0.08em] uppercase ${
-            onHero ? 'min-[1100px]:hidden' : 'lg:hidden'
-          }`}
+          className="-my-2.5 ml-auto flex h-11 min-w-11 cursor-pointer items-center justify-end text-[13px] tracking-[0.08em] uppercase lg:hidden"
         >
           {menuOpen ? 'Schließen' : <BurgerIcon className="h-auto w-[34px]" />}
         </button>
