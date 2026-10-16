@@ -1,0 +1,136 @@
+.page {
+  --ink: #1e2329;
+  --ink-soft: #3a4049;
+  --muted: #566270;
+  --gutter: 48px;
+
+  color: var(--ink);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  padding: 96px var(--gutter) 56px;
+}
+
+.label {
+  padding-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.blocks {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--gutter) 96px;
+}
+
+.block {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  border-top: 1px solid var(--ink);
+  padding: 28px 0;
+}
+
+.block:last-of-type {
+  border-bottom: 1px solid var(--ink);
+}
+
+.blockTitle {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.blockText {
+  display: flex;
+  max-width: 680px;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+.updated {
+  padding-top: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1023px) {
+  .head,
+  .block {
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page {
+    --gutter: 20px;
+  }
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 36px var(--gutter) 28px;
+  }
+
+  .label {
+    padding-top: 0;
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .blocks {
+    padding-bottom: 40px;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px 0;
+  }
+
+  .blockTitle {
+    font-size: 11px;
+  }
+
+  .blockText {
+    gap: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}

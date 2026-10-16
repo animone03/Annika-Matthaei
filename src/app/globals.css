@@ -114,9 +114,10 @@ body {
   color: #3a4049;
 }
 
-/* Kontakt, Über mich, Marketing und Startups: Footer mit Motto links, Trennlinie oben. */
+/* Kontakt, Über mich, Marketing, Coaching und Rechtliches: Footer mit Motto links, Trennlinie oben. */
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
+    [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
     [data-marketing-page]:not([style*='display: none']),
     [data-coaching-page]:not([style*='display: none']),
@@ -129,6 +130,7 @@ body {
 
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
+    [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
     [data-marketing-page]:not([style*='display: none']),
     [data-coaching-page]:not([style*='display: none']),
@@ -144,6 +146,7 @@ body {
 
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
+    [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
     [data-marketing-page]:not([style*='display: none']),
     [data-coaching-page]:not([style*='display: none']),
@@ -188,6 +191,7 @@ body {
 
   .site-shell:has(
       [data-contact-page]:not([style*='display: none']),
+      [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
       [data-marketing-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
@@ -200,6 +204,7 @@ body {
 
   .site-shell:has(
       [data-contact-page]:not([style*='display: none']),
+      [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
       [data-marketing-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
@@ -214,6 +219,7 @@ body {
 
   .site-shell:has(
       [data-contact-page]:not([style*='display: none']),
+      [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
       [data-marketing-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
@@ -242,7 +248,8 @@ body {
       [data-about-page]:not([style*='display: none']),
       [data-marketing-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
-      [data-startup-offer-page]:not([style*='display: none'])
+      [data-startup-offer-page]:not([style*='display: none']),
+      [data-legal-page]:not([style*='display: none'])
     )
     .footer-motto
     br {

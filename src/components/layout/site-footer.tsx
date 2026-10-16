@@ -1,5 +1,6 @@
 import { cacheLife } from 'next/cache'
-import Link from 'next/link'
+
+import { FooterLegalLinks } from './footer-legal-links'
 
 type SiteFooterProps = {
   ownerName?: string | null
@@ -21,7 +22,7 @@ export function SiteFooter({ ownerName, socialLinks }: SiteFooterProps) {
   return (
     <footer className="py-10">
       <div className="text-muted-foreground grid gap-6 px-6 text-xs tracking-[0.06em] uppercase sm:grid-cols-[1fr_auto] sm:items-center sm:px-12">
-        {/* Nur auf Kontakt und Über mich sichtbar (siehe globals.css). */}
+        {/* Nur auf einigen Seiten sichtbar (siehe globals.css). */}
         <p className="footer-motto">
           Progress over Perfection. <br />
           Play. Laugh. <br />
@@ -41,16 +42,7 @@ export function SiteFooter({ ownerName, socialLinks }: SiteFooterProps) {
                 </li>
               ) : null,
             )}
-            <li>
-              <Link href="/impressum" className="hover:text-foreground">
-                Impressum
-              </Link>
-            </li>
-            <li>
-              <Link href="/datenschutz" className="hover:text-foreground">
-                Datenschutz
-              </Link>
-            </li>
+            <FooterLegalLinks />
           </ul>
         </nav>
       </div>

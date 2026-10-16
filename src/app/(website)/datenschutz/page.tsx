@@ -1,18 +1,15 @@
-import {
-  generateLegalMetadata,
-  LegalPageView,
-} from '@/components/pages/legal-page'
+import type { Metadata } from 'next'
 
-export function generateMetadata() {
-  return generateLegalMetadata(
-    'legalPage.datenschutz',
-    'Datenschutz',
-    '/datenschutz',
-  )
-}
+import { LegalPage } from '@/components/pages/legal-page'
+import { datenschutz } from '@/content/rechtliches'
+import { buildMetadata } from '@/lib/metadata'
+
+export const metadata: Metadata = buildMetadata({
+  title: 'Datenschutz – Annika Matthaei',
+  path: '/datenschutz',
+  absoluteTitle: true,
+})
 
 export default function PrivacyPage() {
-  return (
-    <LegalPageView id="legalPage.datenschutz" fallbackTitle="Datenschutz" />
-  )
+  return <LegalPage document={datenschutz} />
 }
