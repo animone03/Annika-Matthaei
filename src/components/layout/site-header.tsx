@@ -23,7 +23,7 @@ type CoachingGroup = {
 const coaching: CoachingGroup[] = [
   {
     label: 'Für Startups',
-    href: '/coaching/startups',
+    href: '/startups',
     tone: 'dark',
     items: [
       { label: 'EXIST', href: '/coaching/startups/exist' },
@@ -50,10 +50,18 @@ const coaching: CoachingGroup[] = [
   },
 ]
 
-// Desktop-Navigation. `section` markiert auch die Unterseiten als aktiv.
-const mainNavigation: (NavItem & { section?: boolean })[] = [
-  { label: 'Startups', href: '/coaching/startups', section: true },
-  { label: 'Unternehmen', href: '/coaching/unternehmen', section: true },
+// Desktop-Navigation. `sections` markiert auch die Unterseiten als aktiv.
+const mainNavigation: (NavItem & { sections?: string[] })[] = [
+  {
+    label: 'Startups',
+    href: '/startups',
+    sections: ['/startups', '/coaching/startups'],
+  },
+  {
+    label: 'Unternehmen',
+    href: '/coaching/unternehmen',
+    sections: ['/coaching/unternehmen'],
+  },
   { label: 'Über mich', href: '/ueber-mich' },
   { label: 'Kontakt', href: '/kontakt' },
 ]
@@ -65,9 +73,12 @@ const navigation: NavItem[] = [
 ]
 
 function isActive(pathname: string, item: (typeof mainNavigation)[number]) {
-  return item.section
-    ? pathname === item.href || pathname.startsWith(`${item.href}/`)
-    : pathname === item.href
+  return (
+    pathname === item.href ||
+    (item.sections ?? []).some(
+      (section) => pathname === section || pathname.startsWith(`${section}/`),
+    )
+  )
 }
 
 export function SiteHeader() {

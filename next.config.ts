@@ -15,12 +15,19 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/fuer-unternehmen/schwerpunkte',
-        destination: '/coaching/startups',
+        destination: '/startups',
         permanent: true,
       },
       {
         source: '/fuer-unternehmen',
-        destination: '/coaching/startups',
+        destination: '/startups',
+        permanent: true,
+      },
+      // Die Startups-Übersicht liegt jetzt unter /startups, die Angebotsseiten
+      // bleiben vorerst unter /coaching/startups/….
+      {
+        source: '/coaching/startups',
+        destination: '/startups',
         permanent: true,
       },
       // Marketing ist kein Angebot mehr.

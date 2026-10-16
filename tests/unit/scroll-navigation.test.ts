@@ -8,8 +8,8 @@ import {
 
 describe('scroll navigation', () => {
   it('moves through main pages without wrapping or leaving legal/detail pages', () => {
-    expect(adjacentPage('/', 1)).toBe('/coaching/startups')
-    expect(adjacentPage('/coaching/startups', -1)).toBe('/')
+    expect(adjacentPage('/', 1)).toBe('/startups')
+    expect(adjacentPage('/startups', -1)).toBe('/')
     expect(adjacentPage('/kontakt', 1)).toBeUndefined()
     expect(adjacentPage('/', -1)).toBeUndefined()
     expect(adjacentPage('/impressum', 1)).toBeUndefined()

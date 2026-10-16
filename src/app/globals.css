@@ -126,6 +126,7 @@ body {
 
 .site-shell:has(
     [data-home]:not([style*='display: none']),
+    [data-startups-page]:not([style*='display: none']),
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
@@ -140,13 +141,19 @@ body {
   gap: 24px;
 }
 
-/* Startseite: Motto links wie oben, aber ohne Trennlinie unter dem dunklen Abschluss. */
-.site-shell:has([data-home]:not([style*='display: none'])) footer {
+/* Startseite und Startups: Motto links wie oben, aber ohne Trennlinie unter dem
+   dunklen Abschluss. */
+.site-shell:has(
+    [data-home]:not([style*='display: none']),
+    [data-startups-page]:not([style*='display: none'])
+  )
+  footer {
   padding: 32px 0;
 }
 
 .site-shell:has(
     [data-home]:not([style*='display: none']),
+    [data-startups-page]:not([style*='display: none']),
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
@@ -175,7 +182,11 @@ body {
     padding: 48px 20px 28px;
   }
 
-  .site-shell:has([data-home]:not([style*='display: none'])) footer {
+  .site-shell:has(
+      [data-home]:not([style*='display: none']),
+      [data-startups-page]:not([style*='display: none'])
+    )
+    footer {
     padding: 32px 20px 100px;
   }
 
@@ -204,6 +215,7 @@ body {
 
   .site-shell:has(
       [data-home]:not([style*='display: none']),
+      [data-startups-page]:not([style*='display: none']),
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
@@ -219,6 +231,7 @@ body {
 
   .site-shell:has(
       [data-home]:not([style*='display: none']),
+      [data-startups-page]:not([style*='display: none']),
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
@@ -245,6 +258,7 @@ body {
 
   .site-shell:has(
       [data-home]:not([style*='display: none']),
+      [data-startups-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none']),

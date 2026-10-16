@@ -16,7 +16,7 @@ type StartupOfferPageProps = {
   facts: { label: string; value: string }[]
 }
 
-// Vorlage für die Unterseiten von /coaching/startups: Inhalte links,
+// Vorlage für die Angebotsseiten unter /coaching/startups (Übersicht: /startups): Inhalte links,
 // „Auf einen Blick“ rechts (Desktop sticky, mobil unter dem Intro).
 export function StartupOfferPage({
   title,
@@ -32,7 +32,7 @@ export function StartupOfferPage({
   return (
     <div data-frame-page data-startup-offer-page className={styles.page}>
       <div className={styles.head}>
-        <Link href="/coaching/startups" className={styles.back}>
+        <Link href="/startups" className={styles.back}>
           <span aria-hidden="true">←</span> Startups &amp; Founder
         </Link>
         <h1 id="offer-title" className={styles.title}>

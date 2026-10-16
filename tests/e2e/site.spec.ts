@@ -33,10 +33,18 @@ test('startup coaching page has no serious accessibility violations', async ({
   page,
 }) => {
   await page.goto('/fuer-unternehmen')
-  await expect(page).toHaveURL(/\/coaching\/startups$/)
+  await expect(page).toHaveURL(/\/\/[^/]+\/startups$/)
   await expect(
     page.getByRole('heading', { level: 1, name: /Mentale Fitness/ }),
   ).toBeVisible()
+
+  // Häufige Fragen klappen auf und stehen auch als FAQPage-Schema im Quelltext.
+  await page.getByText('Ist das Therapie?').click()
+  await expect(page.getByText(/Coaching für Leistung/)).toBeVisible()
+  const schema = await page
+    .locator('script[type="application/ld+json"]')
+    .allTextContents()
+  expect(schema.some((json) => json.includes('"FAQPage"'))).toBe(true)
 
   const results = await new AxeBuilder({ page }).analyze()
   const serious = results.violations.filter((violation) =>
@@ -57,6 +65,11 @@ test('about page has no serious accessibility violations', async ({ page }) => {
     ['serious', 'critical'].includes(violation.impact || ''),
   )
   expect(serious).toEqual([])
+})
+
+test('the old startups overview redirects to /startups', async ({ page }) => {
+  await page.goto('/coaching/startups')
+  await expect(page).toHaveURL(/\/\/[^/]+\/startups$/)
 })
 
 test('the retired marketing page redirects to the homepage', async ({

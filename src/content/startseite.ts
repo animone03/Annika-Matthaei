@@ -71,7 +71,7 @@ export const audiences: {
     {
       title: 'Für Founder-Teams, die wachsen.',
       text: 'Founder 1:1 · Founders in Sync · Lead with Clarity',
-      href: '/coaching/startups',
+      href: '/startups',
     },
     {
       title: 'Für Teams & Führungskräfte',

@@ -28,7 +28,7 @@ export const metadata: Metadata = buildMetadata({
 
 const number = (index: number) => String(index + 1).padStart(2, '0')
 
-// Aufbau wie /coaching/startups, darum teilen sich beide Seiten die Grundstile.
+// Grundstile aus startups-page.module.css (Aufbau der früheren Startups-Übersicht).
 export default function CompanyCoachingPage() {
   return (
     <div data-frame-page data-coaching-page className={base.page}>
