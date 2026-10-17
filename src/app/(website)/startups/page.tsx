@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-import heroPortrait from '../../../../public/images/fotos/portrait-workspace.jpg'
+import heroPortrait from '../../../../public/images/fotos/portrait-whiteboard.jpg'
 import whyPortrait from '../../../../public/images/fotos/portrait-lachend.jpg'
 import founderImage from '../../../../public/images/fotos/thema-founder.jpg'
 import leadershipImage from '../../../../public/images/fotos/thema-leadership.jpg'
@@ -78,7 +78,7 @@ export default function StartupsPage() {
         cta={{ label: hero.cta, href: '/kontakt' }}
         note={hero.note}
         image={heroPortrait}
-        alt="Annika Matthaei an ihrem Arbeitsplatz"
+        alt="Annika Matthaei vor einem Whiteboard"
         photoSide="end"
       />
 

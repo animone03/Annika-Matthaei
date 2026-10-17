@@ -16,7 +16,7 @@
   --font-heading: var(--font-helvetica), Helvetica, Arial, sans-serif;
 
   /* Neues Design-System (10b): Creme, Kohle, Stein. Gilt für Startseite,
-     Startups und Unternehmen, die übrigen Seiten folgen. */
+     Startups, Unternehmen und Über mich, die übrigen Seiten folgen. */
   --cream: #faf9f5;
   --coal: #1c1b19;
   --coal-soft: #3d3b37;
@@ -29,6 +29,8 @@
   --font-gothic:
     'Century Gothic', 'CenturyGothic', 'URW Gothic', var(--font-questrial),
     sans-serif;
+  /* Wandton aus dem Foto, nur auf „Über mich“ */
+  --wall: #e3d9cf;
   /* Seitenbreite 1280 px mit 64 px Rand, darunter schmaler */
   --warm-gutter: clamp(20px, 5vw, 64px);
   --warm-inline: max(var(--warm-gutter), (100% - 1152px) / 2);
@@ -90,7 +92,6 @@ body {
    in den :has()-Regeln nur sichtbare Seiten. */
 .site-shell:has(
     [data-company-page]:not([style*='display: none']),
-    [data-about-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   footer {
@@ -116,7 +117,7 @@ body {
   display: none;
 }
 
-/* Seiten im neuen Design (Startseite, Startups, Unternehmen): warmes Papier
+/* Seiten im neuen Design (Startseite, Startups, Unternehmen, Über mich): warmes Papier
    ohne Rahmen. Der Footer liegt im dunklen Abschluss der Seite. */
 body:has([data-warm-page]:not([style*='display: none'])) {
   background: var(--cream);
@@ -183,12 +184,11 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   }
 }
 
-/* Kontakt, Über mich, Angebote und Rechtliches: Footer mit Motto links,
+/* Kontakt, Angebote und Rechtliches: Footer mit Motto links,
    Trennlinie oben. */
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
-    [data-about-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   footer {
@@ -199,7 +199,6 @@ body:has([data-warm-page]:not([style*='display: none'])) {
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
-    [data-about-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   footer
@@ -213,7 +212,6 @@ body:has([data-warm-page]:not([style*='display: none'])) {
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
-    [data-about-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   .footer-motto {
@@ -251,7 +249,6 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   .site-shell:has(
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
-      [data-about-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     footer {
@@ -262,7 +259,6 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   .site-shell:has(
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
-      [data-about-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     footer
@@ -275,7 +271,6 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   .site-shell:has(
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
-      [data-about-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     .footer-motto {
@@ -287,16 +282,12 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   }
 
   /* Platz für die fixe Kontaktleiste, Motto einzeilig. */
-  .site-shell:has(
-      [data-about-page]:not([style*='display: none']),
-      [data-startup-offer-page]:not([style*='display: none'])
-    )
+  .site-shell:has([data-startup-offer-page]:not([style*='display: none']))
     footer {
     padding-bottom: 100px;
   }
 
   .site-shell:has(
-      [data-about-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none'])
     )

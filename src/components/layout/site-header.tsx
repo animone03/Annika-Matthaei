@@ -86,13 +86,20 @@ type SiteHeaderProps = {
 }
 
 // Seiten im neuen Design (10b), die übrigen folgen noch.
-const warmPaths: string[] = ['/', '/startups', '/coaching/unternehmen']
+const warmPaths: string[] = [
+  '/',
+  '/startups',
+  '/coaching/unternehmen',
+  '/ueber-mich',
+]
 
 export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
   const pathname = usePathname()
   const warm = warmPaths.includes(pathname)
-  // Startseite: Header liegt auf dem Hero-Foto (ab 1024 px)
-  const onPhoto = pathname === '/'
+  // Startseite und Über mich: Header liegt auf dem Hero (ab 1024 px)
+  const onPhoto = pathname === '/' || pathname === '/ueber-mich'
+  // Über mich: mobil auf dem Wandton des Hero
+  const onWall = pathname === '/ueber-mich'
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -158,7 +165,7 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
       ref={headerRef}
       className={`site-header sticky top-0 z-40 lg:relative ${
         menuOpen ? 'bg-transparent' : 'bg-background'
-      } ${warm ? styles.warm : ''} ${onPhoto ? styles.onPhoto : ''}`}
+      } ${warm ? styles.warm : ''} ${onPhoto ? styles.onPhoto : ''} ${onWall ? styles.onWall : ''}`}
     >
       {menuOpen ? (
         <div className={styles.overlay}>

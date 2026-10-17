@@ -5,7 +5,7 @@ import { Fragment } from 'react'
 import heroPortrait from '../../../public/images/fotos/portrait-sessel.jpg'
 import runningPhoto from '../../../public/images/fotos/laufbild-warm.jpg'
 import methodsPortrait from '../../../public/images/fotos/portrait-lachend.jpg'
-import processPortrait from '../../../public/images/fotos/portrait-workspace.jpg'
+import processPortrait from '../../../public/images/fotos/portrait-whiteboard.jpg'
 import founderImage from '../../../public/images/fotos/thema-founder.jpg'
 import leadershipImage from '../../../public/images/fotos/thema-leadership.jpg'
 import resilienceImage from '../../../public/images/fotos/thema-resilienz.jpg'
@@ -182,7 +182,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
           photo={
             <Image
               src={processPortrait}
-              alt="Annika Matthaei an ihrem Arbeitsplatz"
+              alt="Annika Matthaei vor einem Whiteboard"
               placeholder="blur"
               sizes="(min-width: 768px) 400px, 100vw"
               className={styles.processImage}

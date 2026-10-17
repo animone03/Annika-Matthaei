@@ -1,180 +1,195 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Fragment } from 'react'
 
-import portrait from '../../../../public/images/annika-lachend.webp'
+import portrait from '../../../../public/images/fotos/portrait-lachend.jpg'
+import runningPhoto from '../../../../public/images/fotos/laufbild-warm.jpg'
 
-import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
 import styles from '@/components/sections/about-page.module.css'
-import { SkillsMarquee } from '@/components/sections/skills-marquee'
-import { IWannaSeeYouGrow } from '@/components/ui/handwriting'
-import { Signature } from '@/components/ui/signature'
+import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
+import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
+import { Closing } from '@/components/warm/closing'
+import warm from '@/components/warm/warm.module.css'
+import {
+  career,
+  contact,
+  drive,
+  hero,
+  intro,
+  skills,
+  stance,
+} from '@/content/ueber-mich'
 import { inquiryRecipient } from '@/lib/inquiry'
 import { buildMetadata } from '@/lib/metadata'
-import { Arrow } from '@/components/ui/arrow'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Über mich – Annika Matthaei | Systemischer Coach & Marketing',
+  title:
+    'Über mich – Annika Matthaei | Systemischer & psychologischer Business Coach',
   description:
-    'Systemischer & psychologischer Business Coach und Marketing-Strategin mit 13 Jahren Erfahrung in Konzern, Mittelstand und Startup, davon 9 in Führung.',
+    '13 Jahre in Konzern, Mittelstand und Startup, 9 davon in Führung. Heute begleite ich Founder und Teams zu mehr mentaler Fitness.',
   path: '/ueber-mich',
   absoluteTitle: true,
 })
 
-const lead =
-  'Ich liebe es, wenn Menschen über sich hinauswachsen, Teams in ihren Flow finden und aus einer mutigen Idee etwas Reales wird.'
+const toneClass = {
+  sand: styles.stanceSand,
+  coal: styles.stanceCoal,
+  stone: styles.stanceStone,
+}
 
-const introText =
-  'Wenn ihr gemeinsam etwas schafft, das vorher unmöglich schien. Genau dabei möchte ich euch begleiten. Ich bringe viel Energie, Kreativität und Empathie mit. Ich denke in Möglichkeiten, frage nach und freue mich, wenn eure Projekte erfolgreich umgesetzt werden.'
-
-const education = [
-  {
-    title: 'Systemischer & psychologischer Business Coach',
-    detail: 'DACTE · 2026',
-  },
-  {
-    title: 'Sustainability Management Expert',
-    detail:
-      'Leuphana Universität Lüneburg · MBA-Programm Sustainability Management · 2021 – 2026',
-  },
-  {
-    title: 'Master of Arts Kommunikationswissenschaft',
-    detail: 'FOM Hochschule für Ökonomie & Management · 2018 – 2020',
-  },
-  {
-    title: 'Bachelor of Arts Business Administration',
-    detail: 'FOM Hochschule für Ökonomie & Management · 2013 – 2017',
-  },
-]
-
-const skills = [
-  'Systemisches Coaching',
-  'Training & Weiterbildung',
-  'Moderation & Keynotes',
-  '(Agiles) Projektmanagement',
-  'Change & Veränderungsprozesse',
-  'Kompetenter Umgang mit AI',
-]
-
-// Mobil laufen die Kompetenzen in zwei Reihen (px/s, negativ = nach rechts).
-const skillRows = [
-  { items: skills.slice(0, 3), speed: 9 },
-  { items: skills.slice(3), speed: -7 },
-]
-
-const stance = [
-  {
-    title: 'Systemisch',
-    text: 'Ich schaue auf das ganze System: Menschen, Beziehungen und Dynamiken.',
-  },
-  {
-    title: 'Agil',
-    text: 'In kleinen Schritten vorankommen: ausprobieren, lernen, anpassen.',
-  },
-  {
-    title: 'Positive Psychologie',
-    text: 'An Stärken ansetzen, nicht nur an Problemen.',
-  },
-]
+const number = (index: number) => String(index + 1).padStart(2, '0')
 
 export default function AboutPage() {
   return (
-    <div data-frame-page data-about-page className={styles.page}>
-      {/* Der Schriftzug liegt über dem Foto: Desktop oben, mobil an der Unterkante. */}
+    <div data-warm-page className={warm.page}>
+      <LongExposureFilters />
+
+      {/* Ab 1024 px liegt der Header über der beigen Hälfte
+          (site-header.module.css). */}
       <section aria-labelledby="about-title" className={styles.hero}>
-        <h1 id="about-title" className={styles.srOnly}>
-          I wanna see you grow: Über Annika Matthaei
-        </h1>
-        <div className={styles.claimLayer}>
-          <IWannaSeeYouGrow className={styles.claim} />
+        <div className={styles.heroText}>
+          <p className={styles.eyebrow}>{hero.eyebrow}</p>
+          <h1 id="about-title" className={styles.heroTitle}>
+            {hero.title.map((line, index) => (
+              <Fragment key={line}>
+                {index > 0 ? ' ' : null}
+                <span className={styles.heroLine}>{line}</span>
+              </Fragment>
+            ))}
+          </h1>
         </div>
-        <div className={styles.introLayer}>
-          <div className={styles.introBody}>
-            <h2 className={styles.introLabel}>Ich bin Annika.</h2>
-            <p className={styles.lead}>{lead}</p>
-            <p className={styles.introText}>{introText}</p>
-            <div className={styles.signatureRow}>
-              <Signature part="first" className={styles.signature} />
-              <span className={styles.signatureNote}>München, 2026</span>
-            </div>
-          </div>
-          <div className={styles.photo}>
-            <Image
-              src={portrait}
-              alt="Annika Matthaei, lachend"
-              preload
-              placeholder="blur"
-              sizes="(min-width: 768px) 440px, 100vw"
-              className={styles.portrait}
-            />
-          </div>
+        <div className={styles.heroPhoto}>
+          <Image
+            src={portrait}
+            alt="Annika Matthaei lachend"
+            preload
+            placeholder="blur"
+            sizes="(min-width: 768px) 520px, 100vw"
+            className={styles.heroImage}
+          />
         </div>
       </section>
 
-      <section aria-labelledby="about-stance" className={styles.stance}>
-        <h2 id="about-stance" className={styles.labelPlain}>
-          Wie ich arbeite
+      <section aria-label="Über Annika" className={styles.intro}>
+        <p className={styles.introLead}>{intro.lead}</p>
+        <div className={styles.introBody}>
+          <p className={styles.introText}>{intro.text}</p>
+          <ul className={styles.facts}>
+            {intro.facts.map((fact) => (
+              <li key={fact.value} className={styles.fact}>
+                <span className={styles.factValue}>{fact.value}</span>
+                <span className={styles.factText}>{fact.text}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="about-stance"
+        className={`${warm.section} ${styles.stack}`}
+      >
+        <h2 id="about-stance" className={`${warm.title} ${warm.titleEnd}`}>
+          {stance.title}
         </h2>
         <ul className={styles.stanceList}>
-          {stance.map((item) => (
-            <li key={item.title} className={styles.stanceItem}>
-              <span className={styles.stanceTitle}>{item.title}</span>
-              <span className={styles.stanceText}>{item.text}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section aria-labelledby="about-skills" className={styles.skills}>
-        <h2 id="about-skills" className={styles.label}>
-          Kompetenzen
-        </h2>
-        {/* Desktop sichtbar, mobil nur für Screenreader (dort laufen die Reihen). */}
-        <ul className={styles.skillList}>
-          {skills.map((skill) => (
-            <li key={skill} className={styles.skill}>
-              {skill}
-            </li>
-          ))}
-        </ul>
-        <SkillsMarquee rows={skillRows} />
-      </section>
-
-      <section aria-labelledby="about-education" className={styles.education}>
-        <h2 id="about-education" className={styles.label}>
-          Ausbildung &amp; Zertifizierungen
-        </h2>
-        <ul className={styles.educationList}>
-          {education.map((entry) => (
-            <li key={entry.title} className={styles.educationItem}>
-              <span className={styles.educationTitle}>{entry.title}</span>
-              <span className={styles.educationDetail}>{entry.detail}</span>
+          {stance.items.map((item, index) => (
+            <li
+              key={item.title}
+              className={`${styles.stanceItem} ${toneClass[item.tone]}`}
+            >
+              <span aria-hidden="true" className={styles.stanceNumber}>
+                {number(index)}
+              </span>
+              <h3 className={styles.stanceTitle}>{item.title}</h3>
+              <p className={styles.stanceText}>{item.text}</p>
             </li>
           ))}
         </ul>
       </section>
 
       <section
-        id="about-contact"
-        aria-labelledby="about-contact-title"
-        className={styles.cta}
+        aria-labelledby="about-drive"
+        className={`${warm.section} ${styles.drive}`}
       >
-        <h2 id="about-contact-title" className={styles.ctaTitle}>
-          Let’s grow!
-        </h2>
-        <div className={styles.ctaBody}>
-          <p>
-            Im unverbindlichen Kennenlernen finden wir heraus, ob wir
-            zusammenpassen.
-          </p>
-          <Link href="/kontakt" className={styles.underlineLink}>
-            Kennenlernen <Arrow />
-          </Link>
+        <div className={styles.driveBody}>
+          <h2 id="about-drive" className={warm.label}>
+            {drive.label}
+          </h2>
+          <p className={styles.driveStatement}>{drive.statement}</p>
+          <p className={styles.driveText}>{drive.text}</p>
+        </div>
+        <div className={styles.drivePhoto}>
+          <Image
+            src={runningPhoto}
+            alt="Annika Matthaei beim Halbmarathon"
+            placeholder="blur"
+            sizes="(min-width: 768px) 360px, 100vw"
+            className={styles.driveImage}
+          />
         </div>
       </section>
 
+      <section
+        aria-labelledby="about-skills"
+        className={`${warm.section} ${styles.skills}`}
+      >
+        <h2 id="about-skills" className={warm.title}>
+          {skills.title}
+        </h2>
+        <ul className={styles.skillList}>
+          {skills.items.map((skill) => (
+            <li key={skill} className={styles.skill}>
+              {skill}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section
+        aria-labelledby="about-career"
+        className={`${warm.section} ${styles.stack}`}
+      >
+        <h2 id="about-career" className={`${warm.title} ${warm.titleCenter}`}>
+          {career.title}
+        </h2>
+        <div className={styles.career}>
+          <div>
+            <h3 className={styles.careerLabel}>{career.stations.title}</h3>
+            <ul>
+              {career.stations.items.map((item) => (
+                <li key={item.period} className={styles.entry}>
+                  <span className={styles.entryPeriod}>{item.period}</span>
+                  <span className={styles.entryTitle}>{item.title}</span>
+                  <span className={styles.entryDetail}>{item.detail}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className={styles.careerLabel}>{career.education.title}</h3>
+            <ul>
+              {career.education.items.map((item) => (
+                <li key={item.title} className={styles.entry}>
+                  <span className={styles.entryTitle}>{item.title}</span>
+                  <span className={styles.entryMuted}>{item.detail}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <Closing
+        id="about-contact"
+        title={contact.title}
+        text={contact.text}
+        cta={contact.cta}
+      />
+
       <HomeStickyCta
         email={inquiryRecipient}
+        label={contact.cta}
         startId="about-title"
         endSelector="#about-contact a"
       />

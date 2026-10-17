@@ -1,535 +1,386 @@
-.page {
-  --ink: #1e2329;
-  --ink-soft: #3a4049;
-  --muted: #566270;
-  --paper: #f4f5f3;
-  --taupe: #b4c2cd;
-  --line: rgb(30 35 41 / 0.15);
-  --gutter: 48px;
+/* /ueber-mich im Design 10b (Übergabe 14d). Grundstile in warm.module.css. */
 
-  color: var(--ink);
-}
-
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.label,
-.labelPlain {
-  padding-top: 8px;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.label {
-  color: var(--muted);
-}
-
-.labelPlain {
-  padding-top: 6px;
-}
-
-.underlineLink {
+/* Überschrift über einem Raster, 44 px Abstand */
+.stack {
   display: flex;
-  width: 300px;
-  justify-content: space-between;
-  gap: 48px;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 12px;
-  font-size: 15px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  flex-direction: column;
+  gap: 44px;
 }
 
-.underlineLink:hover {
-  color: var(--muted);
-}
-
-/* Hero: Schriftzug läuft über das Foto, Intro links daneben */
+/* Hero: links der Wandton mit Headline unten, rechts das Foto. Das Foto ist
+   nur 512 px breit, darum höchstens 520 px Spalte. Ab 1024 px liegt der
+   Header darüber (site-header.module.css). */
 
 .hero {
-  position: relative;
+  --photo: clamp(320px, calc(100vw - 760px), 520px);
+
+  display: grid;
+  height: clamp(600px, 100svh, 780px);
+  grid-template-areas: 'text photo';
+  grid-template-columns: minmax(0, 1fr) var(--photo);
+  background: var(--wall);
+  /* Headline an derselben Kante wie Header und Inhalt */
+  padding-left: var(--warm-inline);
 }
 
-.claimLayer {
-  position: relative;
-  z-index: 2;
-  padding: 64px var(--gutter) 0;
-  pointer-events: none;
+.heroText {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 22px;
+  grid-area: text;
+  /* Rechts frei bis vor den weichen Fotorand */
+  padding: 0 calc(120px + var(--warm-gutter)) 64px 0;
 }
 
-.claim {
+.eyebrow {
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  font-size: clamp(64px, 9.375vw, 120px);
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.heroLine {
   display: block;
-  width: 100%;
-  max-width: 1120px;
-  height: auto;
-  margin-left: auto;
 }
 
-.introLayer {
+/* Unsichtbarer Übergang: Das Foto ragt 120 px in die Farbfläche und läuft
+   dort weich aus. Der Wandton entspricht dem linken Bildrand. */
+.heroPhoto {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 440px;
-  align-items: end;
-  gap: 72px;
-  margin-top: -150px;
-  padding: 0 var(--gutter) 96px;
+  grid-area: photo;
+  margin-left: -120px;
+  overflow: hidden;
 }
 
-.photo {
-  height: 580px;
-}
-
-.portrait {
+.heroImage {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
-  filter: grayscale(1);
+  object-position: center 14%;
+  mask-image: linear-gradient(to right, transparent 0, #000 120px);
+}
+
+/* Intro und Fakten */
+
+.intro {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(40px, 6.25vw, 80px);
+  padding: clamp(80px, 9.375vw, 120px) var(--warm-inline) 0;
+}
+
+.introLead {
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .introBody {
   display: flex;
-  max-width: 560px;
   flex-direction: column;
-  gap: 20px;
-  padding-bottom: 12px;
-}
-
-.introLabel {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.lead {
-  font-size: 24px;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-  text-wrap: pretty;
+  gap: 28px;
+  padding-top: 6px;
 }
 
 .introText {
   color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.65;
-  text-wrap: pretty;
+  font-size: 15px;
+  line-height: 1.75;
 }
 
-.signatureRow {
-  display: flex;
-  align-items: flex-end;
-  gap: 14px;
-}
-
-.signature {
-  width: auto;
-  height: 64px;
-  aspect-ratio: 1262 / 468;
-}
-
-.signatureNote {
-  padding-bottom: 6px;
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* Raster mit Label links */
-
-.education,
-.skills {
+.facts {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 48px;
-  padding-inline: var(--gutter);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
-.stance {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 48px;
-  margin-inline: calc(-1 * var(--frame, 14px));
-  padding-inline: calc(var(--gutter) + var(--frame, 14px));
-}
-
-/* Ausbildung */
-
-.education {
-  padding-block: 80px;
-}
-
-.educationList {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 48px;
-}
-
-.educationItem {
+.fact {
   display: flex;
   flex-direction: column;
   gap: 6px;
   border-top: 1px solid var(--ink);
-  padding: 20px 0;
+  padding-top: 14px;
 }
 
-.educationTitle {
-  font-size: 20px;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+.factValue {
+  font-size: 30px;
+  font-weight: 700;
 }
 
-.educationDetail {
-  color: var(--muted);
-  font-size: 13px;
+/* Schmale Spalten: lange Wörter wie „Führungsverantwortung“ trennen */
+.factText {
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  line-height: 1.5;
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 
-/* Kompetenzen */
+/* Wie ich arbeite: drei Kacheln */
+
+.stanceList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.stanceItem {
+  display: flex;
+  min-height: 260px;
+  flex-direction: column;
+  gap: 14px;
+  padding: 36px 32px;
+}
+
+.stanceSand {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+.stanceCoal {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.stanceStone {
+  background: var(--stone);
+  color: var(--ink);
+}
+
+.stanceNumber {
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  opacity: 0.75;
+}
+
+.stanceTitle {
+  margin-top: auto;
+  font-size: clamp(22px, 2.03vw, 26px);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.stanceText {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Was mich antreibt: Satz links, Laufbild rechts */
+
+.drive {
+  display: grid;
+  grid-template-areas: 'body photo';
+  grid-template-columns: minmax(0, 1fr) clamp(260px, 28.125vw, 360px);
+  align-items: center;
+  gap: clamp(40px, 5.625vw, 72px);
+}
+
+.driveBody {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  grid-area: body;
+}
+
+.driveStatement {
+  font-size: clamp(30px, 3.44vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.driveText {
+  max-width: 620px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.drivePhoto {
+  grid-area: photo;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.driveImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% 30%;
+  filter: url(#longexpM) contrast(0.96) brightness(1.02);
+}
+
+/* Kompetenzen: Kästchen, nicht klickbar */
 
 .skills {
-  padding-top: 80px;
-}
-
-.skills .label {
-  padding-top: 12px;
-}
-
-.marquee {
-  display: none;
+  display: grid;
+  grid-template-columns: clamp(280px, 31.25vw, 400px) minmax(0, 1fr);
+  gap: clamp(40px, 5.625vw, 72px);
 }
 
 .skillList {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  gap: 8px;
+  gap: 10px;
 }
 
 .skill {
-  border: 1px solid var(--ink);
-  padding: 12px 16px;
-  font-size: 13px;
+  border: 1px solid rgb(28 27 25 / 0.35);
+  padding: 12px 18px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-/* Wie ich arbeite: Taubenblau-Band */
+/* Werdegang: Stationen und Ausbildung */
 
-.stance {
-  background: var(--taupe);
-  padding-block: 64px;
-}
-
-.stanceList {
+.career {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(40px, 6.25vw, 80px);
 }
 
-.stanceItem {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.stanceTitle {
-  font-size: 26px;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+.careerLabel {
+  padding-bottom: 14px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.stanceText {
-  color: var(--ink-soft);
-  font-size: 14px;
-  line-height: 1.55;
-}
-
-/* CTA */
-
-.cta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: end;
-  gap: 48px;
-  padding: 88px var(--gutter);
-}
-
-.ctaTitle {
-  font-size: 48px;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-}
-
-.ctaBody {
+.entry {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.6;
+  gap: 4px;
+  border-top: 1px solid rgb(28 27 25 / 0.2);
+  padding: 16px 0;
 }
 
-.ctaBody .underlineLink {
-  color: var(--ink);
-}
-
-.ctaBody .underlineLink:hover {
+.entryPeriod {
   color: var(--muted);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-/* Tablet */
+.entryTitle {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.entryDetail {
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.entryMuted {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Tablet: unter 1024 px. Der Header liegt über dem Hero, nicht darauf. */
 
 @media (max-width: 1023px) {
-  .education,
-  .skills,
-  .stance {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .introLayer {
-    grid-template-columns: 1fr 320px;
-    gap: 40px;
-    margin-top: -90px;
-  }
-
-  .photo {
-    height: 440px;
-  }
-
-  .stanceList {
-    gap: 24px;
-  }
-}
-
-/* Mobile */
-
-@media (max-width: 767px) {
-  .page {
-    --gutter: 20px;
-  }
-
-  .label,
-  .labelPlain {
-    padding-top: 0;
-    font-size: 11px;
-  }
-
-  /* Hero: randloses Foto, Person rechts, Schriftzug ragt unten links heraus */
-
   .hero {
-    display: flex;
-    flex-direction: column;
+    height: clamp(520px, calc(100svh - 72px), 680px);
+    grid-template-columns: minmax(0, 1fr) 42vw;
   }
 
-  .claimLayer,
-  .introLayer {
-    display: contents;
-  }
-
-  .photo {
-    order: 1;
-    height: 520px;
-    overflow: hidden;
-    background: #e3e3e2;
-  }
-
-  .portrait {
-    object-position: 50% 20%;
-    transform: translateX(34%);
-    mask-image: linear-gradient(to right, transparent 0, #000 22%);
-  }
-
-  .claim {
-    position: absolute;
-    top: calc(520px + 34px);
-    left: 16px;
-    z-index: 2;
-    width: 88%;
-    transform: translateY(-100%);
-  }
-
-  .introBody {
-    order: 2;
-    gap: 16px;
-    padding: 62px var(--gutter) 0;
-  }
-
-  .introLabel {
-    position: static;
-    width: auto;
-    height: auto;
-    overflow: visible;
-    clip-path: none;
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .lead {
-    font-size: 21px;
-    line-height: 1.3;
-  }
-
-  .introText {
-    font-size: 15px;
-  }
-
-  .signatureRow {
-    gap: 12px;
-    margin-top: 4px;
-  }
-
-  .signature {
-    height: 60px;
-  }
-
-  .signatureNote {
-    padding-bottom: 4px;
-    font-size: 11px;
-  }
-
-  /* Wie ich arbeite */
-
-  .stance {
-    gap: 20px;
-    margin-top: 44px;
-    padding-block: 32px;
+  .heroText {
+    padding-bottom: 48px;
   }
 
   .stanceList {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
   }
 
   .stanceItem {
-    gap: 6px;
+    min-height: 200px;
+  }
+}
+
+/* Mobil: unter 768 px, Foto oben, darunter der Wandton mit Headline */
+
+@media (max-width: 767px) {
+  .stack {
+    gap: 32px;
   }
 
-  .stanceTitle {
-    font-size: 22px;
-    line-height: 1.1;
+  .hero {
+    height: auto;
+    padding-left: 0;
+    grid-template-areas:
+      'photo'
+      'text';
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .stanceText {
-    font-size: 13px;
+  .heroPhoto {
+    margin-left: 0;
+    aspect-ratio: 4 / 5;
   }
 
-  /* Kompetenzen: zwei laufende, wischbare Reihen */
-
-  .skills {
-    gap: 12px;
-    padding-top: 40px;
+  .heroImage {
+    mask-image: none;
   }
 
-  .skillList {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+  .heroText {
+    padding: 40px var(--warm-gutter) 48px;
   }
 
-  .marquee {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-inline: calc(-1 * var(--gutter));
+  .heroTitle {
+    font-size: 56px;
   }
 
-  .marqueeRow {
-    overflow: hidden;
-    cursor: grab;
-    touch-action: pan-y;
-    user-select: none;
-  }
-
-  .marqueeRow[data-dragging] {
-    cursor: grabbing;
-  }
-
-  .marqueeTrack {
-    display: flex;
-    width: max-content;
-    gap: 6px;
-    padding-inline: var(--gutter);
-    will-change: transform;
-  }
-
-  .marqueeChip {
-    flex: none;
-    border: 1px solid var(--ink);
-    padding: 10px 12px;
+  .eyebrow {
     font-size: 11px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    white-space: nowrap;
   }
 
-  /* Ausbildung */
-
-  .education {
-    gap: 12px;
-    padding: 36px var(--gutter) 0;
+  .intro,
+  .skills,
+  .career {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
   }
 
-  .educationList {
-    grid-template-columns: 1fr;
+  .career {
+    gap: 48px;
   }
 
-  .educationItem {
-    gap: 4px;
-    padding: 14px 0;
+  .factValue {
+    font-size: 24px;
   }
 
-  .educationTitle {
-    font-size: 17px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-
-  .educationDetail {
+  .factText {
     font-size: 12px;
-    line-height: 1.45;
   }
 
-  /* CTA */
-
-  .cta {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 48px var(--gutter);
+  /* Laufbild über dem Text */
+  .drive {
+    grid-template-areas:
+      'photo'
+      'body';
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
   }
 
-  .ctaTitle {
-    font-size: 30px;
-  }
-
-  .ctaBody {
-    gap: 16px;
-    font-size: 15px;
-    line-height: 1.55;
-  }
-
-  .underlineLink {
-    width: 100%;
-    padding: 14px 0 12px;
-    font-size: 14px;
+  .drivePhoto {
+    width: min(100%, 280px);
   }
 }

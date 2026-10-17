@@ -1,5 +1,7 @@
 import { cacheLife } from 'next/cache'
 
+import { isLinkedIn } from '@/lib/social'
+
 import { FooterLegalLinks } from './footer-legal-links'
 
 type SiteFooterProps = {
@@ -9,6 +11,7 @@ type SiteFooterProps = {
     label?: string | null
     url?: string | null
   }> | null
+  linkedIn?: string
 }
 
 async function CopyrightYear() {
@@ -18,7 +21,11 @@ async function CopyrightYear() {
   return <>{new Date().getFullYear()}</>
 }
 
-export function SiteFooter({ ownerName, socialLinks }: SiteFooterProps) {
+export function SiteFooter({
+  ownerName,
+  socialLinks,
+  linkedIn,
+}: SiteFooterProps) {
   return (
     <footer className="py-10">
       <div className="text-muted-foreground grid gap-6 px-6 text-xs tracking-[0.06em] uppercase sm:grid-cols-[1fr_auto] sm:items-center sm:px-12">
@@ -33,8 +40,20 @@ export function SiteFooter({ ownerName, socialLinks }: SiteFooterProps) {
         <nav aria-label="Fußnavigation">
           <ul className="flex flex-wrap gap-x-6 gap-y-3">
             <FooterLegalLinks />
+            {linkedIn ? (
+              <li>
+                <a
+                  href={linkedIn}
+                  target="_blank"
+                  rel="me noopener"
+                  className="hover:text-foreground"
+                >
+                  LinkedIn
+                </a>
+              </li>
+            ) : null}
             {socialLinks?.map((link) =>
-              link.label && link.url ? (
+              link.label && link.url && !isLinkedIn(link) ? (
                 <li key={link._key}>
                   <a href={link.url} rel="me" className="hover:text-foreground">
                     {link.label}

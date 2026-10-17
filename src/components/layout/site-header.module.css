@@ -219,7 +219,7 @@
   }
 }
 
-/* Startseite: Header liegt auf dem Hero-Foto, ohne eigene Fläche */
+/* Startseite und Über mich: Header liegt auf dem Hero, ohne eigene Fläche */
 @media (min-width: 1024px) {
   .onPhoto {
     position: absolute;
@@ -227,6 +227,18 @@
     right: 0;
     left: 0;
     background: transparent;
+  }
+}
+
+/* Über mich: Name in Dunkelgrau wie im Entwurf; mobil steht der Header auf
+   dem Wandton des Hero */
+.onWall .warmRole {
+  color: var(--coal-soft);
+}
+
+@media (max-width: 1023px) {
+  .onWall {
+    background: var(--wall);
   }
 }
 

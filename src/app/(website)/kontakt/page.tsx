@@ -11,6 +11,7 @@ import {
 import styles from '@/components/sections/contact-page.module.css'
 import { inquiryRecipient } from '@/lib/inquiry'
 import { buildMetadata } from '@/lib/metadata'
+import { linkedInUrl } from '@/lib/social'
 import { getSiteSettings } from '@/sanity/lib/repository'
 import { Arrow } from '@/components/ui/arrow'
 
@@ -24,10 +25,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default async function ContactPage() {
   const settings = await getSiteSettings()
-  // TODO: LinkedIn-URL in den Website-Einstellungen in Sanity hinterlegen.
-  const linkedIn = settings?.socialLinks?.find((link) =>
-    /linkedin/i.test(`${link.label} ${link.url}`),
-  )?.url
+  const linkedIn = linkedInUrl(settings?.socialLinks)
 
   return (
     <div data-frame-page data-contact-page className={styles.page}>
@@ -65,27 +63,18 @@ export default async function ContactPage() {
             </a>
           </li>
           <li>
-            {linkedIn ? (
-              <a
-                href={linkedIn}
-                target="_blank"
-                rel="noopener"
-                className={styles.directRow}
-              >
-                <span className={styles.directValue}>
-                  <span className={styles.directLabel}>LinkedIn</span>
-                  Annika Matthaei
-                </span>
-                <Arrow />
-              </a>
-            ) : (
-              <div className={styles.directRow}>
-                <span className={styles.directValue}>
-                  <span className={styles.directLabel}>LinkedIn</span>
-                  Annika Matthaei
-                </span>
-              </div>
-            )}
+            <a
+              href={linkedIn}
+              target="_blank"
+              rel="noopener"
+              className={styles.directRow}
+            >
+              <span className={styles.directValue}>
+                <span className={styles.directLabel}>LinkedIn</span>
+                Annika Matthaei
+              </span>
+              <Arrow />
+            </a>
           </li>
           <li>
             <a href="tel:+491727732006" className={styles.directRow}>

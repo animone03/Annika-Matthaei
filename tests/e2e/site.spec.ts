@@ -85,9 +85,14 @@ test('company coaching page has no serious accessibility violations', async ({
 test('about page has no serious accessibility violations', async ({ page }) => {
   await page.goto('/ueber-mich')
   await expect(
-    page.getByRole('heading', { level: 1, name: /I wanna see you grow/ }),
-  ).toBeAttached()
-  await expect(page.getByRole('img', { name: /see you grow/ })).toBeVisible()
+    page.getByRole('heading', { level: 1, name: 'Ich bin Annika.' }),
+  ).toBeVisible()
+  await expect(
+    page.getByRole('img', { name: 'Annika Matthaei lachend' }),
+  ).toBeVisible()
+  await expect(
+    page.getByRole('contentinfo').getByRole('link', { name: 'LinkedIn' }),
+  ).toHaveAttribute('href', 'https://www.linkedin.com/in/annikamatthaei/')
 
   const results = await new AxeBuilder({ page }).analyze()
   const serious = results.violations.filter((violation) =>
