@@ -91,6 +91,8 @@ const warmPaths: string[] = ['/', '/startups', '/coaching/unternehmen']
 export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
   const pathname = usePathname()
   const warm = warmPaths.includes(pathname)
+  // Startseite: Header liegt auf dem Hero-Foto (ab 1024 px)
+  const onPhoto = pathname === '/'
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -156,7 +158,7 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
       ref={headerRef}
       className={`site-header sticky top-0 z-40 lg:relative ${
         menuOpen ? 'bg-transparent' : 'bg-background'
-      } ${warm ? styles.warm : ''}`}
+      } ${warm ? styles.warm : ''} ${onPhoto ? styles.onPhoto : ''}`}
     >
       {menuOpen ? (
         <div className={styles.overlay}>

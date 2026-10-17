@@ -219,6 +219,17 @@
   }
 }
 
+/* Startseite: Header liegt auf dem Hero-Foto, ohne eigene Fläche */
+@media (min-width: 1024px) {
+  .onPhoto {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: transparent;
+  }
+}
+
 /* Mobil-Menü in der warmen Palette: Kohle und Stein statt Taubenblau */
 
 .warm .overlay {

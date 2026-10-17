@@ -3,7 +3,8 @@
 //   filter: url(#longexp2) contrast(0.92) brightness(1.04);
 // Der Bild-Container braucht overflow: hidden.
 //   longexp  – leicht, Reserve
-//   longexp2 – stark, für Themenkarten und Laufbild
+//   longexpM – mittel, Laufbild im Streifen „Leistungssport“
+//   longexp2 – stark, für Themenkarten
 export function LongExposureFilters() {
   return (
     <svg
@@ -23,6 +24,21 @@ export function LongExposureFilters() {
           result="g"
         />
         <feGaussianBlur in="SourceGraphic" stdDeviation=".6" result="s" />
+        <feMerge>
+          <feMergeNode in="s" />
+          <feMergeNode in="g" />
+        </feMerge>
+      </filter>
+      <filter id="longexpM" x="0" y="0" width="100%" height="100%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="11 1.8" result="b" />
+        <feOffset in="b" dx="7" dy="0" result="o" />
+        <feColorMatrix
+          in="o"
+          type="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .5 0"
+          result="g"
+        />
+        <feGaussianBlur in="SourceGraphic" stdDeviation=".8" result="s" />
         <feMerge>
           <feMergeNode in="s" />
           <feMergeNode in="g" />

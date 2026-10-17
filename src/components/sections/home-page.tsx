@@ -10,16 +10,19 @@ import founderImage from '../../../public/images/fotos/thema-founder.jpg'
 import leadershipImage from '../../../public/images/fotos/thema-leadership.jpg'
 import resilienceImage from '../../../public/images/fotos/thema-resilienz.jpg'
 
+import { Arrow } from '@/components/ui/arrow'
 import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
 import { Closing } from '@/components/warm/closing'
 import { ImageCard } from '@/components/warm/image-card'
 import warm from '@/components/warm/warm.module.css'
 import {
   ablauf,
+  company,
   contact,
   facts,
   hero,
   methods,
+  performance,
   stats,
   themes,
 } from '@/content/startseite'
@@ -44,60 +47,35 @@ export function HomePageContent({ email }: HomePageContentProps) {
       <LongExposureFilters />
 
       <section aria-labelledby="home-title" className={styles.hero}>
-        <div className={styles.heroPhoto}>
-          <Image
-            src={heroPortrait}
-            alt="Annika Matthaei im Sessel"
-            preload
-            placeholder="blur"
-            sizes="(min-width: 1024px) 510px, (min-width: 768px) 400px, 130vw"
-            className={styles.heroImage}
-          />
+        <Image
+          src={heroPortrait}
+          alt="Annika Matthaei im Sessel"
+          fill
+          preload
+          placeholder="blur"
+          sizes="100vw"
+          className={styles.heroImage}
+        />
+        <div className={styles.heroText}>
+          <h1 id="home-title" className={styles.heroTitle}>
+            {hero.title.map((line, index) => (
+              <Fragment key={line}>
+                {index > 0 ? ' ' : null}
+                <span className={styles.heroLine}>{line}</span>
+              </Fragment>
+            ))}
+          </h1>
+          <p className={styles.eyebrow}>{hero.eyebrow}</p>
         </div>
-        <div className={styles.heroBody}>
-          <div className={styles.heroHead}>
-            <p className={styles.eyebrow}>{hero.eyebrow}</p>
-            <h1 id="home-title" className={styles.heroTitle}>
-              {hero.title.map((line, index) => (
-                <Fragment key={line}>
-                  {index > 0 ? ' ' : null}
-                  <span className={styles.heroLine}>{line}</span>
-                </Fragment>
-              ))}
-            </h1>
-          </div>
-          <div className={styles.heroFoot}>
-            <div className={styles.heroRun}>
-              <Image
-                src={runningPhoto}
-                alt="Annika Matthaei beim Laufen"
-                loading="eager"
-                placeholder="blur"
-                sizes="(min-width: 1024px) 200px, (min-width: 768px) 140px, 50vw"
-                className={styles.runImage}
-              />
-            </div>
-            <p className={styles.claim}>
-              {hero.claim.map((line, index) => (
-                <Fragment key={line}>
-                  {index > 0 ? (
-                    <>
-                      {' '}
-                      <br />
-                    </>
-                  ) : null}
-                  {line}
-                </Fragment>
-              ))}
-            </p>
-            <Link
-              id="home-hero-cta"
-              href="/kontakt"
-              className={`${warm.link} ${styles.heroCta}`}
-            >
-              {hero.cta}
-            </Link>
-          </div>
+        <div className={styles.heroAction}>
+          <Link
+            id="home-hero-cta"
+            href="/kontakt"
+            className={`${warm.button} ${warm.buttonLarge} ${styles.heroButton}`}
+          >
+            {hero.cta}
+          </Link>
+          <span className={styles.heroNote}>{hero.note}</span>
         </div>
       </section>
 
@@ -133,6 +111,18 @@ export function HomePageContent({ email }: HomePageContentProps) {
         </ul>
       </section>
 
+      <div className={styles.companyStrip}>
+        <Link href={company.href} className={styles.company}>
+          <span className={styles.companyText}>
+            <span className={styles.companyLabel}>{company.label}</span>
+            <span className={styles.companyBody}>{company.text}</span>
+          </span>
+          <span className={`${warm.link} ${styles.companyCta}`}>
+            {company.cta} <Arrow />
+          </span>
+        </Link>
+      </div>
+
       <section aria-labelledby="home-methods" className={styles.methods}>
         <h2
           id="home-methods"
@@ -149,7 +139,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
             src={methodsPortrait}
             alt="Annika Matthaei lachend"
             placeholder="blur"
-            sizes="(min-width: 1024px) 480px, (min-width: 768px) 480px, 100vw"
+            sizes="(min-width: 768px) 480px, 100vw"
             className={styles.methodsImage}
           />
         </div>
@@ -163,17 +153,28 @@ export function HomePageContent({ email }: HomePageContentProps) {
         <Link href="/kontakt" className={`${warm.link} ${styles.methodsCta}`}>
           {methods.cta}
         </Link>
-        <Link href={methods.company.href} className={styles.company}>
-          <span className={styles.companyLabel}>{methods.company.label}</span>
-          <span className={styles.companyText}>
-            {methods.company.text}{' '}
-            <span className={styles.companyCta}>{methods.company.cta}</span>
-          </span>
-        </Link>
       </section>
 
+      <div className={styles.performance}>
+        <div className={styles.performancePhoto}>
+          <Image
+            src={runningPhoto}
+            alt="Annika Matthaei beim Laufen"
+            placeholder="blur"
+            sizes="(min-width: 768px) 260px, 50vw"
+            className={styles.performanceImage}
+          />
+        </div>
+        <div className={styles.performanceBody}>
+          <p className={styles.performanceText}>{performance.text}</p>
+          <Link href={performance.href} className={warm.link}>
+            {performance.cta}
+          </Link>
+        </div>
+      </div>
+
       <section aria-labelledby="home-process" className={styles.process}>
-        <h2 id="home-process" className={`${warm.title} ${warm.titleEnd}`}>
+        <h2 id="home-process" className={warm.title}>
           {ablauf.title}
         </h2>
         <ProcessTabs
@@ -183,7 +184,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
               src={processPortrait}
               alt="Annika Matthaei an ihrem Arbeitsplatz"
               placeholder="blur"
-              sizes="(min-width: 1024px) 400px, (min-width: 768px) 280px, 100vw"
+              sizes="(min-width: 768px) 400px, 100vw"
               className={styles.processImage}
             />
           }

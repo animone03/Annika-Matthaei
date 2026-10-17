@@ -1,18 +1,14 @@
 import type { Route } from 'next'
 
-// Texte der Startseite (Übergabe 10b, Inhaltskonzept v3 vom 17.10.2026).
+// Texte der Startseite (Übergabe final, ehem. 13d, Inhaltskonzept v3 vom
+// 17.10.2026).
 
 export const hero = {
   eyebrow: 'Mentale Fitness für Startups & High-Performing Teams',
   // Zwei Zeilen: „FIT FOR“ / „GROWTH.“
   title: ['Fit for', 'growth.'],
-  // Feste Zeilenumbrüche auf dem Desktop
-  claim: [
-    'Startups sind Leistungssport.',
-    'Wie im Sport entscheidet der Kopf,',
-    'wie weit du kommst.',
-  ],
   cta: 'Kostenloses Kennenlernen',
+  note: '30 Min. · online · unverbindlich',
 }
 
 export const facts = [
@@ -20,12 +16,18 @@ export const facts = [
     value: 'Zertifiziert',
     text: 'Systemischer & psychologischer Business Coach',
   },
-  { value: '2 Startups', text: 'von innen erlebt' },
   {
     value: 'Erfahrung',
-    text: '13 Jahre im Konzern, Mittelstand & Startup gearbeitet, davon 9 Jahre in Führungspositionen',
+    text: '13 Jahre Konzern, Mittelstand & Startup, davon 9 in Führung',
   },
-  { value: 'Vertraulich', text: 'auch gegenüber Investor:innen' },
+  {
+    value: 'Ergebnisorientiert',
+    text: 'Klare Ziele, spürbare Fortschritte, Werkzeuge für den Alltag',
+  },
+  {
+    value: 'Founder-Perspektive',
+    text: 'Zwei Startups von innen erlebt, Druck an der Spitze kenne ich',
+  },
 ]
 
 // Die drei Themen für Startups, ausführlich auf /startups#themen.
@@ -71,16 +73,20 @@ export const themes: {
   ],
 }
 
-// TODO: Position des Unternehmens-Eingangs ist noch offen (Vorschlag: als
-// schmaler Streifen unter die Themenkarten).
-export const methods: {
-  title: string
-  lead: string
+// Eingang für Unternehmen, als Streifen unter den Themenkarten
+export const company: {
+  label: string
   text: string
-  items: string[]
   cta: string
-  company: { label: string; text: string; cta: string; href: Route }
+  href: Route
 } = {
+  label: 'Ihr seid ein Unternehmen?',
+  text: 'Leadership sowie Gesundheit & Resilienz für Teams und Führungskräfte in Mittelstand und Konzern.',
+  cta: 'Coaching für Unternehmen',
+  href: '/coaching/unternehmen',
+}
+
+export const methods = {
   title: 'Methoden',
   lead: 'Fundierte Psychologie trifft Business-Praxis.',
   text: 'Systemisch, agil und mit positiver Psychologie. Ich wähle aus, was zu euch und eurer Situation passt.',
@@ -99,12 +105,13 @@ export const methods: {
     'Agile Methoden & Selbstorganisation',
   ],
   cta: 'Loslegen und wachsen',
-  company: {
-    label: 'Ihr seid ein Unternehmen?',
-    text: 'Leadership sowie Gesundheit & Resilienz für Teams und Führungskräfte in Mittelstand und Konzern.',
-    cta: 'Coaching für Unternehmen',
-    href: '/coaching/unternehmen',
-  },
+}
+
+// Streifen zwischen Methoden und „So läuft es ab“
+export const performance: { text: string; cta: string; href: Route } = {
+  text: 'Startups sind Leistungssport. Wie im Sport entscheidet der Kopf, wie weit du kommst.',
+  cta: 'Mehr über mich',
+  href: '/ueber-mich',
 }
 
 // TODO: Texte der Schritte muss Annika noch bestätigen.
@@ -178,10 +185,8 @@ export const stats = {
     },
     {
       // DSM 2025: 24,4 % mittelmäßig, 7,9 % schlecht, zusammen 32,3 %.
-      // TODO: Kernaussage offen. Genauer wäre „Jeder dritte Founder kämpft
-      // mit der mentalen Gesundheit.“
       value: '1 von 3',
-      claim: 'Founder sind mental am Limit.',
+      claim: 'Jeder dritte Founder kämpft mit der mentalen Gesundheit.',
       text: 'Foundern in Deutschland bewertet die eigene mentale Gesundheit nur als mittelmäßig oder schlecht.',
       source: 'Deutscher Startup Monitor 2025',
     },

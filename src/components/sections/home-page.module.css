@@ -1,61 +1,61 @@
-/* Startseite 10b: Aufbau der Abschnitte. Grundstile, Bildkarten, Zeitleiste
+/* Startseite (final, ehem. 13d): Aufbau der Abschnitte. Grundstile, Bildkarten, Zeitleiste
    und Abschluss kommen aus src/components/warm. */
 
-/* Hero: Sesselfoto links, rechts Headline oben, Laufbild und Satz unten */
+/* Hero: Sesselfoto als Bühne über die volle Breite. Ab 1024 px liegt der
+   Header darauf (site-header.module.css). Headline unten links, Button unten
+   rechts. */
 
+/* 820 px hoch bei 1280 px Breite. Breiter wächst die Bühne mit, höchstens
+   bis zur Fensterhöhe, damit vom Hochformat-Foto genug zu sehen bleibt. */
 .hero {
-  --photo: clamp(260px, 31.25vw, 400px);
-
-  display: grid;
-  grid-template-columns: var(--photo) minmax(0, 1fr);
-  align-items: start;
-  gap: clamp(32px, 5.625vw, 72px);
-  padding: 56px var(--warm-inline) 0;
-}
-
-.heroPhoto {
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-}
-
-/* Ausschnitt laut Annika: Zoom 127 %, Position 36 % */
-.heroImage {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 36%;
-  transform: scale(1.27);
-  transform-origin: 50% 36%;
-}
-
-/* Etwas höher als das Foto (560 px bei 400 px Breite) */
-.heroBody {
+  position: relative;
   display: flex;
-  min-height: calc(var(--photo) * 1.4);
-  flex-direction: column;
+  height: clamp(600px, min(64vw, 100svh), 1080px);
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 40px;
+  gap: 48px;
+  overflow: hidden;
+  padding: 0 var(--warm-inline) 56px;
+  color: var(--paper);
 }
 
-.heroHead {
+/* Entwurf: center 30 %. Bei 18 % beginnt der Kopf knapp unter dem Header,
+   der Name im Header steht dann auf der Wand statt auf den Haaren. */
+.heroImage {
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+/* Verlauf von unten, damit die Schrift auf dem Foto lesbar bleibt */
+.hero::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(28 27 25 / 0.55) 0%,
+    rgb(28 27 25 / 0) 45%
+  );
+  content: '';
+  pointer-events: none;
+}
+
+.heroText,
+.heroAction {
+  position: relative;
+  z-index: 1;
+}
+
+.heroText {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-.eyebrow {
-  color: var(--muted);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  gap: 20px;
 }
 
 .heroTitle {
-  font-size: clamp(56px, 6.5625vw, 84px);
+  font-size: clamp(72px, 10.3125vw, 132px);
   font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
+  line-height: 0.86;
+  letter-spacing: -0.03em;
   text-transform: uppercase;
 }
 
@@ -63,45 +63,33 @@
   display: block;
 }
 
-.heroFoot {
-  --run: clamp(130px, 15.625vw, 200px);
-
-  display: grid;
-  grid-template-columns: var(--run) minmax(0, 1fr);
-  grid-template-rows: 1fr auto;
-  grid-template-areas:
-    'run claim'
-    'run cta';
-  gap: 22px clamp(24px, 3.125vw, 40px);
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.heroRun {
-  grid-area: run;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
+.heroAction {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
 }
 
-.runImage {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 58% 30%;
-  filter: url(#longexp2) contrast(0.95) brightness(1.03);
+/* Button in Creme auf dem Foto (stärker als .button in warm.module.css) */
+.heroAction .heroButton,
+.hero .heroAction .heroButton:hover {
+  background: var(--paper);
+  color: var(--ink);
 }
 
-.claim {
-  grid-area: claim;
-  align-self: end;
-  max-width: 440px;
-  font-size: clamp(17px, 1.72vw, 22px);
-  font-weight: 700;
-  line-height: 1.3;
-  text-wrap: pretty;
+.hero .heroAction .heroButton:hover {
+  background: var(--stone);
 }
 
-.heroCta {
-  grid-area: cta;
+.heroNote {
+  font-size: 12px;
 }
 
 /* Fakten */
@@ -125,10 +113,11 @@
 }
 
 .factValue {
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .factText {
@@ -171,18 +160,68 @@
   text-transform: uppercase;
 }
 
+/* Eingang für Unternehmen: schmaler Streifen unter den Themenkarten */
+
+.companyStrip {
+  padding: 56px var(--warm-inline) 0;
+}
+
+.company {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  background: var(--sand);
+  padding: 24px 32px;
+}
+
+.companyStrip .company:hover {
+  color: var(--ink);
+}
+
+.companyText {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 20px;
+}
+
+.companyLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.companyBody {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.companyCta {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.company:hover .companyCta {
+  color: var(--muted);
+}
+
 /* Methoden: links Text und Liste, rechts das lachende Porträt */
 
 .methods {
   display: grid;
   grid-template-columns: minmax(0, 1fr) clamp(340px, 37.5vw, 480px);
-  grid-template-rows: auto auto auto auto 1fr;
+  grid-template-rows: auto auto auto 1fr;
   grid-template-areas:
     'title photo'
     'intro photo'
     'list photo'
-    'cta photo'
-    'company photo';
+    'cta photo';
   align-items: start;
   gap: 28px clamp(40px, 6.25vw, 80px);
   padding: var(--section) var(--warm-inline) 0;
@@ -249,42 +288,46 @@
   justify-self: start;
 }
 
-/* Eingang für Unternehmen, bewusst leiser als die Startup-Themen */
-.company {
+/* Leistungssport: Laufbild neben dem großen Satz, bewusst mehr Luft oben */
+
+.performance {
+  display: grid;
+  grid-template-columns: clamp(180px, 20.3vw, 260px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 64px);
+  padding: clamp(120px, 15.625vw, 200px) var(--warm-inline) 0;
+}
+
+.performancePhoto {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.performanceImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% 30%;
+  filter: url(#longexpM) contrast(0.96) brightness(1.02);
+}
+
+.performanceBody {
   display: flex;
-  max-width: 520px;
   flex-direction: column;
-  gap: 6px;
-  grid-area: company;
-  justify-self: start;
-  margin-top: 28px;
+  gap: 22px;
 }
 
-.companyLabel {
-  color: var(--muted);
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.performanceText {
+  max-width: 820px;
+  font-size: clamp(28px, 3.44vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
 }
 
-.companyText {
-  color: var(--ink-soft);
-  font-size: 12.5px;
-  line-height: 1.65;
-}
-
-.companyCta {
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-}
-
-.company:hover .companyCta {
-  color: var(--muted);
-}
-
-/* So läuft es ab: Reiter, Foto, Zeitleiste */
+/* So läuft es ab: Reiter, links die Zeitleiste, rechts das Foto */
 
 .process {
   display: flex;
@@ -328,12 +371,14 @@
 
 .processBody {
   display: grid;
-  grid-template-columns: clamp(280px, 31.25vw, 400px) minmax(0, 1fr);
+  grid-template-areas: 'main photo';
+  grid-template-columns: minmax(0, 1fr) clamp(280px, 31.25vw, 400px);
   align-items: start;
   gap: clamp(40px, 5.625vw, 72px);
 }
 
 .processPhoto {
+  grid-area: photo;
   aspect-ratio: 4 / 5;
   overflow: hidden;
 }
@@ -347,6 +392,7 @@
 
 .processMain {
   display: flex;
+  grid-area: main;
   flex-direction: column;
   align-items: flex-start;
 }
@@ -412,20 +458,38 @@
   text-transform: uppercase;
 }
 
-/* Unter 1100 px: Satz im Hero ohne feste Umbrüche */
+/* Fakten in zwei Spalten, bevor die Titel nicht mehr passen */
 
-@media (max-width: 1099px) {
-  .claim br {
-    display: none;
-  }
-}
-
-/* Tablet: unter 1024 px */
-
-@media (max-width: 1023px) {
+@media (max-width: 1199px) {
   .factList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32px 24px;
+  }
+}
+
+/* Tablet: unter 1024 px. Der Header liegt über dem Hero, nicht darauf. */
+
+@media (max-width: 1023px) {
+  .hero {
+    height: clamp(560px, calc(100svh - 72px), 820px);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 28px;
+  }
+
+  .heroAction {
+    align-items: flex-start;
+  }
+
+  /* Hochformat: Text liegt teils auf dem hellen Sessel, daher dunkler */
+  .hero::after {
+    background: linear-gradient(
+      to top,
+      rgb(28 27 25 / 0.72) 0%,
+      rgb(28 27 25 / 0.4) 30%,
+      rgb(28 27 25 / 0) 65%
+    );
   }
 
   /* Methoden in einer Spalte, Foto über der Liste */
@@ -437,8 +501,7 @@
       'intro'
       'photo'
       'list'
-      'cta'
-      'company';
+      'cta';
     row-gap: 28px;
   }
 
@@ -459,46 +522,30 @@
 /* Mobil: unter 768 px */
 
 @media (max-width: 767px) {
-  /* Sesselfoto in voller Breite, darunter Headline, Laufbild neben dem Satz
-     und der Button in voller Breite */
   .hero {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
-    padding: 0;
-  }
-
-  .heroBody {
-    min-height: 0;
-    gap: 32px;
-    padding-inline: var(--warm-gutter);
+    height: clamp(520px, calc(100svh - 64px), 760px);
+    padding-bottom: 32px;
   }
 
   .heroTitle {
-    font-size: 52px;
+    font-size: 56px;
   }
 
-  .heroFoot {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    grid-template-areas:
-      'run claim'
-      'cta cta';
-    gap: 28px 16px;
+  .eyebrow {
+    font-size: 11px;
   }
 
-  .claim {
-    font-size: 17px;
+  .heroAction {
+    align-self: stretch;
+    align-items: stretch;
   }
 
-  .heroCta,
-  .heroFoot .heroCta:hover {
-    background: var(--ink);
-    padding: 16px;
-    color: var(--paper);
-    font-size: 12px;
-    letter-spacing: 0.1em;
+  .heroAction .heroButton {
+    align-self: stretch;
+  }
+
+  .heroNote {
     text-align: center;
-    text-decoration: none;
   }
 
   .facts {
@@ -506,7 +553,7 @@
   }
 
   .factValue {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .factText {
@@ -515,6 +562,21 @@
 
   .themes {
     gap: 32px;
+  }
+
+  .companyStrip {
+    padding-top: 40px;
+  }
+
+  .company {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  .companyCta {
+    white-space: normal;
   }
 
   .methodList {
@@ -526,8 +588,14 @@
     width: 100%;
   }
 
-  .company {
-    margin-top: 12px;
+  /* Laufbild halb breit über dem Satz */
+  .performance {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .performancePhoto {
+    width: 50%;
   }
 
   .process {
@@ -540,7 +608,11 @@
     letter-spacing: 0.08em;
   }
 
+  /* Foto über der Zeitleiste */
   .processBody {
+    grid-template-areas:
+      'photo'
+      'main';
     grid-template-columns: minmax(0, 1fr);
     gap: 36px;
   }
@@ -554,5 +626,14 @@
   .statList {
     grid-template-columns: minmax(0, 1fr);
     gap: 56px;
+  }
+}
+
+/* Fakten untereinander, sonst passen die langen Titel nicht */
+
+@media (max-width: 639px) {
+  .factList {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
   }
 }
