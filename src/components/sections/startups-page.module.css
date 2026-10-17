@@ -90,6 +90,36 @@
   gap: 18px;
 }
 
+.themeMore {
+  display: none;
+}
+
+.themeSummary {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  list-style: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.themeSummary::-webkit-details-marker {
+  display: none;
+}
+
+.plus {
+  font-weight: 400;
+  transition: transform 180ms ease;
+}
+
+.themeMore[open] .plus {
+  transform: rotate(45deg);
+}
+
 .themeFocus {
   font-size: 11px;
   font-weight: 700;
@@ -414,7 +444,7 @@
   }
 }
 
-/* Mobil: unter 768 px, alles einspaltig */
+/* Mobil: unter 768 px, alles einspaltig (Mobile-Übergabe M2) */
 
 @media (max-width: 767px) {
   .stack {
@@ -425,39 +455,245 @@
   .faq,
   .outlook {
     grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
   }
 
-  .outlook {
-    gap: 64px;
+  /* Zitate: Überschrift, Zitate, dann der Satz */
+  .quotes {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
-  /* Zahl über dem Text */
+  .quotesHead {
+    display: contents;
+  }
+
+  .quotesHead h2 {
+    margin-bottom: 16px;
+  }
+
+  .quoteList {
+    order: 1;
+  }
+
+  .quote {
+    padding: 14px 0;
+    font-size: 17px;
+  }
+
+  .bridge {
+    order: 2;
+    border-top: 1px solid var(--ink);
+    padding-top: 14px;
+    font-size: 13.5px;
+  }
+
+  /* 92 %: Zahl über dem Text */
   .stat {
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
+    gap: 12px;
   }
 
   .statValue {
     font-size: 88px;
   }
 
+  .statBody {
+    gap: 12px;
+  }
+
+  .statClaim {
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .statText {
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .statSource {
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+  }
+
+  /* Themen: Liste zum Aufklappen */
+  .themeList {
+    gap: 32px;
+  }
+
+  .theme {
+    gap: 12px;
+  }
+
+  .themePoints {
+    display: none;
+  }
+
+  .themeMore {
+    display: block;
+    border-bottom: 1px solid rgb(28 27 25 / 0.2);
+    padding: 4px 0 12px;
+  }
+
+  .themeMore > ul > li:last-child {
+    border-bottom: 0;
+  }
+
+  .themeFocus {
+    color: var(--muted);
+    font-size: 10px;
+  }
+
+  /* Angebote: ohne Stichworte, kompakter */
+  .offerList {
+    gap: 12px;
+  }
+
   .offer {
-    padding: 28px 24px;
+    gap: 12px;
+    padding: 26px 22px;
+  }
+
+  .offerLabel {
+    font-size: 10px;
+  }
+
+  .offerQuestion {
+    font-size: 17px;
+  }
+
+  .offerTags {
+    display: none;
+  }
+
+  .offerTitle {
+    margin-top: 4px;
+    padding-top: 14px;
+    font-size: 22px;
+  }
+
+  .offerText {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .offerFormat {
+    font-size: 9.5px;
+  }
+
+  /* Der Weg */
+  .stages {
+    gap: 22px;
+  }
+
+  .stage {
+    gap: 7px;
+    padding-top: 14px;
+  }
+
+  .stage > span:first-child {
+    font-size: 10px;
+  }
+
+  .stageTitle {
+    font-size: 19px;
+  }
+
+  .stageText,
+  .stageFriction {
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .stageOffers {
+    margin-top: 0;
+    font-size: 10px;
+    letter-spacing: 0.08em;
   }
 
   .exist {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
-    padding: 24px;
+    gap: 10px;
+    padding: 22px 20px;
   }
 
   .exist .existCta {
     align-self: flex-start;
+    font-size: 11px;
+  }
+
+  .existTitle {
+    font-size: 15px;
+  }
+
+  .existBody {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  /* Was sich verändert / Ist das für euch? */
+  .outlook {
+    gap: 56px;
+  }
+
+  .outlookTitle {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  .fit .outlookTitle {
+    margin-bottom: 4px;
+  }
+
+  .fit {
+    gap: 12px;
   }
 
   .change {
-    font-size: 16px;
+    padding: 12px 0;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .fitBox {
+    gap: 9px;
+    padding: 20px;
+  }
+
+  .fitList {
+    gap: 9px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  /* Häufige Fragen */
+  .faq {
+    gap: 14px;
+  }
+
+  .faq h2 {
+    font-size: 24px;
+  }
+
+  .faqList {
+    border-bottom: 0;
+  }
+
+  .faqItem {
+    border-top-color: var(--ink);
+    padding: 14px 0;
+  }
+
+  .faqQuestion {
+    gap: 12px;
+    font-size: 15px;
+  }
+
+  .faqAnswer {
+    margin-top: 8px;
+    font-size: 13.5px;
+    line-height: 1.6;
   }
 }

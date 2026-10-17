@@ -37,36 +37,35 @@ const themeImages = {
   resilienz: resilienceImage,
 }
 
-type HomePageContentProps = {
-  email?: string | null
-}
-
-export function HomePageContent({ email }: HomePageContentProps) {
+export function HomePageContent() {
   return (
-    <div data-warm-page className={warm.page}>
+    <div data-warm-page className={`${warm.page} ${styles.home}`}>
       <LongExposureFilters />
 
       <section aria-labelledby="home-title" className={styles.hero}>
-        <Image
-          src={heroPortrait}
-          alt="Annika Matthaei im Sessel"
-          fill
-          preload
-          placeholder="blur"
-          sizes="100vw"
-          className={styles.heroImage}
-        />
-        <div className={styles.heroText}>
-          <h1 id="home-title" className={styles.heroTitle}>
-            {hero.title.map((line, index) => (
-              <Fragment key={line}>
-                {index > 0 ? ' ' : null}
-                <span className={styles.heroLine}>{line}</span>
-              </Fragment>
-            ))}
-          </h1>
-          <p className={styles.eyebrow}>{hero.eyebrow}</p>
+        <div className={styles.heroStage}>
+          <Image
+            src={heroPortrait}
+            alt="Annika Matthaei im Sessel"
+            fill
+            preload
+            placeholder="blur"
+            sizes="100vw"
+            className={styles.heroImage}
+          />
+          <div className={styles.heroText}>
+            <h1 id="home-title" className={styles.heroTitle}>
+              {hero.title.map((line, index) => (
+                <Fragment key={line}>
+                  {index > 0 ? ' ' : null}
+                  <span className={styles.heroLine}>{line}</span>
+                </Fragment>
+              ))}
+            </h1>
+            <p className={styles.eyebrow}>{hero.eyebrow}</p>
+          </div>
         </div>
+        {/* Desktop auf dem Foto unten rechts, mobil darunter */}
         <div className={styles.heroAction}>
           <Link
             id="home-hero-cta"
@@ -150,6 +149,22 @@ export function HomePageContent({ email }: HomePageContentProps) {
             </li>
           ))}
         </ul>
+        {/* Mobil: die Methoden zum Aufklappen */}
+        <details className={styles.methodsMore}>
+          <summary className={styles.methodsSummary}>
+            Alle {methods.items.length} Methoden
+            <span aria-hidden="true" className={styles.plus}>
+              +
+            </span>
+          </summary>
+          <ul>
+            {methods.items.map((item) => (
+              <li key={item} className={styles.methodsMoreItem}>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </details>
         <Link href="/kontakt" className={`${warm.link} ${styles.methodsCta}`}>
           {methods.cta}
         </Link>
@@ -223,7 +238,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
         variant="link"
       />
 
-      <HomeStickyCta email={email} label={hero.cta} startId="home-hero-cta" />
+      <HomeStickyCta label={hero.cta} startId="home-hero-cta" />
     </div>
   )
 }

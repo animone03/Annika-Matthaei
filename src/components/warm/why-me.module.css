@@ -73,6 +73,7 @@
   line-height: 1.5;
 }
 
+/* Mobil: Foto 4:3 oben, Zahlen in drei schmalen Spalten */
 @media (max-width: 767px) {
   .why,
   .photoEnd {
@@ -80,28 +81,44 @@
       'photo'
       'body';
     grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
+    gap: 24px;
   }
 
-  /* Zahl links, Text rechts daneben */
+  .photo {
+    aspect-ratio: 4 / 3;
+  }
+
+  .body {
+    gap: 16px;
+  }
+
+  .body .title {
+    font-size: 26px;
+  }
+
+  .text {
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
   .facts {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
+    gap: 14px;
+    margin-top: 0;
   }
 
   .fact {
-    display: grid;
-    grid-template-columns: 56px minmax(0, 1fr);
-    align-items: baseline;
-    gap: 12px;
-    padding-block: 12px;
-  }
-
-  .fact:last-child {
-    border-bottom: 1px solid var(--ink);
+    gap: 4px;
+    padding-top: 10px;
   }
 
   .value {
     font-size: 28px;
+  }
+
+  .factText {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.4;
+    hyphens: auto;
   }
 }

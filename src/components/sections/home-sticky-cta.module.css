@@ -1,5 +1,5 @@
-/* Mobile Kontaktleiste (Startseite, Startups, Über mich). Die Farben kommen
-   aus --ink und --paper der jeweiligen Seite. */
+/* Mobile Kontaktleiste (Startseite, Startups, Unternehmen, Über mich): volle
+   Breite, Creme mit Linie oben. Farben aus --ink und --paper der Seite. */
 
 .stickyCta {
   display: none;
@@ -8,16 +8,14 @@
 @media (max-width: 767px) {
   .stickyCta {
     position: fixed;
-    right: 12px;
-    bottom: calc(12px + env(safe-area-inset-bottom));
-    left: 12px;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 30;
-    display: flex;
-    gap: 8px;
-    border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-    background: color-mix(in srgb, var(--paper) 94%, transparent);
-    padding: 8px;
-    backdrop-filter: blur(8px);
+    display: block;
+    border-top: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
+    background: var(--paper);
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
     transition:
       opacity 200ms ease-out,
       transform 200ms ease-out;
@@ -31,22 +29,13 @@
 
   .stickyCtaPrimary,
   .stickyCta .stickyCtaPrimary:hover {
-    flex: 1;
+    display: block;
     background: var(--ink);
-    padding: 14px;
+    padding: 15px;
     color: var(--paper);
-    font-size: 13px;
-    letter-spacing: 0.06em;
+    font-size: 12px;
+    letter-spacing: 0.1em;
     text-align: center;
     text-transform: uppercase;
-  }
-
-  .stickyCtaMail {
-    display: flex;
-    width: 52px;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--ink);
-    font-size: 12px;
   }
 }

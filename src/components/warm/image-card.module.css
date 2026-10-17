@@ -138,11 +138,56 @@
 }
 
 @media (max-width: 767px) {
+  .card,
+  .wide {
+    aspect-ratio: 4 / 5;
+  }
+
   .wide {
     aspect-ratio: 4 / 3;
   }
 
+  /* Mobil nur unten abgedunkelt, auch auf der Startseite */
+  .teaser::after {
+    background: linear-gradient(
+      to bottom,
+      rgb(28 27 25 / 0) 42%,
+      rgb(28 27 25 / 0.62) 100%
+    );
+  }
+
+  .text,
   .wide .text {
-    padding-inline: 24px;
+    gap: 8px;
+    padding: 0 20px 22px;
+  }
+
+  .wide .text {
+    gap: 6px;
+    padding-bottom: 20px;
+  }
+
+  .title,
+  .teaser .title {
+    font-size: 26px;
+  }
+
+  .wide .title {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .lead,
+  .teaser .lead {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .wide .lead {
+    font-size: 13.5px;
+  }
+
+  .more {
+    font-size: 10.5px;
   }
 }

@@ -5,49 +5,30 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
-import { BurgerIcon } from '@/components/ui/handwriting'
+import { Arrow } from '@/components/ui/arrow'
 
 import styles from './site-header.module.css'
-import { Arrow } from '@/components/ui/arrow'
 
 type NavItem = { label: string; href: Route }
 
-type CoachingGroup = {
-  label: string
-  href: Route
-  items: NavItem[]
-  tone: 'dark' | 'taupe'
-}
-
-// Blöcke im Mobil-Menü
-const coaching: CoachingGroup[] = [
+// Mobil-Menü: vier große Einträge mit einer Zeile darunter
+const menuItems: (NavItem & { note: string })[] = [
   {
-    label: 'Für Startups',
+    label: 'Startups',
+    note: 'Founder 1:1 · Founders in Sync · Lead with Clarity',
     href: '/startups',
-    tone: 'dark',
-    items: [
-      { label: 'EXIST', href: '/coaching/startups/exist' },
-      {
-        label: 'Lead with Clarity',
-        href: '/coaching/startups/lead-with-clarity',
-      },
-      {
-        label: 'Founders in Sync',
-        href: '/coaching/startups/founders-in-sync',
-      },
-      { label: 'Founder 1:1', href: '/coaching/startups/founder-1-1' },
-    ],
   },
   {
-    label: 'Für Unternehmen',
+    label: 'Unternehmen',
+    note: 'Leadership · Gesund führen & Resilienz',
     href: '/coaching/unternehmen',
-    tone: 'taupe',
-    // Keine Unterseiten: beide Punkte führen auf die Übersicht.
-    items: [
-      { label: 'Leadership', href: '/coaching/unternehmen' },
-      { label: 'Teams', href: '/coaching/unternehmen' },
-    ],
   },
+  {
+    label: 'Über mich',
+    note: 'Werdegang, Haltung, Kompetenzen',
+    href: '/ueber-mich',
+  },
+  { label: 'Kontakt', note: 'Kostenloses Kennenlernen', href: '/kontakt' },
 ]
 
 // Desktop-Navigation. `sections` markiert auch die Unterseiten als aktiv.
@@ -62,12 +43,6 @@ const mainNavigation: (NavItem & { sections?: string[] })[] = [
     href: '/coaching/unternehmen',
     sections: ['/coaching/unternehmen'],
   },
-  { label: 'Über mich', href: '/ueber-mich' },
-  { label: 'Kontakt', href: '/kontakt' },
-]
-
-// Mobil unter den Blöcken
-const navigation: NavItem[] = [
   { label: 'Über mich', href: '/ueber-mich' },
   { label: 'Kontakt', href: '/kontakt' },
 ]
@@ -99,8 +74,11 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
   const warm = warmPaths.includes(pathname)
   // Startseite und Über mich: Header liegt auf dem Hero (ab 1024 px)
   const onPhoto = pathname === '/' || pathname === '/ueber-mich'
-  // Über mich: mobil auf dem Wandton des Hero
+  // Startseite: auch mobil auf dem Foto, dort in Creme
+  const onPhotoMobile = pathname === '/'
+  // Über mich (bis 1023 px) und Kontakt (mobil): auf dem Wandton des Hero
   const onWall = pathname === '/ueber-mich'
+  const onWallMobile = pathname === '/kontakt'
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -155,9 +133,16 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
       aria-expanded={menuOpen}
       aria-label={menuOpen ? undefined : 'Menü'}
       onClick={() => setMenuOpen((open) => !open)}
-      className="-my-2.5 ml-auto flex h-11 min-w-11 cursor-pointer items-center justify-end text-[13px] tracking-[0.08em] uppercase lg:hidden"
+      className="-my-2.5 ml-auto flex h-11 min-w-11 cursor-pointer items-center justify-end text-[11px] tracking-[0.1em] uppercase lg:hidden"
     >
-      {menuOpen ? 'Schließen' : <BurgerIcon className="h-auto w-[34px]" />}
+      {menuOpen ? (
+        'Schließen'
+      ) : (
+        <span aria-hidden="true" className={styles.menuIcon}>
+          <span />
+          <span />
+        </span>
+      )}
     </button>
   )
 
@@ -166,58 +151,42 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
       ref={headerRef}
       className={`site-header sticky top-0 z-40 lg:relative ${
         menuOpen ? 'bg-transparent' : 'bg-background'
-      } ${warm ? styles.warm : ''} ${onPhoto ? styles.onPhoto : ''} ${onWall ? styles.onWall : ''}`}
+      } ${warm ? styles.warm : ''} ${onPhoto ? styles.onPhoto : ''} ${
+        onPhotoMobile ? styles.onPhotoMobile : ''
+      } ${onWall ? styles.onWall : ''} ${
+        onWallMobile ? styles.onWallMobile : ''
+      } ${menuOpen ? styles.menuOpen : ''}`}
     >
       {menuOpen ? (
         <div className={styles.overlay}>
           <nav aria-label="Mobile Navigation" className={styles.overlayNav}>
-            <p className={styles.overlayLabel}>Coaching</p>
-            {coaching.map((group) => (
-              <div
-                key={group.label}
-                className={`${styles.card} ${
-                  group.tone === 'dark' ? styles.cardDark : styles.cardTaupe
-                }`}
-              >
-                <Link
-                  data-menu-focus
-                  href={group.href}
-                  onClick={closeMenu}
-                  className={styles.cardHead}
-                >
-                  {group.label}
-                  <Arrow className={styles.cardArrow} />
-                </Link>
-                <ul>
-                  {group.items.map((item) => (
-                    <li key={item.label}>
-                      <Link
-                        data-menu-focus
-                        href={item.href}
-                        onClick={closeMenu}
-                        className={styles.cardItem}
-                      >
-                        {item.label} <span aria-hidden="true">→</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <ul className={styles.overlayList}>
-              {navigation.map((item) => (
+            <ul className={styles.menuList}>
+              {menuItems.map((item) => (
                 <li key={item.href}>
                   <Link
                     data-menu-focus
                     href={item.href}
                     onClick={closeMenu}
-                    className={styles.overlayLink}
+                    aria-current={pathname === item.href ? 'page' : undefined}
+                    className={styles.menuItem}
                   >
-                    {item.label}
+                    <span className={styles.menuTitle}>{item.label}</span>
+                    <span className={styles.menuNote}>{item.note}</span>
                   </Link>
                 </li>
               ))}
             </ul>
+            {linkedIn ? (
+              <a
+                data-menu-focus
+                href={linkedIn}
+                target="_blank"
+                rel="me noopener"
+                className={styles.menuLinkedIn}
+              >
+                LinkedIn <Arrow />
+              </a>
+            ) : null}
           </nav>
           <Link
             data-menu-focus
@@ -225,7 +194,7 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
             onClick={closeMenu}
             className={styles.overlayCta}
           >
-            Kennenlernen <Arrow />
+            Kostenloses Kennenlernen
           </Link>
         </div>
       ) : null}

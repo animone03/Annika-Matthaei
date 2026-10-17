@@ -78,6 +78,7 @@ export default function StartupsPage() {
         image={heroPortrait}
         alt="Annika Matthaei vor einem Whiteboard"
         photoSide="end"
+        mobilePhoto={{ height: 380, position: 'center 22%' }}
       />
 
       <section
@@ -130,11 +131,25 @@ export default function StartupsPage() {
                 lead={theme.claim}
                 sizes="(min-width: 900px) 360px, 100vw"
               />
-              <ul className={warm.lines}>
+              <ul className={`${warm.lines} ${styles.themePoints}`}>
                 {theme.points.map((point) => (
                   <li key={point}>{point}</li>
                 ))}
               </ul>
+              {/* Mobil: die Punkte zum Aufklappen */}
+              <details className={styles.themeMore}>
+                <summary className={styles.themeSummary}>
+                  Woran wir arbeiten
+                  <span aria-hidden="true" className={styles.plus}>
+                    +
+                  </span>
+                </summary>
+                <ul className={warm.lines}>
+                  {theme.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </details>
               <p className={styles.themeFocus}>{theme.focus}</p>
             </li>
           ))}
@@ -288,7 +303,7 @@ export default function StartupsPage() {
 
       <HomeStickyCta
         label={hero.cta}
-        startId="startups-hero-cta"
+        startId="startups-hero"
         endSelector="#startups-contact a"
       />
     </div>

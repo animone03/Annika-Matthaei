@@ -60,13 +60,36 @@
   line-height: 1.65;
 }
 
+/* Mobil: Kreis 36 px, kompakter */
 @media (max-width: 767px) {
   .step {
-    grid-template-columns: 44px minmax(0, 1fr);
-    gap: 16px;
+    min-height: 52px;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 14px;
   }
 
   .step::before {
-    left: 21.5px;
+    top: 36px;
+    left: 19.5px;
+  }
+
+  .number {
+    width: 36px;
+    height: 36px;
+    font-size: 11px;
+  }
+
+  .body {
+    gap: 5px;
+    padding: 6px 0 22px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .text {
+    font-size: 13px;
+    line-height: 1.55;
   }
 }

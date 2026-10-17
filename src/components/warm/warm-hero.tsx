@@ -1,6 +1,7 @@
 import type { Route } from 'next'
 import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
+import type { CSSProperties } from 'react'
 
 import warm from './warm.module.css'
 import styles from './warm-hero.module.css'
@@ -18,10 +19,13 @@ type WarmHeroProps = {
   photoSide: 'start' | 'end'
   /** Bildausschnitt, z. B. Zoom 127 % bei 36 % wie beim Sesselfoto */
   crop?: { position: string; zoom?: number }
+  /** Mobil: Höhe des Fotos und Ausschnitt (Mobile-Übergabe) */
+  mobilePhoto: { height: number; position: string }
 }
 
-// Hero der Unterseiten im Design 10b. Die Überschrift bekommt die id, der
-// Button `${id}-cta` (Startpunkt der mobilen Kontaktleiste).
+// Hero der Unterseiten im Design 10b. Die Überschrift bekommt die id
+// (Startpunkt der mobilen Kontaktleiste), der Button `${id}-cta`. Mobil steht
+// das Foto oben, der Button entfällt dort zugunsten der festen Leiste.
 export function WarmHero({
   id,
   eyebrow,
@@ -33,7 +37,16 @@ export function WarmHero({
   alt,
   photoSide,
   crop,
+  mobilePhoto,
 }: WarmHeroProps) {
+  const photoStyle = {
+    '--photo-position': crop?.position ?? 'center',
+    '--photo-zoom': crop?.zoom ?? 1,
+    '--photo-origin': (crop?.position ?? 'center').replace('center', '50%'),
+    '--mobile-height': `${mobilePhoto.height}px`,
+    '--mobile-position': mobilePhoto.position,
+  } as CSSProperties
+
   return (
     <section
       aria-labelledby={id}
@@ -58,23 +71,14 @@ export function WarmHero({
           <span className={styles.note}>{note}</span>
         </div>
       </div>
-      <div className={styles.photo}>
+      <div className={styles.photo} style={photoStyle}>
         <Image
           src={image}
           alt={alt}
           preload
           placeholder="blur"
-          sizes="(min-width: 768px) 560px, 130vw"
+          sizes="(min-width: 768px) 560px, 100vw"
           className={styles.image}
-          style={
-            crop
-              ? {
-                  objectPosition: crop.position,
-                  transform: crop.zoom ? `scale(${crop.zoom})` : undefined,
-                  transformOrigin: crop.position.replace('center', '50%'),
-                }
-              : undefined
-          }
         />
       </div>
     </section>

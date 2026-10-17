@@ -56,6 +56,7 @@ export default function CompanyCoachingPage() {
         alt="Annika Matthaei im Sessel"
         photoSide="start"
         crop={{ position: 'center 36%', zoom: 1.27 }}
+        mobilePhoto={{ height: 380, position: 'center 32%' }}
       />
 
       <section
@@ -174,7 +175,7 @@ export default function CompanyCoachingPage() {
 
       <HomeStickyCta
         label={hero.cta}
-        startId="company-hero-cta"
+        startId="company-hero"
         endSelector="#company-contact a"
       />
     </div>

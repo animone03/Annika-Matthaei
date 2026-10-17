@@ -103,6 +103,11 @@
   line-height: 1.45;
 }
 
+/* Inhalte, die es nur auf Desktop bzw. nur mobil gibt */
+.mobileOnly {
+  display: none;
+}
+
 .srOnly {
   position: absolute;
   width: 1px;
@@ -112,12 +117,36 @@
   white-space: nowrap;
 }
 
+/* Mobil: 72 px zwischen Abschnitten, H2 in 28 px und immer linksbündig */
 @media (max-width: 767px) {
   .page {
-    --section: 88px;
+    --section: 72px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 1.02;
+  }
+
+  .titleEnd,
+  .titleCenter {
+    text-align: left;
   }
 
   .band {
-    padding: 64px var(--warm-gutter);
+    padding: 56px var(--warm-gutter);
+  }
+
+  .lines > li {
+    padding: 9px 0;
+    font-size: 13.5px;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: inline;
   }
 }

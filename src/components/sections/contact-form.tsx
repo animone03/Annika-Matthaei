@@ -161,6 +161,9 @@ function ContactFormBody({
   )
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  // Mobil: Unternehmen und Telefon eingeklappt
+  const [showExtra, setShowExtra] = useState(false)
+  const extraId = useId()
   const [clientErrors, setClientErrors] = useState<InquiryErrors>({})
   const startedRef = useRef<HTMLInputElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -298,23 +301,6 @@ function ContactFormBody({
             aria-describedby={errors.email ? 'kontakt-email-fehler' : undefined}
           />
         </Field>
-        <Field id="kontakt-unternehmen" label="Unternehmen / Startup" optional>
-          <input
-            id="kontakt-unternehmen"
-            name="unternehmen"
-            placeholder="optional"
-            autoComplete="organization"
-          />
-        </Field>
-        <Field id="kontakt-telefon" label="Telefon" optional>
-          <input
-            id="kontakt-telefon"
-            name="telefon"
-            type="tel"
-            placeholder="optional"
-            autoComplete="tel"
-          />
-        </Field>
         <Field
           id="kontakt-nachricht"
           label="Deine Nachricht"
@@ -331,6 +317,39 @@ function ContactFormBody({
             aria-invalid={Boolean(errors.message)}
           />
         </Field>
+        {/* Desktop stehen beide Felder im Raster, mobil hinter dem Schalter */}
+        <button
+          type="button"
+          aria-expanded={showExtra}
+          aria-controls={extraId}
+          onClick={() => setShowExtra((open) => !open)}
+          className={styles.extraToggle}
+        >
+          {showExtra ? '–' : '+'} Unternehmen & Telefon angeben
+        </button>
+        <div id={extraId} data-open={showExtra} className={styles.extra}>
+          <Field
+            id="kontakt-unternehmen"
+            label="Unternehmen / Startup"
+            optional
+          >
+            <input
+              id="kontakt-unternehmen"
+              name="unternehmen"
+              placeholder="optional"
+              autoComplete="organization"
+            />
+          </Field>
+          <Field id="kontakt-telefon" label="Telefon" optional>
+            <input
+              id="kontakt-telefon"
+              name="telefon"
+              type="tel"
+              placeholder="optional"
+              autoComplete="tel"
+            />
+          </Field>
+        </div>
       </div>
 
       {/* Spam-Schutz: für Menschen unsichtbar */}

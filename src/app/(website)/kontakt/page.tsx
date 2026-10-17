@@ -9,6 +9,8 @@ import {
   ContactFormWithTopics,
 } from '@/components/sections/contact-form'
 import styles from '@/components/sections/contact-page.module.css'
+import { Arrow } from '@/components/ui/arrow'
+import { Signature } from '@/components/ui/signature'
 import warm from '@/components/warm/warm.module.css'
 import { inquiryRecipient } from '@/lib/inquiry'
 import { buildMetadata } from '@/lib/metadata'
@@ -25,6 +27,13 @@ export const metadata: Metadata = buildMetadata({
 
 export default async function ContactPage() {
   const settings = await getSiteSettings()
+  const linkedIn = linkedInUrl(settings?.socialLinks)
+  // Mobil: drei Kacheln statt der Liste „Direkter Kontakt“
+  const quick = [
+    { label: 'Anrufen', href: 'tel:+491727732006' },
+    { label: 'E-Mail', href: `mailto:${inquiryRecipient}` },
+    { label: 'LinkedIn', href: linkedIn, external: true },
+  ]
   const direct = [
     {
       label: 'E-Mail',
@@ -35,7 +44,7 @@ export default async function ContactPage() {
     {
       label: 'LinkedIn',
       value: '/in/annikamatthaei',
-      href: linkedInUrl(settings?.socialLinks),
+      href: linkedIn,
       external: true,
     },
     { label: 'Ort', value: 'Online & vor Ort' },
@@ -45,6 +54,16 @@ export default async function ContactPage() {
     <div data-warm-page data-contact-page className={warm.page}>
       <div className={styles.layout}>
         <header className={styles.head}>
+          {/* Mobil: Foto oben, unten weich in den Wandton ausgeblendet */}
+          <div className={styles.headPhoto}>
+            <Image
+              src={portrait}
+              alt=""
+              placeholder="blur"
+              sizes="100vw"
+              className={styles.photoImage}
+            />
+          </div>
           <p className={styles.eyebrow}>Kontakt</p>
           <h1 className={styles.title}>
             <span className={styles.titleLine}>Lass uns</span>{' '}
@@ -53,9 +72,32 @@ export default async function ContactPage() {
           <p className={styles.intro}>
             Erzähl mir kurz, wo ihr gerade steht. Ich melde mich innerhalb von
             zwei Werktagen, und wir finden einen Termin für das kostenlose
-            Kennenlernen (30 Min., online).
+            Kennenlernen
+            <span className={warm.desktopOnly}> (30 Min., online)</span>.
           </p>
+          <p className={styles.headNote}>30 Min. · online · unverbindlich</p>
         </header>
+
+        <ul aria-label="Direkt erreichen" className={styles.quick}>
+          {quick.map((item) => (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                className={styles.quickTile}
+                {...(item.external
+                  ? { target: '_blank', rel: 'me noopener' }
+                  : {})}
+              >
+                <Arrow />
+                <span className={styles.quickLabel}>{item.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <p aria-hidden="true" className={styles.divider}>
+          Oder schreib mir
+        </p>
 
         <section aria-label="Kontaktformular" className={styles.formArea}>
           <Suspense fallback={<ContactForm />}>
@@ -104,6 +146,18 @@ export default async function ContactPage() {
             </ul>
           </div>
         </aside>
+
+        <div className={styles.signoff}>
+          <p className={styles.signoffText}>
+            Ich freue mich <br />
+            auf euch.
+          </p>
+          <Signature
+            part="first"
+            label="Annika"
+            className={styles.signoffSignature}
+          />
+        </div>
       </div>
     </div>
   )

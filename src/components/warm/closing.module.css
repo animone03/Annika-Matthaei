@@ -63,17 +63,24 @@
   background: var(--stone);
 }
 
+/* Mobil übernimmt die feste Leiste den Button, darum hier nur Titel und
+   Text. */
 @media (max-width: 767px) {
   .closing {
-    padding: 72px var(--warm-inline) 48px;
+    gap: 18px;
+    padding: 64px var(--warm-gutter) 32px;
   }
 
-  .row {
-    flex-direction: column;
-    align-items: flex-start;
+  .title {
+    font-size: 34px;
   }
 
-  .button {
-    align-self: stretch;
+  .text {
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .row > a {
+    display: none;
   }
 }

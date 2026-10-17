@@ -93,25 +93,42 @@ export const career = {
       },
     ],
   },
+  // `short`: gekürzte Fassung für Mobil
   education: {
     title: 'Ausbildung',
     items: [
       {
         title: 'Systemischer & psychologischer Business Coach',
         detail: 'DACTE',
+        short: {
+          title: 'Systemischer & psychologischer Business Coach',
+          detail: 'DACTE',
+        },
       },
       {
         title: 'Sustainability Management Expert',
         detail:
           'Leuphana Universität Lüneburg · MBA-Programm Sustainability Management',
+        short: {
+          title: 'Sustainability Management Expert',
+          detail: 'Leuphana Universität Lüneburg · MBA-Programm',
+        },
       },
       {
         title: 'Master of Arts Kommunikationswissenschaft',
         detail: 'FOM Hochschule für Ökonomie & Management',
+        short: {
+          title: 'M.A. Kommunikationswissenschaft',
+          detail: 'FOM Hochschule',
+        },
       },
       {
         title: 'Bachelor of Arts Business Administration',
         detail: 'FOM Hochschule für Ökonomie & Management',
+        short: {
+          title: 'B.A. Business Administration',
+          detail: 'FOM Hochschule',
+        },
       },
     ],
   },

@@ -1,19 +1,21 @@
 /* Startseite (final, ehem. 13d): Aufbau der Abschnitte. Grundstile, Bildkarten, Zeitleiste
    und Abschluss kommen aus src/components/warm. */
 
-/* Hero: Sesselfoto als Bühne über die volle Breite. Ab 1024 px liegt der
-   Header darauf (site-header.module.css). Headline unten links, Button unten
-   rechts. */
+/* Hero: Sesselfoto als Bühne über die volle Breite, der Header liegt darauf
+   (site-header.module.css). Headline unten links, Button ab 1024 px unten
+   rechts auf dem Foto, darunter unter dem Foto. */
+
+.hero {
+  position: relative;
+}
 
 /* 820 px hoch bei 1280 px Breite. Breiter wächst die Bühne mit, höchstens
    bis zur Fensterhöhe, damit vom Hochformat-Foto genug zu sehen bleibt. */
-.hero {
+.heroStage {
   position: relative;
   display: flex;
   height: clamp(600px, min(64vw, 100svh), 1080px);
   align-items: flex-end;
-  justify-content: space-between;
-  gap: 48px;
   overflow: hidden;
   padding: 0 var(--warm-inline) 56px;
   color: var(--paper);
@@ -27,7 +29,7 @@
 }
 
 /* Verlauf von unten, damit die Schrift auf dem Foto lesbar bleibt */
-.hero::after {
+.heroStage::after {
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -70,11 +72,14 @@
 }
 
 .heroAction {
+  position: absolute;
+  right: var(--warm-inline);
+  bottom: 56px;
   display: flex;
-  flex: none;
   flex-direction: column;
   align-items: flex-end;
   gap: 12px;
+  color: var(--paper);
 }
 
 /* Button in Creme auf dem Foto (stärker als .button in warm.module.css) */
@@ -288,6 +293,43 @@
   justify-self: start;
 }
 
+.methodsMore {
+  display: none;
+  grid-area: more;
+}
+
+.methodsSummary {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  list-style: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.methodsSummary::-webkit-details-marker {
+  display: none;
+}
+
+.plus {
+  font-weight: 400;
+  transition: transform 180ms ease;
+}
+
+.methodsMore[open] .plus {
+  transform: rotate(45deg);
+}
+
+.methodsMoreItem {
+  border-top: 1px solid rgb(28 27 25 / 0.15);
+  padding: 9px 0;
+  font-size: 13.5px;
+}
+
 /* Leistungssport: Laufbild neben dem großen Satz, bewusst mehr Luft oben */
 
 .performance {
@@ -467,29 +509,40 @@
   }
 }
 
-/* Tablet: unter 1024 px. Der Header liegt über dem Hero, nicht darauf. */
+/* Tablet: unter 1024 px. Headline auf dem Foto, Button darunter. */
 
 @media (max-width: 1023px) {
-  .hero {
-    height: clamp(560px, calc(100svh - 72px), 820px);
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    gap: 28px;
+  .heroStage {
+    height: clamp(560px, calc(100svh - 160px), 760px);
+  }
+
+  /* Header liegt in Creme auf dem Foto: oben leicht abdunkeln */
+  .heroStage::after {
+    background: linear-gradient(
+      to bottom,
+      rgb(28 27 25 / 0.25) 0%,
+      rgb(28 27 25 / 0) 22%,
+      rgb(28 27 25 / 0) 45%,
+      rgb(28 27 25 / 0.65) 100%
+    );
   }
 
   .heroAction {
+    position: static;
     align-items: flex-start;
+    gap: 8px;
+    padding: 24px var(--warm-inline) 0;
+    color: var(--muted);
   }
 
-  /* Hochformat: Text liegt teils auf dem hellen Sessel, daher dunkler */
-  .hero::after {
-    background: linear-gradient(
-      to top,
-      rgb(28 27 25 / 0.72) 0%,
-      rgb(28 27 25 / 0.4) 30%,
-      rgb(28 27 25 / 0) 65%
-    );
+  .heroAction .heroButton,
+  .hero .heroAction .heroButton:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .hero .heroAction .heroButton:hover {
+    background: var(--ink-soft);
   }
 
   /* Methoden in einer Spalte, Foto über der Liste */
@@ -519,121 +572,251 @@
   }
 }
 
-/* Mobil: unter 768 px */
+/* Mobil: unter 768 px (Mobile-Übergabe M1) */
 
 @media (max-width: 767px) {
-  .hero {
-    height: clamp(520px, calc(100svh - 64px), 760px);
-    padding-bottom: 32px;
+  .home {
+    --section: 80px;
+  }
+
+  .heroStage {
+    height: 540px;
+    padding: 0 var(--warm-gutter) 28px;
+  }
+
+  .heroImage {
+    object-position: center 30%;
+  }
+
+  .heroText {
+    gap: 12px;
   }
 
   .heroTitle {
-    font-size: 56px;
+    font-size: 64px;
   }
 
   .eyebrow {
-    font-size: 11px;
+    font-size: 10.5px;
+    line-height: 1.5;
   }
 
   .heroAction {
-    align-self: stretch;
     align-items: stretch;
+    padding: 20px var(--warm-gutter) 0;
   }
 
   .heroAction .heroButton {
     align-self: stretch;
+    padding: 17px;
   }
 
   .heroNote {
+    font-size: 11.5px;
     text-align: center;
   }
 
   .facts {
-    padding-top: 64px;
+    padding-top: 48px;
+  }
+
+  .factList {
+    gap: 24px 20px;
+  }
+
+  .fact {
+    gap: 6px;
+    padding-top: 12px;
   }
 
   .factValue {
-    font-size: 17px;
+    font-size: 12.5px;
+    white-space: normal;
   }
 
   .factText {
-    font-size: 13px;
+    font-size: 12.5px;
   }
 
   .themes {
-    gap: 32px;
+    gap: 24px;
+  }
+
+  .themeList {
+    gap: 40px;
+  }
+
+  .theme {
+    gap: 12px;
+  }
+
+  .themeQuestion {
+    font-size: 14px;
+  }
+
+  .themeTags {
+    font-size: 10px;
+    letter-spacing: 0.08em;
   }
 
   .companyStrip {
-    padding-top: 40px;
+    padding-top: 24px;
   }
 
   .company {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
-    padding: 24px;
+    gap: 8px;
+    padding: 22px 20px;
+  }
+
+  .companyText {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .companyLabel {
+    font-size: 10.5px;
+  }
+
+  .companyBody {
+    font-size: 13.5px;
+    line-height: 1.5;
   }
 
   .companyCta {
+    font-size: 11px;
     white-space: normal;
   }
 
-  .methodList {
-    grid-auto-flow: row;
-    grid-template-rows: none;
+  /* Methoden: Foto 4:3 oben, die Liste zum Aufklappen */
+  .methods {
+    grid-template-areas:
+      'title'
+      'photo'
+      'intro'
+      'more';
+    row-gap: 18px;
   }
 
   .methodsPhoto {
     width: 100%;
+    aspect-ratio: 4 / 3;
   }
 
-  /* Laufbild halb breit über dem Satz */
+  .methodsLead {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .methodsText {
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .methodList,
+  .methodsCta {
+    display: none;
+  }
+
+  .methodsMore {
+    display: block;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 4px 0;
+  }
+
+  .methodsMore[open] {
+    padding-bottom: 12px;
+  }
+
+  /* Leistungssport: Laufbild links, Satz rechts daneben */
   .performance {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 28px;
+    grid-template-columns: 140px minmax(0, 1fr);
+    align-items: end;
+    gap: 18px;
+    padding-top: var(--section);
   }
 
   .performancePhoto {
-    width: 50%;
+    width: auto;
   }
 
+  .performanceImage {
+    filter: url(#longexp2) contrast(0.95) brightness(1.03);
+  }
+
+  .performanceBody {
+    gap: 12px;
+  }
+
+  .performanceText {
+    font-size: 17px;
+    line-height: 1.3;
+    letter-spacing: 0;
+  }
+
+  .performanceBody a {
+    font-size: 11px;
+  }
+
+  /* So läuft es ab: ohne Foto und Button */
   .process {
-    gap: 28px;
+    gap: 22px;
   }
 
   .tab {
-    padding: 14px 6px 12px;
-    font-size: 11px;
-    letter-spacing: 0.08em;
+    min-height: 44px;
+    padding: 12px 4px;
+    font-size: 10.5px;
+    line-height: 1.35;
+    letter-spacing: 0.1em;
   }
 
-  /* Foto über der Zeitleiste */
   .processBody {
-    grid-template-areas:
-      'photo'
-      'main';
+    grid-template-areas: 'main';
     grid-template-columns: minmax(0, 1fr);
-    gap: 36px;
   }
 
+  .processPhoto,
   .processCta {
-    align-self: stretch;
-    margin-left: 0;
-    text-align: center;
+    display: none;
+  }
+
+  /* Zahlen untereinander */
+  .stats {
+    gap: 28px;
   }
 
   .statList {
     grid-template-columns: minmax(0, 1fr);
-    gap: 56px;
+    gap: 28px;
   }
-}
 
-/* Fakten untereinander, sonst passen die langen Titel nicht */
+  .stat {
+    gap: 8px;
+    border-top: 1px solid var(--ink);
+    padding-top: 18px;
+  }
 
-@media (max-width: 639px) {
-  .factList {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
+  .statValue {
+    font-size: 56px;
+    line-height: 0.95;
+  }
+
+  .statClaim {
+    margin-top: 0;
+    font-size: 19px;
+    line-height: 1.25;
+  }
+
+  .statText {
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .statSource {
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
   }
 }

@@ -159,7 +159,7 @@
   }
 }
 
-/* Mobil: unter 768 px, alles einspaltig */
+/* Mobil: unter 768 px, alles einspaltig (Mobile-Übergabe M3) */
 
 @media (max-width: 767px) {
   .stack {
@@ -167,24 +167,88 @@
   }
 
   .problems {
-    gap: 28px;
+    gap: 20px;
+  }
+
+  .problem {
+    gap: 8px;
+    padding-top: 14px;
+  }
+
+  .problemTitle {
+    font-size: 18px;
+  }
+
+  .problemText {
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .focusList {
+    gap: 32px;
+  }
+
+  .focusItem {
+    gap: 12px;
   }
 
   .focusPoints {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .approach,
-  .offer {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
+  /* Überzeugung linksbündig in 23 px */
+  .belief {
+    align-items: flex-start;
+    text-align: left;
   }
 
-  .hr {
-    padding: 24px;
+  .beliefText {
+    font-size: 23px;
+    line-height: 1.25;
+    text-wrap: wrap;
+  }
+
+  .approach {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .approachText {
+    font-size: 13.5px;
+  }
+
+  /* Bausteine als Liste, darunter die HR-Box */
+  .offer {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding-top: 56px;
+  }
+
+  .offerLabel {
+    padding-bottom: 12px;
   }
 
   .module {
-    font-size: 16px;
+    padding: 12px 0;
+    font-size: 15px;
+  }
+
+  .hr {
+    padding: 22px 20px;
+  }
+
+  .hr .offerLabel {
+    padding-bottom: 0;
+  }
+
+  .hrList {
+    gap: 9px;
+    margin-top: 9px;
+  }
+
+  .hrPoint {
+    border-top: 0;
+    padding-top: 0;
+    font-size: 13.5px;
   }
 }

@@ -19,7 +19,6 @@ import {
   skills,
   stance,
 } from '@/content/ueber-mich'
-import { inquiryRecipient } from '@/lib/inquiry'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildMetadata({
@@ -113,10 +112,12 @@ export default function AboutPage() {
         className={`${warm.section} ${styles.drive}`}
       >
         <div className={styles.driveBody}>
-          <h2 id="about-drive" className={warm.label}>
-            {drive.label}
-          </h2>
-          <p className={styles.driveStatement}>{drive.statement}</p>
+          <div className={styles.driveHead}>
+            <h2 id="about-drive" className={warm.label}>
+              {drive.label}
+            </h2>
+            <p className={styles.driveStatement}>{drive.statement}</p>
+          </div>
           <p className={styles.driveText}>{drive.text}</p>
         </div>
         <div className={styles.drivePhoto}>
@@ -134,13 +135,22 @@ export default function AboutPage() {
         aria-labelledby="about-skills"
         className={`${warm.section} ${styles.skills}`}
       >
-        <h2 id="about-skills" className={warm.title}>
-          {skills.title}
-        </h2>
+        {/* Mobil ein Kohle-Band mit nummerierten Zeilen */}
+        <div className={styles.skillsHead}>
+          <h2 id="about-skills" className={warm.title}>
+            {skills.title}
+          </h2>
+          <span aria-hidden="true" className={styles.skillCount}>
+            {number(skills.items.length - 1)}
+          </span>
+        </div>
         <ul className={styles.skillList}>
-          {skills.items.map((skill) => (
+          {skills.items.map((skill, index) => (
             <li key={skill} className={styles.skill}>
-              {skill}
+              <span aria-hidden="true" className={styles.skillNumber}>
+                {number(index)}
+              </span>
+              <span>{skill}</span>
             </li>
           ))}
         </ul>
@@ -154,25 +164,33 @@ export default function AboutPage() {
           {career.title}
         </h2>
         <div className={styles.career}>
-          <div>
+          <div className={styles.stations}>
             <h3 className={styles.careerLabel}>{career.stations.title}</h3>
             <ul>
               {career.stations.items.map((item) => (
                 <li key={item.period} className={styles.entry}>
                   <span className={styles.entryPeriod}>{item.period}</span>
+                  {/* Mobil: Punkt und Linie des Zeitstrahls */}
+                  <span aria-hidden="true" className={styles.entryMarker} />
                   <span className={styles.entryTitle}>{item.title}</span>
                   <span className={styles.entryDetail}>{item.detail}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div>
+          <div className={styles.education}>
             <h3 className={styles.careerLabel}>{career.education.title}</h3>
             <ul>
               {career.education.items.map((item) => (
                 <li key={item.title} className={styles.entry}>
-                  <span className={styles.entryTitle}>{item.title}</span>
-                  <span className={styles.entryMuted}>{item.detail}</span>
+                  <span className={styles.entryTitle}>
+                    <span className={warm.desktopOnly}>{item.title}</span>
+                    <span className={warm.mobileOnly}>{item.short.title}</span>
+                  </span>
+                  <span className={styles.entryMuted}>
+                    <span className={warm.desktopOnly}>{item.detail}</span>
+                    <span className={warm.mobileOnly}>{item.short.detail}</span>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -188,7 +206,6 @@ export default function AboutPage() {
       />
 
       <HomeStickyCta
-        email={inquiryRecipient}
         label={contact.cta}
         startId="about-title"
         endSelector="#about-contact a"

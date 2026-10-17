@@ -4,10 +4,8 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import styles from './home-sticky-cta.module.css'
-import { Arrow } from '@/components/ui/arrow'
 
 type HomeStickyCtaProps = {
-  email?: string | null
   label?: string
   startId?: string
   endSelector?: string
@@ -15,9 +13,9 @@ type HomeStickyCtaProps = {
 
 // Mobile Kontaktleiste: erscheint, sobald der Claim (startId) aus dem Bild ist,
 // und verschwindet wieder, wenn der Kontakt-Link (endSelector) sichtbar wird.
+// Ist der Link mobil ausgeblendet, bleibt die Leiste bis zum Ende stehen.
 export function HomeStickyCta({
-  email,
-  label = 'Kennenlernen',
+  label = 'Kostenloses Kennenlernen',
   startId = 'home-title',
   endSelector = '#home-contact a',
 }: HomeStickyCtaProps) {
@@ -51,17 +49,8 @@ export function HomeStickyCta({
   return (
     <div className={styles.stickyCta} data-visible={visible} inert={!visible}>
       <Link href="/kontakt" className={styles.stickyCtaPrimary}>
-        {label} <Arrow />
+        {label}
       </Link>
-      {email ? (
-        <a
-          href={`mailto:${email}`}
-          className={styles.stickyCtaMail}
-          aria-label="E-Mail an Annika"
-        >
-          @
-        </a>
-      ) : null}
     </div>
   )
 }

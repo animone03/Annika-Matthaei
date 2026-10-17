@@ -32,6 +32,12 @@ test('homepage exposes its landmarks and no serious accessibility violations', a
     footer.getByRole('navigation', { name: 'Fußnavigation' }),
   ).toBeVisible()
 
+  // Erst prüfen, wenn Ein- und Ausblendungen (z. B. Kontaktleiste) fertig sind
+  await page.waitForFunction(() =>
+    document
+      .getAnimations()
+      .every((animation) => animation.playState !== 'running'),
+  )
   const results = await new AxeBuilder({ page }).analyze()
   const serious = results.violations.filter((violation) =>
     ['serious', 'critical'].includes(violation.impact || ''),
@@ -56,6 +62,12 @@ test('startup coaching page has no serious accessibility violations', async ({
     .allTextContents()
   expect(schema.some((json) => json.includes('"FAQPage"'))).toBe(true)
 
+  // Erst prüfen, wenn Ein- und Ausblendungen (z. B. Kontaktleiste) fertig sind
+  await page.waitForFunction(() =>
+    document
+      .getAnimations()
+      .every((animation) => animation.playState !== 'running'),
+  )
   const results = await new AxeBuilder({ page }).analyze()
   const serious = results.violations.filter((violation) =>
     ['serious', 'critical'].includes(violation.impact || ''),
@@ -75,6 +87,12 @@ test('company coaching page has no serious accessibility violations', async ({
   ).toBeVisible()
   await expect(page.getByRole('contentinfo')).toContainText(/Train your brain/i)
 
+  // Erst prüfen, wenn Ein- und Ausblendungen (z. B. Kontaktleiste) fertig sind
+  await page.waitForFunction(() =>
+    document
+      .getAnimations()
+      .every((animation) => animation.playState !== 'running'),
+  )
   const results = await new AxeBuilder({ page }).analyze()
   const serious = results.violations.filter((violation) =>
     ['serious', 'critical'].includes(violation.impact || ''),
@@ -94,6 +112,12 @@ test('about page has no serious accessibility violations', async ({ page }) => {
     page.getByRole('contentinfo').getByRole('link', { name: 'LinkedIn' }),
   ).toHaveAttribute('href', 'https://www.linkedin.com/in/annikamatthaei/')
 
+  // Erst prüfen, wenn Ein- und Ausblendungen (z. B. Kontaktleiste) fertig sind
+  await page.waitForFunction(() =>
+    document
+      .getAnimations()
+      .every((animation) => animation.playState !== 'running'),
+  )
   const results = await new AxeBuilder({ page }).analyze()
   const serious = results.violations.filter((violation) =>
     ['serious', 'critical'].includes(violation.impact || ''),
@@ -143,6 +167,12 @@ test('contact page preselects topics and has no serious accessibility violations
   await page.getByLabel('E-Mail *').fill('alex@example.test')
   await expect(submit).toHaveAttribute('aria-disabled', 'false')
 
+  // Erst prüfen, wenn Ein- und Ausblendungen (z. B. Kontaktleiste) fertig sind
+  await page.waitForFunction(() =>
+    document
+      .getAnimations()
+      .every((animation) => animation.playState !== 'running'),
+  )
   const results = await new AxeBuilder({ page }).analyze()
   const serious = results.violations.filter((violation) =>
     ['serious', 'critical'].includes(violation.impact || ''),
@@ -178,13 +208,16 @@ test('mobile navigation exposes every fixed route', async ({
   await page.goto('/')
   await page.getByRole('button', { name: 'Menü' }).click()
   const navigation = page.getByRole('navigation', { name: 'Mobile Navigation' })
+  for (const name of [/^Startups/, /^Unternehmen/, /^Über mich/, /^Kontakt/]) {
+    await expect(navigation.getByRole('link', { name })).toBeVisible()
+  }
   await expect(
-    navigation.getByRole('link', { name: /Für Startups/ }),
-  ).toBeVisible()
-  await expect(
-    navigation.getByRole('link', { name: /Für Unternehmen/ }),
-  ).toBeVisible()
-  await expect(navigation.getByRole('link', { name: 'Kontakt' })).toBeVisible()
+    navigation.getByRole('link', { name: /LinkedIn/ }),
+  ).toHaveAttribute('href', 'https://www.linkedin.com/in/annikamatthaei/')
+
+  // Esc schließt das Menü wieder
+  await page.keyboard.press('Escape')
+  await expect(navigation).toHaveCount(0)
 })
 
 test('unknown Sanity slugs render a noindexed not-found state', async ({

@@ -192,13 +192,33 @@ body:has([data-warm-page]:not([style*='display: none'])) {
     padding-bottom: 100px;
   }
 
+  .site-shell:has([data-warm-page]:not([style*='display: none'])) footer {
+    padding-inline: var(--warm-gutter);
+  }
+
   .site-shell:has([data-contact-page]:not([style*='display: none'])) footer {
-    padding-bottom: 40px;
+    padding-block: 28px;
+  }
+
+  .site-shell:has([data-warm-page]:not([style*='display: none'])) footer > div {
+    gap: 10px 16px;
+    padding-top: 18px;
+    font-size: 10px;
   }
 
   .site-shell:has([data-warm-page]:not([style*='display: none']))
     .footer-motto {
     flex-basis: 100%;
+  }
+
+  .site-shell:has([data-warm-page]:not([style*='display: none'])) footer ul {
+    column-gap: 16px;
+  }
+
+  .site-shell:has([data-contact-page]:not([style*='display: none']))
+    footer
+    > div {
+    padding-top: 0;
   }
 }
 
