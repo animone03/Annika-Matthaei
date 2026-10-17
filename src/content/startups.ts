@@ -31,30 +31,47 @@ export const stat = {
   note: 'Wie ihr oben zusammenarbeitet und mit Druck umgeht, entscheidet mit über euren Erfolg.',
 }
 
-export const method = {
-  label: 'Wie ich arbeite',
-  title: 'Mentale Fitness in vier Bausteinen.',
-  text: 'Entstanden aus der Coaching-Praxis und dem, was in stressigen Phasen wirklich hilft.',
-  steps: [
+// Themen sind der Inhalt, Angebote das Format. Gesundheit & Resilienz
+// gehört zu allen drei Angeboten.
+export const themes = {
+  label: 'Woran wir arbeiten',
+  title: 'Drei Themen, die über euer Wachstum entscheiden.',
+  items: [
     {
-      letter: 'A',
-      title: 'Awareness',
-      text: 'Verstehen, was dich unter Druck setzt. Stress lesen statt nur aushalten.',
+      title: 'Founder Relationship',
+      claim: 'Euer Startup ist nur so stark wie die Beziehung an der Spitze.',
+      points: [
+        'Rollen und Entscheidungsrechte klären',
+        'Sache und Beziehung auseinanderhalten',
+        'Erwartungen und Commitment abgleichen',
+        'Schwierige Gespräche führen',
+        'Konflikte lösen, bevor sie eskalieren',
+      ],
+      focus: 'Schwerpunkt in Founders in Sync',
     },
     {
-      letter: 'E',
-      title: 'Energy',
-      text: 'Was gibt dir Kraft, was zieht sie ab, wann brauchst du Pausen?',
+      title: 'Leadership & Team',
+      claim: 'Vom Founder zum Leader, wenn Flurfunk nicht mehr reicht.',
+      points: [
+        'Vom Macher zur Führungskraft',
+        'Eine Mission und Prioritäten, die alle kennen',
+        'Klare Rollen im wachsenden Team',
+        'Feedbackkultur, bevor ihr 20 seid',
+        'Psychologische Sicherheit mit klarer Verantwortung',
+      ],
+      focus: 'Schwerpunkt in Lead with Clarity',
     },
     {
-      letter: 'R',
-      title: 'Recovery',
-      text: 'Runterfahren können, mit Atem, Bewegung und kurzen Resets.',
-    },
-    {
-      letter: 'F',
-      title: 'Focus',
-      text: 'Klar entscheiden, allein und gemeinsam: Prioritäten, Rollen, nächste Schritte.',
+      title: 'Gesundheit & Resilienz',
+      claim: 'How to optimize your bounce back rate.',
+      points: [
+        'Energy Burn Rate statt Dauer-Hustle',
+        'Kein Single Point of Failure sein',
+        'Das Nervensystem regulieren: Atem, Bewegung, kurze Resets',
+        'Ein Frühwarnsystem für Burnout',
+        'Sparring statt Alleinkämpfen',
+      ],
+      focus: 'In allen drei Angeboten',
     },
   ],
 }
@@ -79,10 +96,10 @@ export const offers: {
     {
       tone: 'light',
       label: '01 · Für dich',
-      question: 'Wie bleibe ich unter Druck klar, ohne auszubrennen?',
-      tags: ['Energie', 'Regulation', 'Prioritäten', 'Delegieren'],
+      question: 'Wer sortiert mit dir, wenn alles gleichzeitig brennt?',
+      tags: ['Führung', 'Co-Founder', 'Energie', 'Entscheidungen'],
       title: 'Founder 1:1',
-      text: 'Mentale Fitness und klarer Fokus für dich als Founder.',
+      text: 'Dein Sparring als Founder: für deine Rolle, deine Beziehungen und deine Energie.',
       format: 'Über 3–4 Monate · Für dich',
       href: '/coaching/startups/founder-1-1',
     },

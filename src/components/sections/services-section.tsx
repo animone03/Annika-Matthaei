@@ -57,9 +57,6 @@ export function ServicesSection() {
               Privatpersonen, einzeln und auf Augenhöhe, mit Fokus auf
               Kommunikation, Ownership und Resilienz.
             </p>
-            <Link href="/fuer-einzelpersonen" className="editorial-link mt-5">
-              Für Einzelpersonen <Arrow />
-            </Link>
           </div>
         </div>
       </div>

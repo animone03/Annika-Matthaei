@@ -30,6 +30,12 @@ const nextConfig: NextConfig = {
         destination: '/startups',
         permanent: true,
       },
+      // Coaching für Privatpersonen bietet Annika vorerst nicht an.
+      {
+        source: '/fuer-einzelpersonen',
+        destination: '/',
+        permanent: false,
+      },
       // Marketing ist kein Angebot mehr.
       {
         source: '/marketing',

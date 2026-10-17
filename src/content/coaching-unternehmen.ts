@@ -5,7 +5,7 @@ export const hero = {
   label: 'Coaching für Unternehmen',
   title: 'Gute Teams entstehen nicht zufällig.',
   intro:
-    'Ich begleite Teams, Abteilungen und Führungskräfte dabei, besser zusammenzuarbeiten und auch unter Druck klar zu bleiben. Mit mentaler Fitness und strategischer Klarheit, systemisch und agil.',
+    'Ich begleite Teams, Abteilungen und Führungskräfte dabei, besser zusammenzuarbeiten und auch unter Druck klar zu bleiben. Mit zwei Schwerpunkten: Leadership sowie Gesundheit & Resilienz.',
   mobileIntro:
     'Ich begleite Teams und Führungskräfte dabei, besser zusammenzuarbeiten und auch unter Druck klar zu bleiben. Systemisch und agil.',
 }
@@ -24,6 +24,37 @@ export const problems = {
     {
       title: 'Führung zwischen allen Stühlen.',
       text: 'Führungskräfte stehen zwischen Erwartungen von oben und Bedürfnissen im Team.',
+    },
+  ],
+}
+
+export const focus = {
+  label: 'Meine Schwerpunkte',
+  items: [
+    {
+      title: 'Leadership',
+      claim: 'Wer sich selbst gut führt, führt auch sein Team gut.',
+      points: [
+        'Wirksame Selbstführung',
+        'Wertebasierte Führung und eigener Führungsstil',
+        'Klare Kommunikation',
+        'Teamentwicklung, Motivation und Teamvision',
+        'Psychologische Sicherheit',
+        'Kompetent Feedback geben',
+        'Souveräne Konfliktmoderation',
+      ],
+    },
+    {
+      title: 'Gesund führen & Resilienz',
+      claim:
+        'Leistung braucht Erholung, bei jeder und jedem Einzelnen und im Team.',
+      points: [
+        'Stress und Belastung im Team früh erkennen',
+        'Burnout und Boreout vorbeugen',
+        'Führungskräfte als Vorbild und Puffer',
+        'Resilienz im Team stärken',
+        'Veränderung ohne Erschöpfung',
+      ],
     },
   ],
 }
@@ -62,10 +93,8 @@ export const approach = {
       label: 'Teamentwicklung über mehrere Monate',
       mobile: 'Teamentwicklung',
     },
-    { label: 'Mentale Fitness für Teams' },
+    { label: 'Resilienz-Workshops für Teams' },
     { label: 'Training & Weiterbildung' },
-    { label: 'Kommunikation' },
-    { label: 'Projektmanagement' },
   ],
 } as const
 

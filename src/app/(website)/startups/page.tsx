@@ -16,10 +16,10 @@ import {
   fit,
   hero,
   journey,
-  method,
   offers,
   quotes,
   stat,
+  themes,
   why,
 } from '@/content/startups'
 import { JsonLd } from '@/lib/json-ld'
@@ -125,27 +125,31 @@ export default function StartupsPage() {
         </div>
       </section>
 
-      <section aria-labelledby="startups-method" className={styles.method}>
+      <section
+        id="themen"
+        aria-labelledby="startups-themes"
+        className={styles.themes}
+      >
         <div className={styles.split}>
-          <p className={styles.label}>{method.label}</p>
-          <div className={styles.sectionHead}>
-            <h2 id="startups-method" className={styles.sectionTitle}>
-              {method.title}
-            </h2>
-            <p className={styles.sectionText}>{method.text}</p>
-          </div>
+          <p className={styles.label}>{themes.label}</p>
+          <h2 id="startups-themes" className={styles.sectionTitle}>
+            {themes.title}
+          </h2>
         </div>
-        <ol className={styles.steps}>
-          {method.steps.map((step) => (
-            <li key={step.letter} className={styles.step}>
-              <span aria-hidden="true" className={styles.stepLetter}>
-                {step.letter}
-              </span>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
-              <p className={styles.stepText}>{step.text}</p>
+        <ul className={styles.themeList}>
+          {themes.items.map((theme) => (
+            <li key={theme.title} className={styles.theme}>
+              <h3 className={styles.themeTitle}>{theme.title}</h3>
+              <p className={styles.themeClaim}>{theme.claim}</p>
+              <ul className={styles.themePoints}>
+                {theme.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+              <p className={styles.themeFocus}>{theme.focus}</p>
             </li>
           ))}
-        </ol>
+        </ul>
       </section>
 
       <section aria-labelledby="startups-offers" className={styles.offers}>

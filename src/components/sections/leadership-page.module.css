@@ -16,6 +16,71 @@
   padding-top: 18px;
 }
 
+/* Meine Schwerpunkte: schließt ohne eigenen Abstand oben an die Probleme an */
+
+.focus {
+  padding: 0 var(--gutter) 88px;
+}
+
+.focusList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.focusItem {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid var(--ink);
+  padding-top: 18px;
+}
+
+.focusTitle {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.focusClaim {
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.focusPoints {
+  border-top: 1px solid var(--line, rgb(30 35 41 / 0.15));
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.focusPoints li {
+  border-bottom: 1px solid var(--line, rgb(30 35 41 / 0.15));
+  padding: 9px 0;
+}
+
+@media (max-width: 1023px) {
+  .focusList {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+}
+
+@media (max-width: 767px) {
+  .focus {
+    padding-bottom: 56px;
+  }
+
+  .focusTitle {
+    font-size: 20px;
+  }
+
+  .focusClaim {
+    font-size: 16px;
+  }
+}
+
 /* Meine Überzeugung: dunkles Band */
 
 .belief {

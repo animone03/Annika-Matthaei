@@ -272,56 +272,69 @@
   line-height: 1.5;
 }
 
-/* Wie ich arbeite: A·E·R·F auf Taubenblau */
+/* Woran wir arbeiten: drei Themen auf Taubenblau */
 
-.method {
+.themes {
   display: flex;
   flex-direction: column;
   gap: 44px;
   margin-inline: calc(-1 * var(--bleed));
   background: var(--taupe);
   padding: 88px calc(var(--gutter) + var(--bleed));
+  scroll-margin-top: 24px;
 }
 
-.method .label,
-.method .sectionText {
+/* Auf Taubenblau braucht der Text mehr Kontrast als #566270. */
+.themes .label {
   color: var(--ink-soft);
 }
 
-.steps {
+.themeList {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 28px;
 }
 
-.step {
+.theme {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  border-top: 1px solid rgb(30 35 41 / 0.3);
+  gap: 14px;
+  border-top: 1px solid var(--ink);
   padding-top: 20px;
 }
 
-/* Dekorativ, die Bedeutung trägt der Titel darunter. */
-.stepLetter {
-  font-size: 120px;
+.themeTitle {
+  font-size: 24px;
   font-weight: 700;
-  line-height: 0.85;
-  color: var(--paper);
-}
-
-.stepTitle {
-  margin-top: 8px;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  line-height: 1.1;
   text-transform: uppercase;
 }
 
-.stepText {
+.themeClaim {
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.themePoints {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgb(30 35 41 / 0.25);
   font-size: 15px;
-  line-height: 1.55;
+  line-height: 1.45;
   color: var(--ink-soft);
+}
+
+.themePoints li {
+  border-bottom: 1px solid rgb(30 35 41 / 0.25);
+  padding: 9px 0;
+}
+
+.themeFocus {
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 /* Welches Angebot passt? */
@@ -790,13 +803,13 @@
     gap: 24px;
   }
 
-  .steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 40px;
-  }
-
   .offerList {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .themeList {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
   }
 
   .offer {
@@ -928,31 +941,17 @@
     font-size: 22px;
   }
 
-  .method {
-    gap: 32px;
+  .themes {
+    gap: 28px;
     padding: 56px var(--gutter);
   }
 
-  .steps {
-    gap: 28px 20px;
+  .themeTitle {
+    font-size: 21px;
   }
 
-  .step {
-    gap: 8px;
-    padding-top: 16px;
-  }
-
-  .stepLetter {
-    font-size: 72px;
-  }
-
-  .stepTitle {
-    margin-top: 4px;
-    font-size: 13px;
-  }
-
-  .stepText {
-    font-size: 14px;
+  .themeClaim {
+    font-size: 16px;
   }
 
   .offers {

@@ -11,6 +11,7 @@ import {
   approach,
   belief,
   cta,
+  focus,
   hero,
   hr,
   problems,
@@ -63,6 +64,27 @@ export default function CompanyCoachingPage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section aria-labelledby="focus-title" className={styles.focus}>
+        <div className={base.split}>
+          <h2 id="focus-title" className={base.label}>
+            {focus.label}
+          </h2>
+          <ul className={styles.focusList}>
+            {focus.items.map((item) => (
+              <li key={item.title} className={styles.focusItem}>
+                <h3 className={styles.focusTitle}>{item.title}</h3>
+                <p className={styles.focusClaim}>{item.claim}</p>
+                <ul className={styles.focusPoints}>
+                  {item.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section aria-labelledby="belief-title" className={styles.belief}>
