@@ -1,70 +1,5 @@
-/* Startseite 10b: Creme, Kohle, Editorial. Seitenbreite 1280 px mit 64 px
-   Rand (--warm-inline), Abschnitte 140 px auseinander. */
-
-.page {
-  --ink: var(--coal);
-  --ink-soft: var(--coal-soft);
-  --muted: var(--coal-muted);
-  --paper: var(--cream);
-  --line: rgb(28 27 25 / 0.18);
-  --section: clamp(88px, 11vw, 140px);
-
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-gothic);
-  -webkit-font-smoothing: antialiased;
-}
-
-.page h1,
-.page h2,
-.page h3 {
-  font-family: inherit;
-}
-
-.page a:hover {
-  color: var(--muted);
-}
-
-/* Bausteine */
-
-/* H2: Versalien, die Ausrichtung wechselt von Abschnitt zu Abschnitt. */
-.title {
-  font-size: clamp(30px, 3.2vw, 40px);
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  text-wrap: balance;
-}
-
-.titleEnd {
-  text-align: right;
-}
-
-.link {
-  align-self: flex-start;
-  font-size: 11.5px;
-  letter-spacing: 0.08em;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-transform: uppercase;
-  text-underline-offset: 5px;
-}
-
-.button {
-  align-self: flex-start;
-  background: var(--ink);
-  padding: 16px 28px;
-  color: var(--paper);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: background-color 180ms ease;
-}
-
-.page .button:hover {
-  background: var(--ink-soft);
-  color: var(--paper);
-}
+/* Startseite 10b: Aufbau der Abschnitte. Grundstile, Bildkarten, Zeitleiste
+   und Abschluss kommen aus src/components/warm. */
 
 /* Hero: Sesselfoto links, rechts Headline oben, Laufbild und Satz unten */
 
@@ -221,92 +156,6 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-}
-
-.themeMedia {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--sand);
-}
-
-/* Verlauf oben und unten, damit der Text auf dem Bild lesbar bleibt */
-.themeMedia::after {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    rgb(28 27 25 / 0.38) 0%,
-    rgb(28 27 25 / 0) 30%,
-    rgb(28 27 25 / 0) 48%,
-    rgb(28 27 25 / 0.62) 100%
-  );
-  content: '';
-  pointer-events: none;
-}
-
-.themeImage {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: url(#longexp2) contrast(0.92) brightness(1.04);
-}
-
-/* Klickfläche ist der Textblock unten. */
-.themeLink {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0 24px 26px;
-  color: var(--paper);
-}
-
-.page .themeLink:hover {
-  color: #fff;
-}
-
-.themeLink:focus-visible {
-  outline-offset: -6px;
-}
-
-.themeTitle {
-  font-size: clamp(26px, 2.5vw, 32px);
-  font-weight: 700;
-  line-height: 0.98;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-}
-
-.themeLead {
-  font-size: 16px;
-  line-height: 1.35;
-}
-
-.themeMore {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.themeLink:hover .themeMore {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.themeArrow {
-  font-size: 14px;
 }
 
 .themeQuestion {
@@ -510,67 +359,6 @@
   outline-offset: 4px;
 }
 
-.steps {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Kreis mit Nummer, darunter eine Linie bis zum nächsten Schritt */
-.step {
-  position: relative;
-  display: grid;
-  min-height: 72px;
-  grid-template-columns: 56px minmax(0, 1fr);
-  gap: 24px;
-}
-
-.step::before {
-  position: absolute;
-  top: 44px;
-  bottom: 0;
-  left: 27.5px;
-  width: 1px;
-  background: rgb(28 27 25 / 0.3);
-  content: '';
-}
-
-.step:last-child::before {
-  display: none;
-}
-
-.stepNumber {
-  display: flex;
-  width: 44px;
-  height: 44px;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.stepBody {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 8px 0 34px;
-}
-
-.stepTitle {
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.25;
-}
-
-.stepText {
-  max-width: 560px;
-  color: var(--ink-soft);
-  font-size: 14px;
-  line-height: 1.65;
-}
-
 .processCta {
   margin-left: 80px;
 }
@@ -581,7 +369,7 @@
   display: flex;
   flex-direction: column;
   gap: 44px;
-  padding: var(--section) var(--warm-inline);
+  padding: var(--section) var(--warm-inline) 0;
 }
 
 .statList {
@@ -622,48 +410,6 @@
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-/* Abschluss auf Kohle, der Footer schließt direkt an (globals.css). */
-
-.contact {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  background: var(--ink);
-  padding: 110px var(--warm-inline) 72px;
-  color: var(--paper);
-}
-
-.contactTitle {
-  font-size: clamp(34px, 4.375vw, 56px);
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  text-wrap: balance;
-}
-
-.contactRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 20px 48px;
-}
-
-.contactText {
-  max-width: 400px;
-  color: var(--on-coal);
-  font-size: 12.5px;
-  line-height: 1.65;
-}
-
-.contactLink {
-  color: var(--paper);
-}
-
-.page .contactLink:hover {
-  color: var(--on-coal);
 }
 
 /* Unter 1100 px: Satz im Hero ohne feste Umbrüche */
@@ -710,19 +456,9 @@
   }
 }
 
-@media (min-width: 600px) and (max-width: 899px) {
-  .themeMedia {
-    aspect-ratio: 4 / 3;
-  }
-}
-
 /* Mobil: unter 768 px */
 
 @media (max-width: 767px) {
-  .page {
-    --section: 88px;
-  }
-
   /* Sesselfoto in voller Breite, darunter Headline, Laufbild neben dem Satz
      und der Button in voller Breite */
   .hero {
@@ -755,7 +491,7 @@
   }
 
   .heroCta,
-  .page .heroCta:hover {
+  .heroFoot .heroCta:hover {
     background: var(--ink);
     padding: 16px;
     color: var(--paper);
@@ -809,15 +545,6 @@
     gap: 36px;
   }
 
-  .step {
-    grid-template-columns: 44px minmax(0, 1fr);
-    gap: 16px;
-  }
-
-  .step::before {
-    left: 21.5px;
-  }
-
   .processCta {
     align-self: stretch;
     margin-left: 0;
@@ -827,14 +554,5 @@
   .statList {
     grid-template-columns: minmax(0, 1fr);
     gap: 56px;
-  }
-
-  .contact {
-    padding: 72px var(--warm-inline) 48px;
-  }
-
-  .contactRow {
-    flex-direction: column;
-    align-items: flex-start;
   }
 }

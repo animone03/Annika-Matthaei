@@ -1,6 +1,6 @@
 import type { Route } from 'next'
 
-// Texte der Seite /startups (Übergabe v3, Option 4a).
+// Texte der Seite /startups (Übergabe 11a im Stil von 10b).
 
 export const hero = {
   eyebrow: 'Coaching für Startups & Founder',
@@ -12,7 +12,7 @@ export const hero = {
 }
 
 export const quotes = {
-  label: 'Vielleicht kennst du das',
+  title: 'Vielleicht kennst du das.',
   items: [
     'Ich arbeite mehr als je zuvor, aber nicht klarer.',
     'Mit meinem Co-Founder rede ich über alles, nur nicht darüber, wie es uns geht.',
@@ -26,18 +26,28 @@ export const quotes = {
 
 export const stat = {
   value: '92 %',
-  text: 'der befragten VCs nennen das Team als Grund für gescheiterte Investments.',
-  source: 'Gompers et al. (2020), Befragung von 885 VC-Investoren',
-  note: 'Wie ihr oben zusammenarbeitet und mit Druck umgeht, entscheidet mit über euren Erfolg.',
+  claim: 'Investments scheitern am Team, nicht an der Idee.',
+  text: 'der befragten VCs nennen das Team als Grund für gescheiterte Investments. Wie ihr oben zusammenarbeitet und mit Druck umgeht, entscheidet mit über euren Erfolg.',
+  source: 'Gompers et al. (2020), 885 VC-Investoren',
 }
 
 // Themen sind der Inhalt, Angebote das Format. Gesundheit & Resilienz
-// gehört zu allen drei Angeboten.
-export const themes = {
-  label: 'Woran wir arbeiten',
+// gehört zu allen drei Angeboten. Ziel der Themenkarten auf der Startseite.
+// TODO: Bildrechte und Originale der Themenbilder vor dem Livegang klären.
+export const themes: {
+  title: string
+  items: {
+    key: 'founder' | 'leadership' | 'resilienz'
+    title: string
+    claim: string
+    points: string[]
+    focus: string
+  }[]
+} = {
   title: 'Drei Themen, die über euer Wachstum entscheiden.',
   items: [
     {
+      key: 'founder',
       title: 'Founder Relationship',
       claim: 'Euer Startup ist nur so stark wie die Beziehung an der Spitze.',
       points: [
@@ -50,6 +60,7 @@ export const themes = {
       focus: 'Schwerpunkt in Founders in Sync',
     },
     {
+      key: 'leadership',
       title: 'Leadership & Team',
       claim: 'Vom Founder zum Leader, wenn Flurfunk nicht mehr reicht.',
       points: [
@@ -62,6 +73,7 @@ export const themes = {
       focus: 'Schwerpunkt in Lead with Clarity',
     },
     {
+      key: 'resilienz',
       title: 'Gesundheit & Resilienz',
       claim: 'How to optimize your bounce back rate.',
       points: [
@@ -77,10 +89,9 @@ export const themes = {
 }
 
 export const offers: {
-  label: string
   title: string
   items: {
-    tone: 'light' | 'dark' | 'taupe'
+    tone: 'sand' | 'coal' | 'stone'
     label: string
     question: string
     tags: string[]
@@ -90,11 +101,10 @@ export const offers: {
     href: Route
   }[]
 } = {
-  label: 'So können wir arbeiten',
   title: 'Welches Angebot passt?',
   items: [
     {
-      tone: 'light',
+      tone: 'sand',
       label: '01 · Für dich',
       question: 'Wer sortiert mit dir, wenn alles gleichzeitig brennt?',
       tags: ['Führung', 'Co-Founder', 'Energie', 'Entscheidungen'],
@@ -104,7 +114,7 @@ export const offers: {
       href: '/coaching/startups/founder-1-1',
     },
     {
-      tone: 'dark',
+      tone: 'coal',
       label: '02 · Für euch als Co-Founder',
       question:
         'Wie kommen wir als Co-Founder wieder in einen gemeinsamen Takt?',
@@ -115,7 +125,7 @@ export const offers: {
       href: '/coaching/startups/founders-in-sync',
     },
     {
-      tone: 'taupe',
+      tone: 'stone',
       label: '03 · Für euer Leadership-Team',
       question: 'Wie führen wir als wachsendes Team klar und gemeinsam?',
       tags: ['Prioritäten', 'Rollen', 'Mentale Fitness im Team'],
@@ -128,14 +138,13 @@ export const offers: {
 }
 
 export const journey = {
-  label: 'Der Weg',
   title: 'Von der Gründung bis zum ersten Leadership-Team.',
   stages: [
     {
       label: 'Etappe 1',
       title: 'Gründung & Pre-Seed',
       text: 'Idee, Team, erste Kund:innen. Alles gleichzeitig.',
-      friction: 'halb klaren Rollen, unausgesprochenen Erwartungen.',
+      friction: 'halb klaren Rollen und unausgesprochenen Erwartungen.',
       offers: ['Founders in Sync', 'Founder 1:1'],
     },
     {
@@ -157,12 +166,13 @@ export const journey = {
     title: 'Früh dran? Über EXIST finanzierbar.',
     text: 'Im EXIST-Gründungsstipendium, Forschungstransfer oder EXIST Women kann Coaching über euer Budget laufen. Ich kläre das mit euch und eurem Gründungsnetzwerk.',
     cta: 'Ansprechen',
+    // Später auf die Seite zum Gründungscoaching
     href: '/kontakt?thema=exist' as Route,
   },
 }
 
 export const changes = {
-  label: 'Was sich verändert',
+  title: 'Was sich verändert',
   items: [
     'Ihr habt wieder Energie, und euer Team merkt es.',
     'Kein Chaos mehr im Kopf: Ihr wisst, was jetzt wichtig ist.',
@@ -173,7 +183,7 @@ export const changes = {
 }
 
 export const fit = {
-  label: 'Ist das für euch?',
+  title: 'Ist das für euch?',
   yes: {
     title: 'Ja, wenn …',
     items: [
@@ -203,7 +213,7 @@ export const why = {
 }
 
 export const faq = {
-  label: 'Häufige Fragen',
+  title: 'Häufige Fragen',
   items: [
     {
       question: 'Ist das Therapie?',

@@ -63,6 +63,25 @@ test('startup coaching page has no serious accessibility violations', async ({
   expect(serious).toEqual([])
 })
 
+test('company coaching page has no serious accessibility violations', async ({
+  page,
+}) => {
+  await page.goto('/coaching/unternehmen')
+  await expect(
+    page.getByRole('heading', { level: 1, name: /Gute Teams/ }),
+  ).toBeVisible()
+  await expect(
+    page.getByRole('heading', { level: 2, name: 'Meine Schwerpunkte' }),
+  ).toBeVisible()
+  await expect(page.getByRole('contentinfo')).toContainText(/Train your brain/i)
+
+  const results = await new AxeBuilder({ page }).analyze()
+  const serious = results.violations.filter((violation) =>
+    ['serious', 'critical'].includes(violation.impact || ''),
+  )
+  expect(serious).toEqual([])
+})
+
 test('about page has no serious accessibility violations', async ({ page }) => {
   await page.goto('/ueber-mich')
   await expect(

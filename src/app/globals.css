@@ -15,8 +15,8 @@
   --font-sans: var(--font-helvetica), Helvetica, Arial, sans-serif;
   --font-heading: var(--font-helvetica), Helvetica, Arial, sans-serif;
 
-  /* Neues Design-System (Startseite 10b): Creme, Kohle, Stein. Gilt vorerst
-     nur für die Startseite, die übrigen Seiten folgen. */
+  /* Neues Design-System (10b): Creme, Kohle, Stein. Gilt für Startseite,
+     Startups und Unternehmen, die übrigen Seiten folgen. */
   --cream: #faf9f5;
   --coal: #1c1b19;
   --coal-soft: #3d3b37;
@@ -91,7 +91,6 @@ body {
 .site-shell:has(
     [data-company-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   footer {
@@ -117,23 +116,23 @@ body {
   display: none;
 }
 
-/* Startseite (10b): warmes Papier ohne Rahmen. Der Footer liegt im dunklen
-   Abschluss der Seite. */
-body:has([data-home]:not([style*='display: none'])) {
+/* Seiten im neuen Design (Startseite, Startups, Unternehmen): warmes Papier
+   ohne Rahmen. Der Footer liegt im dunklen Abschluss der Seite. */
+body:has([data-warm-page]:not([style*='display: none'])) {
   background: var(--cream);
 }
 
-.site-shell:has([data-home]:not([style*='display: none'])) {
+.site-shell:has([data-warm-page]:not([style*='display: none'])) {
   max-width: none;
   margin: 0;
   padding: 0;
 }
 
-.site-shell:has([data-home]:not([style*='display: none'])) main {
+.site-shell:has([data-warm-page]:not([style*='display: none'])) main {
   background: var(--cream);
 }
 
-.site-shell:has([data-home]:not([style*='display: none'])) footer {
+.site-shell:has([data-warm-page]:not([style*='display: none'])) footer {
   margin-top: 0;
   background: var(--coal);
   padding: 0 var(--warm-inline) 40px;
@@ -141,7 +140,7 @@ body:has([data-home]:not([style*='display: none'])) {
   font-family: var(--font-gothic);
 }
 
-.site-shell:has([data-home]:not([style*='display: none'])) footer > div {
+.site-shell:has([data-warm-page]:not([style*='display: none'])) footer > div {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -153,52 +152,43 @@ body:has([data-home]:not([style*='display: none'])) {
   letter-spacing: 0.06em;
 }
 
-.site-shell:has([data-home]:not([style*='display: none'])) .footer-motto {
+.site-shell:has([data-warm-page]:not([style*='display: none'])) .footer-motto {
   display: block;
   margin-right: auto;
 }
 
-.site-shell:has([data-home]:not([style*='display: none'])) .footer-motto br {
+.site-shell:has([data-warm-page]:not([style*='display: none']))
+  .footer-motto
+  br {
   display: none;
 }
 
-.site-shell:has([data-home]:not([style*='display: none'])) footer ul {
+.site-shell:has([data-warm-page]:not([style*='display: none'])) footer ul {
   column-gap: 20px;
 }
 
-.site-shell:has([data-home]:not([style*='display: none'])) footer a:hover {
+.site-shell:has([data-warm-page]:not([style*='display: none'])) footer a:hover {
   color: var(--cream);
 }
 
 /* Mobil: Motto über eigener Zeile, unten Platz für die fixe Kontaktleiste. */
 @media (max-width: 767px) {
-  .site-shell:has([data-home]:not([style*='display: none'])) footer {
+  .site-shell:has([data-warm-page]:not([style*='display: none'])) footer {
     padding-bottom: 100px;
   }
 
-  .site-shell:has([data-home]:not([style*='display: none'])) .footer-motto {
+  .site-shell:has([data-warm-page]:not([style*='display: none']))
+    .footer-motto {
     flex-basis: 100%;
   }
 }
 
-/* Coaching-Übersichten: Header liegt im taubenblauen Hero. */
-.site-shell:has([data-coaching-page]:not([style*='display: none']))
-  .site-header.bg-background {
-  background: var(--top-surface);
-}
-
-.site-shell:has([data-coaching-page]:not([style*='display: none']))
-  .site-header-subtitle {
-  color: #3a4049;
-}
-
-/* Kontakt, Über mich, Coaching und Rechtliches: Footer mit Motto links, Trennlinie oben.
-   Startups zeigt das Motto auch, ohne Trennlinie. */
+/* Kontakt, Über mich, Angebote und Rechtliches: Footer mit Motto links,
+   Trennlinie oben. */
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   footer {
@@ -207,11 +197,9 @@ body:has([data-home]:not([style*='display: none'])) {
 }
 
 .site-shell:has(
-    [data-startups-page]:not([style*='display: none']),
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   footer
@@ -222,18 +210,10 @@ body:has([data-home]:not([style*='display: none'])) {
   gap: 24px;
 }
 
-/* Startups: Motto links wie oben, aber ohne Trennlinie unter dem
-   dunklen Abschluss. */
-.site-shell:has([data-startups-page]:not([style*='display: none'])) footer {
-  padding: 32px 0;
-}
-
 .site-shell:has(
-    [data-startups-page]:not([style*='display: none']),
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-about-page]:not([style*='display: none']),
-    [data-coaching-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
   .footer-motto {
@@ -245,8 +225,7 @@ body:has([data-home]:not([style*='display: none'])) {
   letter-spacing: 0.08em;
 }
 
-/* Gerahmte Seiten mobil: randlos, Footer schmal. Startups braucht unten
-   zusätzlich Platz für die fixe Kontaktleiste. */
+/* Gerahmte Seiten mobil: randlos, Footer schmal. */
 @media (max-width: 767px) {
   .site-shell:has([data-frame-page]:not([style*='display: none'])) {
     --frame: 0px;
@@ -256,10 +235,6 @@ body:has([data-home]:not([style*='display: none'])) {
 
   .site-shell:has([data-frame-page]:not([style*='display: none'])) footer {
     padding: 48px 20px 28px;
-  }
-
-  .site-shell:has([data-startups-page]:not([style*='display: none'])) footer {
-    padding: 32px 20px 100px;
   }
 
   .site-shell:has([data-frame-page]:not([style*='display: none']))
@@ -277,7 +252,6 @@ body:has([data-home]:not([style*='display: none'])) {
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
-      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     footer {
@@ -286,11 +260,9 @@ body:has([data-home]:not([style*='display: none'])) {
   }
 
   .site-shell:has(
-      [data-startups-page]:not([style*='display: none']),
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
-      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     footer
@@ -301,11 +273,9 @@ body:has([data-home]:not([style*='display: none'])) {
   }
 
   .site-shell:has(
-      [data-startups-page]:not([style*='display: none']),
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
-      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     .footer-motto {
@@ -319,7 +289,6 @@ body:has([data-home]:not([style*='display: none'])) {
   /* Platz für die fixe Kontaktleiste, Motto einzeilig. */
   .site-shell:has(
       [data-about-page]:not([style*='display: none']),
-      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
     footer {
@@ -327,9 +296,7 @@ body:has([data-home]:not([style*='display: none'])) {
   }
 
   .site-shell:has(
-      [data-startups-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
-      [data-coaching-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none'])
     )
@@ -338,10 +305,7 @@ body:has([data-home]:not([style*='display: none'])) {
     display: none;
   }
 
-  .site-shell:has(
-      [data-coaching-page]:not([style*='display: none']),
-      [data-startup-offer-page]:not([style*='display: none'])
-    )
+  .site-shell:has([data-startup-offer-page]:not([style*='display: none']))
     footer {
     padding-bottom: 88px;
   }

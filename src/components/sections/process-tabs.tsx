@@ -8,6 +8,8 @@ import {
   type ReactNode,
 } from 'react'
 
+import { Timeline } from '@/components/warm/timeline'
+
 import styles from './home-page.module.css'
 
 type ProcessTab = {
@@ -21,8 +23,6 @@ type ProcessTabsProps = {
   photo: ReactNode
   cta: ReactNode
 }
-
-const number = (index: number) => String(index + 1).padStart(2, '0')
 
 // „So läuft es ab“: zwei Reiter (Teams, Founder 1:1), Foto und Button bleiben
 // gleich. Pfeiltasten, Pos1 und Ende wechseln den Reiter.
@@ -93,19 +93,7 @@ export function ProcessTabs({ tabs, photo, cta }: ProcessTabsProps) {
               hidden={index !== active}
               className={styles.tabPanel}
             >
-              <ol className={styles.steps}>
-                {tab.steps.map((step, stepIndex) => (
-                  <li key={step.title} className={styles.step}>
-                    <span aria-hidden="true" className={styles.stepNumber}>
-                      {number(stepIndex)}
-                    </span>
-                    <span className={styles.stepBody}>
-                      <span className={styles.stepTitle}>{step.title}</span>
-                      <span className={styles.stepText}>{step.text}</span>
-                    </span>
-                  </li>
-                ))}
-              </ol>
+              <Timeline steps={tab.steps} />
             </div>
           ))}
           {cta}

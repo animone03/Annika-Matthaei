@@ -1,0 +1,79 @@
+/* Abschluss auf Kohle, der Footer schließt direkt an (globals.css). */
+
+.closing {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: var(--section);
+  background: var(--ink);
+  padding: 110px var(--warm-inline) 72px;
+  color: var(--paper);
+}
+
+.title {
+  font-size: clamp(34px, 4.375vw, 56px);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 48px;
+}
+
+.text {
+  max-width: 440px;
+  color: var(--on-coal);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* Startseite: kleinerer Text, Link statt Button */
+.withLink .text {
+  max-width: 400px;
+  font-size: 12.5px;
+}
+
+.link {
+  color: var(--paper);
+}
+
+.closing .link:hover {
+  color: var(--on-coal);
+}
+
+.button,
+.closing .button:hover {
+  background: var(--paper);
+  padding: 18px 30px;
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color 180ms ease;
+}
+
+.closing .button:hover {
+  background: var(--stone);
+}
+
+@media (max-width: 767px) {
+  .closing {
+    padding: 72px var(--warm-inline) 48px;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .button {
+    align-self: stretch;
+  }
+}

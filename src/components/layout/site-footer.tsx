@@ -24,15 +24,15 @@ export function SiteFooter({ ownerName, socialLinks }: SiteFooterProps) {
       <div className="text-muted-foreground grid gap-6 px-6 text-xs tracking-[0.06em] uppercase sm:grid-cols-[1fr_auto] sm:items-center sm:px-12">
         {/* Nur auf einigen Seiten sichtbar (siehe globals.css). */}
         <p className="footer-motto">
-          Progress over Perfection. <br />
-          Play. Laugh. <br />
-          Learn. Unlearn.
+          Train your brain <br />
+          like you train your body.
         </p>
         <p>
           © <CopyrightYear /> {ownerName || 'Annika Matthaei'}
         </p>
         <nav aria-label="Fußnavigation">
           <ul className="flex flex-wrap gap-x-6 gap-y-3">
+            <FooterLegalLinks />
             {socialLinks?.map((link) =>
               link.label && link.url ? (
                 <li key={link._key}>
@@ -42,7 +42,6 @@ export function SiteFooter({ ownerName, socialLinks }: SiteFooterProps) {
                 </li>
               ) : null,
             )}
-            <FooterLegalLinks />
           </ul>
         </nav>
       </div>

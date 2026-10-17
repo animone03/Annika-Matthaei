@@ -1,14 +1,21 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 
-import heroPortrait from '../../../../public/images/annika-lachend.webp'
-import whyPortrait from '../../../../public/images/annika-profil.webp'
+import heroPortrait from '../../../../public/images/fotos/portrait-workspace.jpg'
+import whyPortrait from '../../../../public/images/fotos/portrait-lachend.jpg'
+import founderImage from '../../../../public/images/fotos/thema-founder.jpg'
+import leadershipImage from '../../../../public/images/fotos/thema-leadership.jpg'
+import resilienceImage from '../../../../public/images/fotos/thema-resilienz.jpg'
 
 import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
-import styles from '@/components/sections/startups-overview.module.css'
+import styles from '@/components/sections/startups-page.module.css'
 import { Arrow } from '@/components/ui/arrow'
-import { Signature } from '@/components/ui/signature'
+import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
+import { Closing } from '@/components/warm/closing'
+import { ImageCard } from '@/components/warm/image-card'
+import warm from '@/components/warm/warm.module.css'
+import { WarmHero } from '@/components/warm/warm-hero'
+import { WhyMe } from '@/components/warm/why-me'
 import {
   changes,
   contact,
@@ -33,19 +40,23 @@ export const metadata: Metadata = buildMetadata({
   absoluteTitle: true,
 })
 
-// „Founder-Teams.“ bricht nicht am Bindestrich um.
-const titleEnd = hero.title.split(' ').at(-1)
-const titleStart = hero.title.slice(0, -(titleEnd?.length ?? 0)).trim()
+const themeImages = {
+  founder: founderImage,
+  leadership: leadershipImage,
+  resilienz: resilienceImage,
+}
 
 const toneClass = {
-  light: styles.offerLight,
-  dark: styles.offerDark,
-  taupe: styles.offerTaupe,
+  sand: styles.offerSand,
+  coal: styles.offerCoal,
+  stone: styles.offerStone,
 }
+
+const number = (index: number) => String(index + 1).padStart(2, '0')
 
 export default function StartupsPage() {
   return (
-    <div data-frame-page data-startups-page className={styles.page}>
+    <div data-warm-page data-startups-page className={warm.page}>
       <JsonLd
         data={{
           '@context': 'https://schema.org',
@@ -57,91 +68,72 @@ export default function StartupsPage() {
           })),
         }}
       />
+      <LongExposureFilters />
 
-      <section aria-labelledby="startups-title" className={styles.hero}>
-        <div className={styles.heroText}>
-          <p className={styles.eyebrow}>{hero.eyebrow}</p>
-          <h1 id="startups-title" className={styles.heroTitle}>
-            {titleStart} <span className={styles.noBreak}>{titleEnd}</span>
-          </h1>
-          <p className={styles.heroIntro}>{hero.intro}</p>
-          <div className={styles.heroAction}>
-            <Link
-              id="startups-hero-cta"
-              href="/kontakt"
-              className={styles.button}
-            >
-              {hero.cta}
-            </Link>
-            <span className={styles.heroNote}>{hero.note}</span>
-          </div>
-        </div>
-        <div className={styles.heroPhoto}>
-          <Image
-            src={heroPortrait}
-            alt="Annika Matthaei lachend"
-            preload
-            placeholder="blur"
-            sizes="(min-width: 1024px) 400px, (min-width: 768px) 300px, 100vw"
-            className={styles.heroImage}
-          />
-          <div className={styles.signature}>
-            <Signature part="first" label="" className={styles.firstName} />
-            <Signature part="last" label="" className={styles.lastName} />
-          </div>
-        </div>
-      </section>
+      <WarmHero
+        id="startups-hero"
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        intro={hero.intro}
+        cta={{ label: hero.cta, href: '/kontakt' }}
+        note={hero.note}
+        image={heroPortrait}
+        alt="Annika Matthaei an ihrem Arbeitsplatz"
+        photoSide="end"
+      />
 
       <section
         aria-labelledby="startups-quotes"
-        className={`${styles.split} ${styles.quotes}`}
+        className={`${warm.section} ${styles.quotes}`}
       >
-        <h2 id="startups-quotes" className={styles.label}>
-          {quotes.label}
-        </h2>
-        <div>
-          <ul>
-            {quotes.items.map((quote) => (
-              <li key={quote} className={styles.quote}>
-                {quote}
-              </li>
-            ))}
-          </ul>
+        <div className={styles.quotesHead}>
+          <h2 id="startups-quotes" className={warm.title}>
+            {quotes.title}
+          </h2>
           <p className={styles.bridge}>{quotes.bridge}</p>
         </div>
+        <ul className={styles.quoteList}>
+          {quotes.items.map((quote) => (
+            <li key={quote} className={styles.quote}>
+              „{quote}“
+            </li>
+          ))}
+        </ul>
       </section>
 
-      <section aria-labelledby="startups-stat" className={styles.stat}>
-        <p aria-hidden="true" className={styles.statValue}>
-          {stat.value}
-        </p>
+      <section
+        aria-labelledby="startups-stat"
+        className={`${warm.band} ${styles.stat}`}
+      >
+        <p className={styles.statValue}>{stat.value}</p>
         <div className={styles.statBody}>
-          <h2 id="startups-stat" className={styles.statText}>
-            <span className={styles.srOnly}>{stat.value} </span>
-            {stat.text}
+          <h2 id="startups-stat" className={styles.statClaim}>
+            {stat.claim}
           </h2>
+          <p className={styles.statText}>{stat.text}</p>
           <p className={styles.statSource}>{stat.source}</p>
-          <p className={styles.statNote}>{stat.note}</p>
         </div>
       </section>
 
       <section
         id="themen"
         aria-labelledby="startups-themes"
-        className={styles.themes}
+        className={`${warm.section} ${styles.stack}`}
       >
-        <div className={styles.split}>
-          <p className={styles.label}>{themes.label}</p>
-          <h2 id="startups-themes" className={styles.sectionTitle}>
-            {themes.title}
-          </h2>
-        </div>
+        <h2 id="startups-themes" className={`${warm.title} ${warm.titleEnd}`}>
+          {themes.title}
+        </h2>
         <ul className={styles.themeList}>
-          {themes.items.map((theme) => (
-            <li key={theme.title} className={styles.theme}>
-              <h3 className={styles.themeTitle}>{theme.title}</h3>
-              <p className={styles.themeClaim}>{theme.claim}</p>
-              <ul className={styles.themePoints}>
+          {themes.items.map((theme, index) => (
+            <li key={theme.key} className={styles.theme}>
+              <ImageCard
+                image={themeImages[theme.key]}
+                number={number(index)}
+                title={theme.title}
+                lead={theme.claim}
+                sizes="(min-width: 900px) 360px, 100vw"
+              />
+              <ul className={warm.lines}>
                 {theme.points.map((point) => (
                   <li key={point}>{point}</li>
                 ))}
@@ -152,13 +144,13 @@ export default function StartupsPage() {
         </ul>
       </section>
 
-      <section aria-labelledby="startups-offers" className={styles.offers}>
-        <div className={styles.split}>
-          <p className={styles.label}>{offers.label}</p>
-          <h2 id="startups-offers" className={styles.sectionTitle}>
-            {offers.title}
-          </h2>
-        </div>
+      <section
+        aria-labelledby="startups-offers"
+        className={`${warm.section} ${styles.stack}`}
+      >
+        <h2 id="startups-offers" className={warm.title}>
+          {offers.title}
+        </h2>
         <ul className={styles.offerList}>
           {offers.items.map((offer) => (
             <li key={offer.href}>
@@ -167,13 +159,9 @@ export default function StartupsPage() {
                 className={`${styles.offer} ${toneClass[offer.tone]}`}
               >
                 <span className={styles.offerLabel}>{offer.label}</span>
-                <span className={styles.offerQuestion}>{offer.question}</span>
-                <span className={styles.tags}>
-                  {offer.tags.map((tag) => (
-                    <span key={tag} className={styles.tag}>
-                      {tag}
-                    </span>
-                  ))}
+                <span className={styles.offerQuestion}>„{offer.question}“</span>
+                <span className={styles.offerTags}>
+                  {offer.tags.join(' · ')}
                 </span>
                 <span className={styles.offerTitle}>
                   {offer.title}
@@ -189,51 +177,45 @@ export default function StartupsPage() {
 
       <section
         aria-labelledby="startups-journey"
-        className={`${styles.split} ${styles.journey}`}
+        className={`${warm.section} ${styles.stack}`}
       >
-        <p className={styles.label}>{journey.label}</p>
-        <div className={styles.journeyBody}>
-          <h2 id="startups-journey" className={styles.journeyTitle}>
-            {journey.title}
-          </h2>
-          <ol className={styles.stages}>
-            {journey.stages.map((stage) => (
-              <li key={stage.title} className={styles.stage}>
-                <span className={styles.stageLabel}>{stage.label}</span>
-                <h3 className={styles.stageTitle}>{stage.title}</h3>
-                <p className={styles.stageText}>{stage.text}</p>
-                <p className={styles.stageFriction}>
-                  <strong>Oft hakt es an:</strong> {stage.friction}
-                </p>
-                <ul
-                  className={styles.stageOffers}
-                  aria-label="Passende Angebote"
-                >
-                  {stage.offers.map((name) => (
-                    <li key={name} className={styles.stageOffer}>
-                      {name}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ol>
-          <div className={styles.exist}>
-            <div className={styles.existText}>
-              <h3 className={styles.existTitle}>{journey.exist.title}</h3>
-              <p>{journey.exist.text}</p>
-            </div>
-            <Link href={journey.exist.href} className={styles.existLink}>
-              {journey.exist.cta}
-            </Link>
-          </div>
-        </div>
+        <h2
+          id="startups-journey"
+          className={`${warm.title} ${warm.titleCenter}`}
+        >
+          {journey.title}
+        </h2>
+        <ol className={styles.stages}>
+          {journey.stages.map((stage) => (
+            <li key={stage.title} className={styles.stage}>
+              <span className={warm.label}>{stage.label}</span>
+              <h3 className={styles.stageTitle}>{stage.title}</h3>
+              <p className={styles.stageText}>{stage.text}</p>
+              <p className={styles.stageFriction}>
+                <strong>Oft hakt es an:</strong> {stage.friction}
+              </p>
+              <p className={styles.stageOffers}>
+                <span className={warm.srOnly}>Passende Angebote: </span>
+                {stage.offers.join(' · ')}
+              </p>
+            </li>
+          ))}
+        </ol>
+        <Link href={journey.exist.href} className={styles.exist}>
+          <span className={styles.existText}>
+            <span className={styles.existTitle}>{journey.exist.title}</span>
+            <span className={styles.existBody}>{journey.exist.text}</span>
+          </span>
+          <span className={`${warm.link} ${styles.existCta}`}>
+            {journey.exist.cta}
+          </span>
+        </Link>
       </section>
 
-      <div className={styles.outlook}>
+      <div className={`${warm.section} ${styles.outlook}`}>
         <section aria-labelledby="startups-changes">
-          <h2 id="startups-changes" className={styles.outlookLabel}>
-            {changes.label}
+          <h2 id="startups-changes" className={styles.outlookTitle}>
+            {changes.title}
           </h2>
           <ul>
             {changes.items.map((item) => (
@@ -244,12 +226,12 @@ export default function StartupsPage() {
           </ul>
         </section>
         <section aria-labelledby="startups-fit" className={styles.fit}>
-          <h2 id="startups-fit" className={styles.outlookLabel}>
-            {fit.label}
+          <h2 id="startups-fit" className={styles.outlookTitle}>
+            {fit.title}
           </h2>
           <div className={`${styles.fitBox} ${styles.fitYes}`}>
             <h3 className={styles.fitTitle}>{fit.yes.title}</h3>
-            <ul>
+            <ul className={styles.fitList}>
               {fit.yes.items.map((item) => (
                 <li key={item}>… {item}</li>
               ))}
@@ -257,7 +239,7 @@ export default function StartupsPage() {
           </div>
           <div className={`${styles.fitBox} ${styles.fitNo}`}>
             <h3 className={styles.fitTitle}>{fit.no.title}</h3>
-            <ul>
+            <ul className={styles.fitList}>
               {fit.no.items.map((item) => (
                 <li key={item}>… {item}</li>
               ))}
@@ -266,37 +248,24 @@ export default function StartupsPage() {
         </section>
       </div>
 
-      <section aria-labelledby="startups-why" className={styles.why}>
-        <Image
-          src={whyPortrait}
-          alt="Annika Matthaei im Profil"
-          placeholder="blur"
-          sizes="(min-width: 1024px) 340px, (min-width: 768px) 240px, 100vw"
-          className={styles.whyPhoto}
-        />
-        <div className={styles.whyBody}>
-          <p className={styles.label}>{why.label}</p>
-          <h2 id="startups-why" className={styles.whyTitle}>
-            {why.title}
-          </h2>
-          <ul className={styles.whyFacts}>
-            {why.facts.map((fact) => (
-              <li key={fact.value} className={styles.whyFact}>
-                <span className={styles.whyValue}>{fact.value}</span>
-                <span className={styles.whyFactText}>{fact.text}</span>
-              </li>
-            ))}
-          </ul>
-          <p className={styles.whyText}>{why.text}</p>
-        </div>
-      </section>
+      <WhyMe
+        id="startups-why"
+        label={why.label}
+        title={why.title}
+        text={why.text}
+        facts={why.facts}
+        image={whyPortrait}
+        alt="Annika Matthaei lachend"
+        imagePosition="center 18%"
+        photoSide="start"
+      />
 
       <section
         aria-labelledby="startups-faq"
-        className={`${styles.split} ${styles.faq}`}
+        className={`${warm.section} ${styles.faq}`}
       >
-        <h2 id="startups-faq" className={styles.label}>
-          {faq.label}
+        <h2 id="startups-faq" className={warm.title}>
+          {faq.title}
         </h2>
         <div className={styles.faqList}>
           {faq.items.map((item) => (
@@ -313,21 +282,12 @@ export default function StartupsPage() {
         </div>
       </section>
 
-      <section
+      <Closing
         id="startups-contact"
-        aria-labelledby="startups-contact-title"
-        className={styles.contact}
-      >
-        <h2 id="startups-contact-title" className={styles.contactTitle}>
-          {contact.title}
-        </h2>
-        <div className={styles.contactBody}>
-          <p className={styles.contactText}>{contact.text}</p>
-          <Link href="/kontakt" className={styles.contactButton}>
-            {contact.cta}
-          </Link>
-        </div>
-      </section>
+        title={contact.title}
+        text={contact.text}
+        cta={contact.cta}
+      />
 
       <HomeStickyCta
         label={hero.cta}

@@ -2,16 +2,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment } from 'react'
 
-import heroPortrait from '../../../public/images/startseite/portrait-sessel.jpg'
-import runningPhoto from '../../../public/images/startseite/laufbild-warm.jpg'
-import methodsPortrait from '../../../public/images/startseite/portrait-lachend.jpg'
-import processPortrait from '../../../public/images/startseite/portrait-workspace.jpg'
-import founderImage from '../../../public/images/startseite/thema-founder.jpg'
-import leadershipImage from '../../../public/images/startseite/thema-leadership.jpg'
-import resilienceImage from '../../../public/images/startseite/thema-resilienz.jpg'
+import heroPortrait from '../../../public/images/fotos/portrait-sessel.jpg'
+import runningPhoto from '../../../public/images/fotos/laufbild-warm.jpg'
+import methodsPortrait from '../../../public/images/fotos/portrait-lachend.jpg'
+import processPortrait from '../../../public/images/fotos/portrait-workspace.jpg'
+import founderImage from '../../../public/images/fotos/thema-founder.jpg'
+import leadershipImage from '../../../public/images/fotos/thema-leadership.jpg'
+import resilienceImage from '../../../public/images/fotos/thema-resilienz.jpg'
 
-import { Arrow } from '@/components/ui/arrow'
 import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
+import { Closing } from '@/components/warm/closing'
+import { ImageCard } from '@/components/warm/image-card'
+import warm from '@/components/warm/warm.module.css'
 import {
   ablauf,
   contact,
@@ -38,7 +40,7 @@ type HomePageContentProps = {
 
 export function HomePageContent({ email }: HomePageContentProps) {
   return (
-    <div data-home className={styles.page}>
+    <div data-warm-page className={warm.page}>
       <LongExposureFilters />
 
       <section aria-labelledby="home-title" className={styles.hero}>
@@ -91,7 +93,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
             <Link
               id="home-hero-cta"
               href="/kontakt"
-              className={`${styles.link} ${styles.heroCta}`}
+              className={`${warm.link} ${styles.heroCta}`}
             >
               {hero.cta}
             </Link>
@@ -111,28 +113,19 @@ export function HomePageContent({ email }: HomePageContentProps) {
       </section>
 
       <section aria-labelledby="home-themes" className={styles.themes}>
-        <h2 id="home-themes" className={`${styles.title} ${styles.titleEnd}`}>
+        <h2 id="home-themes" className={`${warm.title} ${warm.titleEnd}`}>
           {themes.title}
         </h2>
         <ul className={styles.themeList}>
           {themes.items.map((item) => (
             <li key={item.key} className={styles.theme}>
-              <div className={styles.themeMedia}>
-                <Image
-                  src={themeImages[item.key]}
-                  alt=""
-                  placeholder="blur"
-                  sizes="(min-width: 900px) 360px, 100vw"
-                  className={styles.themeImage}
-                />
-                <Link href={themes.href} className={styles.themeLink}>
-                  <h3 className={styles.themeTitle}>{item.title}</h3>
-                  <span className={styles.themeLead}>{item.lead}</span>
-                  <span className={styles.themeMore}>
-                    {themes.more} <Arrow className={styles.themeArrow} />
-                  </span>
-                </Link>
-              </div>
+              <ImageCard
+                image={themeImages[item.key]}
+                title={item.title}
+                lead={item.lead}
+                link={{ href: themes.href, label: themes.more }}
+                sizes="(min-width: 900px) 360px, 100vw"
+              />
               <p className={styles.themeQuestion}>{item.question}</p>
               <p className={styles.themeTags}>{item.tags.join(' · ')}</p>
             </li>
@@ -143,7 +136,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
       <section aria-labelledby="home-methods" className={styles.methods}>
         <h2
           id="home-methods"
-          className={`${styles.title} ${styles.methodsTitle}`}
+          className={`${warm.title} ${styles.methodsTitle}`}
         >
           {methods.title}
         </h2>
@@ -167,7 +160,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
             </li>
           ))}
         </ul>
-        <Link href="/kontakt" className={`${styles.link} ${styles.methodsCta}`}>
+        <Link href="/kontakt" className={`${warm.link} ${styles.methodsCta}`}>
           {methods.cta}
         </Link>
         <Link href={methods.company.href} className={styles.company}>
@@ -180,7 +173,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
       </section>
 
       <section aria-labelledby="home-process" className={styles.process}>
-        <h2 id="home-process" className={`${styles.title} ${styles.titleEnd}`}>
+        <h2 id="home-process" className={`${warm.title} ${warm.titleEnd}`}>
           {ablauf.title}
         </h2>
         <ProcessTabs
@@ -197,7 +190,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
           cta={
             <Link
               href="/kontakt"
-              className={`${styles.button} ${styles.processCta}`}
+              className={`${warm.button} ${styles.processCta}`}
             >
               {ablauf.cta}
             </Link>
@@ -206,7 +199,7 @@ export function HomePageContent({ email }: HomePageContentProps) {
       </section>
 
       <section aria-labelledby="home-stats" className={styles.stats}>
-        <h2 id="home-stats" className={styles.title}>
+        <h2 id="home-stats" className={warm.title}>
           {stats.title}
         </h2>
         <ul className={styles.statList}>
@@ -221,24 +214,13 @@ export function HomePageContent({ email }: HomePageContentProps) {
         </ul>
       </section>
 
-      <section
+      <Closing
         id="home-contact"
-        aria-labelledby="home-contact-title"
-        className={styles.contact}
-      >
-        <h2 id="home-contact-title" className={styles.contactTitle}>
-          {contact.title}
-        </h2>
-        <div className={styles.contactRow}>
-          <p className={styles.contactText}>{contact.text}</p>
-          <Link
-            href="/kontakt"
-            className={`${styles.link} ${styles.contactLink}`}
-          >
-            {contact.cta}
-          </Link>
-        </div>
-      </section>
+        title={contact.title}
+        text={contact.text}
+        cta={contact.cta}
+        variant="link"
+      />
 
       <HomeStickyCta email={email} label={hero.cta} startId="home-hero-cta" />
     </div>

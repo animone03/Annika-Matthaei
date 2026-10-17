@@ -1,0 +1,190 @@
+/* /coaching/unternehmen im Design 10b (Übergabe 11b). Grundstile in
+   warm.module.css. */
+
+/* Überschrift über einem Raster, 44 px Abstand */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+/* Kommt euch das bekannt vor? */
+
+.problems {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.problem {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid var(--ink);
+  padding-top: 20px;
+}
+
+.problemTitle {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.problemText {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* Meine Schwerpunkte */
+
+.focusList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.focusItem {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.focusPoints {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 32px;
+}
+
+/* Meine Überzeugung auf Kohle, zentriert */
+
+.belief {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.beliefLabel {
+  color: var(--on-coal);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.beliefText {
+  max-width: 900px;
+  font-size: clamp(26px, 2.8vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+/* So arbeiten wir */
+
+.approach {
+  display: grid;
+  grid-template-columns: clamp(280px, 31.25vw, 400px) minmax(0, 1fr);
+  gap: clamp(40px, 5.625vw, 72px);
+}
+
+.approachHead {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.approachText {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Bausteine und HR, 100 px unter dem Ablauf */
+
+.offer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  padding: clamp(64px, 7.8vw, 100px) var(--warm-inline) 0;
+}
+
+.offerLabel {
+  padding-bottom: 14px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.module {
+  border-top: 1px solid rgb(28 27 25 / 0.2);
+  padding: 14px 0;
+  font-size: 17px;
+}
+
+.hr {
+  background: var(--sand);
+  padding: 32px;
+}
+
+.hr .offerLabel {
+  padding-bottom: 12px;
+}
+
+.hrList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hrPoint {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* Tablet und schmaler: Probleme und Schwerpunkte untereinander */
+
+@media (max-width: 899px) {
+  .problems,
+  .focusList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .focusList {
+    gap: 48px;
+  }
+}
+
+/* Mobil: unter 768 px, alles einspaltig */
+
+@media (max-width: 767px) {
+  .stack {
+    gap: 32px;
+  }
+
+  .problems {
+    gap: 28px;
+  }
+
+  .focusPoints {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .approach,
+  .offer {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .hr {
+    padding: 24px;
+  }
+
+  .module {
+    font-size: 16px;
+  }
+}

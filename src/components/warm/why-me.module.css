@@ -1,0 +1,107 @@
+/* „Warum ich“: Foto (4:5) neben Text und drei Zahlen */
+
+.why {
+  --photo: clamp(280px, 31.25vw, 400px);
+
+  display: grid;
+  grid-template-areas: 'photo body';
+  grid-template-columns: var(--photo) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(40px, 5.625vw, 72px);
+}
+
+.photoEnd {
+  grid-template-areas: 'body photo';
+  grid-template-columns: minmax(0, 1fr) var(--photo);
+}
+
+.photo {
+  grid-area: photo;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  grid-area: body;
+}
+
+.title {
+  line-height: 1.05;
+}
+
+.text {
+  max-width: 600px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.facts {
+  display: grid;
+  max-width: 620px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 8px;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--ink);
+  padding-top: 14px;
+}
+
+.value {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.factText {
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .why,
+  .photoEnd {
+    grid-template-areas:
+      'photo'
+      'body';
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  /* Zahl links, Text rechts daneben */
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .fact {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    align-items: baseline;
+    gap: 12px;
+    padding-block: 12px;
+  }
+
+  .fact:last-child {
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .value {
+    font-size: 28px;
+  }
+}

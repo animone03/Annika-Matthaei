@@ -1,737 +1,463 @@
-.page {
-  --ink: #1e2329;
-  --ink-soft: #3a4049;
-  --muted: #566270;
-  --muted-on-dark: #aeb8c2;
-  --paper: #f4f5f3;
-  --mist: #e2e8ec;
-  --taupe: #b4c2cd;
-  --gutter: 48px;
+/* /startups im Design 10b (Übergabe 11a). Grundstile in warm.module.css. */
 
-  color: var(--ink);
-}
-
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.label {
-  padding-top: 8px;
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.sectionTitle {
-  font-size: 44px;
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-}
-
-/* Label links, Inhalt rechts */
-.split {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 48px;
-}
-
-section.split {
-  padding: 88px var(--gutter);
-}
-
-/* Bänder reichen über den 14-px-Rahmen hinaus. */
-.hero,
-.stat,
-.cta {
-  margin-inline: calc(-1 * var(--frame, 14px));
-  padding-inline: calc(var(--gutter) + var(--frame, 14px));
-}
-
-.darkButton {
-  flex: none;
-  background: var(--ink);
-  padding: 20px 34px;
-  color: var(--paper);
-  font-size: 15px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.darkButton:hover {
-  background: var(--ink-soft);
-}
-
-/* Hero: Taubenblau, schließt an den Header an */
-
-.hero {
+/* Überschrift über einem Raster, 44 px Abstand */
+.stack {
   display: flex;
   flex-direction: column;
-  gap: 28px;
-  background: var(--taupe);
-  padding-top: 100px;
+  gap: 44px;
 }
 
-.heroLabel {
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
+/* Vielleicht kennst du das */
 
-.heroTitle {
-  max-width: 1000px;
-  font-size: 72px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  text-wrap: balance;
-}
-
-.heroRow {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 48px;
-}
-
-.heroIntro {
-  max-width: 600px;
-  font-size: 18px;
-  line-height: 1.55;
-  text-wrap: pretty;
-}
-
-.jumpBar {
-  display: flex;
-  margin: 44px calc(-1 * (var(--gutter) + var(--frame, 14px))) 0;
-  border-top: 1px solid var(--ink);
-  padding-inline: calc(var(--gutter) + var(--frame, 14px));
-}
-
-.jump {
-  display: flex;
-  flex: 1;
-  gap: 10px;
-  padding: 18px 0;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.jump:hover {
-  color: var(--ink-soft);
-}
-
-.jumpNumber {
-  color: var(--ink-soft);
-}
-
-/* Kommt dir das bekannt vor? */
-
-.problems {
+.quotes {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px;
+  grid-template-columns: clamp(280px, 31.25vw, 400px) minmax(0, 1fr);
+  gap: clamp(40px, 5.625vw, 72px);
 }
 
-/* „Zwei Hebel“: gleiche Optik wie .problems, aber zwei Spalten. */
-.levers {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.problem {
+.quotesHead {
   display: flex;
-  height: 100%;
   flex-direction: column;
-  gap: 12px;
-  border-top: 1px solid var(--ink);
-  padding-top: 18px;
+  gap: 18px;
 }
 
-.problemTitle {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.problemText {
-  color: var(--ink-soft);
+.bridge {
   font-size: 15px;
-  line-height: 1.6;
+  font-weight: 700;
+  line-height: 1.5;
 }
 
-.problem:hover .problemTitle {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.quote {
+  border-top: 1px solid rgb(28 27 25 / 0.2);
+  padding: 20px 0;
+  font-size: clamp(19px, 1.72vw, 22px);
+  line-height: 1.35;
 }
 
-/* Statistik: dunkles Band */
+/* 92 % auf Kohle */
 
 .stat {
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: clamp(280px, 31.25vw, 400px) minmax(0, 1fr);
   align-items: center;
-  gap: 48px;
-  background: var(--ink);
-  padding-block: 88px;
-  color: var(--paper);
+  gap: clamp(40px, 5.625vw, 72px);
 }
 
 .statValue {
-  font-size: 150px;
+  font-size: clamp(96px, 10.9vw, 140px);
   font-weight: 700;
-  line-height: 0.8;
-  letter-spacing: -0.02em;
+  line-height: 0.85;
   white-space: nowrap;
 }
 
 .statBody {
   display: flex;
-  max-width: 720px;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
+}
+
+.statClaim {
+  font-size: clamp(24px, 2.35vw, 30px);
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .statText {
-  font-size: 32px;
-  line-height: 1.25;
-  text-wrap: pretty;
+  max-width: 640px;
+  color: var(--on-coal);
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .statSource {
-  color: var(--muted-on-dark);
-  font-size: 12px;
-  letter-spacing: 0.06em;
+  color: var(--on-coal);
+  font-size: 10px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.statNote {
-  margin-top: 8px;
-  font-size: 17px;
-  line-height: 1.5;
-}
+/* Drei Themen */
 
-/* Angebote: ganze Zeile ist der Link */
-
-.offers {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-  padding: 96px var(--gutter) 0;
-}
-
-.offerList {
-  display: flex;
-  flex-direction: column;
-}
-
-.offer {
-  border-top: 1px solid var(--ink);
-  scroll-margin-top: 24px;
-}
-
-.offer:last-child {
-  border-bottom: 1px solid var(--ink);
-}
-
-.offerRow {
+.themeList {
   display: grid;
-  grid-template-columns: 300px 1fr 280px 160px;
-  align-items: center;
-  gap: 32px;
-  padding: 30px 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
 }
 
-.offerRow:hover {
-  background: var(--mist);
-}
-
-.offerHead {
+.theme {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 18px;
 }
 
-.offerLabel {
-  color: var(--muted);
-  font-size: 12px;
+.themeFocus {
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.offerName {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.05;
-  text-transform: uppercase;
-}
+/* Welches Angebot passt? Jede Kachel führt auf ihre Angebotsseite. */
 
-.offerPromise {
-  font-size: 18px;
-  line-height: 1.4;
-}
-
-.offerFormat {
-  color: var(--muted);
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.offerMore {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 6px;
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* Danach wisst ihr */
-
-.outcomes {
-  display: flex;
-  flex-direction: column;
-}
-
-.outcome {
-  border-top: 1px solid var(--ink);
-  padding: 18px 0;
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 1.1;
-}
-
-.outcome:last-child {
-  border-bottom: 1px solid var(--ink);
-}
-
-section.split:has(.outcomes) {
-  padding-top: 96px;
-  padding-bottom: 96px;
-}
-
-/* Warum ich */
-
-.why {
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  align-items: center;
-  gap: 80px;
-  padding: 0 var(--gutter) 96px;
-}
-
-.whyPhoto {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center 20%;
-  filter: grayscale(1);
-}
-
-.whyBody {
-  display: flex;
-  max-width: 620px;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.whyBody .label {
-  padding-top: 0;
-}
-
-.whyBody .sectionTitle {
-  font-size: 40px;
-}
-
-.facts {
+.offerList {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 24px;
 }
 
-.fact {
+.offer {
   display: flex;
+  height: 100%;
+  min-height: 440px;
   flex-direction: column;
-  gap: 6px;
-  border-top: 1px solid var(--ink);
-  padding-top: 12px;
+  gap: 18px;
+  padding: 36px 32px;
+  transition: opacity 180ms ease;
 }
 
-.factValue {
-  font-size: 32px;
-  font-weight: 700;
+.offer:hover {
+  opacity: 0.92;
 }
 
-.factText {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.45;
+.offerSand {
+  background: var(--sand);
+  color: var(--ink);
 }
 
-.whyText {
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.65;
-}
-
-/* CTA: dunkel, randlos */
-
-.cta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: end;
-  gap: 64px;
+.offerCoal {
   background: var(--ink);
-  padding-block: 88px;
   color: var(--paper);
 }
 
-.ctaTitle {
-  font-size: 56px;
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.01em;
+.offerStone {
+  background: var(--stone);
+  color: var(--ink);
+}
+
+/* Stärker als .page a:hover (warm.module.css), damit die Schrift beim
+   Überfahren ihre Farbe behält */
+.offerList .offerSand:hover,
+.offerList .offerStone:hover {
+  color: var(--ink);
+}
+
+.offerList .offerCoal:hover {
+  color: var(--paper);
+}
+
+.offerLabel {
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
   text-transform: uppercase;
 }
 
-.ctaBody {
+.offerQuestion {
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.offerTags {
+  font-size: 10.5px;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+  text-transform: uppercase;
+}
+
+.offerTitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  border-top: 1px solid currentColor;
+  padding-top: 18px;
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.offerArrow {
+  font-size: 18px;
+}
+
+.offerText {
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.offerFormat {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+/* Der Weg */
+
+.stages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.stage {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  color: var(--muted-on-dark);
-  font-size: 16px;
+  gap: 10px;
+  border-top: 1px solid var(--ink);
+  padding-top: 20px;
+}
+
+.stageTitle {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stageText {
+  color: var(--ink-soft);
+  font-size: 14px;
   line-height: 1.6;
 }
 
-.ctaButton {
-  align-self: flex-start;
-  background: var(--paper);
-  padding: 24px 44px;
-  color: var(--ink);
-  font-size: 17px;
-  letter-spacing: 0.06em;
+.stageFriction {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.stageFriction strong {
+  font-weight: 700;
+}
+
+.stageOffers {
+  margin-top: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.ctaButton:hover {
-  background: var(--mist);
+.exist {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  background: var(--sand);
+  padding: 28px 32px;
 }
 
-/* Tablet */
+.existText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.existTitle {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.existBody {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.exist .existCta {
+  align-self: center;
+  white-space: nowrap;
+}
+
+/* Was sich verändert / Ist das für euch? */
+
+.outlook {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(40px, 6.25vw, 80px);
+}
+
+.outlookTitle {
+  margin-bottom: 24px;
+  font-size: clamp(26px, 2.5vw, 32px);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.change {
+  border-top: 1px solid rgb(28 27 25 / 0.2);
+  padding: 14px 0;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.fit {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fit .outlookTitle {
+  margin-bottom: 10px;
+}
+
+.fitBox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 26px;
+}
+
+.fitYes {
+  background: var(--sand);
+}
+
+.fitNo {
+  border: 1px solid var(--line-strong);
+}
+
+.fitTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.fitList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.fitNo .fitList {
+  color: var(--ink-soft);
+}
+
+/* Häufige Fragen */
+
+.faq {
+  display: grid;
+  grid-template-columns: clamp(280px, 31.25vw, 400px) minmax(0, 1fr);
+  gap: clamp(40px, 5.625vw, 72px);
+}
+
+.faqList {
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.faqItem {
+  border-top: 1px solid var(--line-strong);
+  padding: 18px 0;
+}
+
+.faqQuestion {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  font-size: 17px;
+  font-weight: 700;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqIcon {
+  flex: none;
+  font-weight: 400;
+  transition: transform 180ms ease;
+}
+
+.faqItem[open] .faqIcon {
+  transform: rotate(45deg);
+}
+
+.faqAnswer {
+  max-width: 640px;
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* Tablet: unter 1024 px */
 
 @media (max-width: 1023px) {
-  .heroTitle {
-    font-size: 56px;
+  .offerList {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .split,
-  .stat,
-  .why,
-  .cta {
-    grid-template-columns: 1fr;
+  .offer {
+    min-height: 0;
+  }
+
+  .offerTitle {
+    margin-top: 12px;
+  }
+}
+
+/* Themen und Etappen untereinander */
+
+@media (max-width: 899px) {
+  .themeList,
+  .stages {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .themeList {
+    gap: 48px;
+  }
+}
+
+/* Mobil: unter 768 px, alles einspaltig */
+
+@media (max-width: 767px) {
+  .stack {
     gap: 32px;
   }
 
-  .offerRow {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px 32px;
+  .quotes,
+  .faq,
+  .outlook {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
   }
 
-  .offerMore {
-    justify-content: flex-start;
-    justify-self: start;
+  .outlook {
+    gap: 64px;
   }
 
-  .whyPhoto {
-    max-width: 360px;
-  }
-}
-
-/* Mobile (Übergabe Startup-Seiten Mobile, 2a) */
-
-.mobileOnly {
-  display: none;
-}
-
-.offerName .offerArrow {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  .page {
-    --gutter: 20px;
-  }
-
-  .label {
-    padding-top: 0;
-    font-size: 11px;
-  }
-
-  /* Hero ohne Button, dafür gibt es die feste Leiste. */
-  .hero {
-    gap: 18px;
-    padding-top: 28px;
-  }
-
-  .heroLabel {
-    font-size: 11px;
-  }
-
-  .heroTitle {
-    font-size: 36px;
-    line-height: 1.02;
-  }
-
-  .heroRow {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .heroIntro {
-    font-size: 15px;
-  }
-
-  .heroRow .darkButton {
-    display: none;
-  }
-
-  /* Sprungleiste: horizontal scrollbar */
-  .jumpBar {
-    gap: 20px;
-    margin-top: 18px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .jumpBar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .jump {
-    flex: none;
-    gap: 6px;
-    padding: 14px 0;
-    font-size: 11px;
-  }
-
-  .jumpNumber {
-    color: inherit;
-  }
-
-  section.split {
-    gap: 22px;
-    padding-block: 44px;
-  }
-
-  .problems,
-  .levers {
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-
-  .problem {
-    gap: 6px;
-    padding-top: 14px;
-  }
-
-  .problemTitle {
-    font-size: 18px;
-  }
-
-  .problemText {
-    font-size: 14px;
-    line-height: 1.55;
-  }
-
+  /* Zahl über dem Text */
   .stat {
-    gap: 12px;
-    padding-block: 40px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
   }
 
   .statValue {
-    font-size: 80px;
-    line-height: 0.85;
+    font-size: 88px;
   }
 
-  .statBody {
-    gap: 12px;
+  .offer {
+    padding: 28px 24px;
   }
 
-  .statText {
-    font-size: 19px;
-    line-height: 1.35;
-  }
-
-  .statSource {
-    font-size: 10px;
-  }
-
-  .statNote {
-    display: none;
-  }
-
-  .offers {
-    gap: 0;
-    padding: 44px var(--gutter);
-  }
-
-  .offers .split {
-    gap: 14px;
-    padding-bottom: 12px;
-  }
-
-  .sectionTitle {
-    font-size: 26px;
-    line-height: 1.08;
-  }
-
-  /* Angebote: jede Zeile ein Block, Pfeil neben dem Namen */
-  .offerRow {
-    display: flex;
+  .exist {
     flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    padding: 20px 0;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px;
   }
 
-  .offerHead {
-    gap: 8px;
+  .exist .existCta {
+    align-self: flex-start;
   }
 
-  .offerLabel {
-    font-size: 10px;
-  }
-
-  .offerName {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-    font-size: 21px;
-    line-height: 1.1;
-  }
-
-  .offerName .offerArrow {
-    display: inline-block;
+  .change {
     font-size: 16px;
-  }
-
-  .offerPromise {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .offerFormat {
-    font-size: 10.5px;
-    letter-spacing: 0.05em;
-  }
-
-  .offerMore {
-    display: none;
-  }
-
-  section.split:has(.outcomes) {
-    gap: 12px;
-    padding-top: 0;
-    padding-bottom: 44px;
-  }
-
-  .outcome {
-    padding: 14px 0;
-    font-size: 22px;
-    line-height: 1.15;
-  }
-
-  .why {
-    gap: 16px;
-    padding-bottom: 44px;
-  }
-
-  .whyPhoto {
-    max-width: none;
-    height: 300px;
-    aspect-ratio: auto;
-    object-position: center 20%;
-  }
-
-  .whyBody {
-    gap: 16px;
-  }
-
-  .whyBody .label {
-    margin-top: 8px;
-  }
-
-  .whyBody .sectionTitle {
-    font-size: 24px;
-    line-height: 1.1;
-  }
-
-  .facts {
-    gap: 12px;
-  }
-
-  .fact {
-    gap: 4px;
-    padding-top: 10px;
-  }
-
-  .factValue {
-    font-size: 24px;
-  }
-
-  .factText {
-    font-size: 11px;
-    line-height: 1.4;
-  }
-
-  .desktopOnly {
-    display: none;
-  }
-
-  .mobileOnly {
-    display: inline;
-  }
-
-  .whyText {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .cta {
-    gap: 16px;
-    padding-block: 40px;
-  }
-
-  .ctaTitle {
-    font-size: 28px;
-    line-height: 1.05;
-  }
-
-  .ctaBody {
-    gap: 16px;
-    font-size: 14px;
-    line-height: 1.55;
-  }
-
-  .ctaButton {
-    align-self: stretch;
-    padding: 18px;
-    font-size: 14px;
-    text-align: center;
   }
 }

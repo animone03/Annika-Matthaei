@@ -1,12 +1,19 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 
-import portrait from '../../../../../public/images/annika-sessel.jpeg'
+import heroPortrait from '../../../../../public/images/fotos/portrait-sessel.jpg'
+import whyPortrait from '../../../../../public/images/fotos/portrait-profil.jpg'
+import leadershipImage from '../../../../../public/images/fotos/thema-leadership.jpg'
+import resilienceImage from '../../../../../public/images/fotos/thema-resilienz.jpg'
 
-import { StartupStickyCta } from '@/components/sections/startup-sticky-cta'
-import base from '@/components/sections/startups-page.module.css'
-import styles from '@/components/sections/leadership-page.module.css'
+import styles from '@/components/sections/company-page.module.css'
+import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
+import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
+import { Closing } from '@/components/warm/closing'
+import { ImageCard } from '@/components/warm/image-card'
+import { Timeline } from '@/components/warm/timeline'
+import warm from '@/components/warm/warm.module.css'
+import { WarmHero } from '@/components/warm/warm-hero'
+import { WhyMe } from '@/components/warm/why-me'
 import {
   approach,
   belief,
@@ -14,207 +21,165 @@ import {
   focus,
   hero,
   hr,
+  modules,
   problems,
   why,
 } from '@/content/coaching-unternehmen'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Leadership & Teamentwicklung für Unternehmen – Annika Matthaei',
+  title: 'Coaching für Unternehmen – Annika Matthaei',
   description:
-    'Coaching, Workshops und Teamentwicklung für Teams, Abteilungen und Führungskräfte. Systemisch, agil, stärkenorientiert.',
+    'Leadership sowie Gesundheit & Resilienz für Teams und Führungskräfte in Mittelstand und Konzern.',
   path: '/coaching/unternehmen',
   absoluteTitle: true,
 })
 
+const focusImages = {
+  leadership: leadershipImage,
+  resilienz: resilienceImage,
+}
+
 const number = (index: number) => String(index + 1).padStart(2, '0')
 
-// Grundstile aus startups-page.module.css (Aufbau der früheren Startups-Übersicht).
 export default function CompanyCoachingPage() {
   return (
-    <div data-frame-page data-coaching-page className={base.page}>
-      <section
-        aria-labelledby="company-title"
-        className={`${base.hero} ${styles.hero}`}
-      >
-        <p className={base.heroLabel}>{hero.label}</p>
-        <h1 id="company-title" className={base.heroTitle}>
-          {hero.title}
-        </h1>
-        <div className={base.heroRow}>
-          <p className={`${base.heroIntro} ${styles.heroIntro}`}>
-            <span className={base.desktopOnly}>{hero.intro}</span>
-            <span className={base.mobileOnly}>{hero.mobileIntro}</span>
-          </p>
-          <Link href="/kontakt" className={base.darkButton}>
-            Kennenlernen
-          </Link>
-        </div>
-      </section>
+    <div data-warm-page className={warm.page}>
+      <LongExposureFilters />
 
-      <section aria-labelledby="problems-title" className={base.split}>
-        <h2 id="problems-title" className={base.label}>
-          {problems.label}
+      <WarmHero
+        id="company-hero"
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        intro={hero.intro}
+        cta={{ label: hero.cta, href: '/kontakt' }}
+        note={hero.note}
+        image={heroPortrait}
+        alt="Annika Matthaei im Sessel"
+        photoSide="start"
+        crop={{ position: 'center 36%', zoom: 1.27 }}
+      />
+
+      <section
+        aria-labelledby="company-problems"
+        className={`${warm.section} ${styles.stack}`}
+      >
+        <h2 id="company-problems" className={`${warm.title} ${warm.titleEnd}`}>
+          {problems.title}
         </h2>
-        <ul className={base.problems}>
+        <ul className={styles.problems}>
           {problems.items.map((problem) => (
             <li key={problem.title} className={styles.problem}>
-              <span className={base.problemTitle}>{problem.title}</span>
-              <span className={base.problemText}>{problem.text}</span>
+              <h3 className={styles.problemTitle}>{problem.title}</h3>
+              <p className={styles.problemText}>{problem.text}</p>
             </li>
           ))}
         </ul>
       </section>
 
-      <section aria-labelledby="focus-title" className={styles.focus}>
-        <div className={base.split}>
-          <h2 id="focus-title" className={base.label}>
-            {focus.label}
-          </h2>
-          <ul className={styles.focusList}>
-            {focus.items.map((item) => (
-              <li key={item.title} className={styles.focusItem}>
-                <h3 className={styles.focusTitle}>{item.title}</h3>
-                <p className={styles.focusClaim}>{item.claim}</p>
-                <ul className={styles.focusPoints}>
-                  {item.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <section
+        aria-labelledby="company-focus"
+        className={`${warm.section} ${styles.stack}`}
+      >
+        <h2 id="company-focus" className={warm.title}>
+          {focus.title}
+        </h2>
+        <ul className={styles.focusList}>
+          {focus.items.map((item, index) => (
+            <li key={item.key} className={styles.focusItem}>
+              <ImageCard
+                image={focusImages[item.key]}
+                number={number(index)}
+                title={item.title}
+                lead={item.claim}
+                shape="wide"
+                sizes="(min-width: 900px) 560px, 100vw"
+              />
+              <ul className={`${warm.lines} ${styles.focusPoints}`}>
+                {item.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
       </section>
 
-      <section aria-labelledby="belief-title" className={styles.belief}>
-        <h2 id="belief-title" className={styles.beliefLabel}>
+      <section
+        aria-labelledby="company-belief"
+        className={`${warm.band} ${styles.belief}`}
+      >
+        <h2 id="company-belief" className={styles.beliefLabel}>
           {belief.label}
         </h2>
         <p className={styles.beliefText}>{belief.text}</p>
       </section>
 
-      <section aria-labelledby="approach-title" className={styles.approach}>
-        <div className={base.split}>
-          <p className={base.label}>{approach.label}</p>
-          <div className={styles.approachHead}>
-            <h2 id="approach-title" className={base.sectionTitle}>
-              {approach.title}
-            </h2>
-            <p className={styles.approachText}>{approach.text}</p>
-          </div>
+      <section
+        aria-labelledby="company-approach"
+        className={`${warm.section} ${styles.approach}`}
+      >
+        <div className={styles.approachHead}>
+          <h2 id="company-approach" className={warm.title}>
+            {approach.title}
+          </h2>
+          <p className={styles.approachText}>{approach.text}</p>
         </div>
-        <div className={base.split}>
-          <span aria-hidden="true" />
-          <ol className={styles.steps}>
-            {approach.steps.map((step, index) => (
-              <li
-                key={step.title}
-                className={`${styles.step} ${styles[step.tone]}`}
-              >
-                <span className={styles.stepNumber}>{number(index)}</span>
-                <span className={styles.stepBody}>
-                  <span className={styles.stepTitle}>{step.title}</span>
-                  <span className={styles.stepText}>{step.text}</span>
-                </span>
-              </li>
-            ))}
-          </ol>
-        </div>
-        <div className={`${base.split} ${styles.modulesRow}`}>
-          <h3 className={base.label}>{approach.modulesLabel}</h3>
-          <ul className={styles.tags}>
-            {approach.modules.map((module) => (
-              <li key={module.label} className={styles.tag}>
-                {'mobile' in module ? (
-                  <>
-                    <span className={base.desktopOnly}>{module.label}</span>
-                    <span className={base.mobileOnly}>{module.mobile}</span>
-                  </>
-                ) : (
-                  module.label
-                )}
+        <Timeline steps={approach.steps} />
+      </section>
+
+      <div className={styles.offer}>
+        <section aria-labelledby="company-modules">
+          <h2 id="company-modules" className={styles.offerLabel}>
+            {modules.title}
+          </h2>
+          <ul>
+            {modules.items.map((item) => (
+              <li key={item} className={styles.module}>
+                {item}
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      <section aria-labelledby="hr-title" className={styles.hr}>
-        <div className={styles.hrIntro}>
-          <p className={base.label}>{hr.label}</p>
-          <h2 id="hr-title" className={styles.hrTitle}>
+        </section>
+        <section aria-labelledby="company-hr" className={styles.hr}>
+          <h2 id="company-hr" className={styles.offerLabel}>
             {hr.title}
           </h2>
-          <p className={styles.hrText}>
-            <span className={base.desktopOnly}>{hr.text}</span>
-            <span className={base.mobileOnly}>{hr.mobileText}</span>
-          </p>
-        </div>
-        <ol className={styles.hrPoints}>
-          {hr.points.map((point, index) => (
-            <li key={point} className={styles.hrPoint}>
-              <span className={styles.hrNumber}>{number(index)}</span>
-              <span>{point}</span>
-            </li>
-          ))}
-        </ol>
-      </section>
+          <ul className={styles.hrList}>
+            {hr.points.map((point) => (
+              <li key={point} className={styles.hrPoint}>
+                {point}
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
 
-      <section aria-labelledby="why-title" className={base.why}>
-        <Image
-          src={portrait}
-          alt="Annika Matthaei, sitzend in einem Sessel"
-          placeholder="blur"
-          sizes="(min-width: 768px) 360px, 100vw"
-          className={`${base.whyPhoto} ${styles.whyPhoto}`}
-        />
-        <div className={base.whyBody}>
-          <p className={base.label}>{why.label}</p>
-          <h2 id="why-title" className={base.sectionTitle}>
-            {why.title}
-          </h2>
-          <div className={styles.whyDesktop}>
-            <ul className={base.facts}>
-              {why.facts.map((fact) => (
-                <li key={fact.value} className={base.fact}>
-                  <span className={base.factValue}>{fact.value}</span>
-                  <span className={base.factText}>{fact.text}</span>
-                </li>
-              ))}
-            </ul>
-            <p className={base.whyText}>{why.text}</p>
-          </div>
-          <p className={`${base.whyText} ${styles.whyMobile}`}>
-            {why.mobileText}
-          </p>
-        </div>
-      </section>
+      <WhyMe
+        id="company-why"
+        label={why.label}
+        title={why.title}
+        text={why.text}
+        facts={why.facts}
+        image={whyPortrait}
+        alt="Annika Matthaei im Profil"
+        imagePosition="center 20%"
+        photoSide="end"
+      />
 
-      <section
+      {/* TODO: Auf den Buchungslink umstellen, sobald es einen gibt. */}
+      <Closing
         id="company-contact"
-        aria-labelledby="company-contact-title"
-        className={base.cta}
-      >
-        <h2 id="company-contact-title" className={base.ctaTitle}>
-          {cta.title}
-        </h2>
-        <div className={base.ctaBody}>
-          <p>
-            <span className={base.desktopOnly}>{cta.text}</span>
-            <span className={base.mobileOnly}>{cta.mobileText}</span>
-          </p>
-          {/* TODO: Auf den Buchungslink umstellen, sobald es einen gibt. */}
-          <Link
-            href="/kontakt"
-            className={`${base.ctaButton} ${styles.ctaButton}`}
-          >
-            {cta.button}
-          </Link>
-        </div>
-      </section>
+        title={cta.title}
+        text={cta.text}
+        cta={cta.button}
+      />
 
-      <StartupStickyCta />
+      <HomeStickyCta
+        label={hero.cta}
+        startId="company-hero-cta"
+        endSelector="#company-contact a"
+      />
     </div>
   )
 }

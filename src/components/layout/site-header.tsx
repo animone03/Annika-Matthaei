@@ -85,10 +85,12 @@ type SiteHeaderProps = {
   linkedIn?: string | null
 }
 
+// Seiten im neuen Design (10b), die übrigen folgen noch.
+const warmPaths: string[] = ['/', '/startups', '/coaching/unternehmen']
+
 export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
   const pathname = usePathname()
-  // Startseite im neuen Design (10b), die übrigen Seiten folgen noch.
-  const warm = pathname === '/'
+  const warm = warmPaths.includes(pathname)
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
