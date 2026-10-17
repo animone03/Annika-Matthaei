@@ -52,8 +52,6 @@ const toneClass = {
   stone: styles.offerStone,
 }
 
-const number = (index: number) => String(index + 1).padStart(2, '0')
-
 export default function StartupsPage() {
   return (
     <div data-warm-page data-startups-page className={warm.page}>
@@ -124,11 +122,10 @@ export default function StartupsPage() {
           {themes.title}
         </h2>
         <ul className={styles.themeList}>
-          {themes.items.map((theme, index) => (
+          {themes.items.map((theme) => (
             <li key={theme.key} className={styles.theme}>
               <ImageCard
                 image={themeImages[theme.key]}
-                number={number(index)}
                 title={theme.title}
                 lead={theme.claim}
                 sizes="(min-width: 900px) 360px, 100vw"

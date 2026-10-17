@@ -91,6 +91,7 @@ const warmPaths: string[] = [
   '/startups',
   '/coaching/unternehmen',
   '/ueber-mich',
+  '/kontakt',
 ]
 
 export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
@@ -282,6 +283,7 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
                 <Link
                   href="/kontakt"
                   className={`${styles.warmLink} ${styles.warmContact}`}
+                  aria-current={pathname === '/kontakt' ? 'page' : undefined}
                 >
                   Kontakt
                 </Link>

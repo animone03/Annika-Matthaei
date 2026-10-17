@@ -16,7 +16,7 @@
   --font-heading: var(--font-helvetica), Helvetica, Arial, sans-serif;
 
   /* Neues Design-System (10b): Creme, Kohle, Stein. Gilt für Startseite,
-     Startups, Unternehmen und Über mich, die übrigen Seiten folgen. */
+     Startups, Unternehmen, Über mich und Kontakt, die übrigen Seiten folgen. */
   --cream: #faf9f5;
   --coal: #1c1b19;
   --coal-soft: #3d3b37;
@@ -117,7 +117,8 @@ body {
   display: none;
 }
 
-/* Seiten im neuen Design (Startseite, Startups, Unternehmen, Über mich): warmes Papier
+/* Seiten im neuen Design (Startseite, Startups, Unternehmen, Über mich,
+   Kontakt): warmes Papier
    ohne Rahmen. Der Footer liegt im dunklen Abschluss der Seite. */
 body:has([data-warm-page]:not([style*='display: none'])) {
   background: var(--cream);
@@ -172,10 +173,27 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   color: var(--cream);
 }
 
+/* Kontakt: kein dunkler Abschluss davor, darum ein schmaler Footer ohne
+   Trennlinie. */
+.site-shell:has([data-contact-page]:not([style*='display: none'])) footer {
+  padding-top: 40px;
+}
+
+.site-shell:has([data-contact-page]:not([style*='display: none']))
+  footer
+  > div {
+  border-top: 0;
+  padding-top: 0;
+}
+
 /* Mobil: Motto über eigener Zeile, unten Platz für die fixe Kontaktleiste. */
 @media (max-width: 767px) {
   .site-shell:has([data-warm-page]:not([style*='display: none'])) footer {
     padding-bottom: 100px;
+  }
+
+  .site-shell:has([data-contact-page]:not([style*='display: none'])) footer {
+    padding-bottom: 40px;
   }
 
   .site-shell:has([data-warm-page]:not([style*='display: none']))
@@ -184,10 +202,9 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   }
 }
 
-/* Kontakt, Angebote und Rechtliches: Footer mit Motto links,
+/* Angebote und Rechtliches: Footer mit Motto links,
    Trennlinie oben. */
 .site-shell:has(
-    [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
@@ -197,7 +214,6 @@ body:has([data-warm-page]:not([style*='display: none'])) {
 }
 
 .site-shell:has(
-    [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
@@ -210,7 +226,6 @@ body:has([data-warm-page]:not([style*='display: none'])) {
 }
 
 .site-shell:has(
-    [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
     [data-startup-offer-page]:not([style*='display: none'])
   )
@@ -247,7 +262,6 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   }
 
   .site-shell:has(
-      [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
@@ -257,7 +271,6 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   }
 
   .site-shell:has(
-      [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )
@@ -269,7 +282,6 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   }
 
   .site-shell:has(
-      [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
       [data-startup-offer-page]:not([style*='display: none'])
     )

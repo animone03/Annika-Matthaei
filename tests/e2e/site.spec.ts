@@ -120,12 +120,28 @@ test('contact page preselects topics and has no serious accessibility violations
   await expect(
     page.getByRole('heading', { level: 1, name: 'Lass uns sprechen.' }),
   ).toBeVisible()
-  await expect(page.getByRole('checkbox', { name: 'EXIST' })).toBeChecked()
+  const exist = page.getByRole('radio', { name: 'EXIST' })
+  await expect(exist).toHaveAttribute('aria-checked', 'true')
 
-  await page.getByRole('button', { name: /Anfrage senden/ }).click()
+  // Einzelauswahl: ein anderes Thema ersetzt EXIST, ein zweiter Klick hebt
+  // die Auswahl wieder auf.
+  const coFounder = page.getByRole('radio', { name: 'Co-Founder' })
+  await coFounder.click()
+  await expect(exist).toHaveAttribute('aria-checked', 'false')
+  await coFounder.click()
+  await expect(coFounder).toHaveAttribute('aria-checked', 'false')
+
+  const submit = page.getByRole('button', { name: 'Nachricht senden' })
+  await expect(submit).toHaveAttribute('aria-disabled', 'true')
+  // Der Button ist nur als deaktiviert markiert und bleibt klickbar. Playwright
+  // wartet bei aria-disabled, darum ohne Prüfung klicken.
+  await submit.click({ force: true })
   await expect(
     page.getByText('Bitte gib eine gültige E-Mail-Adresse ein.'),
   ).toBeVisible()
+  await page.getByLabel('Name *').fill('Alex Beispiel')
+  await page.getByLabel('E-Mail *').fill('alex@example.test')
+  await expect(submit).toHaveAttribute('aria-disabled', 'false')
 
   const results = await new AxeBuilder({ page }).analyze()
   const serious = results.violations.filter((violation) =>

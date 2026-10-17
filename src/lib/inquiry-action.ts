@@ -10,7 +10,7 @@ import {
 } from './inquiry'
 
 const sources = {
-  kontakt: { path: '/kontakt', messageRequired: true },
+  kontakt: { path: '/kontakt', messageRequired: false },
   'coaching-startups': { path: '/coaching/startups', messageRequired: false },
 } as const
 

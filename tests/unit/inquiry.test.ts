@@ -25,7 +25,6 @@ describe('inquiry', () => {
         name: ' Alex ',
         email: 'alex@example.test',
         nachricht: 'Hallo',
-        datenschutz: 'on',
       }),
     )
     expect(values.name).toBe('Alex')
@@ -43,21 +42,22 @@ describe('inquiry', () => {
       readInquiry(form({ email: 'keine-adresse' })),
       { messageRequired: true },
     )
-    expect(Object.keys(errors).sort()).toEqual([
-      'consent',
-      'email',
-      'message',
-      'name',
-    ])
+    expect(Object.keys(errors).sort()).toEqual(['email', 'message', 'name'])
   })
 
   it('treats the message as optional where allowed', () => {
     const errors = validateInquiry(
-      readInquiry(
-        form({ name: 'Alex', email: 'alex@example.test', datenschutz: 'on' }),
-      ),
+      readInquiry(form({ name: 'Alex', email: 'alex@example.test' })),
       { messageRequired: false },
     )
     expect(errors).toEqual({})
+  })
+
+  it('reads the single topic of the contact form', () => {
+    const values = readInquiry(
+      form({ thema: 'EXIST', name: 'Alex', email: 'alex@example.test' }),
+    )
+    expect(values.topics).toEqual(['EXIST'])
+    expect(inquirySubject(values)).toBe('Neue Anfrage: EXIST – Alex')
   })
 })

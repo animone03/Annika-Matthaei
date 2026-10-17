@@ -3,7 +3,7 @@
 
 export const inquiryRecipient = 'annika.matthaei@googlemail.com'
 
-export type InquiryField = 'name' | 'email' | 'message' | 'consent'
+export type InquiryField = 'name' | 'email' | 'message'
 
 export type InquiryErrors = Partial<Record<InquiryField, string>>
 
@@ -14,7 +14,6 @@ export type InquiryValues = {
   company: string
   phone: string
   message: string
-  consent: boolean
 }
 
 export type InquiryStatus =
@@ -32,18 +31,18 @@ function text(formData: FormData, key: string, max: number) {
   return typeof value === 'string' ? value.trim().slice(0, max) : ''
 }
 
+// Das Kontaktformular schickt ein Thema als `thema`, ältere Formulare
+// mehrere als `themen`.
 export function readInquiry(formData: FormData): InquiryValues {
   return {
-    topics: formData
-      .getAll('themen')
-      .filter((topic): topic is string => typeof topic === 'string')
+    topics: [...formData.getAll('thema'), ...formData.getAll('themen')]
+      .filter((topic): topic is string => typeof topic === 'string' && !!topic)
       .slice(0, 10),
     name: text(formData, 'name', 200),
     email: text(formData, 'email', 200),
     company: text(formData, 'unternehmen', 200),
     phone: text(formData, 'telefon', 60),
     message: text(formData, 'nachricht', 5000),
-    consent: formData.get('datenschutz') === 'on',
   }
 }
 
@@ -58,9 +57,6 @@ export function validateInquiry(
   }
   if (messageRequired && !values.message) {
     errors.message = 'Bitte schreib kurz, worum es geht.'
-  }
-  if (!values.consent) {
-    errors.consent = 'Bitte stimme der Verarbeitung deiner Angaben zu.'
   }
   return errors
 }

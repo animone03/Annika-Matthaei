@@ -40,8 +40,6 @@ const focusImages = {
   resilienz: resilienceImage,
 }
 
-const number = (index: number) => String(index + 1).padStart(2, '0')
-
 export default function CompanyCoachingPage() {
   return (
     <div data-warm-page className={warm.page}>
@@ -85,11 +83,10 @@ export default function CompanyCoachingPage() {
           {focus.title}
         </h2>
         <ul className={styles.focusList}>
-          {focus.items.map((item, index) => (
+          {focus.items.map((item) => (
             <li key={item.key} className={styles.focusItem}>
               <ImageCard
                 image={focusImages[item.key]}
-                number={number(index)}
                 title={item.title}
                 lead={item.claim}
                 shape="wide"
