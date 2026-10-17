@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-import styles from './home-page.module.css'
+import styles from './home-sticky-cta.module.css'
 import { Arrow } from '@/components/ui/arrow'
 
 type HomeStickyCtaProps = {

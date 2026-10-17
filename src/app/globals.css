@@ -14,6 +14,24 @@
   --radius: 0;
   --font-sans: var(--font-helvetica), Helvetica, Arial, sans-serif;
   --font-heading: var(--font-helvetica), Helvetica, Arial, sans-serif;
+
+  /* Neues Design-System (Startseite 10b): Creme, Kohle, Stein. Gilt vorerst
+     nur für die Startseite, die übrigen Seiten folgen. */
+  --cream: #faf9f5;
+  --coal: #1c1b19;
+  --coal-soft: #3d3b37;
+  --coal-muted: #6e6a62;
+  --on-coal: #b5afa4;
+  --sand: #f0eee9;
+  --stone: #dedbd4;
+  /* Century Gothic, sobald die Lizenz geklärt ist und die Datei lokal liegt.
+     Bis dahin nur, wenn sie installiert ist, sonst Questrial. */
+  --font-gothic:
+    'Century Gothic', 'CenturyGothic', 'URW Gothic', var(--font-questrial),
+    sans-serif;
+  /* Seitenbreite 1280 px mit 64 px Rand, darunter schmaler */
+  --warm-gutter: clamp(20px, 5vw, 64px);
+  --warm-inline: max(var(--warm-gutter), (100% - 1152px) / 2);
 }
 
 @theme inline {
@@ -99,6 +117,70 @@ body {
   display: none;
 }
 
+/* Startseite (10b): warmes Papier ohne Rahmen. Der Footer liegt im dunklen
+   Abschluss der Seite. */
+body:has([data-home]:not([style*='display: none'])) {
+  background: var(--cream);
+}
+
+.site-shell:has([data-home]:not([style*='display: none'])) {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-shell:has([data-home]:not([style*='display: none'])) main {
+  background: var(--cream);
+}
+
+.site-shell:has([data-home]:not([style*='display: none'])) footer {
+  margin-top: 0;
+  background: var(--coal);
+  padding: 0 var(--warm-inline) 40px;
+  color: var(--on-coal);
+  font-family: var(--font-gothic);
+}
+
+.site-shell:has([data-home]:not([style*='display: none'])) footer > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 20px;
+  border-top: 1px solid rgb(250 249 245 / 0.2);
+  padding: 20px 0 0;
+  color: var(--on-coal);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+}
+
+.site-shell:has([data-home]:not([style*='display: none'])) .footer-motto {
+  display: block;
+  margin-right: auto;
+}
+
+.site-shell:has([data-home]:not([style*='display: none'])) .footer-motto br {
+  display: none;
+}
+
+.site-shell:has([data-home]:not([style*='display: none'])) footer ul {
+  column-gap: 20px;
+}
+
+.site-shell:has([data-home]:not([style*='display: none'])) footer a:hover {
+  color: var(--cream);
+}
+
+/* Mobil: Motto über eigener Zeile, unten Platz für die fixe Kontaktleiste. */
+@media (max-width: 767px) {
+  .site-shell:has([data-home]:not([style*='display: none'])) footer {
+    padding-bottom: 100px;
+  }
+
+  .site-shell:has([data-home]:not([style*='display: none'])) .footer-motto {
+    flex-basis: 100%;
+  }
+}
+
 /* Coaching-Übersichten: Header liegt im taubenblauen Hero. */
 .site-shell:has([data-coaching-page]:not([style*='display: none']))
   .site-header.bg-background {
@@ -111,7 +193,7 @@ body {
 }
 
 /* Kontakt, Über mich, Coaching und Rechtliches: Footer mit Motto links, Trennlinie oben.
-   Die Startseite zeigt das Motto auch, ohne Trennlinie. */
+   Startups zeigt das Motto auch, ohne Trennlinie. */
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
@@ -125,7 +207,6 @@ body {
 }
 
 .site-shell:has(
-    [data-home]:not([style*='display: none']),
     [data-startups-page]:not([style*='display: none']),
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
@@ -141,18 +222,13 @@ body {
   gap: 24px;
 }
 
-/* Startseite und Startups: Motto links wie oben, aber ohne Trennlinie unter dem
+/* Startups: Motto links wie oben, aber ohne Trennlinie unter dem
    dunklen Abschluss. */
-.site-shell:has(
-    [data-home]:not([style*='display: none']),
-    [data-startups-page]:not([style*='display: none'])
-  )
-  footer {
+.site-shell:has([data-startups-page]:not([style*='display: none'])) footer {
   padding: 32px 0;
 }
 
 .site-shell:has(
-    [data-home]:not([style*='display: none']),
     [data-startups-page]:not([style*='display: none']),
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none']),
@@ -169,7 +245,7 @@ body {
   letter-spacing: 0.08em;
 }
 
-/* Gerahmte Seiten mobil: randlos, Footer schmal. Die Startseite braucht unten
+/* Gerahmte Seiten mobil: randlos, Footer schmal. Startups braucht unten
    zusätzlich Platz für die fixe Kontaktleiste. */
 @media (max-width: 767px) {
   .site-shell:has([data-frame-page]:not([style*='display: none'])) {
@@ -182,11 +258,7 @@ body {
     padding: 48px 20px 28px;
   }
 
-  .site-shell:has(
-      [data-home]:not([style*='display: none']),
-      [data-startups-page]:not([style*='display: none'])
-    )
-    footer {
+  .site-shell:has([data-startups-page]:not([style*='display: none'])) footer {
     padding: 32px 20px 100px;
   }
 
@@ -214,7 +286,6 @@ body {
   }
 
   .site-shell:has(
-      [data-home]:not([style*='display: none']),
       [data-startups-page]:not([style*='display: none']),
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
@@ -230,7 +301,6 @@ body {
   }
 
   .site-shell:has(
-      [data-home]:not([style*='display: none']),
       [data-startups-page]:not([style*='display: none']),
       [data-contact-page]:not([style*='display: none']),
       [data-legal-page]:not([style*='display: none']),
@@ -257,7 +327,6 @@ body {
   }
 
   .site-shell:has(
-      [data-home]:not([style*='display: none']),
       [data-startups-page]:not([style*='display: none']),
       [data-about-page]:not([style*='display: none']),
       [data-coaching-page]:not([style*='display: none']),

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Questrial } from 'next/font/google'
 import localFont from 'next/font/local'
 import { draftMode } from 'next/headers'
 import { Suspense, type ReactNode } from 'react'
@@ -31,6 +32,15 @@ const helvetica = localFont({
   ],
   display: 'swap',
   variable: '--font-helvetica',
+})
+
+// Ersatz für Century Gothic (Startseite 10b), solange die Lizenz offen ist.
+// next/font legt die Datei auf den eigenen Server, Google sieht keine Besucher.
+const questrial = Questrial({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-questrial',
 })
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -68,7 +78,7 @@ export default function RootLayout({
     <html
       lang="de"
       data-scroll-behavior="smooth"
-      className={`${helvetica.variable} bg-background`}
+      className={`${helvetica.variable} ${questrial.variable} bg-background`}
     >
       <body>
         <a

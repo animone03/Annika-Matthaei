@@ -81,8 +81,14 @@ function isActive(pathname: string, item: (typeof mainNavigation)[number]) {
   )
 }
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  linkedIn?: string | null
+}
+
+export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
   const pathname = usePathname()
+  // Startseite im neuen Design (10b), die übrigen Seiten folgen noch.
+  const warm = pathname === '/'
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -129,12 +135,26 @@ export function SiteHeader() {
     }
   }, [menuOpen])
 
+  const menuButton = (
+    <button
+      ref={buttonRef}
+      data-menu-focus
+      type="button"
+      aria-expanded={menuOpen}
+      aria-label={menuOpen ? undefined : 'Menü'}
+      onClick={() => setMenuOpen((open) => !open)}
+      className="-my-2.5 ml-auto flex h-11 min-w-11 cursor-pointer items-center justify-end text-[13px] tracking-[0.08em] uppercase lg:hidden"
+    >
+      {menuOpen ? 'Schließen' : <BurgerIcon className="h-auto w-[34px]" />}
+    </button>
+  )
+
   return (
     <header
       ref={headerRef}
       className={`site-header sticky top-0 z-40 lg:relative ${
         menuOpen ? 'bg-transparent' : 'bg-background'
-      }`}
+      } ${warm ? styles.warm : ''}`}
     >
       {menuOpen ? (
         <div className={styles.overlay}>
@@ -197,65 +217,119 @@ export function SiteHeader() {
           </Link>
         </div>
       ) : null}
-      <div className="relative flex w-full items-center justify-between gap-6 p-5 sm:px-12 lg:items-start lg:pt-9 lg:pb-0">
-        <Link
-          data-menu-focus
-          href="/"
-          className="flex flex-col gap-1.5 leading-tight"
-          onClick={closeMenu}
-        >
-          <span className="block text-[15px] font-normal tracking-[-0.01em] uppercase md:text-[17px]">
-            Annika Matthaei
-          </span>
-          <span
-            className={`site-header-subtitle text-muted-foreground hidden text-xs tracking-[0.08em] uppercase md:block ${
-              menuOpen ? 'invisible' : ''
-            }`}
+      {warm ? (
+        <div className={styles.warmBar}>
+          <Link
+            data-menu-focus
+            href="/"
+            onClick={closeMenu}
+            className={styles.warmBrand}
           >
-            Coaching &amp; Consulting
-          </span>
-        </Link>
-        <nav
-          aria-label="Hauptnavigation"
-          className="ml-auto hidden text-right lg:block"
-        >
-          <ul className="flex items-center justify-end gap-8 pt-1 text-[13px] tracking-[0.06em] uppercase">
-            {mainNavigation.map((item) => {
-              const active = isActive(pathname, item)
-              return (
-                <li key={item.href}>
-                  <Link
-                    className={`hover:text-muted-foreground inline-flex items-center ${
-                      styles.navLink
-                    } ${active ? styles.navLinkActive : ''}`}
-                    href={item.href}
-                    aria-current={
-                      pathname === item.href
-                        ? 'page'
-                        : active
-                          ? 'true'
-                          : undefined
-                    }
+            <span className={styles.warmName}>Annika Matthaei</span>
+            <span
+              className={`${styles.warmRole} ${menuOpen ? 'invisible' : ''}`}
+            >
+              Coaching &amp; Consulting
+            </span>
+          </Link>
+          <nav aria-label="Hauptnavigation" className={styles.warmNav}>
+            <ul className={styles.warmLinks}>
+              {mainNavigation
+                .filter((item) => item.href !== '/kontakt')
+                .map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={styles.warmLink}
+                      aria-current={
+                        pathname === item.href
+                          ? 'page'
+                          : isActive(pathname, item)
+                            ? 'true'
+                            : undefined
+                      }
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+            <ul className={`${styles.warmLinks} ${styles.warmLinksEnd}`}>
+              {linkedIn ? (
+                <li>
+                  <a
+                    href={linkedIn}
+                    target="_blank"
+                    rel="me noopener"
+                    className={styles.warmLink}
                   >
-                    {item.label}
-                  </Link>
+                    LinkedIn
+                  </a>
                 </li>
-              )
-            })}
-          </ul>
-        </nav>
-        <button
-          ref={buttonRef}
-          data-menu-focus
-          type="button"
-          aria-expanded={menuOpen}
-          aria-label={menuOpen ? undefined : 'Menü'}
-          onClick={() => setMenuOpen((open) => !open)}
-          className="-my-2.5 ml-auto flex h-11 min-w-11 cursor-pointer items-center justify-end text-[13px] tracking-[0.08em] uppercase lg:hidden"
-        >
-          {menuOpen ? 'Schließen' : <BurgerIcon className="h-auto w-[34px]" />}
-        </button>
-      </div>
+              ) : null}
+              <li>
+                <Link
+                  href="/kontakt"
+                  className={`${styles.warmLink} ${styles.warmContact}`}
+                >
+                  Kontakt
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          {menuButton}
+        </div>
+      ) : (
+        <div className="relative flex w-full items-center justify-between gap-6 p-5 sm:px-12 lg:items-start lg:pt-9 lg:pb-0">
+          <Link
+            data-menu-focus
+            href="/"
+            className="flex flex-col gap-1.5 leading-tight"
+            onClick={closeMenu}
+          >
+            <span className="block text-[15px] font-normal tracking-[-0.01em] uppercase md:text-[17px]">
+              Annika Matthaei
+            </span>
+            <span
+              className={`site-header-subtitle text-muted-foreground hidden text-xs tracking-[0.08em] uppercase md:block ${
+                menuOpen ? 'invisible' : ''
+              }`}
+            >
+              Coaching &amp; Consulting
+            </span>
+          </Link>
+          <nav
+            aria-label="Hauptnavigation"
+            className="ml-auto hidden text-right lg:block"
+          >
+            <ul className="flex items-center justify-end gap-8 pt-1 text-[13px] tracking-[0.06em] uppercase">
+              {mainNavigation.map((item) => {
+                const active = isActive(pathname, item)
+                return (
+                  <li key={item.href}>
+                    <Link
+                      className={`hover:text-muted-foreground inline-flex items-center ${
+                        styles.navLink
+                      } ${active ? styles.navLinkActive : ''}`}
+                      href={item.href}
+                      aria-current={
+                        pathname === item.href
+                          ? 'page'
+                          : active
+                            ? 'true'
+                            : undefined
+                      }
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </nav>
+          {menuButton}
+        </div>
+      )}
     </header>
   )
 }

@@ -6,13 +6,23 @@ test('homepage exposes its landmarks and no serious accessibility violations', a
 }) => {
   await page.goto('/')
   await expect(page.locator('html')).toHaveAttribute('lang', 'de')
-  // Visuell versteckt: Die Wörter stehen sichtbar links und rechts vom Foto.
   await expect(
     page.getByRole('heading', { level: 1, name: 'Fit for growth.' }),
-  ).toBeAttached()
+  ).toBeVisible()
   await expect(
     page.getByRole('heading', { level: 2, name: 'Wachstum beginnt bei dir.' }),
   ).toBeVisible()
+
+  // „So läuft es ab“: Reiter wechseln per Pfeiltaste.
+  const teamTab = page.getByRole('tab', { name: /Co-Founder & Teams/ })
+  await expect(teamTab).toHaveAttribute('aria-selected', 'true')
+  await teamTab.focus()
+  await page.keyboard.press('ArrowRight')
+  await expect(page.getByRole('tab', { name: /Founder 1:1/ })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  )
+  await expect(page.getByRole('tabpanel')).toContainText('Kick-off & Ziele')
   await expect(
     page.getByRole('img', { name: 'Annika Matthaei im Sessel' }),
   ).toBeVisible()

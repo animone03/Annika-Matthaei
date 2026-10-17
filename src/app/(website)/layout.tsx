@@ -5,8 +5,13 @@ import { SiteHeader } from '@/components/layout/site-header'
 import { ScrollPageNavigation } from '@/components/layout/scroll-page-navigation'
 import { getSiteSettings } from '@/sanity/lib/repository'
 
-function Header() {
-  return <SiteHeader />
+async function Header() {
+  const settings = await getSiteSettings()
+  // Die Startseite zeigt LinkedIn im Kopf, sobald die URL in Sanity steht.
+  const linkedIn = settings?.socialLinks?.find((link) =>
+    /linkedin/i.test(`${link.label} ${link.url}`),
+  )?.url
+  return <SiteHeader linkedIn={linkedIn} />
 }
 
 async function Footer() {

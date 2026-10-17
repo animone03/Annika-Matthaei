@@ -1,29 +1,36 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Fragment } from 'react'
 
-import heroPortrait from '../../../public/images/annika-sessel.jpeg'
-import contactPortrait from '../../../public/images/annika-lachend.webp'
+import heroPortrait from '../../../public/images/startseite/portrait-sessel.jpg'
+import runningPhoto from '../../../public/images/startseite/laufbild-warm.jpg'
+import methodsPortrait from '../../../public/images/startseite/portrait-lachend.jpg'
+import processPortrait from '../../../public/images/startseite/portrait-workspace.jpg'
+import founderImage from '../../../public/images/startseite/thema-founder.jpg'
+import leadershipImage from '../../../public/images/startseite/thema-leadership.jpg'
+import resilienceImage from '../../../public/images/startseite/thema-resilienz.jpg'
 
 import { Arrow } from '@/components/ui/arrow'
-import { Signature } from '@/components/ui/signature'
+import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
 import {
-  approaches,
-  audiences,
+  ablauf,
   contact,
   facts,
-  growth,
   hero,
-  marquee,
-  method,
+  methods,
   stats,
+  themes,
 } from '@/content/startseite'
 
 import { HomeStickyCta } from './home-sticky-cta'
+import { ProcessTabs } from './process-tabs'
 import styles from './home-page.module.css'
 
-const marqueeText = marquee.map((word) => `${word}  ·  `).join('')
-
-const number = (index: number) => String(index + 1).padStart(2, '0')
+const themeImages = {
+  founder: founderImage,
+  leadership: leadershipImage,
+  resilienz: resilienceImage,
+}
 
 type HomePageContentProps = {
   email?: string | null
@@ -31,54 +38,66 @@ type HomePageContentProps = {
 
 export function HomePageContent({ email }: HomePageContentProps) {
   return (
-    <div data-home data-frame-page className={styles.page}>
+    <div data-home className={styles.page}>
+      <LongExposureFilters />
+
       <section aria-labelledby="home-title" className={styles.hero}>
-        {/* Die Headline steht als zwei Wörter links und rechts vom Foto. Für
-            Screenreader und Suchmaschinen gibt es sie einmal am Stück. */}
-        <h1 id="home-title" className={styles.srOnly}>
-          Fit for growth.
-        </h1>
-        <div className={styles.heroStage}>
-          <div className={`${styles.heroCell} ${styles.heroCellFirst}`}>
-            <span aria-hidden="true" className={styles.heroWord}>
-              Fit for
-            </span>
-          </div>
-          <div className={styles.heroPhoto}>
-            <Image
-              src={heroPortrait}
-              alt="Annika Matthaei im Sessel"
-              preload
-              placeholder="blur"
-              sizes="(min-width: 1024px) 300px, 340px"
-              className={styles.portrait}
-            />
-            <div className={styles.signature}>
-              <Signature part="first" label="" className={styles.firstName} />
-              <Signature part="last" label="" className={styles.lastName} />
-            </div>
-          </div>
-          <div className={`${styles.heroCell} ${styles.heroCellLast}`}>
-            <span aria-hidden="true" className={styles.heroWord}>
-              Growth.
-            </span>
-          </div>
+        <div className={styles.heroPhoto}>
+          <Image
+            src={heroPortrait}
+            alt="Annika Matthaei im Sessel"
+            preload
+            placeholder="blur"
+            sizes="(min-width: 1024px) 510px, (min-width: 768px) 400px, 130vw"
+            className={styles.heroImage}
+          />
         </div>
         <div className={styles.heroBody}>
-          <p className={styles.eyebrow}>{hero.eyebrow}</p>
-          <p className={styles.intro}>{hero.intro}</p>
-          <Link id="home-hero-cta" href="/kontakt" className={styles.button}>
-            {hero.cta}
-          </Link>
+          <div className={styles.heroHead}>
+            <p className={styles.eyebrow}>{hero.eyebrow}</p>
+            <h1 id="home-title" className={styles.heroTitle}>
+              {hero.title.map((line, index) => (
+                <Fragment key={line}>
+                  {index > 0 ? ' ' : null}
+                  <span className={styles.heroLine}>{line}</span>
+                </Fragment>
+              ))}
+            </h1>
+          </div>
+          <div className={styles.heroFoot}>
+            <div className={styles.heroRun}>
+              <Image
+                src={runningPhoto}
+                alt="Annika Matthaei beim Laufen"
+                loading="eager"
+                placeholder="blur"
+                sizes="(min-width: 1024px) 200px, (min-width: 768px) 140px, 50vw"
+                className={styles.runImage}
+              />
+            </div>
+            <p className={styles.claim}>
+              {hero.claim.map((line, index) => (
+                <Fragment key={line}>
+                  {index > 0 ? (
+                    <>
+                      {' '}
+                      <br />
+                    </>
+                  ) : null}
+                  {line}
+                </Fragment>
+              ))}
+            </p>
+            <Link
+              id="home-hero-cta"
+              href="/kontakt"
+              className={`${styles.link} ${styles.heroCta}`}
+            >
+              {hero.cta}
+            </Link>
+          </div>
         </div>
       </section>
-
-      <div className={styles.marquee} aria-hidden="true">
-        <div className={styles.marqueeTrack}>
-          <span>{marqueeText}</span>
-          <span>{marqueeText}</span>
-        </div>
-      </div>
 
       <section aria-label="Erfahrung" className={styles.facts}>
         <ul className={styles.factList}>
@@ -91,109 +110,110 @@ export function HomePageContent({ email }: HomePageContentProps) {
         </ul>
       </section>
 
-      <section aria-labelledby="home-growth" className={styles.growth}>
-        <h2 id="home-growth" className={styles.growthTitle}>
-          {growth.title}
+      <section aria-labelledby="home-themes" className={styles.themes}>
+        <h2 id="home-themes" className={`${styles.title} ${styles.titleEnd}`}>
+          {themes.title}
         </h2>
-        <ul className={styles.growthList}>
-          {growth.items.map((item) => (
-            <li key={item.question} className={styles.growthItem}>
-              <h3 className={styles.growthQuestion}>{item.question}</h3>
-              <ul className={styles.tags}>
-                {item.tags.map((tag) => (
-                  <li key={tag} className={styles.tag}>
-                    {tag}
-                  </li>
-                ))}
-              </ul>
+        <ul className={styles.themeList}>
+          {themes.items.map((item) => (
+            <li key={item.key} className={styles.theme}>
+              <div className={styles.themeMedia}>
+                <Image
+                  src={themeImages[item.key]}
+                  alt=""
+                  placeholder="blur"
+                  sizes="(min-width: 900px) 360px, 100vw"
+                  className={styles.themeImage}
+                />
+                <Link href={themes.href} className={styles.themeLink}>
+                  <h3 className={styles.themeTitle}>{item.title}</h3>
+                  <span className={styles.themeLead}>{item.lead}</span>
+                  <span className={styles.themeMore}>
+                    {themes.more} <Arrow className={styles.themeArrow} />
+                  </span>
+                </Link>
+              </div>
+              <p className={styles.themeQuestion}>{item.question}</p>
+              <p className={styles.themeTags}>{item.tags.join(' · ')}</p>
             </li>
           ))}
         </ul>
       </section>
 
-      <section
-        aria-labelledby="home-audiences"
-        className={`${styles.split} ${styles.audiences}`}
-      >
-        <h2 id="home-audiences" className={styles.label}>
-          {audiences.label}
+      <section aria-labelledby="home-methods" className={styles.methods}>
+        <h2
+          id="home-methods"
+          className={`${styles.title} ${styles.methodsTitle}`}
+        >
+          {methods.title}
         </h2>
-        <ul>
-          {audiences.items.map((item, index) => (
-            <li key={item.href}>
-              <Link href={item.href} className={styles.audienceRow}>
-                <span className={styles.audienceNumber}>{number(index)}</span>
-                <span className={styles.audienceText}>
-                  <span className={styles.audienceTitle}>{item.title}</span>
-                  <span className={styles.audienceSub}>{item.text}</span>
-                </span>
-                <Arrow className={styles.audienceArrow} />
-              </Link>
+        <div className={styles.methodsIntro}>
+          <p className={styles.methodsLead}>{methods.lead}</p>
+          <p className={styles.methodsText}>{methods.text}</p>
+        </div>
+        <div className={styles.methodsPhoto}>
+          <Image
+            src={methodsPortrait}
+            alt="Annika Matthaei lachend"
+            placeholder="blur"
+            sizes="(min-width: 1024px) 480px, (min-width: 768px) 480px, 100vw"
+            className={styles.methodsImage}
+          />
+        </div>
+        <ul className={styles.methodList}>
+          {methods.items.map((item) => (
+            <li key={item} className={styles.method}>
+              {item}
             </li>
           ))}
         </ul>
+        <Link href="/kontakt" className={`${styles.link} ${styles.methodsCta}`}>
+          {methods.cta}
+        </Link>
+        <Link href={methods.company.href} className={styles.company}>
+          <span className={styles.companyLabel}>{methods.company.label}</span>
+          <span className={styles.companyText}>
+            {methods.company.text}{' '}
+            <span className={styles.companyCta}>{methods.company.cta}</span>
+          </span>
+        </Link>
       </section>
 
-      <section aria-labelledby="home-method" className={styles.method}>
-        <div className={styles.split}>
-          <p className={styles.label}>{method.label}</p>
-          <div className={styles.sectionHead}>
-            <h2 id="home-method" className={styles.methodTitle}>
-              {method.title}
-            </h2>
-            <p className={styles.sectionText}>{method.text}</p>
-          </div>
-        </div>
-        <ol className={styles.steps}>
-          {method.steps.map((step) => (
-            <li key={step.letter} className={styles.step}>
-              <span aria-hidden="true" className={styles.stepLetter}>
-                {step.letter}
-              </span>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
-              <p className={styles.stepText}>{step.text}</p>
-            </li>
-          ))}
-        </ol>
+      <section aria-labelledby="home-process" className={styles.process}>
+        <h2 id="home-process" className={`${styles.title} ${styles.titleEnd}`}>
+          {ablauf.title}
+        </h2>
+        <ProcessTabs
+          tabs={ablauf.tabs}
+          photo={
+            <Image
+              src={processPortrait}
+              alt="Annika Matthaei an ihrem Arbeitsplatz"
+              placeholder="blur"
+              sizes="(min-width: 1024px) 400px, (min-width: 768px) 280px, 100vw"
+              className={styles.processImage}
+            />
+          }
+          cta={
+            <Link
+              href="/kontakt"
+              className={`${styles.button} ${styles.processCta}`}
+            >
+              {ablauf.cta}
+            </Link>
+          }
+        />
       </section>
 
-      <section
-        aria-labelledby="home-approaches"
-        className={`${styles.split} ${styles.approaches}`}
-      >
-        <p className={styles.label}>{approaches.label}</p>
-        <div className={styles.approachesBody}>
-          <div className={styles.sectionHead}>
-            <h2 id="home-approaches" className={styles.approachesTitle}>
-              {approaches.title}
-            </h2>
-            <p className={styles.sectionText}>{approaches.text}</p>
-          </div>
-          <ul className={styles.approachList}>
-            {approaches.items.map((item) => (
-              <li key={item} className={styles.approach}>
-                <Arrow className={styles.approachArrow} />
-                {item}
-              </li>
-            ))}
-          </ul>
-          <Link href="/kontakt" className={styles.button}>
-            {approaches.cta}
-          </Link>
-        </div>
-      </section>
-
-      <section
-        aria-labelledby="home-stats"
-        className={`${styles.split} ${styles.stats}`}
-      >
-        <h2 id="home-stats" className={styles.label}>
-          {stats.label}
+      <section aria-labelledby="home-stats" className={styles.stats}>
+        <h2 id="home-stats" className={styles.title}>
+          {stats.title}
         </h2>
         <ul className={styles.statList}>
           {stats.items.map((stat) => (
             <li key={stat.value} className={styles.stat}>
               <span className={styles.statValue}>{stat.value}</span>
+              <span className={styles.statClaim}>{stat.claim}</span>
               <span className={styles.statText}>{stat.text}</span>
               <span className={styles.statSource}>{stat.source}</span>
             </li>
@@ -206,20 +226,16 @@ export function HomePageContent({ email }: HomePageContentProps) {
         aria-labelledby="home-contact-title"
         className={styles.contact}
       >
-        <Image
-          src={contactPortrait}
-          alt="Annika Matthaei lachend"
-          placeholder="blur"
-          sizes="(min-width: 1024px) 320px, (min-width: 768px) 240px, 220px"
-          className={styles.contactPortrait}
-        />
-        <div className={styles.contactBody}>
-          <h2 id="home-contact-title" className={styles.contactTitle}>
-            {contact.title}
-          </h2>
+        <h2 id="home-contact-title" className={styles.contactTitle}>
+          {contact.title}
+        </h2>
+        <div className={styles.contactRow}>
           <p className={styles.contactText}>{contact.text}</p>
-          <Link href="/kontakt" className={styles.contactButton}>
-            {contact.cta} <Arrow />
+          <Link
+            href="/kontakt"
+            className={`${styles.link} ${styles.contactLink}`}
+          >
+            {contact.cta}
           </Link>
         </div>
       </section>
