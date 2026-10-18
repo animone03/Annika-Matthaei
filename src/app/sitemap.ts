@@ -14,8 +14,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/coaching/startups/founder-1-1',
     '/coaching/unternehmen',
     '/ueber-mich',
-    '/projekte',
-    '/blog',
+    // Übersichten erst aufnehmen, wenn es Inhalte gibt
+    ...(content.projects.length > 0 ? ['/projekte'] : []),
+    ...(content.posts.length > 0 ? ['/blog'] : []),
     '/kontakt',
     '/impressum',
     '/datenschutz',

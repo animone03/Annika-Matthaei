@@ -24,10 +24,18 @@ type MetadataInput = {
   absoluteTitle?: boolean
 }
 
+// Vorschaubild für LinkedIn & Co., solange in Sanity keins hinterlegt ist
+const defaultSocialImage = {
+  url: absoluteUrl('/images/og-default.jpg'),
+  width: 1200,
+  height: 630,
+  alt: 'Annika Matthaei, systemischer & psychologischer Business Coach',
+}
+
 function socialImage(image?: SanityImageValue | null) {
-  if (!image) return null
+  if (!image) return defaultSocialImage
   const source = imageSource(image)
-  if (!source) return null
+  if (!source) return defaultSocialImage
 
   return {
     url: urlForImage(source).width(1200).height(630).url(),

@@ -17,4 +17,17 @@ describe('site URL helpers', () => {
     vi.stubEnv('NEXT_PUBLIC_SITE_URL', 'not a url')
     expect(getSiteOrigin()).toBe('http://localhost:3000')
   })
+
+  it('uses the live domain in production when no real URL is configured', async () => {
+    vi.stubEnv('NODE_ENV', 'production')
+    vi.stubEnv('NEXT_PUBLIC_SITE_URL', 'http://localhost:3000')
+    vi.resetModules()
+    const siteUrl = await import('@/lib/site-url')
+    expect(siteUrl.getSiteOrigin()).toBe('https://www.annikamatthaei.de')
+
+    vi.stubEnv('NEXT_PUBLIC_SITE_URL', '')
+    expect(siteUrl.absoluteUrl('/startups')).toBe(
+      'https://www.annikamatthaei.de/startups',
+    )
+  })
 })
