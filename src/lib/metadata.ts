@@ -29,7 +29,7 @@ const defaultSocialImage = {
   url: absoluteUrl('/images/og-default.jpg'),
   width: 1200,
   height: 630,
-  alt: 'Annika Matthaei, systemischer & psychologischer Business Coach',
+  alt: 'Annika Matthaei, Coaching für Startups und High-Performing Teams',
 }
 
 function socialImage(image?: SanityImageValue | null) {
