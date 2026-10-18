@@ -14,6 +14,7 @@ import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
 import { Carousel } from '@/components/warm/carousel'
 import { Closing } from '@/components/warm/closing'
 import { ImageCard } from '@/components/warm/image-card'
+import { themeCrops } from '@/components/warm/theme-crops'
 import warm from '@/components/warm/warm.module.css'
 import { WarmHero } from '@/components/warm/warm-hero'
 import { WhyMe } from '@/components/warm/why-me'
@@ -151,6 +152,7 @@ export default function StartupsPage() {
                 title={theme.title}
                 lead={theme.claim}
                 sizes="(min-width: 900px) 360px, 100vw"
+                mobileCrop={themeCrops[theme.key]}
               />
               <ul className={`${warm.lines} ${styles.themePoints}`}>
                 {theme.points.map((point) => (

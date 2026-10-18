@@ -392,9 +392,10 @@
   }
 
   .headPhoto .photoImage {
-    object-position: 50% 18%;
+    /* Ausschnitt 0 / 16, Zoom 125 % (final, Komplett-Briefing 3) */
+    object-position: 0% 16%;
     transform: scale(1.25);
-    transform-origin: 50% 18%;
+    transform-origin: 0% 16%;
   }
 
   .title {

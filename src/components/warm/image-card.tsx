@@ -1,6 +1,7 @@
 import type { Route } from 'next'
 import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
+import type { CSSProperties } from 'react'
 
 import { Arrow } from '@/components/ui/arrow'
 
@@ -17,6 +18,8 @@ type ImageCardProps = {
   /** Mit Link wird der Textblock zur Klickfläche (Startseite). */
   link?: { href: Route; label: string }
   sizes: string
+  /** Mobil: Ausschnitt in Prozent und Zoom, siehe theme-crops.ts */
+  mobileCrop?: { x: number; y: number; zoom: number }
 }
 
 // Bildkarte mit Belichtungseffekt (braucht <LongExposureFilters /> auf der
@@ -29,6 +32,7 @@ export function ImageCard({
   shape = 'portrait',
   link,
   sizes,
+  mobileCrop,
 }: ImageCardProps) {
   const content = (
     <>
@@ -59,6 +63,14 @@ export function ImageCard({
         placeholder="blur"
         sizes={sizes}
         className={styles.image}
+        style={
+          mobileCrop
+            ? ({
+                '--crop-position': `${mobileCrop.x}% ${mobileCrop.y}%`,
+                '--crop-zoom': mobileCrop.zoom,
+              } as CSSProperties)
+            : undefined
+        }
       />
       {link ? (
         <Link href={link.href} className={styles.text}>

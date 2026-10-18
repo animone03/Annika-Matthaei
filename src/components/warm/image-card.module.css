@@ -137,10 +137,17 @@
   }
 }
 
-/* Mobil: Themenkarten flach im Format 2:1, Schwerpunkte 16:9 */
+/* Mobil: Themenkarten flach im Format 2:1, Schwerpunkte 16:9, Ausschnitt
+   und Zoom je Motiv (theme-crops.ts) */
 @media (max-width: 767px) {
   .card {
     aspect-ratio: 2 / 1;
+  }
+
+  .image {
+    object-position: var(--crop-position, 50% 50%);
+    transform: scale(var(--crop-zoom, 1));
+    transform-origin: var(--crop-position, 50% 50%);
   }
 
   .wide {

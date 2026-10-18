@@ -11,6 +11,7 @@ import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
 import { Carousel } from '@/components/warm/carousel'
 import { Closing } from '@/components/warm/closing'
 import { ImageCard } from '@/components/warm/image-card'
+import { themeCrops } from '@/components/warm/theme-crops'
 import { Timeline } from '@/components/warm/timeline'
 import warm from '@/components/warm/warm.module.css'
 import { WarmHero } from '@/components/warm/warm-hero'
@@ -116,6 +117,7 @@ export default function CompanyCoachingPage() {
                 lead={item.claim}
                 shape="wide"
                 sizes="(min-width: 900px) 560px, 100vw"
+                mobileCrop={themeCrops[item.key]}
               />
               <ul className={`${warm.lines} ${styles.focusPoints}`}>
                 {item.points.map((point) => (

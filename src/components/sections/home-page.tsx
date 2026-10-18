@@ -4,7 +4,7 @@ import { Fragment } from 'react'
 
 import heroPortrait from '../../../public/images/fotos/portrait-sessel.jpg'
 import runningPhoto from '../../../public/images/fotos/laufbild-warm.jpg'
-import methodsPortrait from '../../../public/images/fotos/portrait-lachend.jpg'
+import methodsImage from '../../../public/images/fotos/methoden-werkzeug.jpg'
 import processPortrait from '../../../public/images/fotos/portrait-whiteboard.jpg'
 import founderImage from '../../../public/images/fotos/thema-founder.jpg'
 import leadershipImage from '../../../public/images/fotos/thema-leadership.jpg'
@@ -15,6 +15,7 @@ import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
 import { Carousel } from '@/components/warm/carousel'
 import { Closing } from '@/components/warm/closing'
 import { ImageCard } from '@/components/warm/image-card'
+import { themeCrops } from '@/components/warm/theme-crops'
 import warm from '@/components/warm/warm.module.css'
 import {
   ablauf,
@@ -103,6 +104,7 @@ export function HomePageContent() {
                 lead={item.lead}
                 link={{ href: themes.href, label: themes.more }}
                 sizes="(min-width: 900px) 360px, 100vw"
+                mobileCrop={themeCrops[item.key]}
               />
               <p className={styles.themeQuestion}>{item.question}</p>
               <p className={styles.themeTags}>{item.tags.join(' · ')}</p>
@@ -136,8 +138,8 @@ export function HomePageContent() {
         </div>
         <div className={styles.methodsPhoto}>
           <Image
-            src={methodsPortrait}
-            alt="Annika Matthaei lachend"
+            src={methodsImage}
+            alt="Alte Werkzeugkiste mit Säge, Hobeln und Hammer"
             placeholder="blur"
             sizes="(min-width: 768px) 480px, 100vw"
             className={styles.methodsImage}

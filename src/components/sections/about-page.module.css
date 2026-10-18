@@ -374,9 +374,10 @@
   }
 
   .heroImage {
-    object-position: 50% 20%;
+    /* Ausschnitt 16 / 17, Zoom 115 % (final, Komplett-Briefing 3) */
+    object-position: 16% 17%;
     transform: scale(1.15);
-    transform-origin: 50% 20%;
+    transform-origin: 16% 17%;
     mask-image: none;
   }
 

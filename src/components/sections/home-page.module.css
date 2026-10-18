@@ -216,7 +216,7 @@
   color: var(--muted);
 }
 
-/* Methoden: links Text und Liste, rechts das lachende Porträt */
+/* Methoden: links Text und Liste, rechts das Werkzeug-Bild */
 
 .methods {
   display: grid;
@@ -716,7 +716,7 @@
     white-space: normal;
   }
 
-  /* Methoden: Foto 4:3 oben, die Liste als Karussell */
+  /* Methoden: Bild oben, die Liste als Karussell */
   .methods {
     grid-template-areas:
       'title'
@@ -726,16 +726,16 @@
     row-gap: 18px;
   }
 
+  /* Werkzeug-Bild wie die Themenkarten: 2:1, volle Breite, Belichtungseffekt,
+     Ausschnitt 0 / 12, Zoom 100 % (Komplett-Briefing 3) */
   .methodsPhoto {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 2 / 1;
   }
 
-  /* Ausschnitt 50 / 18, Zoom 115 % wie in der Mobile-Referenz */
   .methodsImage {
-    object-position: 50% 18%;
-    transform: scale(1.15);
-    transform-origin: 50% 18%;
+    object-position: 0% 12%;
+    filter: url(#longexp2) contrast(0.92) brightness(1.04);
   }
 
   .methodsLead {
