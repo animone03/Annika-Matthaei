@@ -9,6 +9,10 @@ type HomeStickyCtaProps = {
   label?: string
   startId?: string
   endSelector?: string
+  /** Leiste schon im ersten Bild zeigen (Startseite: mobil kein Button im
+   *  Hero). Ohne Einblenden beim Laden, sonst zeichnet iOS kurz einen
+   *  schwarzen Balken oben links, bis gescrollt wird. */
+  visibleAtStart?: boolean
 }
 
 // Mobile Kontaktleiste: erscheint, sobald der Claim (startId) aus dem Bild ist,
@@ -18,8 +22,9 @@ export function HomeStickyCta({
   label = 'Kostenloses Kennenlernen',
   startId = 'home-title',
   endSelector = '#home-contact a',
+  visibleAtStart = false,
 }: HomeStickyCtaProps) {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(visibleAtStart)
 
   useEffect(() => {
     const claim = document.getElementById(startId)

@@ -246,7 +246,7 @@ export function HomePageContent() {
         variant="link"
       />
 
-      <HomeStickyCta label={hero.cta} startId="home-hero-cta" />
+      <HomeStickyCta label={hero.cta} startId="home-hero-cta" visibleAtStart />
     </div>
   )
 }
