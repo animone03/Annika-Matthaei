@@ -81,9 +81,12 @@ export default function RootLayout({
       className={`${helvetica.variable} ${questrial.variable} bg-background`}
     >
       <body>
+        {/* Erst bei Tastaturfokus sichtbar. Vorher kein Kasten oben links, sonst
+            zeichnet iOS unter dem durchsichtigen Kopf der Startseite einen
+            schwarzen Balken. */}
         <a
           href="#hauptinhalt"
-          className="bg-foreground text-background fixed top-4 left-4 z-50 -translate-y-24 rounded-lg px-4 py-3 font-semibold focus:translate-y-0"
+          className="focus:bg-foreground focus:text-background sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:px-4 focus:py-3 focus:font-semibold"
         >
           Zum Inhalt springen
         </a>

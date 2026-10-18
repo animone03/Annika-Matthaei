@@ -12,7 +12,15 @@ export function LongExposureFilters() {
       focusable="false"
       width="0"
       height="0"
-      style={{ position: 'absolute' }}
+      // Weit außerhalb des Bildes statt oben links bei 0/0, wo die Startseite
+      // ihren durchsichtigen Kopf hat. Die Filter wirken trotzdem.
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: -10000,
+        overflow: 'hidden',
+        pointerEvents: 'none',
+      }}
     >
       <filter id="longexp" x="0" y="0" width="100%" height="100%">
         <feGaussianBlur in="SourceGraphic" stdDeviation="9 1.5" result="b" />
