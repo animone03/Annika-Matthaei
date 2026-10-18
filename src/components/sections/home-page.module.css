@@ -601,8 +601,11 @@
     );
   }
 
+  /* Ausschnitt 50 / 30, Zoom 115 % (Mobile v2) */
   .heroImage {
-    object-position: center 30%;
+    object-position: 50% 30%;
+    transform: scale(1.15);
+    transform-origin: 50% 30%;
   }
 
   .heroText {
@@ -618,9 +621,26 @@
     line-height: 1.5;
   }
 
-  /* Kein eigener Button im Hero, die feste Leiste übernimmt (M1) */
+  /* Button in Kohle direkt unter dem Foto, darunter der Hinweis (Mobile v2) */
   .heroAction {
-    display: none;
+    position: static;
+    align-items: stretch;
+    gap: 8px;
+    padding: 22px var(--warm-gutter) 0;
+    color: var(--muted);
+  }
+
+  .heroAction .heroButton,
+  .hero .heroAction .heroButton:hover {
+    align-self: stretch;
+    background: var(--ink);
+    padding: 17px;
+    color: var(--paper);
+  }
+
+  .heroNote {
+    font-size: 11px;
+    text-align: center;
   }
 
   .facts {
@@ -709,6 +729,13 @@
   .methodsPhoto {
     width: 100%;
     aspect-ratio: 4 / 3;
+  }
+
+  /* Ausschnitt 50 / 18, Zoom 115 % wie in der Mobile-Referenz */
+  .methodsImage {
+    object-position: 50% 18%;
+    transform: scale(1.15);
+    transform-origin: 50% 18%;
   }
 
   .methodsLead {

@@ -12,10 +12,13 @@ type ClosingProps = {
   href?: Route
   /** Startseite: unterstrichener Link, Unterseiten: Button in Creme */
   variant?: 'link' | 'button'
+  /** Mobil: Button in voller Breite, Label wie die feste Leiste */
+  mobileCta?: string
 }
 
-// Dunkler Abschluss vor dem Footer. Der Link darin beendet die mobile
-// Kontaktleiste (endSelector `#${id} a`).
+// Dunkler Abschluss vor dem Footer. Sobald er sichtbar ist, verschwindet die
+// mobile Kontaktleiste (endSelector `#${id}`), mobil steht hier ein eigener
+// Button (Mobile v2).
 export function Closing({
   id,
   title,
@@ -23,6 +26,7 @@ export function Closing({
   cta,
   href = '/kontakt',
   variant = 'button',
+  mobileCta,
 }: ClosingProps) {
   return (
     <section
@@ -44,6 +48,9 @@ export function Closing({
           {cta}
         </Link>
       </div>
+      <Link href={href} className={styles.mobileButton}>
+        {mobileCta ?? cta}
+      </Link>
     </section>
   )
 }

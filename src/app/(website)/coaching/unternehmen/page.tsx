@@ -51,13 +51,18 @@ export default function CompanyCoachingPage() {
         eyebrow={hero.eyebrow}
         title={hero.title}
         intro={hero.intro}
+        introMobile={hero.introMobile}
         cta={{ label: hero.cta, href: '/kontakt' }}
         note={hero.note}
         image={heroPortrait}
         alt="Annika Matthaei im Sessel"
         photoSide="start"
         crop={{ position: 'center 36%', zoom: 1.27 }}
-        mobilePhoto={{ aspectRatio: '1 / 1', position: 'center 32%' }}
+        mobilePhoto={{
+          aspectRatio: '16 / 10',
+          position: '37% 25%',
+          zoom: 1.15,
+        }}
       />
 
       <section
@@ -181,7 +186,7 @@ export default function CompanyCoachingPage() {
         image={whyPortrait}
         alt="Annika Matthaei im Profil"
         imagePosition="center 20%"
-        mobileImagePosition="center 22%"
+        mobileImage={{ position: '50% 22%', zoom: 1.15 }}
         photoSide="end"
       />
 
@@ -191,12 +196,13 @@ export default function CompanyCoachingPage() {
         title={cta.title}
         text={cta.text}
         cta={cta.button}
+        mobileCta={hero.cta}
       />
 
       <HomeStickyCta
         label={hero.cta}
-        startId="company-hero"
-        endSelector="#company-contact a"
+        startId="company-hero-cta"
+        endSelector="#company-contact"
       />
     </div>
   )

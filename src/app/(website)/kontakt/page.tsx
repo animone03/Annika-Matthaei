@@ -9,7 +9,6 @@ import {
   ContactFormWithTopics,
 } from '@/components/sections/contact-form'
 import styles from '@/components/sections/contact-page.module.css'
-import { Arrow } from '@/components/ui/arrow'
 import { Signature } from '@/components/ui/signature'
 import warm from '@/components/warm/warm.module.css'
 import { inquiryRecipient } from '@/lib/inquiry'
@@ -28,12 +27,6 @@ export const metadata: Metadata = buildMetadata({
 export default async function ContactPage() {
   const settings = await getSiteSettings()
   const linkedIn = linkedInUrl(settings?.socialLinks)
-  // Mobil: drei Kacheln statt der Liste „Direkter Kontakt“
-  const quick = [
-    { label: 'Anrufen', href: 'tel:+491727732006' },
-    { label: 'E-Mail', href: `mailto:${inquiryRecipient}` },
-    { label: 'LinkedIn', href: linkedIn, external: true },
-  ]
   const direct = [
     {
       label: 'E-Mail',
@@ -77,27 +70,6 @@ export default async function ContactPage() {
           </p>
           <p className={styles.headNote}>30 Min. · online · unverbindlich</p>
         </header>
-
-        <ul aria-label="Direkt erreichen" className={styles.quick}>
-          {quick.map((item) => (
-            <li key={item.label}>
-              <a
-                href={item.href}
-                className={styles.quickTile}
-                {...(item.external
-                  ? { target: '_blank', rel: 'me noopener' }
-                  : {})}
-              >
-                <Arrow />
-                <span className={styles.quickLabel}>{item.label}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <p aria-hidden="true" className={styles.divider}>
-          Oder schreib mir
-        </p>
 
         <section aria-label="Kontaktformular" className={styles.formArea}>
           <Suspense fallback={<ContactForm />}>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Fragment } from 'react'
 
 import portrait from '../../../../public/images/fotos/portrait-lachend.jpg'
@@ -62,6 +63,14 @@ export default async function AboutPage() {
               </Fragment>
             ))}
           </h1>
+          {/* Nur mobil: Button direkt unter der Headline (Mobile v2) */}
+          <Link
+            id="about-hero-cta"
+            href="/kontakt"
+            className={`${warm.button} ${styles.heroCta}`}
+          >
+            {hero.cta}
+          </Link>
         </div>
         <div className={styles.heroPhoto}>
           <Image
@@ -209,12 +218,13 @@ export default async function AboutPage() {
         title={contact.title}
         text={contact.text}
         cta={contact.cta}
+        mobileCta={hero.cta}
       />
 
       <HomeStickyCta
         label={contact.cta}
-        startId="about-title"
-        endSelector="#about-contact a"
+        startId="about-hero-cta"
+        endSelector="#about-contact"
       />
     </div>
   )

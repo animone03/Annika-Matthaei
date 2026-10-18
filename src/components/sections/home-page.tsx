@@ -244,9 +244,14 @@ export function HomePageContent() {
         text={contact.text}
         cta={contact.cta}
         variant="link"
+        mobileCta={hero.cta}
       />
 
-      <HomeStickyCta label={hero.cta} startId="home-hero-cta" visibleAtStart />
+      <HomeStickyCta
+        label={hero.cta}
+        startId="home-hero-cta"
+        endSelector="#home-contact"
+      />
     </div>
   )
 }

@@ -11,6 +11,8 @@ type WarmHeroProps = {
   eyebrow: string
   title: string
   intro: string
+  /** Mobil kürzerer Einstieg, z. B. nur der erste Satz */
+  introMobile?: string
   cta: { label: string; href: Route }
   note: string
   image: StaticImageData
@@ -19,18 +21,19 @@ type WarmHeroProps = {
   photoSide: 'start' | 'end'
   /** Bildausschnitt, z. B. Zoom 127 % bei 36 % wie beim Sesselfoto */
   crop?: { position: string; zoom?: number }
-  /** Mobil: Format und Ausschnitt des Fotos (04_mobile, Tabelle Bildformate) */
-  mobilePhoto: { aspectRatio: string; position: string }
+  /** Mobil: Format, Ausschnitt und Zoom des Fotos (04_mobile, Mobile v2) */
+  mobilePhoto: { aspectRatio: string; position: string; zoom?: number }
 }
 
-// Hero der Unterseiten im Design 10b. Die Überschrift bekommt die id
-// (Startpunkt der mobilen Kontaktleiste), der Button `${id}-cta`. Mobil steht
-// das Foto oben, der Button entfällt dort zugunsten der festen Leiste.
+// Hero der Unterseiten im Design 10b. Die Überschrift bekommt die id, der
+// Button `${id}-cta` (Startpunkt der mobilen Kontaktleiste). Mobil steht das
+// Foto oben, der Button in voller Breite unter dem Text.
 export function WarmHero({
   id,
   eyebrow,
   title,
   intro,
+  introMobile,
   cta,
   note,
   image,
@@ -45,6 +48,7 @@ export function WarmHero({
     '--photo-origin': (crop?.position ?? 'center').replace('center', '50%'),
     '--mobile-aspect': mobilePhoto.aspectRatio,
     '--mobile-position': mobilePhoto.position,
+    '--mobile-zoom': mobilePhoto.zoom ?? 1,
   } as CSSProperties
 
   return (
@@ -58,7 +62,18 @@ export function WarmHero({
           <h1 id={id} className={styles.title}>
             {title}
           </h1>
-          <p className={styles.intro}>{intro}</p>
+          {introMobile ? (
+            <>
+              <p className={`${styles.intro} ${styles.introDesktop}`}>
+                {intro}
+              </p>
+              <p className={`${styles.intro} ${styles.introMobile}`}>
+                {introMobile}
+              </p>
+            </>
+          ) : (
+            <p className={styles.intro}>{intro}</p>
+          )}
         </div>
         <div className={styles.action}>
           <Link

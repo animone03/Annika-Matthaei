@@ -4,7 +4,7 @@ import type { Route } from 'next'
 
 export const hero = {
   eyebrow: 'Coaching für Startups & Founder',
-  title: 'Mentale Fitness für Founder-Teams.',
+  title: 'Mentale Fitness für Startups.',
   intro:
     'Euer Startup wächst, der Druck auch. Ich arbeite mit euch daran, dass ihr unter Druck klar bleibt, eure Energie haltet und gemeinsam gute Entscheidungen trefft.',
   cta: 'Kostenloses Kennenlernen',

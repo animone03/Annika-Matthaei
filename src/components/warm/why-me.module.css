@@ -91,6 +91,8 @@
 
   .image {
     object-position: var(--mobile-position);
+    transform: scale(var(--mobile-zoom));
+    transform-origin: var(--mobile-position);
   }
 
   .body {

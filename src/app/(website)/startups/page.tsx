@@ -79,7 +79,7 @@ export default function StartupsPage() {
         image={heroPortrait}
         alt="Annika Matthaei vor einem Whiteboard"
         photoSide="end"
-        mobilePhoto={{ aspectRatio: '1 / 1', position: 'center 4%' }}
+        mobilePhoto={{ aspectRatio: '16 / 10', position: '52% 4%', zoom: 1.2 }}
       />
 
       <section
@@ -290,6 +290,7 @@ export default function StartupsPage() {
         image={whyPortrait}
         alt="Annika Matthaei lachend"
         imagePosition="center 18%"
+        mobileImage={{ position: '50% 18%', zoom: 1.15 }}
         photoSide="start"
       />
 
@@ -320,12 +321,13 @@ export default function StartupsPage() {
         title={contact.title}
         text={contact.text}
         cta={contact.cta}
+        mobileCta={hero.cta}
       />
 
       <HomeStickyCta
         label={hero.cta}
-        startId="startups-hero"
-        endSelector="#startups-contact a"
+        startId="startups-hero-cta"
+        endSelector="#startups-contact"
       />
     </div>
   )

@@ -4,6 +4,8 @@ export const hero = {
   eyebrow: 'Systemischer & psychologischer Business Coach',
   // Zwei Zeilen: „ICH BIN“ / „ANNIKA.“
   title: ['Ich bin', 'Annika.'],
+  // Mobil: Button direkt unter der Headline (Mobile v2)
+  cta: 'Kostenloses Kennenlernen',
 }
 
 export const intro = {

@@ -14,8 +14,8 @@ type WhyMeProps = {
   alt: string
   /** object-position des Fotos */
   imagePosition?: string
-  /** Mobil eigener Ausschnitt (04_mobile, Tabelle Bildformate) */
-  mobileImagePosition?: string
+  /** Mobil eigener Ausschnitt und Zoom (04_mobile, Mobile-Referenz) */
+  mobileImage?: { position: string; zoom?: number }
   photoSide: 'start' | 'end'
 }
 
@@ -29,7 +29,7 @@ export function WhyMe({
   image,
   alt,
   imagePosition = 'center',
-  mobileImagePosition,
+  mobileImage,
   photoSide,
 }: WhyMeProps) {
   return (
@@ -49,7 +49,8 @@ export function WhyMe({
           style={
             {
               '--position': imagePosition,
-              '--mobile-position': mobileImagePosition ?? imagePosition,
+              '--mobile-position': mobileImage?.position ?? imagePosition,
+              '--mobile-zoom': mobileImage?.zoom ?? 1,
             } as CSSProperties
           }
         />

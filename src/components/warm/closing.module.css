@@ -63,12 +63,30 @@
   background: var(--stone);
 }
 
-/* Mobil übernimmt die feste Leiste den Button, darum hier nur Titel und
-   Text. */
+/* Nur mobil: Button in voller Breite unter dem Text */
+.mobileButton {
+  display: none;
+}
+
+/* Mobil: Titel, Text und Button in voller Breite (Mobile v2). Die feste
+   Leiste ist hier schon ausgeblendet. */
 @media (max-width: 767px) {
   .closing {
     gap: 18px;
     padding: 64px var(--warm-gutter) 32px;
+  }
+
+  .mobileButton,
+  .closing .mobileButton:hover {
+    display: block;
+    margin-top: 6px;
+    background: var(--paper);
+    padding: 17px;
+    color: var(--ink);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
   }
 
   .title {

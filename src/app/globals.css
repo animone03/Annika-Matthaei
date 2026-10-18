@@ -203,10 +203,11 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   color: var(--cream);
 }
 
-/* Mobil: Motto über eigener Zeile, unten Platz für die fixe Kontaktleiste. */
+/* Mobil: Motto über eigener Zeile. Die feste Kontaktleiste ist am dunklen
+   Abschluss schon ausgeblendet, darum unten kein Extra-Platz (Mobile v2). */
 @media (max-width: 767px) {
   .site-shell:has([data-warm-page]:not([style*='display: none'])) footer {
-    padding-bottom: 100px;
+    padding-bottom: 36px;
   }
 
   .site-shell:has([data-warm-page]:not([style*='display: none'])) footer {

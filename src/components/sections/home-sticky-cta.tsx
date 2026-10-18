@@ -7,52 +7,45 @@ import styles from './home-sticky-cta.module.css'
 
 type HomeStickyCtaProps = {
   label?: string
+  /** id des Hero-Buttons: Erst wenn er aus dem Bild ist, kommt die Leiste. */
   startId?: string
+  /** Der dunkle Abschluss: Sobald er sichtbar ist, verschwindet die Leiste. */
   endSelector?: string
-  /** Leiste schon im ersten Bild zeigen (Startseite: mobil kein Button im
-   *  Hero). Ohne Einblenden beim Laden, sonst zeichnet iOS kurz einen
-   *  schwarzen Balken oben links, bis gescrollt wird. */
-  visibleAtStart?: boolean
 }
 
-// Mobile Kontaktleiste: erscheint, sobald der Claim (startId) aus dem Bild ist,
-// und verschwindet wieder, wenn der Kontakt-Link (endSelector) sichtbar wird.
-// Ist der Link mobil ausgeblendet, bleibt die Leiste bis zum Ende stehen.
+// Mobile Kontaktleiste (04_mobile, Mobile v2): erscheint, sobald der Button im
+// Hero aus dem Bild gescrollt ist, und verschwindet, sobald der dunkle
+// Abschluss sichtbar wird. Dort steht mobil ein eigener Button. So sind nie
+// zwei Kennenlernen-Buttons gleichzeitig zu sehen.
 export function HomeStickyCta({
   label = 'Kostenloses Kennenlernen',
-  startId = 'home-title',
-  endSelector = '#home-contact a',
-  visibleAtStart = false,
+  startId = 'home-hero-cta',
+  endSelector = '#home-contact',
 }: HomeStickyCtaProps) {
-  const [visible, setVisible] = useState(visibleAtStart)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const claim = document.getElementById(startId)
-    const contact = document.querySelector(endSelector)
-    if (!claim || !contact) return
+    const start = document.getElementById(startId)
+    const end = document.querySelector(endSelector)
+    if (!start || !end) return
 
-    // Ist der Startpunkt mobil ausgeblendet (Startseite: kein Button im
-    // Hero), steht die Leiste von Anfang an.
-    const claimHidden = () => claim.getClientRects().length === 0
-
-    let claimPassed = claimHidden()
-    let contactVisible = false
+    let startPassed = false
+    let endVisible = false
 
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
-        if (entry.target === claim) {
-          claimPassed =
-            claimHidden() ||
-            (!entry.isIntersecting && entry.boundingClientRect.top < 0)
+        if (entry.target === start) {
+          startPassed =
+            !entry.isIntersecting && entry.boundingClientRect.top < 0
         } else {
-          contactVisible = entry.isIntersecting
+          endVisible = entry.isIntersecting
         }
       }
-      setVisible(claimPassed && !contactVisible)
+      setVisible(startPassed && !endVisible)
     })
 
-    observer.observe(claim)
-    observer.observe(contact)
+    observer.observe(start)
+    observer.observe(end)
     return () => observer.disconnect()
   }, [startId, endSelector])
 

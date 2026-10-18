@@ -5,6 +5,9 @@ export const hero = {
   title: 'Gute Teams entstehen nicht zufällig.',
   intro:
     'Ich begleite Teams, Abteilungen und Führungskräfte dabei, besser zusammenzuarbeiten und auch unter Druck klar zu bleiben. Mit zwei Schwerpunkten: Leadership sowie Gesundheit & Resilienz.',
+  // Mobil nur der erste Satz (Mobile v2)
+  introMobile:
+    'Ich begleite Teams, Abteilungen und Führungskräfte dabei, besser zusammenzuarbeiten und auch unter Druck klar zu bleiben.',
   cta: 'Kennenlern-Call buchen',
   note: '30 Min. · online · unverbindlich',
 }

@@ -52,6 +52,11 @@
   display: block;
 }
 
+/* Nur mobil: Button unter der Headline */
+.heroCta {
+  display: none;
+}
+
 /* Unsichtbarer Übergang: Das Foto ragt 120 px in die Farbfläche und läuft
    dort weich aus. Der Wandton entspricht dem linken Bildrand. */
 .heroPhoto {
@@ -335,29 +340,57 @@
     gap: 26px;
   }
 
-  /* Foto oben, weich aus dem Wandton eingeblendet, darunter die Headline */
+  /* Einstieg genau einen Bildschirm hoch (abzüglich 65 px Kopfbereich): Das
+     Foto füllt den Platz und blendet an allen vier Kanten in den Wandton aus,
+     Headline und Button sitzen unten (Mobile v2). */
   .hero {
-    height: auto;
+    display: flex;
+    height: calc(100svh - 65px);
+    flex-direction: column;
     padding-left: 0;
-    grid-template-areas:
-      'photo'
-      'text';
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .heroPhoto {
-    aspect-ratio: 1 / 1;
+    min-height: 0;
+    flex: 1;
+    order: -1;
     margin-left: 0;
+    mask-image:
+      linear-gradient(
+        to bottom,
+        transparent 0,
+        #000 12%,
+        #000 86%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        transparent 0,
+        #000 14%,
+        #000 86%,
+        transparent 100%
+      );
+    mask-composite: intersect;
   }
 
   .heroImage {
-    object-position: center 24%;
-    mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
+    object-position: 50% 20%;
+    transform: scale(1.15);
+    transform-origin: 50% 20%;
+    mask-image: none;
   }
 
   .heroText {
+    flex: none;
     gap: 12px;
-    padding: 28px var(--warm-gutter) 40px;
+    padding: 16px var(--warm-gutter) 36px;
+  }
+
+  .heroText .heroCta {
+    display: block;
+    align-self: stretch;
+    margin-top: 14px;
+    padding: 17px;
   }
 
   .heroTitle {

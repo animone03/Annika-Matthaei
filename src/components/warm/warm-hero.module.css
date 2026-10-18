@@ -86,8 +86,13 @@
   transform-origin: var(--photo-origin);
 }
 
-/* Mobil: Foto oben mit eigenem Format und Ausschnitt, darunter der Text.
-   Den Button übernimmt die feste Leiste. */
+/* Nur mobil: kürzerer Einstieg */
+.introMobile {
+  display: none;
+}
+
+/* Mobil: Foto oben mit eigenem Format, Ausschnitt und Zoom, darunter Text
+   und Button in voller Breite (Mobile v2). */
 @media (max-width: 767px) {
   .hero,
   .photoStart {
@@ -105,10 +110,12 @@
 
   .image {
     object-position: var(--mobile-position);
-    transform: none;
+    transform: scale(var(--mobile-zoom));
+    transform-origin: var(--mobile-position);
   }
 
   .text {
+    gap: 0;
     padding-inline: var(--warm-gutter);
   }
 
@@ -121,7 +128,7 @@
   }
 
   .title {
-    font-size: 44px;
+    font-size: 38px;
   }
 
   .intro {
@@ -130,7 +137,29 @@
     line-height: 1.6;
   }
 
-  .action {
+  .introDesktop {
     display: none;
+  }
+
+  .introMobile {
+    display: block;
+  }
+
+  .action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding-top: 22px;
+  }
+
+  .action a {
+    align-self: stretch;
+    padding: 17px;
+    text-align: center;
+  }
+
+  .note {
+    font-size: 11px;
+    text-align: center;
   }
 }
