@@ -19,7 +19,10 @@ import {
   skills,
   stance,
 } from '@/content/ueber-mich'
+import { JsonLd } from '@/lib/json-ld'
 import { buildMetadata } from '@/lib/metadata'
+import { personAndServiceSchema } from '@/lib/structured-data'
+import { getSiteSettings } from '@/sanity/lib/repository'
 
 export const metadata: Metadata = buildMetadata({
   title:
@@ -38,9 +41,12 @@ const toneClass = {
 
 const number = (index: number) => String(index + 1).padStart(2, '0')
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const settings = await getSiteSettings()
+
   return (
     <div data-warm-page className={warm.page}>
+      <JsonLd data={personAndServiceSchema(settings)} />
       <LongExposureFilters />
 
       {/* Ab 1024 px liegt der Header über der beigen Hälfte

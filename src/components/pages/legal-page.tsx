@@ -1,13 +1,19 @@
+import warm from '@/components/warm/warm.module.css'
 import type { LegalDocument } from '@/content/rechtliches'
 
 import styles from './legal-page.module.css'
 
-// Impressum und Datenschutz: Abschnittstitel links, Text rechts.
+// Impressum und Datenschutz: Abschnittstitel links, Text rechts. Im neuen
+// Design (Papier, Kohle-Footer, kein Rahmen), Layout nach 05_impressum_datenschutz.
 export function LegalPage({ document }: { document: LegalDocument }) {
   const blocks = document.blocks.filter((block) => !block.pending)
 
   return (
-    <div data-frame-page data-legal-page className={styles.page}>
+    <div
+      data-warm-page
+      data-legal-page
+      className={`${warm.page} ${styles.page}`}
+    >
       <div className={styles.head}>
         <p className={styles.label}>Rechtliches</p>
         <h1 className={styles.title}>{document.title}</h1>

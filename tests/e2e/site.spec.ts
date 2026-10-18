@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test'
 
 test('homepage exposes its landmarks and no serious accessibility violations', async ({
   page,
+  isMobile,
 }) => {
   await page.goto('/')
   await expect(page.locator('html')).toHaveAttribute('lang', 'de')
@@ -13,16 +14,31 @@ test('homepage exposes its landmarks and no serious accessibility violations', a
     page.getByRole('heading', { level: 2, name: 'Wachstum beginnt bei dir.' }),
   ).toBeVisible()
 
-  // „So läuft es ab“: Reiter wechseln per Pfeiltaste.
-  const teamTab = page.getByRole('tab', { name: /Co-Founder & Teams/ })
-  await expect(teamTab).toHaveAttribute('aria-selected', 'true')
-  await teamTab.focus()
-  await page.keyboard.press('ArrowRight')
-  await expect(page.getByRole('tab', { name: /Founder 1:1/ })).toHaveAttribute(
-    'aria-selected',
-    'true',
-  )
-  await expect(page.getByRole('tabpanel')).toContainText('Kick-off & Ziele')
+  if (isMobile) {
+    // Mobil: Umschalter und Akkordeon, immer genau ein Schritt offen.
+    const step = (name: string) =>
+      page.getByRole('button', { name, exact: false })
+    await expect(step('Kennenlernen')).toHaveAttribute('aria-expanded', 'true')
+    await step('Auftrag & Ziele').click()
+    await expect(step('Auftrag & Ziele')).toHaveAttribute(
+      'aria-expanded',
+      'true',
+    )
+    await expect(step('Kennenlernen')).toHaveAttribute('aria-expanded', 'false')
+    await page.getByRole('button', { name: 'Für dich' }).click()
+    await expect(step('Kick-off & Ziele')).toBeVisible()
+    await expect(step('Kennenlernen')).toHaveAttribute('aria-expanded', 'true')
+  } else {
+    // „So läuft es ab“: Reiter wechseln per Pfeiltaste.
+    const teamTab = page.getByRole('tab', { name: /Co-Founder & Teams/ })
+    await expect(teamTab).toHaveAttribute('aria-selected', 'true')
+    await teamTab.focus()
+    await page.keyboard.press('ArrowRight')
+    await expect(
+      page.getByRole('tab', { name: /Founder 1:1/ }),
+    ).toHaveAttribute('aria-selected', 'true')
+    await expect(page.getByRole('tabpanel')).toContainText('Kick-off & Ziele')
+  }
   await expect(
     page.getByRole('img', { name: 'Annika Matthaei im Sessel' }),
   ).toBeVisible()

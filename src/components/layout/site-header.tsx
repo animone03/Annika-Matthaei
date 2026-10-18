@@ -67,6 +67,8 @@ const warmPaths: string[] = [
   '/coaching/unternehmen',
   '/ueber-mich',
   '/kontakt',
+  '/impressum',
+  '/datenschutz',
 ]
 
 export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {

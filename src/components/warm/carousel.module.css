@@ -1,0 +1,66 @@
+/* Wisch-Karten, nur mobil. Desktop zeigt das Raster bzw. die Liste. */
+
+.carousel {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* Randlos bis an den Bildschirmrand, erste Karte bündig mit dem Text */
+  .row {
+    display: flex;
+    gap: 12px;
+    margin: 0 calc(-1 * var(--warm-gutter));
+    overflow-x: auto;
+    padding: 0 var(--warm-gutter);
+    scroll-padding-inline: var(--warm-gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    flex: none;
+    width: 260px;
+    scroll-snap-align: start;
+  }
+
+  .card:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: -4px;
+  }
+
+  .sand {
+    background: var(--sand);
+    color: var(--ink);
+  }
+
+  .stone {
+    background: var(--stone);
+    color: var(--ink);
+  }
+
+  .coal {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .coal:focus-visible {
+    outline-color: var(--paper);
+  }
+
+  .hint {
+    color: var(--muted);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+}

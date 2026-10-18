@@ -137,38 +137,41 @@
   }
 }
 
+/* Mobil: Themenkarten flach im Format 2:1, Schwerpunkte 16:9 */
 @media (max-width: 767px) {
-  .card,
-  .wide {
-    aspect-ratio: 4 / 5;
+  .card {
+    aspect-ratio: 2 / 1;
   }
 
   .wide {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
   }
 
-  /* Mobil nur unten abgedunkelt, auch auf der Startseite */
+  /* Startseite: Verlauf über dem ganzen Bild */
   .teaser::after {
     background: linear-gradient(
       to bottom,
-      rgb(28 27 25 / 0) 42%,
-      rgb(28 27 25 / 0.62) 100%
+      rgb(28 27 25 / 0.1) 0%,
+      rgb(28 27 25 / 0.68) 100%
     );
   }
 
-  .text,
-  .wide .text {
+  .text {
     gap: 8px;
     padding: 0 20px 22px;
   }
 
   .wide .text {
     gap: 6px;
-    padding-bottom: 20px;
+    padding: 0 20px 20px;
   }
 
-  .title,
-  .teaser .title {
+  .teaser .text {
+    gap: 6px;
+    padding: 0 18px 16px;
+  }
+
+  .title {
     font-size: 26px;
   }
 
@@ -177,8 +180,12 @@
     line-height: 1;
   }
 
-  .lead,
-  .teaser .lead {
+  .teaser .title {
+    font-size: 21px;
+    line-height: 1;
+  }
+
+  .lead {
     font-size: 14px;
     line-height: 1.4;
   }
@@ -187,7 +194,13 @@
     font-size: 13.5px;
   }
 
+  .teaser .lead {
+    font-size: 12.5px;
+    line-height: 1.35;
+  }
+
   .more {
-    font-size: 10.5px;
+    margin-top: 2px;
+    font-size: 10px;
   }
 }

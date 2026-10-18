@@ -19,8 +19,8 @@ type WarmHeroProps = {
   photoSide: 'start' | 'end'
   /** Bildausschnitt, z. B. Zoom 127 % bei 36 % wie beim Sesselfoto */
   crop?: { position: string; zoom?: number }
-  /** Mobil: Höhe des Fotos und Ausschnitt (Mobile-Übergabe) */
-  mobilePhoto: { height: number; position: string }
+  /** Mobil: Format und Ausschnitt des Fotos (04_mobile, Tabelle Bildformate) */
+  mobilePhoto: { aspectRatio: string; position: string }
 }
 
 // Hero der Unterseiten im Design 10b. Die Überschrift bekommt die id
@@ -43,7 +43,7 @@ export function WarmHero({
     '--photo-position': crop?.position ?? 'center',
     '--photo-zoom': crop?.zoom ?? 1,
     '--photo-origin': (crop?.position ?? 'center').replace('center', '50%'),
-    '--mobile-height': `${mobilePhoto.height}px`,
+    '--mobile-aspect': mobilePhoto.aspectRatio,
     '--mobile-position': mobilePhoto.position,
   } as CSSProperties
 

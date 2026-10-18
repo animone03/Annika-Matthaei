@@ -457,34 +457,55 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* Zitate: Überschrift, Zitate, dann der Satz */
+  /* Zitate: Überschrift, Karussell (carousel.tsx), dann der Satz */
   .quotes {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 20px;
   }
 
   .quotesHead {
     display: contents;
   }
 
-  .quotesHead h2 {
-    margin-bottom: 16px;
+  .quoteList {
+    display: none;
   }
 
-  .quoteList {
+  .quotesCarousel {
     order: 1;
   }
 
-  .quote {
-    padding: 14px 0;
-    font-size: 17px;
+  .quoteCard {
+    display: flex;
+    min-height: 200px;
+    flex-direction: column;
+    gap: 6px;
+    padding: 22px 22px 24px;
+  }
+
+  .quoteMark {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 0.7;
+  }
+
+  .quoteText {
+    font-size: 18px;
+    line-height: 1.35;
+    quotes: none;
+  }
+
+  .quoteCount {
+    margin-top: auto;
+    padding-top: 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    opacity: 0.7;
   }
 
   .bridge {
     order: 2;
-    border-top: 1px solid var(--ink);
-    padding-top: 14px;
     font-size: 13.5px;
   }
 

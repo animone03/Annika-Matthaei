@@ -15,6 +15,8 @@ import styles from './home-page.module.css'
 type ProcessTab = {
   id: string
   label: string
+  /** Mobil im Umschalter, z. B. „Für euch“ */
+  shortLabel: string
   steps: { title: string; text: string }[]
 }
 
@@ -25,15 +27,23 @@ type ProcessTabsProps = {
 }
 
 // „So läuft es ab“: zwei Reiter (Teams, Founder 1:1), Foto und Button bleiben
-// gleich. Pfeiltasten, Pos1 und Ende wechseln den Reiter.
+// gleich. Pfeiltasten, Pos1 und Ende wechseln den Reiter. Mobil ein
+// Akkordeon mit Umschalter, immer genau ein Schritt offen (04_mobile, M1).
 export function ProcessTabs({ tabs, photo, cta }: ProcessTabsProps) {
   const [active, setActive] = useState(0)
+  const [openStep, setOpenStep] = useState(0)
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
   const baseId = useId()
 
   function select(index: number) {
     setActive(index)
     tabRefs.current[index]?.focus()
+  }
+
+  // Beim Wechsel des Reiters öffnet sich wieder Schritt 1.
+  function switchTab(index: number) {
+    setActive(index)
+    setOpenStep(0)
   }
 
   function onKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
@@ -97,6 +107,53 @@ export function ProcessTabs({ tabs, photo, cta }: ProcessTabsProps) {
             </div>
           ))}
           {cta}
+        </div>
+      </div>
+
+      {/* Mobil: Umschalter und Akkordeon, ohne Foto */}
+      <div className={styles.processMobile}>
+        <div role="group" aria-label="Ablauf für" className={styles.switch}>
+          {tabs.map((tab, index) => (
+            <button
+              key={tab.id}
+              type="button"
+              aria-pressed={index === active}
+              onClick={() => switchTab(index)}
+              className={styles.switchButton}
+            >
+              {tab.shortLabel}
+            </button>
+          ))}
+        </div>
+        <div className={styles.steps}>
+          {tabs[active].steps.map((step, index) => {
+            const open = index === openStep
+            const panelId = `${baseId}-step-${index}`
+            return (
+              <div key={step.title} className={styles.step}>
+                <h3>
+                  <button
+                    type="button"
+                    aria-expanded={open}
+                    aria-controls={panelId}
+                    onClick={() => setOpenStep(index)}
+                    className={styles.stepButton}
+                  >
+                    <span className={styles.stepNumber}>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className={styles.stepTitle}>{step.title}</span>
+                    <span aria-hidden="true" className={styles.stepSign}>
+                      {open ? '–' : '+'}
+                    </span>
+                  </button>
+                </h3>
+                <p id={panelId} hidden={!open} className={styles.stepText}>
+                  {step.text}
+                </p>
+              </div>
+            )
+          })}
         </div>
       </div>
     </>

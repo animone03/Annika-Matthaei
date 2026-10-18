@@ -166,21 +166,38 @@
     gap: 32px;
   }
 
-  .problems {
+  /* Kommt euch das bekannt vor?: Karussell (carousel.tsx) statt Raster */
+  .problemsSection {
     gap: 20px;
   }
 
-  .problem {
-    gap: 8px;
-    padding-top: 14px;
+  .problems {
+    display: none;
   }
 
-  .problemTitle {
-    font-size: 18px;
+  .problemCard {
+    display: flex;
+    min-height: 230px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px 22px;
   }
 
-  .problemText {
-    font-size: 13.5px;
+  .problemCardNumber {
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    opacity: 0.7;
+  }
+
+  .problemCardTitle {
+    margin-top: auto;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .problemCardText {
+    font-size: 13px;
     line-height: 1.55;
   }
 

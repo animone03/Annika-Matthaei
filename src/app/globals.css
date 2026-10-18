@@ -29,8 +29,9 @@
   --font-gothic:
     'Century Gothic', 'CenturyGothic', 'URW Gothic', var(--font-questrial),
     sans-serif;
-  /* Wandton aus dem Foto, nur auf „Über mich“ */
-  --wall: #e3d9cf;
+  /* Beige aus dem Foto: Hero „Über mich“ und Kontakt mobil (README des
+     Komplett-Briefings, dort #E4DACF statt #E3D9CF) */
+  --wall: #e4dacf;
   /* Seitenbreite 1280 px mit 64 px Rand, darunter schmaler */
   --warm-gutter: clamp(20px, 5vw, 64px);
   --warm-inline: max(var(--warm-gutter), (100% - 1152px) / 2);
@@ -173,17 +174,33 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   color: var(--cream);
 }
 
-/* Kontakt: kein dunkler Abschluss davor, darum ein schmaler Footer ohne
-   Trennlinie. */
-.site-shell:has([data-contact-page]:not([style*='display: none'])) footer {
+/* Kontakt und Rechtliches: kein dunkler Abschluss davor, darum ein schmaler
+   Footer ohne Trennlinie. */
+.site-shell:has(
+    [data-contact-page]:not([style*='display: none']),
+    [data-legal-page]:not([style*='display: none'])
+  )
+  footer {
   padding-top: 40px;
 }
 
-.site-shell:has([data-contact-page]:not([style*='display: none']))
+.site-shell:has(
+    [data-contact-page]:not([style*='display: none']),
+    [data-legal-page]:not([style*='display: none'])
+  )
   footer
   > div {
   border-top: 0;
   padding-top: 0;
+}
+
+/* Aktive Rechtsseite im Kohle-Footer: Creme und unterstrichen, die andere
+   bleibt im Ton „Text auf Dunkel“. */
+.site-shell:has([data-warm-page]:not([style*='display: none']))
+  footer
+  a[aria-current='page'] {
+  border-bottom: 1px solid var(--cream);
+  color: var(--cream);
 }
 
 /* Mobil: Motto über eigener Zeile, unten Platz für die fixe Kontaktleiste. */
@@ -196,7 +213,11 @@ body:has([data-warm-page]:not([style*='display: none'])) {
     padding-inline: var(--warm-gutter);
   }
 
-  .site-shell:has([data-contact-page]:not([style*='display: none'])) footer {
+  .site-shell:has(
+      [data-contact-page]:not([style*='display: none']),
+      [data-legal-page]:not([style*='display: none'])
+    )
+    footer {
     padding-block: 28px;
   }
 
@@ -215,28 +236,24 @@ body:has([data-warm-page]:not([style*='display: none'])) {
     column-gap: 16px;
   }
 
-  .site-shell:has([data-contact-page]:not([style*='display: none']))
+  .site-shell:has(
+      [data-contact-page]:not([style*='display: none']),
+      [data-legal-page]:not([style*='display: none'])
+    )
     footer
     > div {
     padding-top: 0;
   }
 }
 
-/* Angebote und Rechtliches: Footer mit Motto links,
-   Trennlinie oben. */
-.site-shell:has(
-    [data-legal-page]:not([style*='display: none']),
-    [data-startup-offer-page]:not([style*='display: none'])
-  )
+/* Angebotsseiten (altes Design): Footer mit Motto links, Trennlinie oben. */
+.site-shell:has([data-startup-offer-page]:not([style*='display: none']))
   footer {
   border-top: 1px solid rgb(30 35 41 / 0.15);
   padding-top: 32px;
 }
 
-.site-shell:has(
-    [data-legal-page]:not([style*='display: none']),
-    [data-startup-offer-page]:not([style*='display: none'])
-  )
+.site-shell:has([data-startup-offer-page]:not([style*='display: none']))
   footer
   > div {
   display: flex;
@@ -245,10 +262,7 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   gap: 24px;
 }
 
-.site-shell:has(
-    [data-legal-page]:not([style*='display: none']),
-    [data-startup-offer-page]:not([style*='display: none'])
-  )
+.site-shell:has([data-startup-offer-page]:not([style*='display: none']))
   .footer-motto {
   display: block;
   margin-right: auto;
@@ -281,19 +295,13 @@ body:has([data-warm-page]:not([style*='display: none'])) {
     font-size: 10px;
   }
 
-  .site-shell:has(
-      [data-legal-page]:not([style*='display: none']),
-      [data-startup-offer-page]:not([style*='display: none'])
-    )
+  .site-shell:has([data-startup-offer-page]:not([style*='display: none']))
     footer {
     border-top: 0;
     padding-top: 0;
   }
 
-  .site-shell:has(
-      [data-legal-page]:not([style*='display: none']),
-      [data-startup-offer-page]:not([style*='display: none'])
-    )
+  .site-shell:has([data-startup-offer-page]:not([style*='display: none']))
     footer
     > div {
     flex-wrap: wrap;
@@ -301,10 +309,7 @@ body:has([data-warm-page]:not([style*='display: none'])) {
     padding-top: 0;
   }
 
-  .site-shell:has(
-      [data-legal-page]:not([style*='display: none']),
-      [data-startup-offer-page]:not([style*='display: none'])
-    )
+  .site-shell:has([data-startup-offer-page]:not([style*='display: none']))
     .footer-motto {
     flex-basis: 100%;
     margin: 0 0 2px;
@@ -319,10 +324,7 @@ body:has([data-warm-page]:not([style*='display: none'])) {
     padding-bottom: 100px;
   }
 
-  .site-shell:has(
-      [data-startup-offer-page]:not([style*='display: none']),
-      [data-legal-page]:not([style*='display: none'])
-    )
+  .site-shell:has([data-startup-offer-page]:not([style*='display: none']))
     .footer-motto
     br {
     display: none;

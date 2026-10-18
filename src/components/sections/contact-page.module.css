@@ -374,6 +374,10 @@
     mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
   }
 
+  .headPhoto .photoImage {
+    object-position: center 26%;
+  }
+
   .title {
     margin-top: 4px;
     font-size: 52px;

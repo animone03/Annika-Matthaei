@@ -8,6 +8,7 @@ import resilienceImage from '../../../../../public/images/fotos/thema-resilienz.
 import styles from '@/components/sections/company-page.module.css'
 import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
 import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
+import { Carousel } from '@/components/warm/carousel'
 import { Closing } from '@/components/warm/closing'
 import { ImageCard } from '@/components/warm/image-card'
 import { Timeline } from '@/components/warm/timeline'
@@ -56,12 +57,12 @@ export default function CompanyCoachingPage() {
         alt="Annika Matthaei im Sessel"
         photoSide="start"
         crop={{ position: 'center 36%', zoom: 1.27 }}
-        mobilePhoto={{ height: 380, position: 'center 32%' }}
+        mobilePhoto={{ aspectRatio: '1 / 1', position: 'center 32%' }}
       />
 
       <section
         aria-labelledby="company-problems"
-        className={`${warm.section} ${styles.stack}`}
+        className={`${warm.section} ${styles.stack} ${styles.problemsSection}`}
       >
         <h2 id="company-problems" className={`${warm.title} ${warm.titleEnd}`}>
           {problems.title}
@@ -74,6 +75,24 @@ export default function CompanyCoachingPage() {
             </li>
           ))}
         </ul>
+        {/* Mobil: die drei Punkte als Karussell */}
+        <Carousel
+          label={problems.title}
+          cardClassName={styles.problemCard}
+          hint={problems.swipeHint}
+          items={problems.items.map((problem, index) => ({
+            key: problem.title,
+            content: (
+              <>
+                <span className={styles.problemCardNumber}>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span className={styles.problemCardTitle}>{problem.title}</span>
+                <span className={styles.problemCardText}>{problem.text}</span>
+              </>
+            ),
+          }))}
+        />
       </section>
 
       <section
@@ -162,6 +181,7 @@ export default function CompanyCoachingPage() {
         image={whyPortrait}
         alt="Annika Matthaei im Profil"
         imagePosition="center 20%"
+        mobileImagePosition="center 22%"
         photoSide="end"
       />
 

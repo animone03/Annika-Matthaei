@@ -1,4 +1,5 @@
 import Image, { type StaticImageData } from 'next/image'
+import type { CSSProperties } from 'react'
 
 import warm from './warm.module.css'
 import styles from './why-me.module.css'
@@ -13,6 +14,8 @@ type WhyMeProps = {
   alt: string
   /** object-position des Fotos */
   imagePosition?: string
+  /** Mobil eigener Ausschnitt (04_mobile, Tabelle Bildformate) */
+  mobileImagePosition?: string
   photoSide: 'start' | 'end'
 }
 
@@ -25,7 +28,8 @@ export function WhyMe({
   facts,
   image,
   alt,
-  imagePosition,
+  imagePosition = 'center',
+  mobileImagePosition,
   photoSide,
 }: WhyMeProps) {
   return (
@@ -42,7 +46,12 @@ export function WhyMe({
           placeholder="blur"
           sizes="(min-width: 768px) 400px, 100vw"
           className={styles.image}
-          style={imagePosition ? { objectPosition: imagePosition } : undefined}
+          style={
+            {
+              '--position': imagePosition,
+              '--mobile-position': mobileImagePosition ?? imagePosition,
+            } as CSSProperties
+          }
         />
       </div>
       <div className={styles.body}>

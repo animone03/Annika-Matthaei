@@ -11,6 +11,7 @@ import { HomeStickyCta } from '@/components/sections/home-sticky-cta'
 import styles from '@/components/sections/startups-page.module.css'
 import { Arrow } from '@/components/ui/arrow'
 import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
+import { Carousel } from '@/components/warm/carousel'
 import { Closing } from '@/components/warm/closing'
 import { ImageCard } from '@/components/warm/image-card'
 import warm from '@/components/warm/warm.module.css'
@@ -78,7 +79,7 @@ export default function StartupsPage() {
         image={heroPortrait}
         alt="Annika Matthaei vor einem Whiteboard"
         photoSide="end"
-        mobilePhoto={{ height: 380, position: 'center 22%' }}
+        mobilePhoto={{ aspectRatio: '1 / 1', position: 'center 4%' }}
       />
 
       <section
@@ -98,6 +99,26 @@ export default function StartupsPage() {
             </li>
           ))}
         </ul>
+        {/* Mobil: die Zitate als Karussell */}
+        <Carousel
+          label={quotes.title}
+          className={styles.quotesCarousel}
+          cardClassName={styles.quoteCard}
+          items={quotes.items.map((quote, index) => ({
+            key: quote,
+            content: (
+              <>
+                <span aria-hidden="true" className={styles.quoteMark}>
+                  „
+                </span>
+                <q className={styles.quoteText}>{quote}</q>
+                <span className={styles.quoteCount}>
+                  {index + 1} / {quotes.items.length}
+                </span>
+              </>
+            ),
+          }))}
+        />
       </section>
 
       <section

@@ -11,6 +11,8 @@ export const hero = {
 
 export const problems = {
   title: 'Kommt euch das bekannt vor?',
+  // Mobil unter dem Karussell
+  swipeHint: 'Wischen →',
   items: [
     {
       title: 'Ihr arbeitet nebeneinander statt miteinander.',

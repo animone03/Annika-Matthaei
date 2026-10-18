@@ -105,6 +105,40 @@ export const methods = {
     'Agile Methoden & Selbstorganisation',
   ],
   cta: 'Loslegen und wachsen',
+  // Mobil: die 12 Methoden als Karussell mit drei Feldern
+  groups: [
+    {
+      number: '01',
+      title: 'Kommunikation & Konflikt',
+      items: [
+        'Systemisches Coaching',
+        'Gewaltfreie Kommunikation & aktives Zuhören',
+        'Feedback & schwierige Gespräche',
+        'Konfliktmoderation & Mediation',
+      ],
+    },
+    {
+      number: '02',
+      title: 'Team & Zusammenarbeit',
+      items: [
+        'Psychologische Sicherheit',
+        'Teamentwicklung & Teamrollen',
+        'Werte- & Sinnarbeit',
+        'Agile Methoden & Selbstorganisation',
+      ],
+    },
+    {
+      number: '03',
+      title: 'Psychologie & Resilienz',
+      items: [
+        'Positive Psychologie & Stärken',
+        'Stress- & Resilienztraining',
+        'Antreiber & Glaubenssätze',
+        'Atem, Bewegung & Regulation',
+      ],
+    },
+  ],
+  swipeHint: 'Wischen · 3 Felder →',
 }
 
 // Streifen zwischen Methoden und „So läuft es ab“
@@ -122,6 +156,8 @@ export const ablauf = {
     {
       id: 'team',
       label: 'Für euch · Co-Founder & Teams',
+      // Mobil im Umschalter
+      shortLabel: 'Für euch',
       steps: [
         {
           title: 'Kennenlernen',
@@ -148,6 +184,7 @@ export const ablauf = {
     {
       id: 'solo',
       label: 'Für dich · Founder 1:1',
+      shortLabel: 'Für dich',
       steps: [
         {
           title: 'Kennenlernen',

@@ -40,7 +40,15 @@ const nextConfig: NextConfig = {
       {
         source: '/marketing',
         destination: '/',
-        permanent: true,
+        // 301 laut Komplett-Briefing (Next nimmt sonst 308)
+        statusCode: 301,
+      },
+      // Der Blog entfällt (Komplett-Briefing 18.10.2026).
+      {
+        source: '/blog',
+        destination: '/',
+        // 301 laut Komplett-Briefing (Next nimmt sonst 308)
+        statusCode: 301,
       },
     ]
   },

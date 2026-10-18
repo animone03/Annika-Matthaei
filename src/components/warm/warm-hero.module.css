@@ -86,8 +86,8 @@
   transform-origin: var(--photo-origin);
 }
 
-/* Mobil: Foto oben mit eigener Höhe und eigenem Ausschnitt, darunter der
-   Text. Den Button übernimmt die feste Leiste. */
+/* Mobil: Foto oben mit eigenem Format und Ausschnitt, darunter der Text.
+   Den Button übernimmt die feste Leiste. */
 @media (max-width: 767px) {
   .hero,
   .photoStart {
@@ -100,8 +100,7 @@
   }
 
   .photo {
-    height: var(--mobile-height);
-    aspect-ratio: auto;
+    aspect-ratio: var(--mobile-aspect);
   }
 
   .image {

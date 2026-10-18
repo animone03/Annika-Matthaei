@@ -12,6 +12,7 @@ import resilienceImage from '../../../public/images/fotos/thema-resilienz.jpg'
 
 import { Arrow } from '@/components/ui/arrow'
 import { LongExposureFilters } from '@/components/ui/long-exposure-filters'
+import { Carousel } from '@/components/warm/carousel'
 import { Closing } from '@/components/warm/closing'
 import { ImageCard } from '@/components/warm/image-card'
 import warm from '@/components/warm/warm.module.css'
@@ -149,22 +150,29 @@ export function HomePageContent() {
             </li>
           ))}
         </ul>
-        {/* Mobil: die Methoden zum Aufklappen */}
-        <details className={styles.methodsMore}>
-          <summary className={styles.methodsSummary}>
-            Alle {methods.items.length} Methoden
-            <span aria-hidden="true" className={styles.plus}>
-              +
-            </span>
-          </summary>
-          <ul>
-            {methods.items.map((item) => (
-              <li key={item} className={styles.methodsMoreItem}>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </details>
+        {/* Mobil: die Methoden als Karussell mit drei Feldern */}
+        <Carousel
+          label={methods.title}
+          className={styles.methodsCarousel}
+          cardClassName={styles.methodGroup}
+          hint={methods.swipeHint}
+          items={methods.groups.map((group) => ({
+            key: group.number,
+            content: (
+              <>
+                <span className={styles.methodGroupNumber}>{group.number}</span>
+                <span className={styles.methodGroupTitle}>{group.title}</span>
+                <ul>
+                  {group.items.map((item) => (
+                    <li key={item} className={styles.methodGroupItem}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ),
+          }))}
+        />
         <Link href="/kontakt" className={`${warm.link} ${styles.methodsCta}`}>
           {methods.cta}
         </Link>

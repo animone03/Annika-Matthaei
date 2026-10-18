@@ -26,6 +26,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--position);
 }
 
 .body {
@@ -86,6 +87,10 @@
 
   .photo {
     aspect-ratio: 4 / 3;
+  }
+
+  .image {
+    object-position: var(--mobile-position);
   }
 
   .body {

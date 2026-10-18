@@ -346,11 +346,12 @@
   }
 
   .heroPhoto {
-    height: 360px;
+    aspect-ratio: 1 / 1;
     margin-left: 0;
   }
 
   .heroImage {
+    object-position: center 24%;
     mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
   }
 

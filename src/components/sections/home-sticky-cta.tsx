@@ -26,14 +26,19 @@ export function HomeStickyCta({
     const contact = document.querySelector(endSelector)
     if (!claim || !contact) return
 
-    let claimPassed = false
+    // Ist der Startpunkt mobil ausgeblendet (Startseite: kein Button im
+    // Hero), steht die Leiste von Anfang an.
+    const claimHidden = () => claim.getClientRects().length === 0
+
+    let claimPassed = claimHidden()
     let contactVisible = false
 
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.target === claim) {
           claimPassed =
-            !entry.isIntersecting && entry.boundingClientRect.top < 0
+            claimHidden() ||
+            (!entry.isIntersecting && entry.boundingClientRect.top < 0)
         } else {
           contactVisible = entry.isIntersecting
         }

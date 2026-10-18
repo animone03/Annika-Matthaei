@@ -1,10 +1,7 @@
+/* Farben aus warm.module.css (Kohle, Text gedämpft, Labels), Rand wie im
+   übrigen Raster */
 .page {
-  --ink: #1e2329;
-  --ink-soft: #3a4049;
-  --muted: #566270;
-  --gutter: 48px;
-
-  color: var(--ink);
+  --gutter: var(--warm-inline);
 }
 
 .head {
@@ -94,7 +91,7 @@
 
 @media (max-width: 767px) {
   .page {
-    --gutter: 20px;
+    --gutter: var(--warm-gutter);
   }
 
   .head {

@@ -111,7 +111,8 @@ export const offers: {
       title: 'Founder 1:1',
       text: 'Dein Sparring als Founder: für deine Rolle, deine Beziehungen und deine Energie.',
       format: 'Über 3–4 Monate · Für dich',
-      href: '/coaching/startups/founder-1-1',
+      // Bis die Angebotsseiten neu gestaltet sind: Kontakt mit Vorauswahl
+      href: '/kontakt?thema=startup-coaching' as Route,
     },
     {
       tone: 'coal',
@@ -122,7 +123,7 @@ export const offers: {
       title: 'Founders in Sync',
       text: 'Sache und Beziehung klären. Wieder gemeinsam Tempo machen.',
       format: 'In wenigen Wochen · Als Founder-Team',
-      href: '/coaching/startups/founders-in-sync',
+      href: '/kontakt?thema=co-founder' as Route,
     },
     {
       tone: 'stone',
@@ -132,7 +133,7 @@ export const offers: {
       title: 'Lead with Clarity',
       text: 'Klare Prioritäten, klare Rollen und ein Team, das auch unter Druck gut führt.',
       format: 'Workshop · Auf euch zugeschnitten',
-      href: '/coaching/startups/lead-with-clarity',
+      href: '/kontakt?thema=leadership' as Route,
     },
   ],
 }
