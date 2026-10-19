@@ -71,11 +71,6 @@ async function PreviewTools() {
   )
 }
 
-// VORÜBERGEHEND (18.10.2026): Testschalter für den schwarzen Balken auf der
-// Startseite (iPhone). ?t=1, 2 oder 3 setzt data-balken an <html>, bevor die
-// Seite gezeichnet wird. Wieder entfernen, sobald die Ursache gefunden ist.
-const balkenTest = `try{var t=new URLSearchParams(location.search).get('t');if(t)document.documentElement.setAttribute('data-balken',t)}catch(e){}`
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
@@ -84,11 +79,7 @@ export default function RootLayout({
       lang="de"
       data-scroll-behavior="smooth"
       className={`${helvetica.variable} ${questrial.variable} bg-background`}
-      suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: balkenTest }} />
-      </head>
       <body>
         {/* Erst bei Tastaturfokus sichtbar. Vorher kein Kasten oben links, sonst
             zeichnet iOS unter dem durchsichtigen Kopf der Startseite einen

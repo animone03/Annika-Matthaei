@@ -487,30 +487,3 @@ html[data-scroll-direction='previous']::view-transition-new(root) {
     transform: translateX(-100%);
   }
 }
-
-/* VORÜBERGEHEND (18.10.2026): Testschalter für den schwarzen Balken auf der
-   Startseite, siehe layout.tsx. Nur mit ?t=1, 2 oder 3 in der Adresse. */
-@media (max-width: 767px) {
-  /* 1: ohne Kopfbereich */
-  html[data-balken='1'] header.site-header {
-    display: none;
-  }
-
-  /* 2: ohne das Foto */
-  html[data-balken='2'] section[aria-labelledby='home-title'] img {
-    visibility: hidden;
-  }
-
-  /* 3: Foto in der festen Höhe von gestern (540 px, ohne Zoom) */
-  html[data-balken='3']
-    section[aria-labelledby='home-title']
-    > div:first-child {
-    height: 540px;
-    aspect-ratio: auto;
-  }
-
-  html[data-balken='3'] section[aria-labelledby='home-title'] img {
-    object-position: center 30%;
-    transform: none;
-  }
-}
