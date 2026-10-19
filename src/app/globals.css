@@ -389,15 +389,10 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   }
 }
 
-/* Handgemalter Pfeil (Komponente Arrow): Textfarbe und Schriftgröße folgen dem Link. */
+/* Schriftpfeil ↗ (Komponente Arrow): Textfarbe und Schriftgröße folgen dem Link. */
 .arrow {
-  display: inline-block;
   flex: none;
-  width: 0.82em;
-  height: 0.76em;
-  vertical-align: -0.06em;
-  background-color: currentColor;
-  mask: url('/images/pfeil.svg') center / contain no-repeat;
+  font-weight: 400;
 }
 
 .editorial-label {

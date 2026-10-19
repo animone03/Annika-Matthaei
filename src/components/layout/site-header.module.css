@@ -80,12 +80,11 @@
 }
 
 .menuLinkedIn {
-  display: inline-flex;
+  display: inline-block;
   min-height: 44px;
-  align-items: center;
   align-self: flex-start;
-  gap: 8px;
   margin-top: 10px;
+  line-height: 44px;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-decoration: underline;
@@ -217,12 +216,16 @@
   color: rgb(250 249 245 / 0.75);
 }
 
-/* Creme auf Beige ist knapp (etwa 3 : 1), darum auf dem Startseiten-Hero
-   12 px fett, wie im Briefing als Ausweg vorgesehen. */
+/* Creme auf Beige ist knapp (etwa 2,5 : 1), darum auf dem Startseiten-Hero
+   12 px fett, wie im Briefing als Ausweg vorgesehen, und ein weicher Schatten
+   mit engem Kern (hinter der Schrift etwa 4,7 : 1). */
 @media (min-width: 1024px) {
   .onPhotoMobile .warmLinks {
     font-size: 12px;
     font-weight: 700;
+    text-shadow:
+      0 0 10px rgb(40 33 27 / 0.45),
+      0 0 2px rgb(40 33 27 / 0.55);
   }
 }
 
