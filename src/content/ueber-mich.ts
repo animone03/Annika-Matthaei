@@ -64,37 +64,6 @@ export const skills = {
 
 export const career = {
   title: 'Werdegang',
-  stations: {
-    title: 'Stationen',
-    items: [
-      {
-        period: 'Seit 2026',
-        title: 'Systemisches Coaching',
-        detail: 'Selbstständig',
-      },
-      {
-        period: 'Seit 2025',
-        title: 'Marketing-Beratung & Markenentwicklung',
-        detail: 'Selbstständig',
-      },
-      {
-        period: '2022 – 2026',
-        title: 'Ehrmann Wohn- und Einrichtungs GmbH',
-        detail: 'Abteilungsleiterin · Aufbau der Abteilung Nachhaltigkeit',
-      },
-      {
-        period: '2019 – 2021',
-        title: 'Performance One AG',
-        detail: 'Beraterin Digitales Marketing',
-      },
-      {
-        period: '2013 – 2018',
-        title: 'Peek & Cloppenburg',
-        detail:
-          'Stellv. Abteilungsleiterin & Abteilungsleiterin · Wien / Düsseldorf',
-      },
-    ],
-  },
   // `short`: gekürzte Fassung für Mobil
   education: {
     title: 'Ausbildung',

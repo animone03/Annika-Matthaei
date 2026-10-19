@@ -258,18 +258,11 @@
 
 /* Zähler und Nummern nur mobil */
 .skillCount,
-.skillNumber,
-.entryMarker {
+.skillNumber {
   display: none;
 }
 
-/* Werdegang: Stationen und Ausbildung */
-
-.career {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(40px, 6.25vw, 80px);
-}
+/* Werdegang: Ausbildung */
 
 .careerLabel {
   padding-bottom: 14px;
@@ -287,22 +280,9 @@
   padding: 16px 0;
 }
 
-.entryPeriod {
-  color: var(--muted);
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
 .entryTitle {
   font-size: 16px;
   font-weight: 700;
-}
-
-.entryDetail {
-  color: var(--ink-soft);
-  font-size: 13px;
-  line-height: 1.5;
 }
 
 .entryMuted {
@@ -563,92 +543,7 @@
     letter-spacing: 0.1em;
   }
 
-  /* Werdegang: Zeitstrahl, Ausbildung in einer Box */
-  .career {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 26px;
-  }
-
-  .stations .careerLabel {
-    display: none;
-  }
-
-  .stations .entry {
-    position: relative;
-    display: grid;
-    grid-template-columns: 62px 18px minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    column-gap: 10px;
-    row-gap: 4px;
-    border-top: 0;
-    padding: 0;
-  }
-
-  .stations .entryPeriod {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    padding-top: 3px;
-    font-size: 10.5px;
-    font-weight: 700;
-    line-height: 1.3;
-    letter-spacing: 0.04em;
-  }
-
-  /* Die beiden selbstständigen Stationen in Kohle */
-  .stations .entry:nth-child(-n + 2) .entryPeriod {
-    color: var(--ink);
-  }
-
-  .entryMarker {
-    position: relative;
-    display: block;
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-
-  .entryMarker::before {
-    position: absolute;
-    top: 4px;
-    left: 50%;
-    width: 11px;
-    height: 11px;
-    border: 1px solid var(--ink);
-    border-radius: 50%;
-    background: var(--paper);
-    content: '';
-    transform: translateX(-50%);
-  }
-
-  .stations .entry:first-child .entryMarker::before {
-    background: var(--ink);
-  }
-
-  .entryMarker::after {
-    position: absolute;
-    top: 15px;
-    bottom: 0;
-    left: 50%;
-    width: 1px;
-    background: rgb(28 27 25 / 0.3);
-    content: '';
-  }
-
-  .stations .entry:last-child .entryMarker::after {
-    display: none;
-  }
-
-  .stations .entryTitle {
-    grid-column: 3;
-    font-size: 15.5px;
-    line-height: 1.25;
-  }
-
-  .stations .entryDetail {
-    grid-column: 3;
-    padding-bottom: 24px;
-    font-size: 12.5px;
-  }
-
+  /* Werdegang: Ausbildung in einer Box */
   .education {
     background: var(--sand);
     padding: 24px var(--warm-gutter) 12px;

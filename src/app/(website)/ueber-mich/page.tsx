@@ -178,38 +178,22 @@ export default async function AboutPage() {
         <h2 id="about-career" className={`${warm.title} ${warm.titleCenter}`}>
           {career.title}
         </h2>
-        <div className={styles.career}>
-          <div className={styles.stations}>
-            <h3 className={styles.careerLabel}>{career.stations.title}</h3>
-            <ul>
-              {career.stations.items.map((item) => (
-                <li key={item.period} className={styles.entry}>
-                  <span className={styles.entryPeriod}>{item.period}</span>
-                  {/* Mobil: Punkt und Linie des Zeitstrahls */}
-                  <span aria-hidden="true" className={styles.entryMarker} />
-                  <span className={styles.entryTitle}>{item.title}</span>
-                  <span className={styles.entryDetail}>{item.detail}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className={styles.education}>
-            <h3 className={styles.careerLabel}>{career.education.title}</h3>
-            <ul>
-              {career.education.items.map((item) => (
-                <li key={item.title} className={styles.entry}>
-                  <span className={styles.entryTitle}>
-                    <span className={warm.desktopOnly}>{item.title}</span>
-                    <span className={warm.mobileOnly}>{item.short.title}</span>
-                  </span>
-                  <span className={styles.entryMuted}>
-                    <span className={warm.desktopOnly}>{item.detail}</span>
-                    <span className={warm.mobileOnly}>{item.short.detail}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className={styles.education}>
+          <h3 className={styles.careerLabel}>{career.education.title}</h3>
+          <ul>
+            {career.education.items.map((item) => (
+              <li key={item.title} className={styles.entry}>
+                <span className={styles.entryTitle}>
+                  <span className={warm.desktopOnly}>{item.title}</span>
+                  <span className={warm.mobileOnly}>{item.short.title}</span>
+                </span>
+                <span className={styles.entryMuted}>
+                  <span className={warm.desktopOnly}>{item.detail}</span>
+                  <span className={warm.mobileOnly}>{item.short.detail}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
