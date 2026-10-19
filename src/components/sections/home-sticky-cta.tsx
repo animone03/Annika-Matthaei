@@ -1,5 +1,6 @@
 'use client'
 
+import type { Route } from 'next'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -7,6 +8,7 @@ import styles from './home-sticky-cta.module.css'
 
 type HomeStickyCtaProps = {
   label?: string
+  href?: Route
   /** id des Hero-Buttons: Erst wenn er aus dem Bild ist, kommt die Leiste. */
   startId?: string
   /** Der dunkle Abschluss: Sobald er sichtbar ist, verschwindet die Leiste. */
@@ -19,6 +21,7 @@ type HomeStickyCtaProps = {
 // zwei Kennenlernen-Buttons gleichzeitig zu sehen.
 export function HomeStickyCta({
   label = 'Kostenloses Kennenlernen',
+  href = '/kontakt',
   startId = 'home-hero-cta',
   endSelector = '#home-contact',
 }: HomeStickyCtaProps) {
@@ -51,7 +54,7 @@ export function HomeStickyCta({
 
   return (
     <div className={styles.stickyCta} data-visible={visible} inert={!visible}>
-      <Link href="/kontakt" className={styles.stickyCtaPrimary}>
+      <Link href={href} className={styles.stickyCtaPrimary}>
         {label}
       </Link>
     </div>

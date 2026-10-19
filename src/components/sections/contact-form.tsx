@@ -25,11 +25,10 @@ import { Signature } from '@/components/ui/signature'
 import styles from './contact-page.module.css'
 
 // slug = Wert für die Vorauswahl per /kontakt?thema=…
-// TODO: „EXIST“ später ggf. „Gründungscoaching“ (Inhaltskonzept v3, Abschnitt 8)
 export const contactTopics = [
   { slug: 'startup-coaching', label: 'Startup-Coaching' },
   { slug: 'co-founder', label: 'Co-Founder' },
-  { slug: 'exist', label: 'EXIST' },
+  { slug: 'gruendungscoaching', label: 'Gründungscoaching' },
   { slug: 'leadership', label: 'Leadership & Teams' },
   { slug: 'unklar', label: 'Noch unklar' },
 ]
@@ -384,9 +383,15 @@ function ContactFormBody({
   )
 }
 
+// Alte Links mit ?thema=exist wählen Gründungscoaching aus.
+const topicAliases: Record<string, string> = { exist: 'gruendungscoaching' }
+
 function useTopicPreselection() {
   const searchParams = useSearchParams()
-  return searchParams.getAll('thema').flatMap((value) => value.split(','))
+  return searchParams
+    .getAll('thema')
+    .flatMap((value) => value.split(','))
+    .map((slug) => topicAliases[slug] ?? slug)
 }
 
 export function ContactFormWithTopics() {

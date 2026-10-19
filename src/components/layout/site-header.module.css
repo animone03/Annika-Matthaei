@@ -245,6 +245,15 @@
   }
 }
 
+/* Gründungscoaching: Kopf auf dem Beige des Hero, auf allen Breiten */
+.onBeige {
+  background: var(--wall);
+}
+
+.onBeige .warmRole {
+  color: var(--coal-soft);
+}
+
 @media (max-width: 767px) {
   .onWallMobile {
     background: var(--wall);

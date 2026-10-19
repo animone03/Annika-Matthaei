@@ -146,7 +146,7 @@ export const journey = {
       title: 'Gründung & Pre-Seed',
       text: 'Idee, Team, erste Kund:innen. Alles gleichzeitig.',
       friction: 'halb klaren Rollen und unausgesprochenen Erwartungen.',
-      offers: ['Founders in Sync', 'Founder 1:1'],
+      offers: ['Gründungscoaching', 'Founders in Sync', 'Founder 1:1'],
     },
     {
       label: 'Etappe 2',
@@ -164,11 +164,10 @@ export const journey = {
     },
   ],
   exist: {
-    title: 'Früh dran? Über EXIST finanzierbar.',
-    text: 'Im EXIST-Gründungsstipendium, Forschungstransfer oder EXIST Women kann Coaching über euer Budget laufen. Ich kläre das mit euch und eurem Gründungsnetzwerk.',
-    cta: 'Ansprechen',
-    // Später auf die Seite zum Gründungscoaching
-    href: '/kontakt?thema=exist' as Route,
+    title: 'Früh dran? Gründungscoaching, auch über EXIST.',
+    text: 'Geschäftsmodell, erste Kund:innen und euer Team in einem Coaching. Im EXIST-Gründungsstipendium oder Forschungstransfer kann es über euer Coaching-Budget laufen. Was genau, kläre ich vorab mit eurem Gründungsnetzwerk.',
+    cta: 'Zum Gründungscoaching',
+    href: '/coaching/startups/gruendungscoaching' as Route,
   },
 }
 
@@ -239,7 +238,7 @@ export const faq = {
     {
       question: 'Wer zahlt?',
       answer:
-        'Meist das Startup. In der frühen Phase oft das EXIST-Budget, manchmal unterstützt euer VC.',
+        'Meist das Startup. In der Frühphase kann euer EXIST-Budget für Coaching passen, manchmal unterstützt euer VC.',
     },
     { question: 'Auf Deutsch oder Englisch?', answer: 'Beides.' },
   ],

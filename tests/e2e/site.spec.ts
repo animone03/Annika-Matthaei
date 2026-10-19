@@ -156,18 +156,19 @@ test('the retired marketing page redirects to the homepage', async ({
 test('contact page preselects topics and has no serious accessibility violations', async ({
   page,
 }) => {
+  // Alte Links mit ?thema=exist wählen Gründungscoaching aus.
   await page.goto('/kontakt?thema=exist')
   await expect(
     page.getByRole('heading', { level: 1, name: 'Lass uns sprechen.' }),
   ).toBeVisible()
-  const exist = page.getByRole('radio', { name: 'EXIST' })
-  await expect(exist).toHaveAttribute('aria-checked', 'true')
+  const founding = page.getByRole('radio', { name: 'Gründungscoaching' })
+  await expect(founding).toHaveAttribute('aria-checked', 'true')
 
-  // Einzelauswahl: ein anderes Thema ersetzt EXIST, ein zweiter Klick hebt
-  // die Auswahl wieder auf.
+  // Einzelauswahl: ein anderes Thema ersetzt Gründungscoaching, ein zweiter
+  // Klick hebt die Auswahl wieder auf.
   const coFounder = page.getByRole('radio', { name: 'Co-Founder' })
   await coFounder.click()
-  await expect(exist).toHaveAttribute('aria-checked', 'false')
+  await expect(founding).toHaveAttribute('aria-checked', 'false')
   await coFounder.click()
   await expect(coFounder).toHaveAttribute('aria-checked', 'false')
 
@@ -246,6 +247,38 @@ test('unknown Sanity slugs render a noindexed not-found state', async ({
   await expect(
     page.locator('meta[name="robots"][content*="noindex"]').first(),
   ).toBeAttached()
+})
+
+test('founding coaching page switches between its two audiences', async ({
+  page,
+}) => {
+  // Die alte EXIST-Seite leitet weiter, ?fuer=beratung öffnet den 2. Reiter.
+  await page.goto('/coaching/startups/exist')
+  await expect(page).toHaveURL(/\/coaching\/startups\/gruendungscoaching$/)
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'Gründen ist Teamsport.' }),
+  ).toBeVisible()
+  await expect(
+    page.getByRole('tab', { name: /Für Gründungsteams/ }),
+  ).toHaveAttribute('aria-selected', 'true')
+
+  await page.goto('/coaching/startups/gruendungscoaching?fuer=beratung')
+  const advisorsTab = page.getByRole('tab', { name: /Für Gründungsberatungen/ })
+  await expect(advisorsTab).toHaveAttribute('aria-selected', 'true')
+  await expect(page.getByRole('tabpanel')).toContainText(
+    'Themen in euren Worten',
+  )
+
+  // Pfeiltaste wechselt zurück zu den Gründungsteams
+  await advisorsTab.focus()
+  await page.keyboard.press('ArrowLeft')
+  await expect(page.getByRole('tabpanel')).toContainText('Woran wir arbeiten')
+
+  const results = await new AxeBuilder({ page }).analyze()
+  const serious = results.violations.filter((violation) =>
+    ['serious', 'critical'].includes(violation.impact || ''),
+  )
+  expect(serious).toEqual([])
 })
 
 test('machine-readable endpoints are available', async ({ request }) => {

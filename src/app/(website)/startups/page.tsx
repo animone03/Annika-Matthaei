@@ -37,7 +37,7 @@ import { buildMetadata } from '@/lib/metadata'
 export const metadata: Metadata = buildMetadata({
   title: 'Coaching für Startups & Founder – Annika Matthaei',
   description:
-    'Mentale Fitness für Founder-Teams: Founder 1:1, Founders in Sync und Lead with Clarity. Über EXIST finanzierbar.',
+    'Mentale Fitness für Founder-Teams: Founder 1:1, Founders in Sync, Lead with Clarity und Gründungscoaching für die Frühphase.',
   path: '/startups',
   absoluteTitle: true,
 })
@@ -242,7 +242,7 @@ export default function StartupsPage() {
             <span className={styles.existBody}>{journey.exist.text}</span>
           </span>
           <span className={`${warm.link} ${styles.existCta}`}>
-            {journey.exist.cta}
+            {journey.exist.cta} <Arrow />
           </span>
         </Link>
       </section>

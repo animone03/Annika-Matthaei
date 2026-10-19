@@ -43,6 +43,12 @@ const nextConfig: NextConfig = {
         // 301 laut Komplett-Briefing (Next nimmt sonst 308)
         statusCode: 301,
       },
+      // Die EXIST-Seite ist im Gründungscoaching aufgegangen (Übergabe 15c).
+      {
+        source: '/coaching/startups/exist',
+        destination: '/coaching/startups/gruendungscoaching',
+        statusCode: 301,
+      },
       // Der Blog entfällt (Komplett-Briefing 18.10.2026).
       {
         source: '/blog',

@@ -69,6 +69,7 @@ const warmPaths: string[] = [
   '/kontakt',
   '/impressum',
   '/datenschutz',
+  '/coaching/startups/gruendungscoaching',
 ]
 
 export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
@@ -81,6 +82,8 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
   // Über mich (bis 1023 px) und Kontakt (mobil): auf dem Wandton des Hero
   const onWall = pathname === '/ueber-mich'
   const onWallMobile = pathname === '/kontakt'
+  // Gründungscoaching: auf allen Breiten auf dem Beige des Hero
+  const onBeige = pathname === '/coaching/startups/gruendungscoaching'
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -157,7 +160,7 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
         onPhotoMobile ? styles.onPhotoMobile : ''
       } ${onWall ? styles.onWall : ''} ${
         onWallMobile ? styles.onWallMobile : ''
-      } ${menuOpen ? styles.menuOpen : ''}`}
+      } ${onBeige ? styles.onBeige : ''} ${menuOpen ? styles.menuOpen : ''}`}
     >
       {menuOpen ? (
         <div className={styles.overlay}>
