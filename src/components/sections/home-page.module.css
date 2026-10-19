@@ -23,9 +23,19 @@
 
 /* Entwurf: center 30 %. Bei 18 % beginnt der Kopf knapp unter dem Header,
    der Name im Header steht dann auf der Wand statt auf den Haaren. */
+.heroPhoto {
+  position: absolute;
+  inset: 0;
+}
+
 .heroImage {
   object-fit: cover;
   object-position: center 18%;
+}
+
+/* Hauch von oben unter der hellen Kopfzeile, nur ab 1024 px */
+.heroHaze {
+  display: none;
 }
 
 /* Verlauf von unten, damit die Schrift auf dem Foto lesbar bleibt */
@@ -69,6 +79,68 @@
   font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+/* Ab 1024 px (Übergabe update_logo, Logo-Test): Hero schließt bündig mit der
+   Bildschirmkante ab. Das Foto wächst mit der Hero-Höhe (2,13-fach, um
+   16,4 % nach oben versetzt), steht mittig auf einem Beige-Verlauf und läuft
+   seitlich weich aus. So bleibt der Kopf auf 1280, 1440 und 1920 px sichtbar. */
+@media (min-width: 1024px) {
+  .heroStage {
+    --hero-height: clamp(560px, 100svh, 880px);
+
+    height: var(--hero-height);
+    background: linear-gradient(
+      to bottom,
+      #c4b19e 0%,
+      #bba793 45%,
+      #ac9784 100%
+    );
+  }
+
+  .heroPhoto {
+    inset: auto;
+    top: calc(var(--hero-height) * -0.164);
+    left: 50%;
+    height: calc(var(--hero-height) * 2.13);
+    aspect-ratio: 2 / 3;
+    transform: translateX(-50%);
+    mask-image:
+      linear-gradient(
+        to right,
+        transparent 0,
+        #000 18%,
+        #000 82%,
+        transparent 100%
+      ),
+      linear-gradient(to bottom, transparent 0, #000 6%);
+    mask-composite: intersect;
+  }
+
+  .heroImage {
+    object-position: center top;
+    filter: brightness(0.86) saturate(1.05);
+  }
+
+  .heroHaze {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: block;
+    height: 180px;
+    background: linear-gradient(
+      to bottom,
+      rgb(40 33 27 / 0.22) 0%,
+      rgb(40 33 27 / 0.1) 50%,
+      rgb(40 33 27 / 0) 100%
+    );
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-weight: 700;
+  }
 }
 
 .heroAction {
@@ -220,7 +292,7 @@
 
 .methods {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(340px, 37.5vw, 480px);
+  grid-template-columns: minmax(0, 1fr) 360px;
   grid-template-rows: auto auto auto 1fr;
   grid-template-areas:
     'title photo'
@@ -257,17 +329,20 @@
 }
 
 .methodsPhoto {
+  margin-top: 68px;
   grid-area: photo;
   aspect-ratio: 4 / 5;
   overflow: hidden;
 }
 
+/* Werkzeug-Bild: Ausschnitt 0 / 12 mit Belichtungseffekt (Übergabe update_logo) */
 .methodsImage {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: 0% 12%;
+  filter: url(#longexp2) contrast(0.92) brightness(1.04);
 }
 
 /* Zwei Spalten mit je sechs Methoden, gelesen von oben nach unten */
@@ -565,6 +640,7 @@
 
   .methodsPhoto {
     width: min(100%, 480px);
+    margin-top: 0;
   }
 }
 
@@ -726,16 +802,11 @@
     row-gap: 18px;
   }
 
-  /* Werkzeug-Bild wie die Themenkarten: 2:1, volle Breite, Belichtungseffekt,
-     Ausschnitt 0 / 12, Zoom 100 % (Komplett-Briefing 3) */
+  /* Werkzeug-Bild wie die Themenkarten: 2:1, volle Breite, Zoom 100 %
+     (Komplett-Briefing 3), Ausschnitt und Effekt wie auf dem Desktop */
   .methodsPhoto {
     width: 100%;
     aspect-ratio: 2 / 1;
-  }
-
-  .methodsImage {
-    object-position: 0% 12%;
-    filter: url(#longexp2) contrast(0.92) brightness(1.04);
   }
 
   .methodsLead {

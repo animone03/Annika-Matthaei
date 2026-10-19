@@ -47,6 +47,16 @@ test('homepage exposes its landmarks and no serious accessibility violations', a
   await expect(
     footer.getByRole('navigation', { name: 'Fußnavigation' }),
   ).toBeVisible()
+  // Wortmarke: im Header der Link zur Startseite, im Footer nur Schmuck
+  await expect(
+    page
+      .getByRole('banner')
+      .getByRole('link', { name: 'Annika Matthaei – Coaching & Consulting' }),
+  ).toHaveAttribute('href', '/')
+  await expect(footer.locator('svg.footer-wordmark')).toHaveAttribute(
+    'aria-hidden',
+    'true',
+  )
 
   // Erst prüfen, wenn Ein- und Ausblendungen (z. B. Kontaktleiste) fertig sind
   await page.waitForFunction(() =>

@@ -46,15 +46,19 @@ export function HomePageContent() {
 
       <section aria-labelledby="home-title" className={styles.hero}>
         <div className={styles.heroStage}>
-          <Image
-            src={heroPortrait}
-            alt="Annika Matthaei im Sessel"
-            fill
-            preload
-            placeholder="blur"
-            sizes="100vw"
-            className={styles.heroImage}
-          />
+          {/* Ab 1024 px mittig auf Beige, seitlich weich ausgeblendet */}
+          <div className={styles.heroPhoto}>
+            <Image
+              src={heroPortrait}
+              alt="Annika Matthaei im Sessel"
+              fill
+              preload
+              placeholder="blur"
+              sizes="(min-width: 1024px) 1250px, 100vw"
+              className={styles.heroImage}
+            />
+          </div>
+          <div aria-hidden="true" className={styles.heroHaze} />
           <div className={styles.heroText}>
             <h1 id="home-title" className={styles.heroTitle}>
               {hero.title.map((line, index) => (
@@ -141,7 +145,7 @@ export function HomePageContent() {
             src={methodsImage}
             alt="Alte Werkzeugkiste mit Säge, Hobeln und Hammer"
             placeholder="blur"
-            sizes="(min-width: 768px) 480px, 100vw"
+            sizes="(min-width: 1024px) 360px, (min-width: 768px) 480px, 100vw"
             className={styles.methodsImage}
           />
         </div>

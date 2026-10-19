@@ -1,5 +1,6 @@
 import { cacheLife } from 'next/cache'
 
+import { Wordmark } from '@/components/ui/wordmark'
 import { isLinkedIn } from '@/lib/social'
 
 import { FooterLegalLinks } from './footer-legal-links'
@@ -28,6 +29,8 @@ export function SiteFooter({
 }: SiteFooterProps) {
   return (
     <footer className="py-10">
+      {/* Wortmarke in voller Breite, nur auf Seiten im neuen Design (globals.css) */}
+      <Wordmark className="footer-wordmark" label="" />
       <div className="text-muted-foreground grid gap-6 px-6 text-xs tracking-[0.06em] uppercase sm:grid-cols-[1fr_auto] sm:items-center sm:px-12">
         {/* Nur auf einigen Seiten sichtbar (siehe globals.css). */}
         <p className="footer-motto">

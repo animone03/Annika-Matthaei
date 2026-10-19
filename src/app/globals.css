@@ -118,6 +118,11 @@ body {
   display: none;
 }
 
+/* Wortmarke im Footer: nur auf Seiten im neuen Design, siehe unten */
+.footer-wordmark {
+  display: none;
+}
+
 /* Seiten im neuen Design (Startseite, Startups, Unternehmen, Über mich,
    Kontakt): warmes Papier
    ohne Rahmen. Der Footer liegt im dunklen Abschluss der Seite. */
@@ -174,14 +179,34 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   color: var(--cream);
 }
 
+/* Helle Wortmarke in voller Breite über der Footer-Linie: 96 px unter dem
+   Abschluss (der selbst 72 px Abstand nach unten hat), 40 px bis zur Linie. */
+.site-shell:has([data-warm-page]:not([style*='display: none']))
+  .footer-wordmark {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 24px 0 40px;
+  color: var(--cream);
+  opacity: 0.95;
+}
+
 /* Kontakt und Rechtliches: kein dunkler Abschluss davor, darum ein schmaler
-   Footer ohne Trennlinie. */
+   Footer ohne Trennlinie, die Wortmarke 72 px unter der Kante. */
 .site-shell:has(
     [data-contact-page]:not([style*='display: none']),
     [data-legal-page]:not([style*='display: none'])
   )
   footer {
-  padding-top: 40px;
+  padding-top: 72px;
+}
+
+.site-shell:has(
+    [data-contact-page]:not([style*='display: none']),
+    [data-legal-page]:not([style*='display: none'])
+  )
+  .footer-wordmark {
+  margin: 0 0 40px;
 }
 
 .site-shell:has(
@@ -235,6 +260,28 @@ body:has([data-warm-page]:not([style*='display: none'])) {
 
   .site-shell:has([data-warm-page]:not([style*='display: none'])) footer ul {
     column-gap: 16px;
+  }
+
+  /* 44 px unter dem Abschluss (32 px kommen von dort), 24 px bis zur Linie */
+  .site-shell:has([data-warm-page]:not([style*='display: none']))
+    .footer-wordmark {
+    margin: 12px 0 24px;
+  }
+
+  .site-shell:has(
+      [data-contact-page]:not([style*='display: none']),
+      [data-legal-page]:not([style*='display: none'])
+    )
+    footer {
+    padding-top: 44px;
+  }
+
+  .site-shell:has(
+      [data-contact-page]:not([style*='display: none']),
+      [data-legal-page]:not([style*='display: none'])
+    )
+    .footer-wordmark {
+    margin: 0 0 24px;
   }
 
   .site-shell:has(

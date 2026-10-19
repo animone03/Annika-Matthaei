@@ -125,21 +125,13 @@
 
 .warmBrand {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-  text-transform: uppercase;
 }
 
-.warmName {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-}
-
-.warmRole {
-  color: var(--coal-muted);
-  font-size: 8.5px;
-  letter-spacing: 0.14em;
+/* Wortmarke: mobil 170 px links, ab 1024 px 320 px mittig */
+.wordmark {
+  display: block;
+  width: 170px;
+  height: auto;
 }
 
 .warmNav {
@@ -170,12 +162,8 @@
 }
 
 @media (min-width: 1024px) {
-  .warmName {
-    font-size: 15px;
-  }
-
-  .warmRole {
-    font-size: 9.5px;
+  .wordmark {
+    width: 320px;
   }
 }
 
@@ -186,12 +174,11 @@
     padding: 36px var(--warm-inline);
   }
 
-  /* Name mittig über der Navigation, die über die volle Breite läuft */
+  /* Wortmarke mittig über der Navigation, die über die volle Breite läuft */
   .warmBrand {
     position: relative;
     z-index: 1;
     grid-area: 1 / 2;
-    align-items: center;
   }
 
   .warmNav {
@@ -213,20 +200,32 @@
   }
 }
 
-/* Über mich: Name in Dunkelgrau wie im Entwurf; mobil steht der Header auf
-   dem Wandton des Hero */
-.onWall .warmRole {
-  color: var(--coal-soft);
-}
-
+/* Über mich: mobil steht der Header auf dem Wandton des Hero */
 @media (max-width: 1023px) {
   .onWall {
     background: var(--wall);
   }
 }
 
-/* Startseite bis 1023 px: Header liegt in Creme auf dem Foto. Bei offenem
-   Menü wieder dunkel auf Creme. */
+/* Startseite: Kopfzeile in Creme auf dem Foto (Wortmarke und Navigation),
+   bis 1023 px darüber gelegt. Bei offenem Menü wieder dunkel auf Creme. */
+.onPhotoMobile:not(.menuOpen) {
+  color: var(--cream);
+}
+
+.onPhotoMobile .warmLink:hover {
+  color: rgb(250 249 245 / 0.75);
+}
+
+/* Creme auf Beige ist knapp (etwa 3 : 1), darum auf dem Startseiten-Hero
+   12 px fett, wie im Briefing als Ausweg vorgesehen. */
+@media (min-width: 1024px) {
+  .onPhotoMobile .warmLinks {
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
 @media (max-width: 1023px) {
   .onPhotoMobile {
     position: absolute;
@@ -235,14 +234,6 @@
     left: 0;
     background: transparent;
   }
-
-  .onPhotoMobile:not(.menuOpen) {
-    color: var(--cream);
-  }
-
-  .onPhotoMobile:not(.menuOpen) .warmRole {
-    color: inherit;
-  }
 }
 
 /* Gründungscoaching: Kopf auf dem Beige des Hero, auf allen Breiten */
@@ -250,16 +241,8 @@
   background: var(--wall);
 }
 
-.onBeige .warmRole {
-  color: var(--coal-soft);
-}
-
 @media (max-width: 767px) {
   .onWallMobile {
     background: var(--wall);
-  }
-
-  .onWallMobile .warmRole {
-    color: var(--coal-soft);
   }
 }

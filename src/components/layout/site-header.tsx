@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 import { Arrow } from '@/components/ui/arrow'
+import { Wordmark } from '@/components/ui/wordmark'
 
 import styles from './site-header.module.css'
 
@@ -211,12 +212,7 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
             onClick={closeMenu}
             className={styles.warmBrand}
           >
-            <span className={styles.warmName}>Annika Matthaei</span>
-            <span
-              className={`${styles.warmRole} ${menuOpen ? 'invisible' : ''}`}
-            >
-              Coaching &amp; Consulting
-            </span>
+            <Wordmark className={styles.wordmark} />
           </Link>
           <nav aria-label="Hauptnavigation" className={styles.warmNav}>
             <ul className={styles.warmLinks}>
@@ -268,22 +264,8 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
         </div>
       ) : (
         <div className="relative flex w-full items-center justify-between gap-6 p-5 sm:px-12 lg:items-start lg:pt-9 lg:pb-0">
-          <Link
-            data-menu-focus
-            href="/"
-            className="flex flex-col gap-1.5 leading-tight"
-            onClick={closeMenu}
-          >
-            <span className="block text-[15px] font-normal tracking-[-0.01em] uppercase md:text-[17px]">
-              Annika Matthaei
-            </span>
-            <span
-              className={`site-header-subtitle text-muted-foreground hidden text-xs tracking-[0.08em] uppercase md:block ${
-                menuOpen ? 'invisible' : ''
-              }`}
-            >
-              Coaching &amp; Consulting
-            </span>
+          <Link data-menu-focus href="/" className="block" onClick={closeMenu}>
+            <Wordmark className={styles.wordmark} />
           </Link>
           <nav
             aria-label="Hauptnavigation"
