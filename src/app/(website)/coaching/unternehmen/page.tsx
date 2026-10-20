@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Route } from 'next'
 
 import heroPortrait from '../../../../../public/images/fotos/portrait-sessel.jpg'
 import whyPortrait from '../../../../../public/images/fotos/portrait-profil.jpg'
@@ -42,6 +42,9 @@ const focusImages = {
   resilienz: resilienceImage,
 }
 
+// Kontaktformular mit Vorauswahl „Unternehmen“
+const contactHref = '/kontakt?thema=unternehmen' as Route
+
 export default function CompanyCoachingPage() {
   return (
     <div data-warm-page className={warm.page}>
@@ -53,7 +56,7 @@ export default function CompanyCoachingPage() {
         title={hero.title}
         intro={hero.intro}
         introMobile={hero.introMobile}
-        cta={{ label: hero.cta, href: '/kontakt' }}
+        cta={{ label: hero.cta, href: contactHref }}
         note={hero.note}
         image={heroPortrait}
         alt="Annika Matthaei im Sessel"
@@ -198,11 +201,13 @@ export default function CompanyCoachingPage() {
         title={cta.title}
         text={cta.text}
         cta={cta.button}
+        href={contactHref}
         mobileCta={hero.cta}
       />
 
       <HomeStickyCta
         label={hero.cta}
+        href={contactHref}
         startId="company-hero-cta"
         endSelector="#company-contact"
       />

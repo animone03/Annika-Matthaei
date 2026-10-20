@@ -9,6 +9,8 @@ export const metadata: Metadata = buildMetadata({
     'Founder Coaching 1:1: mentale Fitness und strategisches Sparring für Founder in der Wachstumsphase. 3–4 Monate, online und vor Ort.',
   path: '/coaching/startups/founder-1-1',
   absoluteTitle: true,
+  // Altes Design und nicht verlinkt: bis zur Neugestaltung nicht bei Google
+  seo: { noIndex: true },
 })
 
 export default function FounderCoachingPage() {

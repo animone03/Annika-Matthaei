@@ -9,9 +9,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/',
     '/startups',
     '/coaching/startups/gruendungscoaching',
-    '/coaching/startups/lead-with-clarity',
-    '/coaching/startups/founders-in-sync',
-    '/coaching/startups/founder-1-1',
+    // Founder 1:1, Founders in Sync und Lead with Clarity fehlen bewusst:
+    // altes Design, nicht verlinkt, noindex, bis sie neu gestaltet sind.
     '/coaching/unternehmen',
     '/ueber-mich',
     // Übersichten erst aufnehmen, wenn es Inhalte gibt

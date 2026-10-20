@@ -29,7 +29,9 @@ export const contactTopics = [
   { slug: 'startup-coaching', label: 'Startup-Coaching' },
   { slug: 'co-founder', label: 'Co-Founder' },
   { slug: 'gruendungscoaching', label: 'Gründungscoaching' },
+  { slug: 'gruendungsberatung', label: 'Gründungsberatung' },
   { slug: 'leadership', label: 'Leadership & Teams' },
+  { slug: 'unternehmen', label: 'Unternehmen' },
   { slug: 'unklar', label: 'Noch unklar' },
 ]
 
@@ -388,6 +390,8 @@ const topicAliases: Record<string, string> = { exist: 'gruendungscoaching' }
 
 function useTopicPreselection() {
   const searchParams = useSearchParams()
+  // „Zusammenarbeit anfragen“ auf dem Gründungscoaching (&fuer=beratung)
+  if (searchParams.get('fuer') === 'beratung') return ['gruendungsberatung']
   return searchParams
     .getAll('thema')
     .flatMap((value) => value.split(','))

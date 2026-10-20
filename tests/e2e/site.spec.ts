@@ -291,6 +291,24 @@ test('founding coaching page switches between its two audiences', async ({
   expect(serious).toEqual([])
 })
 
+test('contact form preselects companies and founding advisors', async ({
+  page,
+}) => {
+  await page.goto('/kontakt?thema=unternehmen')
+  await expect(
+    page.getByRole('radio', { name: 'Unternehmen' }),
+  ).toHaveAttribute('aria-checked', 'true')
+
+  // „Zusammenarbeit anfragen“ auf dem Gründungscoaching
+  await page.goto('/kontakt?thema=gruendungscoaching&fuer=beratung')
+  await expect(
+    page.getByRole('radio', { name: 'Gründungsberatung' }),
+  ).toHaveAttribute('aria-checked', 'true')
+  await expect(
+    page.getByRole('radio', { name: 'Gründungscoaching' }),
+  ).toHaveAttribute('aria-checked', 'false')
+})
+
 test('machine-readable endpoints are available', async ({ request }) => {
   const [sitemap, robots, rss] = await Promise.all([
     request.get('/sitemap.xml'),

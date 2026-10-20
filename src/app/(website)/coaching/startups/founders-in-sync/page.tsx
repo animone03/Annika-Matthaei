@@ -9,6 +9,8 @@ export const metadata: Metadata = buildMetadata({
     'Coaching für Co-Founder-Teams: Sach- und Beziehungsfragen klären, wieder gemeinsam entscheiden und Tempo machen.',
   path: '/coaching/startups/founders-in-sync',
   absoluteTitle: true,
+  // Altes Design und nicht verlinkt: bis zur Neugestaltung nicht bei Google
+  seo: { noIndex: true },
 })
 
 export default function FoundersInSyncPage() {

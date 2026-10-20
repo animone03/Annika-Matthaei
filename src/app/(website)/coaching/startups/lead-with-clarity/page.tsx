@@ -10,6 +10,8 @@ export const metadata: Metadata = buildMetadata({
     'Workshops für Leadership-Teams in der Wachstumsphase: Prioritäten, Rollen, Entscheidungen. Praxisnah, online und vor Ort.',
   path: '/coaching/startups/lead-with-clarity',
   absoluteTitle: true,
+  // Altes Design und nicht verlinkt: bis zur Neugestaltung nicht bei Google
+  seo: { noIndex: true },
 })
 
 export default function LeadWithClarityPage() {
