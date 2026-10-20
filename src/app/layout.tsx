@@ -45,7 +45,7 @@ const questrial = Questrial({
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings({ stega: false })
-  const title = settings?.siteTitle || 'Annika Matthaei – Coaching & Training'
+  const title = settings?.siteTitle || 'Annika Matthaei – Coaching & Consulting'
   const description = settings?.siteDescription || undefined
 
   return {

@@ -41,7 +41,7 @@ export function personAndServiceSchema(settings?: Settings) {
         url,
         email,
         telephone: '+491727732006',
-        image: absoluteUrl('/images/og-default.jpg'),
+        image: absoluteUrl('/images/og-startseite.jpg'),
         founder: { '@id': personId },
         sameAs,
       },

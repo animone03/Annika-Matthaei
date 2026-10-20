@@ -24,9 +24,10 @@ type MetadataInput = {
   absoluteTitle?: boolean
 }
 
-// Vorschaubild für LinkedIn & Co., solange in Sanity keins hinterlegt ist
+// Vorschaubild für LinkedIn, WhatsApp & Co. (Startseiten-Hero mit Wortmarke),
+// solange in Sanity keins hinterlegt ist
 const defaultSocialImage = {
-  url: absoluteUrl('/images/og-default.jpg'),
+  url: absoluteUrl('/images/og-startseite.jpg'),
   width: 1200,
   height: 630,
   alt: 'Annika Matthaei, Coaching für Startups und High-Performing Teams',

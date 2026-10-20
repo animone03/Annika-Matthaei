@@ -13,8 +13,10 @@ export async function generateMetadata(): Promise<Metadata> {
   ])
 
   return buildMetadata({
-    title: settings?.siteTitle || 'Annika Matthaei – Coaching & Training',
-    description: settings?.siteDescription,
+    title: settings?.siteTitle || 'Annika Matthaei – Coaching & Consulting',
+    description:
+      settings?.siteDescription ||
+      'Fit for growth: Mentale Fitness für Startups & High-Performing Teams. Coaching für Founder, Gründungsteams und Führungskräfte, online und vor Ort.',
     path: '/',
     seo: page?.seo,
     fallbackImage: settings?.defaultSocialImage,
