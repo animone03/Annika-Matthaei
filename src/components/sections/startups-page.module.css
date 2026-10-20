@@ -208,8 +208,10 @@
   text-transform: uppercase;
 }
 
+/* So hoch wie die Großbuchstaben des Titels, Strich passend zur fetten Schrift */
 .offerArrow {
-  font-size: 18px;
+  margin-left: 0;
+  stroke-width: 11px;
 }
 
 .offerText {

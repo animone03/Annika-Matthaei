@@ -126,8 +126,10 @@
   text-underline-offset: 4px;
 }
 
+/* Fett gesetzt: kräftigerer Strich, Abstand kommt aus dem gap */
 .arrow {
-  font-size: 14px;
+  margin-left: 0;
+  stroke-width: 11px;
 }
 
 /* Einspaltig auf dem Tablet: flacher, sonst wird die Karte sehr hoch */

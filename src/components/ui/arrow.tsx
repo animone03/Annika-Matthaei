@@ -1,15 +1,18 @@
 type ArrowProps = { className?: string }
 
-// Schriftpfeil ↗ wie in den Vorlagen (10b). Übernimmt Textfarbe und
-// Schriftgröße und ist reine Dekoration. U+FE0E erzwingt die Textform,
-// sonst zeigt iOS das blaue Emoji.
+// Pfeil ↗ als Linie (Variante A): so hoch wie die Großbuchstaben, Strich wie
+// die Schrift daneben (globals.css). Farbe über currentColor, reine Dekoration.
 export function Arrow({ className }: ArrowProps) {
   return (
-    <span
+    <svg
       aria-hidden="true"
+      focusable="false"
+      viewBox="0 0 72 72"
+      fill="none"
+      stroke="currentColor"
       className={className ? `arrow ${className}` : 'arrow'}
     >
-      {'\u2197\uFE0E'}
-    </span>
+      <path d="M6 66 L66 6 M24 6 H66 V48" />
+    </svg>
   )
 }

@@ -242,7 +242,8 @@ export default function StartupsPage() {
             <span className={styles.existBody}>{journey.exist.text}</span>
           </span>
           <span className={`${warm.link} ${styles.existCta}`}>
-            {journey.exist.cta} <Arrow />
+            {journey.exist.cta}
+            <Arrow />
           </span>
         </Link>
       </section>

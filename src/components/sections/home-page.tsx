@@ -124,7 +124,8 @@ export function HomePageContent() {
             <span className={styles.companyBody}>{company.text}</span>
           </span>
           <span className={`${warm.link} ${styles.companyCta}`}>
-            {company.cta} <Arrow />
+            {company.cta}
+            <Arrow />
           </span>
         </Link>
       </div>

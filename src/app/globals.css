@@ -389,13 +389,23 @@ body:has([data-warm-page]:not([style*='display: none'])) {
   }
 }
 
-/* Schriftpfeil ↗ (Komponente Arrow): Textfarbe und Schriftgröße folgen dem Link.
-   Century Gothic und Questrial haben keinen Pfeil. PingFang zeichnet ihn auf
-   Mac und iPhone gleich, sonst greift die Systemschrift. */
+/* Pfeil ↗ (Komponente Arrow). Eine Einheit im SVG ist 0,01 em der Schrift
+   daneben: 0,72 em entspricht der Höhe der Großbuchstaben, der Strich 0,085 em
+   (in fetter Schrift 0,11 em, siehe die Module). Der Abstand steht als Rand,
+   damit die Unterstreichung mit dem letzten Buchstaben endet. */
 .arrow {
+  display: inline-block;
   flex: none;
-  font-family: 'PingFang SC', 'Hiragino Sans', sans-serif;
-  font-weight: 400;
+  width: 0.72em;
+  height: 0.72em;
+  margin-left: 0.4em;
+  overflow: visible;
+  vertical-align: baseline;
+  stroke-width: 8.5px;
+}
+
+.editorial-link .arrow {
+  margin-left: 0;
 }
 
 .editorial-label {

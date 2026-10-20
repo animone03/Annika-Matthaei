@@ -190,7 +190,8 @@ export function SiteHeader({ linkedIn }: SiteHeaderProps = {}) {
                 rel="me noopener"
                 className={styles.menuLinkedIn}
               >
-                LinkedIn <Arrow />
+                LinkedIn
+                <Arrow />
               </a>
             ) : null}
           </nav>
